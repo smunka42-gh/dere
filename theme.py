@@ -399,6 +399,17 @@ def inject_theme_css() -> None:
         [data-testid="stForm"] [data-testid="stSlider"] {{
             max-width: 200px;
         }}
+        /* Below ~520px the 4-column filter grid collapses to one column
+           per row (Streamlit's own responsive behavior), so each slider
+           gets the full row width instead of sharing it with three
+           others. The 200px cap above was written for the desktop
+           4-across layout and left a dead margin on phones once a
+           slider had a whole row to itself. */
+        @media (max-width: 520px) {{
+            [data-testid="stForm"] [data-testid="stSlider"] {{
+                max-width: 100%;
+            }}
+        }}
         /* Square arrow button — sized like the cards' "+" chip so the
            panel's one action reads as the same family of control. */
         [data-testid="stFormSubmitButton"] button {{
