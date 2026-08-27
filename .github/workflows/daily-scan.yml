@@ -33,7 +33,7 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 45       # a full 500-ticker S&P 500 scan is the long pole; Nifty 50/Sensex add a couple minutes on top
+    timeout-minutes: 45       # a full 500-ticker S&P 500 scan is the long pole; Nifty 50 adds a minute or so on top
 
     steps:
       - name: Decide whether this is the 17:00 Eastern run
@@ -86,7 +86,6 @@ jobs:
           MARKET_MINIMUMS = {
               "output/latest_scan_sp500.json": 400,
               "output/latest_scan_nifty50.json": 40,
-              "output/latest_scan_sensex.json": 24,
           }
 
           any_failure = False
@@ -132,7 +131,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          SCAN_FILES="output/latest_scan_sp500.json output/latest_scan_nifty50.json output/latest_scan_sensex.json"
+          SCAN_FILES="output/latest_scan_sp500.json output/latest_scan_nifty50.json"
 
           # The scan timestamp changes on every run, so comparing whole
           # files would commit daily even on market holidays when nothing

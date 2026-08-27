@@ -15,8 +15,9 @@ import yfinance as yf
 import pandas as pd
 
 # Yahoo's short exchange codes -> what Google Finance's URL scheme
-# expects. Covers the two exchanges virtually all S&P 500 stocks trade
-# on; anything else is left unmapped rather than guessed.
+# expects. Covers every exchange this app's markets actually fetch from
+# (S&P 500 tickers, plus NSE for Nifty 50); anything else is left
+# unmapped rather than guessed.
 GOOGLE_FINANCE_EXCHANGE_MAP = {
     "NMS": "NASDAQ",  # Nasdaq Global Select
     "NGM": "NASDAQ",  # Nasdaq Global Market
@@ -24,7 +25,6 @@ GOOGLE_FINANCE_EXCHANGE_MAP = {
     "NYQ": "NYSE",
     "ASE": "NYSEAMERICAN",
     "NSI": "NSE",      # National Stock Exchange of India — yfinance's ".NS" tickers
-    "BSE": "BSE",       # Bombay Stock Exchange — yfinance's ".BO" tickers
 }
 
 

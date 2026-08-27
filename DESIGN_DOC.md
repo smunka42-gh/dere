@@ -1,9 +1,9 @@
 # Vantage — design notes
 
-A single-page stock screener over three equity markets — S&P 500, Nifty 50,
-and BSE Sensex. It surfaces companies that have pulled back relative to
-their own recent trading history while still carrying analyst support, so a
-daily glance is enough to decide whether anything is worth a closer look.
+A single-page stock screener over two equity markets — S&P 500 and Nifty
+50. It surfaces companies that have pulled back relative to their own
+recent trading history while still carrying analyst support, so a daily
+glance is enough to decide whether anything is worth a closer look.
 
 "Vantage" is a working name held in one constant (`theme.APP_NAME`) so
 renaming is a one-line change.
@@ -27,14 +27,6 @@ The site never fetches market data on page load.
 Scanning ~500 S&P 500 tickers live on each page load would take minutes and
 would hammer the data source. The split is what makes the filters feel
 instant.
-
-**BSE Sensex is priced through NSE, not BSE.** Sensex's constituent *list*
-comes from BSE's own index membership, but each stock's price history is
-fetched via its NSE (`.NS`) ticker — Yahoo Finance's BSE (`.BO`) data feed
-was found to return only a single day of history no matter the requested
-range, which would make every derived metric (moving average, 52-week
-range) meaningless. All 30 Sensex constituents are confirmed dual-listed on
-NSE, so this substitution is exact, not an approximation.
 
 **Consequence worth knowing:** the site shows whatever scan was last
 committed. It does not update itself. Refreshing the data means running the
@@ -172,9 +164,9 @@ That includes guards for a reversed cap range and for all-zero weights.
 
 Each market's constituent list is fetched from a public source (Wikipedia)
 at scan time — see `markets.py` for the per-market fetcher. The
-adjustments below are S&P 500-specific; Nifty 50 and Sensex need no
-equivalent (neither publishes multiple ticker classes for the same
-company in its index).
+adjustments below are S&P 500-specific; Nifty 50 needs no equivalent (it
+doesn't publish multiple ticker classes for the same company in its
+index).
 
 Fetched from the public S&P 500 constituent list. Two adjustments:
 
@@ -252,8 +244,16 @@ hides the developer toolbar.
   raw ingredients (P/E, PEG, growth rates) are available, and presenting a
   homemade heuristic as if it were a standard classification would be
   misleading.
-- **Universe beyond three markets** — S&P 500, Nifty 50, and BSE Sensex are
-  covered (see Ticker universe above); a broader set of markets needs a
+- **BSE Sensex, deliberately.** Briefly added and then removed: Sensex's
+  30 constituents turned out to be a strict subset of Nifty 50's 50 (0
+  companies unique to Sensex, confirmed by diffing the two ticker lists).
+  Yahoo's BSE data feed also has a real coverage gap (it returns only a
+  single day of price history for `.BO` tickers regardless of the
+  requested range), so Sensex's prices would have come from each
+  company's NSE listing anyway — the same source Nifty 50 already uses.
+  A third market that adds no new companies and no new data source isn't
+  worth the extra scan time or UI complexity.
+- **Universe beyond two markets** — a broader set of markets needs a
   paid data source to be reliable at scale.
 
 ---
@@ -285,7 +285,7 @@ be used at your own risk.
 - Market data via [Yahoo Finance](https://finance.yahoo.com) through the
   [`yfinance`](https://github.com/ranaroussi/yfinance) library
   (unofficial).
-- S&P 500, Nifty 50, and BSE Sensex constituent lists from Wikipedia's
+- S&P 500 and Nifty 50 constituent lists from Wikipedia's
   community-maintained tables.
 - [Manrope](https://fonts.google.com/specimen/Manrope) typeface via Google
   Fonts (Open Font License).

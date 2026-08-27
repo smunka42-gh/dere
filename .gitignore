@@ -13,7 +13,6 @@ venv/
 output/*
 !output/latest_scan_sp500.json
 !output/latest_scan_nifty50.json
-!output/latest_scan_sensex.json
 
 # Private build log — session history, feedback quotes, decision provenance.
 # Kept local for conversation-compaction continuity; never published.
