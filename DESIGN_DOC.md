@@ -1,9 +1,9 @@
 # Vantage — design notes
 
-A single-page stock screener over the S&P 500. It surfaces companies that
-have pulled back relative to their own recent trading history while still
-carrying analyst support, so a daily glance is enough to decide whether
-anything is worth a closer look.
+A single-page stock screener over three equity markets — S&P 500, Nifty 50,
+and BSE Sensex. It surfaces companies that have pulled back relative to
+their own recent trading history while still carrying analyst support, so a
+daily glance is enough to decide whether anything is worth a closer look.
 
 "Vantage" is a working name held in one constant (`theme.APP_NAME`) so
 renaming is a one-line change.
@@ -14,14 +14,27 @@ renaming is a one-line change.
 
 The site never fetches market data on page load.
 
-- **`run_daily_scan.py`** fetches every S&P 500 ticker once, computes the
-  derived figures, and writes `output/latest_scan.json`.
-- **`app.py`** only reads that file. Every filter is pure arithmetic over
-  numbers already loaded, so moving a slider re-scores 500 tickers with no
-  network calls and no perceptible lag.
+- **`run_daily_scan.py`** fetches every ticker in every configured market
+  once, computes the derived figures, and writes one JSON file per market
+  (`output/latest_scan_<market>.json`) — see `markets.py` for what varies
+  per market (currency, cap-tier thresholds, ticker source) and what
+  doesn't (the scoring logic itself, which is market-agnostic).
+- **`app.py`** only reads whichever market's file is currently selected.
+  Every filter is pure arithmetic over numbers already loaded, so moving a
+  slider re-scores the active market's tickers with no network calls and no
+  perceptible lag.
 
-Scanning ~500 tickers live on each page load would take minutes and would
-hammer the data source. The split is what makes the filters feel instant.
+Scanning ~500 S&P 500 tickers live on each page load would take minutes and
+would hammer the data source. The split is what makes the filters feel
+instant.
+
+**BSE Sensex is priced through NSE, not BSE.** Sensex's constituent *list*
+comes from BSE's own index membership, but each stock's price history is
+fetched via its NSE (`.NS`) ticker — Yahoo Finance's BSE (`.BO`) data feed
+was found to return only a single day of history no matter the requested
+range, which would make every derived metric (moving average, 52-week
+range) meaningless. All 30 Sensex constituents are confirmed dual-listed on
+NSE, so this substitution is exact, not an approximation.
 
 **Consequence worth knowing:** the site shows whatever scan was last
 committed. It does not update itself. Refreshing the data means running the
@@ -121,7 +134,12 @@ than a third of the page.
 All filters live in one `st.form`, so nothing recomputes until Apply is
 pressed — the page never re-scores mid-drag.
 
-| Filter | Default |
+Market cap range, its slider checkpoints, and the default itself are all
+per-market (see `markets.py`) — the table below shows S&P 500's; switching
+markets reseeds every filter-widget key to that market's own defaults so a
+stale value from the previous market's scale can never persist.
+
+| Filter | Default (S&P 500) |
 |---|---|
 | Market cap range | $100B – $10T |
 | Max aggregate analyst rating | ≤ 2.0 |
@@ -151,6 +169,12 @@ That includes guards for a reversed cap range and for all-zero weights.
 ---
 
 ## Ticker universe
+
+Each market's constituent list is fetched from a public source (Wikipedia)
+at scan time — see `markets.py` for the per-market fetcher. The
+adjustments below are S&P 500-specific; Nifty 50 and Sensex need no
+equivalent (neither publishes multiple ticker classes for the same
+company in its index).
 
 Fetched from the public S&P 500 constituent list. Two adjustments:
 
@@ -228,8 +252,9 @@ hides the developer toolbar.
   raw ingredients (P/E, PEG, growth rates) are available, and presenting a
   homemade heuristic as if it were a standard classification would be
   misleading.
-- **Universe beyond the S&P 500** — a larger universe needs a paid data
-  source to be reliable at scale.
+- **Universe beyond three markets** — S&P 500, Nifty 50, and BSE Sensex are
+  covered (see Ticker universe above); a broader set of markets needs a
+  paid data source to be reliable at scale.
 
 ---
 
@@ -260,7 +285,8 @@ be used at your own risk.
 - Market data via [Yahoo Finance](https://finance.yahoo.com) through the
   [`yfinance`](https://github.com/ranaroussi/yfinance) library
   (unofficial).
-- S&P 500 constituent list from Wikipedia's community-maintained table.
+- S&P 500, Nifty 50, and BSE Sensex constituent lists from Wikipedia's
+  community-maintained tables.
 - [Manrope](https://fonts.google.com/specimen/Manrope) typeface via Google
   Fonts (Open Font License).
 - Heatmap concept — size by market cap, colour by signal — is the general
