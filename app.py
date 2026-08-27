@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 import streamlit as st
 
 from sp500_tickers import DUPLICATE_SHARE_CLASSES_TO_DROP
+from markets import MARKETS, DEFAULT_MARKET_ID
 from recommendation_logic import (
     COMPOSITE_UPSIDE_THRESHOLD_PCT,
     SMA_WINDOW_DAYS,
@@ -42,7 +43,7 @@ from recommendation_logic import (
 )
 from theme import APP_NAME, inject_theme_css, POSITIVE_COLOR, NEGATIVE_COLOR, CAP_TIER_COLORS
 
-OUTPUT_FILE = Path(__file__).parent / "output" / "latest_scan.json"
+OUTPUT_DIR = Path(__file__).parent / "output"
 MAX_BANNER_NAME_LENGTH = 40
 
 
@@ -55,19 +56,22 @@ st.set_page_config(page_title=f"{APP_NAME} — Daily Equity Recommendations", pa
 inject_theme_css()
 
 
-def load_scan_results() -> dict | None:
-    """Read the most recent scan results from disk. Returns None if no scan has run yet."""
-    if not OUTPUT_FILE.exists():
+def load_scan_results(market) -> dict | None:
+    """Read the most recent scan results for one market. Returns None if
+    that market hasn't been scanned yet."""
+    output_file = OUTPUT_DIR / market.scan_output_file
+    if not output_file.exists():
         return None
-    with open(OUTPUT_FILE) as f:
+    with open(output_file) as f:
         scan = json.load(f)
 
-    # `sp500_tickers.py` already excludes these from future scans, but a
-    # scan file saved before that change was added would still have them —
-    # filtered here too so today's page reflects it without waiting on
-    # tomorrow's nightly scan to overwrite the file.
-    for key in ("all_results", "recommendations"):
-        scan[key] = [r for r in scan[key] if r["ticker"] not in DUPLICATE_SHARE_CLASSES_TO_DROP]
+    # The dual-class dedup (GOOGL/FOX/NWS) is specific to the S&P 500's
+    # own index quirks — it has no meaning for a market that doesn't
+    # have those tickers, so it's only applied for that one market
+    # rather than unconditionally on every scan file.
+    if market.id == "sp500":
+        for key in ("all_results", "recommendations"):
+            scan[key] = [r for r in scan[key] if r["ticker"] not in DUPLICATE_SHARE_CLASSES_TO_DROP]
 
     return scan
 
@@ -76,20 +80,6 @@ def truncate_company_name(name: str, max_length: int = MAX_BANNER_NAME_LENGTH) -
     if len(name) <= max_length:
         return name
     return name[:max_length].rstrip(", ") + "…"
-
-
-def format_market_cap(market_cap: float | None) -> str:
-    """Format a market cap in dollars as a short string ("$1.69T").
-
-    Falls back to "cap n/a" when the value is missing.
-    """
-    if market_cap is None:
-        return "cap n/a"
-    if market_cap >= 1_000_000_000_000:
-        return f"${market_cap / 1_000_000_000_000:.2f}T"
-    if market_cap >= 1_000_000_000:
-        return f"${market_cap / 1_000_000_000:.1f}B"
-    return f"${market_cap / 1_000_000:.0f}M"
 
 
 def clean_company_name(name: str | None) -> str:
@@ -118,8 +108,7 @@ def build_external_links_html(r: dict, size_class: str = "") -> str:
     dependency.
 
     The Google Finance link is omitted for any ticker whose exchange
-    isn't mapped (currently NASDAQ and NYSE, covering effectively all of
-    the S&P 500).
+    isn't mapped (NASDAQ, NYSE, NSE and BSE).
     """
     yahoo_url = f"https://finance.yahoo.com/quote/{r['ticker']}"
     cls = f"vg-ext {size_class}".strip()
@@ -129,7 +118,15 @@ def build_external_links_html(r: dict, size_class: str = "") -> str:
     )
     google_exchange = r.get("google_finance_exchange")
     if google_exchange:
-        google_url = f"https://www.google.com/finance/quote/{r['ticker']}:{google_exchange}"
+        # Google Finance's own URL scheme is SYMBOL:EXCHANGE with the
+        # BARE symbol — unlike Yahoo above, it does NOT want yfinance's
+        # own exchange suffix (".NS", ".BO") included. Verified directly:
+        # "TRENT.NS:NSE" resolves to a generic, unrecognised page (its
+        # <title> just echoes the URL back), while "TRENT:NSE" resolves
+        # to the real listing. US tickers have no such suffix, so this
+        # bug was invisible until a market with suffixed tickers existed.
+        bare_symbol = r["ticker"].split(".")[0]
+        google_url = f"https://www.google.com/finance/quote/{bare_symbol}:{google_exchange}"
         html += (
             f'<a class="{cls} vg-ext-g" href="{google_url}" target="_blank" '
             f'rel="noopener" title="Open {r["ticker"]} in Google Finance">G</a>'
@@ -137,7 +134,7 @@ def build_external_links_html(r: dict, size_class: str = "") -> str:
     return html
 
 
-def build_price_scale_html(r: dict, sma_window: int) -> str:
+def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     """Render the horizontal price scale used in the detail modal.
 
     Plots five reference points on a single number line: 52-week low,
@@ -191,10 +188,10 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
         flat — at $8 the cents ARE the signal, at $733 they're noise.
         """
         if v >= 100:
-            return f"${v:,.0f}"
+            return f"{market.currency_symbol}{v:,.0f}"
         if v >= 10:
-            return f"${v:,.1f}"
-        return f"${v:,.2f}"
+            return f"{market.currency_symbol}{v:,.1f}"
+        return f"{market.currency_symbol}{v:,.2f}"
 
     neutral = "var(--vg-text-muted)"
     # (label, value, pct, pct suffix, accent colour, value colour, is_hero)
@@ -326,7 +323,7 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
 
 
 @st.dialog("Detail", width="large")
-def show_detail_dialog(r: dict, sma_window: int, weights: tuple[float, float, float]) -> None:
+def show_detail_dialog(r: dict, sma_window: int, weights: tuple[float, float, float], market) -> None:
     """Open the full detail view for one ticker as a modal.
 
     Shows a single header line (ticker, market cap, company, external
@@ -352,15 +349,15 @@ def show_detail_dialog(r: dict, sma_window: int, weights: tuple[float, float, fl
         f'<div class="vg-modal-head">'
         f'<span class="vg-modal-ticker">{r["ticker"]}</span>'
         f'<span class="vg-cap-tag" style="background:{tier_color};">'
-        f'{format_market_cap(r.get("market_cap"))}</span>'
+        f'{market.format_market_cap(r.get("market_cap"))}</span>'
         f'<span class="vg-modal-co">{company}</span>'
         f'<span class="vg-modal-links">{links}</span>'
         f"</div>"
     )
-    st.html(build_price_scale_html(r, sma_window))
+    st.html(build_price_scale_html(r, sma_window, market))
 
 
-def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, float]) -> None:
+def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, float], market) -> None:
     """Render one card in the Focus List grid.
 
     Shows the ticker, company, market-cap tier and value, current price,
@@ -452,9 +449,9 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
             f"</div>{pill}</div>"
             f'<div class="vg-card-tagrow">'
             f'<span class="vg-cap-tag" style="background:{tier_color};">'
-            f'{cap_tier or "Cap n/a"} · {format_market_cap(r.get("market_cap"))}</span>'
+            f'{cap_tier or "Cap n/a"} · {market.format_market_cap(r.get("market_cap"))}</span>'
             f'<span class="vg-card-links">{build_external_links_html(r, "vg-ext-sm")}</span></div>'
-            f'<div class="vg-card-price">${r["most_recent_close"]:,.2f}</div>'
+            f'<div class="vg-card-price">{market.currency_symbol}{r["most_recent_close"]:,.2f}</div>'
             f"{range_html}"
             f'<div class="vg-card-stats">'
             f'{_stat(f"{sma_window}D Avg", r.get("upside_to_recent_avg_pct"))}'
@@ -473,7 +470,7 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
         # wants "just a + sign"; a "+" in a card's corner is a
         # well-understood affordance on its own.
         if st.button("+", key=f"detailbtn-{r['ticker']}"):
-            show_detail_dialog(r, sma_window, weights)
+            show_detail_dialog(r, sma_window, weights, market)
 
 
 def _signal_color(pct: float, lo: float, hi: float) -> str:
@@ -716,65 +713,63 @@ def compute_live_evaluation(
     return updated
 
 
-MARKET_CAP_OPTIONS = [
-    ("$300M", 300_000_000), ("$500M", 500_000_000),
-    ("$1B", 1_000_000_000), ("$2B", 2_000_000_000), ("$5B", 5_000_000_000),
-    ("$10B", 10_000_000_000), ("$20B", 20_000_000_000), ("$50B", 50_000_000_000),
-    ("$100B", 100_000_000_000), ("$200B", 200_000_000_000), ("$500B", 500_000_000_000),
-    ("$1T", 1_000_000_000_000), ("$2T", 2_000_000_000_000),
-    ("$5T", 5_000_000_000_000), ("$10T", 10_000_000_000_000),
-]
-MARKET_CAP_LABELS = [label for label, _ in MARKET_CAP_OPTIONS]
-MARKET_CAP_VALUE_BY_LABEL = dict(MARKET_CAP_OPTIONS)
+def default_filters_for(market) -> dict:
+    """Default filter values for one market — what the form resets to on
+    first load, or whenever the selected market changes.
 
-# Defaults for every filter — also what the form resets to via
-# st.session_state on first load.
-DEFAULT_FILTERS = {
-    # $100B+ (the explicit default) — well above the
-    # $10B Large Cap floor (classify_market_cap() in
-    # recommendation_logic.py), i.e. mega/large-cap only by default.
-    "cap_range": ("$100B", "$10T"),
-    # 2.0 (the explicit default) — deliberately looser
-    # than "Strong Buy only" (≤1.5) so Buy-rated stocks show up too.
-    "rating_threshold": 2.0,
-    # 50, not SMA_WINDOW_DAYS (100) — 100 is still the locked-in default
-    # for the scan's OWN baseline scoring (recommendation_logic.py,
-    # unchanged), but it's no longer one of the two picker options
-    # (SMA_WINDOW_OPTIONS = [50, 200]) since review narrowed the slicer
-    # itself — this just needs to be A VALID option, not necessarily
-    # the same number.
-    "sma_window": 50,
-    "weights": (COMPOSITE_WEIGHT_RECENT_AVG, COMPOSITE_WEIGHT_PEAK, COMPOSITE_WEIGHT_TARGET),
-    "composite_cutoff": COMPOSITE_UPSIDE_THRESHOLD_PCT,
-}
+    Only cap_range varies by market (it's expressed in that market's own
+    label set, e.g. "$100B" vs "₹1,00,000 Cr" — see markets.py). The
+    other four filters are market-agnostic concepts, so they keep the
+    same defaults regardless of which universe is selected.
+    """
+    return {
+        "cap_range": market.default_cap_range,
+        # 2.0 — deliberately looser than "Strong Buy only" (≤1.5) so
+        # Buy-rated stocks show up too.
+        "rating_threshold": 2.0,
+        # 50, not SMA_WINDOW_DAYS (100) — 100 is still the locked-in
+        # default for the scan's OWN baseline scoring
+        # (recommendation_logic.py, unchanged), but it's no longer one
+        # of the two picker options (SMA_WINDOW_OPTIONS = [50, 200])
+        # since the slicer itself was narrowed — this just needs to be
+        # A VALID option, not necessarily the same number.
+        "sma_window": 50,
+        "weights": (COMPOSITE_WEIGHT_RECENT_AVG, COMPOSITE_WEIGHT_PEAK, COMPOSITE_WEIGHT_TARGET),
+        "composite_cutoff": COMPOSITE_UPSIDE_THRESHOLD_PCT,
+    }
 
 
-def filters_to_query_params(filters: dict) -> dict:
+def filters_to_query_params(filters: dict, market) -> dict:
     """Serialise applied filters into URL query parameters.
 
-    Only values that differ from DEFAULT_FILTERS are included, so the
-    URL stays clean until something is actually changed.
+    Only values that differ from that market's own defaults are
+    included, so the URL stays clean until something is actually
+    changed. The market itself is written separately by the caller
+    (it's a bigger switch than a filter tweak, and needs to be readable
+    before any of the filter values can even be interpreted).
 
     Weights are written as whole percentages ("50-25-25") rather than
     the normalised floats used internally.
     """
+    defaults = default_filters_for(market)
     params: dict[str, str] = {}
-    if filters["cap_range"] != DEFAULT_FILTERS["cap_range"]:
+    if filters["cap_range"] != defaults["cap_range"]:
         params["cap"] = f"{filters['cap_range'][0]}-{filters['cap_range'][1]}"
-    if filters["rating_threshold"] != DEFAULT_FILTERS["rating_threshold"]:
+    if filters["rating_threshold"] != defaults["rating_threshold"]:
         params["rating"] = f"{filters['rating_threshold']:.1f}"
-    if filters["sma_window"] != DEFAULT_FILTERS["sma_window"]:
+    if filters["sma_window"] != defaults["sma_window"]:
         params["sma"] = str(filters["sma_window"])
-    if filters["composite_cutoff"] != DEFAULT_FILTERS["composite_cutoff"]:
+    if filters["composite_cutoff"] != defaults["composite_cutoff"]:
         params["cut"] = str(filters["composite_cutoff"])
     weights = filters["weights"]
-    if tuple(round(w, 4) for w in weights) != tuple(round(w, 4) for w in DEFAULT_FILTERS["weights"]):
+    if tuple(round(w, 4) for w in weights) != tuple(round(w, 4) for w in defaults["weights"]):
         params["w"] = "-".join(f"{w * 100:.0f}" for w in weights)
     return params
 
 
-def filters_from_query_params() -> dict:
-    """Rebuild applied filters from the URL, falling back to defaults.
+def filters_from_query_params(market) -> dict:
+    """Rebuild applied filters from the URL, falling back to `market`'s
+    own defaults.
 
     This is what lets the browser back button, a refresh and a bookmark
     restore the same view; st.session_state alone cannot, since it is
@@ -787,16 +782,17 @@ def filters_from_query_params() -> dict:
     cap range, which would otherwise match nothing, and for all-zero
     weights, which would divide by zero.
     """
-    filters = dict(DEFAULT_FILTERS)
+    filters = default_filters_for(market)
     qp = st.query_params
+    cap_labels = [label for label, _ in market.cap_range_options]
 
     raw_cap = qp.get("cap")
     if raw_cap and "-" in raw_cap:
         low_label, _, high_label = raw_cap.partition("-")
-        if low_label in MARKET_CAP_LABELS and high_label in MARKET_CAP_LABELS:
+        if low_label in cap_labels and high_label in cap_labels:
             # Guard against a reversed range (?cap=$10T-$100B), which
             # would otherwise silently match nothing at all.
-            if MARKET_CAP_LABELS.index(low_label) <= MARKET_CAP_LABELS.index(high_label):
+            if cap_labels.index(low_label) <= cap_labels.index(high_label):
                 filters["cap_range"] = (low_label, high_label)
 
     try:
@@ -834,15 +830,25 @@ def filters_from_query_params() -> dict:
 
     return filters
 
+# Which market is active is resolved BEFORE anything else on the page —
+# scan loading, the header, and the filter defaults all depend on it.
+# Seeded from the URL (?market=nifty50) so a bookmark or a shared link
+# opens on the right universe, same reasoning as applied_filters below.
+if "selected_market_id" not in st.session_state:
+    url_market_id = st.query_params.get("market")
+    st.session_state.selected_market_id = url_market_id if url_market_id in MARKETS else DEFAULT_MARKET_ID
+market = MARKETS[st.session_state.selected_market_id]
+
 if "applied_filters" not in st.session_state:
-    # Seeded FROM THE URL, not straight from DEFAULT_FILTERS — that's
-    # what survives a full page load (back button, refresh, bookmark).
-    st.session_state.applied_filters = filters_from_query_params()
+    # Seeded FROM THE URL, not straight from the market's defaults —
+    # that's what survives a full page load (back button, refresh,
+    # bookmark).
+    st.session_state.applied_filters = filters_from_query_params(market)
 
 # Scan is loaded BEFORE the header so the nav strip can carry the
 # scan timestamp as its right-hand meta line, the way the Option 3
 # mockup did — rather than as a separate caption stacked underneath.
-scan = load_scan_results()
+scan = load_scan_results(market)
 all_results = scan.get("all_results", []) if scan else []
 
 if scan is not None:
@@ -916,6 +922,52 @@ with st.container(key="navrow"):
 # thing twice and costing a row at the top of the page. The FULL text
 # still appears in the footer — nothing was weakened, just de-duplicated.
 
+# --- Market selector — deliberately OUTSIDE the filter form -------------
+# Switching markets changes the entire universe (and the market-cap
+# scale's units), so it reacts immediately rather than waiting behind
+# Apply Filters the way a slider tweak does. st.radio outside a form
+# reruns the script on every change, same as any plain widget.
+market_ids = list(MARKETS.keys())
+picked_market_id = st.radio(
+    "Market",
+    options=market_ids,
+    format_func=lambda mid: MARKETS[mid].display_name,
+    index=market_ids.index(st.session_state.selected_market_id),
+    key="market_selector_widget",
+    horizontal=True,
+)
+if picked_market_id != st.session_state.selected_market_id:
+    new_market = MARKETS[picked_market_id]
+    st.session_state.selected_market_id = picked_market_id
+    # Filters reset to the NEW market's own defaults rather than trying
+    # to carry over the old ones — a market-cap range expressed in one
+    # market's labels ("$100B") has no meaning in another's ("₹ Cr"), so
+    # attempting to preserve it would either error or silently mean
+    # something different than what the user set it to.
+    st.session_state.applied_filters = default_filters_for(new_market)
+    # The form widgets below ALSO persist their own value under their
+    # own key, independent of applied_filters — st.select_slider in
+    # particular would raise an exception on the next render, because
+    # its remembered value (the OLD market's cap-range labels) wouldn't
+    # exist in the NEW market's `options` list. Deleting these keys
+    # makes every widget reseed itself fresh from `value=` instead of
+    # reusing a now-invalid remembered one.
+    for widget_key in (
+        "filt_cap_range", "filt_rating_threshold", "filt_sma_window",
+        "filt_composite_cutoff", "filt_w_avg", "filt_w_peak", "filt_w_target",
+    ):
+        st.session_state.pop(widget_key, None)
+    if picked_market_id == DEFAULT_MARKET_ID:
+        st.query_params.pop("market", None)
+    else:
+        st.query_params["market"] = picked_market_id
+    # Restart the script from the top NOW rather than letting execution
+    # continue with the just-loaded OLD market's scan data still in
+    # `scan`/`all_results` for the rest of this run — st.rerun() is what
+    # makes this take effect on a clean pass instead of an inconsistent
+    # partial one.
+    st.rerun()
+
 # --- Filters, at the top of the page, as a FORM (----
 # "let user complete all options and then click submit... dont execute
 # with every change") — st.form() is Streamlit's built-in mechanism for
@@ -955,7 +1007,7 @@ with st.form("filters_form"):
     with row1_col1:
         cap_range_input = st.select_slider(
             "Market cap range",
-            options=MARKET_CAP_LABELS,
+            options=[label for label, _ in market.cap_range_options],
             value=st.session_state.applied_filters["cap_range"],
             key="filt_cap_range",
         )
@@ -1070,21 +1122,31 @@ if submitted:
     # Mirror the applied filters into the URL. Assigning to
     # st.query_params REPLACES the whole query string, so anything back
     # at its default drops out and the URL stays clean.
-    st.query_params.from_dict(filters_to_query_params(st.session_state.applied_filters))
+    # "market" only appears when it's not the default — same "clean
+    # until something changes" property the other filter params have.
+    market_param = {} if market.id == DEFAULT_MARKET_ID else {"market": market.id}
+    st.query_params.from_dict(
+        {**market_param, **filters_to_query_params(st.session_state.applied_filters, market)}
+    )
 
 # Everything below reads ONLY from st.session_state.applied_filters —
 # never from the form's raw widget variables above — so dragging a
 # slider without clicking "Apply Filters" changes nothing on the page,
 # even across an unrelated rerun (e.g. clicking a heatmap box).
 af = st.session_state.applied_filters
-cap_range = (MARKET_CAP_VALUE_BY_LABEL[af["cap_range"][0]], MARKET_CAP_VALUE_BY_LABEL[af["cap_range"][1]])
+cap_value_by_label = dict(market.cap_range_options)
+cap_range = (cap_value_by_label[af["cap_range"][0]], cap_value_by_label[af["cap_range"][1]])
 rating_threshold = af["rating_threshold"]
 sma_window, weights, composite_cutoff = af["sma_window"], af["weights"], af["composite_cutoff"]
-# Dollar signs escaped (\$) — a PAIR of unescaped $ in Streamlit
-# markdown gets read as LaTeX math mode (the exact same bug already
-# hit and documented elsewhere in this project), and "$10B" next to
-# "$10T" is exactly that pair.
-cap_range_display = f"\\{af['cap_range'][0]}–\\{af['cap_range'][1]}"
+# Every LITERAL "$" escaped to "\$" — a PAIR of unescaped $ in Streamlit
+# markdown gets read as LaTeX math mode, and "$10B" next to "$10T" is
+# exactly that pair. Escaping wherever "$" actually occurs (rather than
+# assuming every label starts with one) is what keeps this correct for
+# ₹-denominated labels too: a rupee label has no "$" in it at all, so
+# .replace() leaves it untouched instead of prepending a stray visible
+# backslash the way an unconditional f"\\{label}" would have.
+low_label, high_label = af["cap_range"]
+cap_range_display = f"{low_label.replace('$', '\\$')}–{high_label.replace('$', '\\$')}"
 
 if scan is not None:
     # Recompute EVERY scanned ticker's evaluation against the currently
@@ -1165,7 +1227,7 @@ else:
         for i in range(0, len(qualifying_results), 3):
             for col, r in zip(st.columns(3), qualifying_results[i:i + 3]):
                 with col:
-                    render_focus_card(r, sma_window, weights)
+                    render_focus_card(r, sma_window, weights, market)
 
 # The bottom "See full methodology →" link was removed —
 # the header link above covers it, and the emoji icon it carried was
