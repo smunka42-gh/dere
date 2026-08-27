@@ -23,6 +23,8 @@ GOOGLE_FINANCE_EXCHANGE_MAP = {
     "NCM": "NASDAQ",  # Nasdaq Capital Market
     "NYQ": "NYSE",
     "ASE": "NYSEAMERICAN",
+    "NSI": "NSE",      # National Stock Exchange of India — yfinance's ".NS" tickers
+    "BSE": "BSE",       # Bombay Stock Exchange — yfinance's ".BO" tickers
 }
 
 
@@ -268,23 +270,32 @@ def bucket_upside(pct: float) -> str:
     return "Below threshold"
 
 
-def classify_market_cap(market_cap: float | None) -> str | None:
+def classify_market_cap(
+    market_cap: float | None,
+    large_threshold: float,
+    mid_threshold: float,
+    small_threshold: float,
+) -> str | None:
     """
     Classify a company's market capitalization into Large/Mid/Small cap,
-    using commonly-cited (not perfectly standardized — different sources
-    draw the lines slightly differently) US equity thresholds.
+    against thresholds supplied by the caller rather than fixed in this
+    function — the same absolute number means something very different
+    in dollars than in rupees, so there's no single "US thresholds"
+    default that would be honest for every market this tool scans. See
+    markets.py for the actual per-market values (cap_tier_large/mid/small)
+    and why they're a rough heuristic rather than a precise standard.
 
-    Expectation to set: since this tool only scans S&P 500 stocks, and index
-    membership itself skews toward bigger companies, most or all results
-    will likely come back "Large Cap" — that's expected, not a bug.
+    Expectation to set: an index's own membership already skews toward
+    bigger companies, so most or all results for a given scan will
+    likely come back "Large Cap" — that's expected, not a bug.
     """
     if market_cap is None:
         return None
-    elif market_cap >= 10_000_000_000:  # $10B+
+    elif market_cap >= large_threshold:
         return "Large Cap"
-    elif market_cap >= 2_000_000_000:  # $2B-$10B
+    elif market_cap >= mid_threshold:
         return "Mid Cap"
-    elif market_cap >= 300_000_000:  # $300M-$2B
+    elif market_cap >= small_threshold:
         return "Small Cap"
     else:
         return "Micro Cap"
@@ -356,7 +367,12 @@ def get_live_market_context(info: dict) -> dict:
     }
 
 
-def evaluate_ticker(ticker_symbol: str) -> dict | None:
+def evaluate_ticker(
+    ticker_symbol: str,
+    cap_tier_large: float = 10_000_000_000,
+    cap_tier_mid: float = 2_000_000_000,
+    cap_tier_small: float = 300_000_000,
+) -> dict | None:
     """
     Run the full evaluation logic for a single stock ticker, end to end:
       1. Pull 12 months of daily price history
@@ -364,6 +380,12 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
       3. Compare it to the most recent closing price
       4. Pull the analyst target price and apply the upside filter
       5. Classify into a tier, if it qualifies
+
+    The cap_tier_* arguments are passed straight through to
+    classify_market_cap() and default to the S&P 500's own thresholds, so
+    existing callers that don't care about other markets keep working
+    unchanged — the daily scan script passes each market's own values
+    explicitly instead of relying on this default (see markets.py).
 
     Returns a dict describing the result (whether or not it ended up
     being a recommendation — that's useful for debugging/validation,
@@ -383,7 +405,22 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
         print(f"  [{ticker_symbol}] No price history returned — skipping.")
         return None
 
-    daily_closes = history["Close"]
+    # Dropped here, once, rather than trusting every row to be valid —
+    # yfinance can return a placeholder row for the current calendar
+    # date with a NaN close before that day's data is finalized. Caught
+    # on NSE tickers specifically: Yahoo's non-US pipelines appear to
+    # lag behind the primary US feed in finalizing a day's close, so a
+    # scan run a few hours after the Indian market closes could still
+    # see today's row as NaN — that produced a Composite Upside of NaN
+    # for every Nifty 50 ticker before this fix. dropna() here means
+    # every downstream read of daily_closes (including
+    # compute_recent_average_price's own belt-and-suspenders dropna)
+    # can simply trust the data it's given.
+    daily_closes = history["Close"].dropna()
+
+    if daily_closes.empty:
+        print(f"  [{ticker_symbol}] Price history had no usable (non-NaN) closes — skipping.")
+        return None
 
     # "Most recent close" = the actual last trading day in the data,
     # NOT literally calendar-yesterday. This correctly handles Mondays
@@ -445,7 +482,7 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
     recommendation_key = info.get("recommendationKey")
     company_name = info.get("shortName")
     market_cap = info.get("marketCap")
-    market_cap_tier = classify_market_cap(market_cap)
+    market_cap_tier = classify_market_cap(market_cap, cap_tier_large, cap_tier_mid, cap_tier_small)
     # Sector comes straight from yfinance's own data (not the S&P 500
     # Wikipedia table) so this works for ANY ticker, not just S&P 500
     # members — needed for the ad-hoc single-ticker search feature.

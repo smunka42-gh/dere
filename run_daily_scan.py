@@ -1,14 +1,19 @@
 """
-Vantage — runs the full S&P 500 scan and saves results to a JSON file.
+Vantage — runs the full equity scan for every configured market and
+saves each one to its own JSON file.
 
-This is the script that would eventually run on a schedule (~6am
-Central, per the design doc) — right now we're running it manually to
-validate at full scale before setting up any scheduling.
+Output goes to output/<market.scan_output_file> — one file per market
+(see markets.py) — the website reads from whichever file matches the
+market currently selected in the UI, rather than re-scanning live on
+every page load (that would be too slow — see DESIGN_DOC.md for the
+batch-scan + live-refresh architecture).
 
-Output goes to output/latest_scan.json — the website will read from
-this file rather than re-scanning all 500 tickers on every page load
-(that would be too slow — see DESIGN_DOC.md for the batch-scan +
-live-refresh-for-flagged-tickers architecture).
+Note this intentionally changes the S&P 500 output filename from the
+older "latest_scan.json" to "latest_scan_sp500.json", so every market
+follows the same naming convention. Anything still reading the old bare
+filename (a currently-deployed build on a different branch, for example)
+needs to be migrated deliberately when this feature merges — not papered
+over here.
 """
 
 import json
@@ -16,16 +21,15 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from sp500_tickers import get_sp500_tickers
+from markets import MARKETS
 from recommendation_logic import evaluate_ticker
 
 OUTPUT_DIR = Path(__file__).parent / "output"
-OUTPUT_FILE = OUTPUT_DIR / "latest_scan.json"
 
 
-def run_full_scan():
-    tickers = get_sp500_tickers()
-    print(f"Scanning {len(tickers)} tickers...")
+def run_scan_for_market(market) -> None:
+    tickers = market.fetch_tickers()
+    print(f"\n=== {market.display_name} — scanning {len(tickers)} tickers ===")
 
     start_time = time.time()
     all_results = []
@@ -33,7 +37,12 @@ def run_full_scan():
 
     for i, symbol in enumerate(tickers, start=1):
         try:
-            result = evaluate_ticker(symbol)
+            result = evaluate_ticker(
+                symbol,
+                cap_tier_large=market.cap_tier_large,
+                cap_tier_mid=market.cap_tier_mid,
+                cap_tier_small=market.cap_tier_small,
+            )
             if result is not None:
                 all_results.append(result)
         except Exception as e:
@@ -49,6 +58,7 @@ def run_full_scan():
 
     scan_output = {
         "scan_timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "market_id": market.id,
         "tickers_scanned": len(tickers),
         "tickers_with_errors": len(errors),
         "errors": errors,
@@ -58,17 +68,22 @@ def run_full_scan():
     }
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    with open(OUTPUT_FILE, "w") as f:
+    output_file = OUTPUT_DIR / market.scan_output_file
+    with open(output_file, "w") as f:
         json.dump(scan_output, f, indent=2, default=str)
 
-    print(f"\nDone in {elapsed:.0f}s ({elapsed/len(tickers):.2f}s/ticker average)")
-    print(f"Errors: {len(errors)}")
-    print(f"Recommendations: {len(recommendations)}")
+    print(f"Done in {elapsed:.0f}s ({elapsed / max(len(tickers), 1):.2f}s/ticker average)")
+    print(f"Errors: {len(errors)} | Recommendations: {len(recommendations)}")
     for r in recommendations:
         print(f"  {r['ticker']}: [{r['tag']}] Composite Upside {r['composite_upside_pct']:+.1f}% "
               f"(100d-avg {r['upside_to_recent_avg_pct']:+.1f}%, 52w-high {r['upside_to_52w_high_pct']:+.1f}%, "
               f"target {r['upside_to_target_pct']:+.1f}%), rating {r['recommendation_mean']:.2f}")
-    print(f"\nSaved to {OUTPUT_FILE}")
+    print(f"Saved to {output_file}")
+
+
+def run_full_scan() -> None:
+    for market in MARKETS.values():
+        run_scan_for_market(market)
 
 
 if __name__ == "__main__":
