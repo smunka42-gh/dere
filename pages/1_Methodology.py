@@ -104,10 +104,7 @@ re-scoring 500+ stocks on every single drag.
 - **Composite Upside weighting** — three sliders (shown side by side),
   one each for the moving-average / 52w-high / target components,
   normalized to always sum to 100% (default 50/25/25) — "50/50/50"
-  means equal weight, same as "33/33/33". An earlier version also had
-  three MORE sliders requiring each component to individually clear its
-  own minimum upside, separate from this blended weighting — tried,
-  then removed entirely as unnecessary complexity once in practice.
+  means equal weight, same as "33/33/33".
 
 Whatever you apply is written into the page's web address, so the
 browser's back button, a refresh, and a bookmark all bring back the
@@ -125,15 +122,10 @@ Filters button and again under the heatmap heading.
 
 - **The heatmap** — box size = market cap, color = Composite Upside %,
   filtered by every applied filter in the panel above it. One lens,
-  not several — an
-  earlier version had 4 separate heatmap slices across 3 tabs (Delta 1,
-  Delta 2, Composite Upside, and the max of the first two); simplified
-  down to just Composite Upside since that's the number the whole page
-  is organized around. Inspired by the general finviz-style market
-  heatmap *concept* — built from scratch with Plotly, not copied from
-  finviz's page or code. Color scale is a continuous auto-scaling
-  gradient (not fixed bands) — it stretches to whatever today's actual
-  min/max happen to be, which means the exact color-to-percentage
+  organized around one number rather than several competing lenses.
+  Inspired by the general finviz-style market heatmap *concept*, built
+  from scratch. The color scale auto-scales to the range actually on
+  screen rather than using fixed bands, so the exact color-to-percentage
   mapping shifts slightly day to day.
 - **The heatmap is purely visual** — no hover, click, or zoom; it's a
   glanceable map, not a navigation control. Use the Focus List below it
@@ -162,12 +154,10 @@ Filters button and again under the heatmap heading.
 - **The detail view** (opened from the heatmap or a Focus List card)
   is deliberately compact — current price, 52-week high,
   analyst target, Composite Upside % and its 3-part breakdown, analyst
-  rating, and external links. An earlier version also showed live pre/
-  post-market price separately from the saved close, the full analyst
-  buy/hold/sell breakdown table, a 52-week range position bar, and the
-  latest news headline — all still computed in `recommendation_logic.py`
-  if a future "full research view" needs them, just trimmed from this
-  page so it fits on one screen without scrolling.
+  rating, and external links. `recommendation_logic.py` also computes
+  live pre/post-market prices, the full analyst buy/hold/sell breakdown
+  and the latest news headline, which a future "full research view"
+  could surface; they are left off this page so it fits one screen.
 - **External links** — every detail view links out to that ticker's
   Yahoo Finance and Google Finance pages (Google Finance's link is
   skipped for a ticker whose exchange isn't one {APP_NAME} knows how to map —

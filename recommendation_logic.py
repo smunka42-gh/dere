@@ -120,7 +120,7 @@ def get_latest_relevant_headline(
     3. Matching on the FULL legal company name (e.g. "Meta Platforms,
        Inc.") essentially never matches real headlines, which use the
        brand name instead (e.g. "Meta"). This was a real bug in an
-       earlier version of this function — it looked like it worked
+       a previous approach — it looked like it worked
        because the fallback path happened to coincidentally pick
        relevant news, not because the filter actually matched anything.
 
@@ -484,8 +484,8 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
     #   Delta 1: upside if price returns to the classic 52-week HIGH
     #   Delta 2: upside if price reaches the analyst target
     upside_to_52w_high = round(compute_upside_pct(range_position["fifty_two_week_high"], most_recent_close), 2)
-    # Delta 2 uses the MEDIAN target, not the mean (# "align with most analysts" — median resists a single outlier
-    # analyst skewing the number more than mean does). Falls back to
+    # Delta 2 uses the MEDIAN target rather than the mean: the median
+    # resists a single outlier analyst skewing the figure. Falls back to
     # mean only if median is somehow missing but mean isn't (rare —
     # normally both come from the same analyst pool, present or absent
     # together).

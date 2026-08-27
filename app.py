@@ -207,18 +207,12 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
     # The $ VALUE is now coloured too, not just the label word — with
     #   every value in the same near-black, the hero's larger size was
     #   the only differentiator and it wasn't possible to tell it was bigger.
-    # The "vs low" suffix dropped and the % takes the normal green/red
-    #   treatment, by design.
-    #
-    # ALL FIVE VALUES ARE THE SAME SIZE (final call:
-    # "you can highlight it in other ways (color coding) vs making it
-    # bigger"). Every point is 11.5px; "Now" is separated purely by
-    # CONTRAST instead:
-    #   it is the only near-black value, because the moving average and
-    #     analyst target were demoted to muted gray here — that's what
-    #     makes black distinctive rather than shared with two others
-    #   weight 800 against their 700
-    #   a 13px marker against 9px
+    # Every value renders at the same size. "Now" is distinguished by
+    # CONTRAST, not scale:
+    #   - it is the only near-black value; the moving average and analyst
+    #     target are muted gray, which is what leaves black distinctive
+    #   - heavier weight (800 vs 700)
+    #   - a larger marker (13px vs 9px)
     # 52W Low and 52W High keep red/green, so the scale reads as three
     # coloured anchors (low / now / high) with two quiet reference points
     # between them.
@@ -468,14 +462,14 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
             f'{_stat("Target", r.get("upside_to_target_pct"))}'
             f"</div>"
         )
-        # Rendered LAST in the card's flow but positioned into the top-
-        # right corner by CSS (a "+" beside the %
-        # pill "is more intuitive" than a button at the bottom).
-        # Streamlit buttons are block elements and can't be nested into
-        # the st.html header markup above, so the card is a positioning
-        # context and the button is absolutely placed into it — it stays
-        # a real st.button, with click handling intact, and only its
-        # position changes. No label text and no `help` tooltip — review
+        # Rendered last in the card's flow, but CSS positions it into the
+        # top-right corner beside the upside pill.
+        #
+        # Streamlit buttons are block elements and cannot be nested into
+        # the st.html markup above, so the card acts as the positioning
+        # context and the button is placed absolutely inside it. It stays
+        # a real st.button with click handling intact; only its position
+        # is CSS. It carries no label text and no `help` tooltip — review
         # wants "just a + sign"; a "+" in a card's corner is a
         # well-understood affordance on its own.
         if st.button("+", key=f"detailbtn-{r['ticker']}"):
@@ -880,11 +874,14 @@ else:
 # script's output instead of a product). The mark is three CSS bars
 # rather than the mockup's <svg>, which Streamlit sanitizes away.
 #
-# Laid out as COLUMNS rather than one st.html block so the Methodology
-# link can live in the nav row itself (sitting alone
-# on its own row below, it was "floating like an orphan" — and it was
-# genuinely centred, measured at 0px misalignment, so the problem was
-# placement, not alignment). A nav link belongs in the nav.
+# Laid out as columns rather than a single st.html block so the
+# Methodology link can sit in the nav row itself, where a nav link
+# belongs.
+#
+# The meta line is kept to ONE line on purpose: as two lines it is taller
+# than the brand and the link either side of it, and vertical centring
+# then aligns the link with the gap BETWEEN the two lines rather than
+# with any text.
 #
 # It stays an st.page_link rather than an <a> in the markup: an anchor
 # does a full browser reload, page_link navigates client-side and keeps
@@ -934,33 +931,21 @@ with st.form("filters_form"):
     # embedding the moving-average window's CURRENT value. Streamlit
     # auto-generates a widget's identity from its label (among other
     # args) when no explicit key is given — a well-documented Streamlit
-    # gotcha — so whenever the window changed, those two widgets were
-    # silently treated as BRAND NEW widgets on that rerun and reset to
-    # their last-committed value, discarding whatever the user had just
-    # dragged them to. That's exactly what "sometimes don't apply" was:
-    # change the window and adjust a weight in the same pass, and the
-    # weight change vanished. A static key makes a widget's identity
-    # independent of its label text, so the dynamic label (still nice —
-    # it shows which window the weight applies to) is now safe to keep.
+    # gotcha — so whenever such a value changes, the widget is treated as
+    # brand new on that rerun and silently resets to its last-committed
+    # value, discarding any uncommitted input. A static key makes a
+    # widget's identity independent of its label text, which keeps the
+    # dynamic label (useful: it names the window the weight applies to)
+    # safe to use.
 
-    # Row 1: four single-control filters, evenly matched heights — was
-    # a lopsided 5-column row (2 sparse columns next to 2 columns of 3
-    # stacked sliders each), which read as bulky, uneven whitespace
-    # ("very clunky bulky feel"). Splitting into
-    # this row plus a second row of two evenly-matched 3-slider columns
-    # (below) removes the dead space instead of just shrinking widgets.
-    # BOTH rows use the identical column grid — a label column then four
-    # equal slots ("lets find a way to have the top
-    # row sliders also beside filters not under it. make everything
-    # uniform, font size, slider length etc"). Same ratios in both rows
-    # is what guarantees every slider is exactly the same width; the
-    # earlier layout had row 1 across 4 columns and row 2 across 3, so
-    # the top sliders were unavoidably longer.
-    # Four equal slots per row, no label column (
-    # "lets drop filters and composite upside weights as well"). Row 2
-    # keeps the same 4-slot grid with the submit button in the last
-    # slot, so both rows' sliders stay identical in width and aligned
-    # to the same x positions.
+    # Both rows use the SAME column grid: four equal slots. Row 1 holds
+    # the four filters; row 2 holds the three weight sliders plus the
+    # submit button in the last slot.
+    #
+    # Identical ratios in both rows is what makes every slider exactly
+    # the same width and aligns the two rows to the same x positions.
+    # Uneven column counts between rows would make one row's sliders
+    # unavoidably longer than the other's.
     FILTER_ROW_RATIOS = [1, 1, 1, 1]
 
     row1_col1, row1_col2, row1_col3, row1_col4 = st.columns(
@@ -976,10 +961,9 @@ with st.form("filters_form"):
         )
 
     with row1_col2:
-        # Back to a plain slider — briefly tried as 5
-        # rating-bucket checkboxes in a multiselect dropdown, reverted
-        # after seeing it in practice (the dropdown's box didn't match
-        # the clean single-line sliders around it).
+        # A plain slider rather than rating-bucket checkboxes: a
+        # multiselect's boxed tag container reads as a heavier control
+        # than the single-line sliders beside it.
         rating_threshold_input = st.slider(
             "Max analyst rating",
             min_value=1.0, max_value=5.0,

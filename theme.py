@@ -158,14 +158,12 @@ def inject_theme_css() -> None:
         /* Streamlit's header is 60px tall, OPAQUE WHITE and sits at
            z-index 999990 — so it paints OVER the top of the page's own
            content. With padding-top at 40px the nav meta started at
-           y=52 and its top 8px were hidden behind it ("daily equity recommendations chopped off a bit" —
-           real, and measured at exactly 8px).
+           content, clipping the top of whatever sits under it.
 
-           Since toolbarMode is "minimal" and the sidebar nav is hidden,
-           this header is now completely EMPTY (verified: 0 children,
-           no text). It has nothing to show and no reason to reserve
-           space, so it's collapsed to zero height. That both fixes the
-           clipping and reclaims 60px at the top of every page. */
+           With toolbarMode "minimal" and the sidebar nav hidden, that
+           header renders empty — nothing to show and no reason to
+           reserve space — so it is collapsed to zero height. This both
+           prevents the clipping and reclaims 60px on every page. */
         [data-testid="stHeader"] {{
             height: 0 !important;
             min-height: 0 !important;
@@ -302,14 +300,12 @@ def inject_theme_css() -> None:
             color: var(--vg-accent) !important;
         }}
 
-        /* Filter form — compacted, second pass ("very bulky... clunky", then after the first compacting pass
-           "everything is just too big" — sliders too long, buttons too
-           big). Values checked against the live DOM before writing
-           these (same lesson as everywhere else in this file): the
-           form's default padding was 15px with a heavy 1px border,
-           stacked widgets had a 16px flexbox gap, widget labels
-           rendered at 14px, submit buttons were 40px tall with 16px
-           text — all measured, none guessed. Second pass adds: capping
+        /* Filter form — compacted well below Streamlit's defaults, which
+           are sized for a full-page form rather than a dense control
+           strip. Every value here was measured against the live DOM
+           rather than guessed. The defaults being overridden: 15px
+           padding, a 16px flexbox gap between stacked widgets, 14px
+           widget labels, and 40px submit buttons with 16px text. Also
            the form's overall width (it was stretching to the full
            "wide" layout width, exaggerating every control's length),
            capping each slider's own width so it doesn't span its whole
