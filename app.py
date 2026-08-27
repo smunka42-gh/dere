@@ -1,33 +1,28 @@
 """
-Vantage — Daily Equity Recommendations, main website page.
+Vantage — main page.
 
-This is the entry point Streamlit runs. It reads the most recent scan
-results (produced by run_daily_scan.py) and displays them.
+Streamlit entry point. Reads the results of the most recent scan
+(written by run_daily_scan.py to output/latest_scan.json) and renders
+them; it never fetches market data itself, so every filter is arithmetic
+over already-loaded numbers and responds instantly.
 
-Note this file only DISPLAYS results — it doesn't run the scan itself.
-That's deliberate: scanning 500 stocks live on every page load would be
-far too slow for a webpage. See DESIGN_DOC.md for the full reasoning.
+Page structure, top to bottom:
 
-The "Methodology" page lives in pages/1_Methodology.py — Streamlit
-automatically turns any file in a pages/ folder into a separate page,
-linked from the sidebar.
+    header          brand, scan timestamp, link to the Methodology page
+    filter form     market cap, analyst rating, moving-average window,
+                    minimum Composite Upside %, and the three weights.
+                    Gated behind Apply, so nothing recomputes mid-drag.
+    Opportunity Map treemap-style grid; tile size = market-cap rank,
+                    colour = Composite Upside %. Display only.
+    Focus List      a card per qualifying company, with a "+" that opens
+                    the full price scale in a modal.
+    footer          data-source and not-financial-advice notices
 
-Layout (2026-08-27, second redesign — simplified back to one page):
-disclaimer, a top-of-page filter form, ONE heatmap (colored by
-Composite Upside %, the same metric that drives the focus list below
-it — earlier had 4 separate heatmap slices across 3 tabs, but the
-actual workflow is "look at the heatmap, then check today's picks,"
-not browsing multiple exploratory lenses), then "Today's Focus List" —
-the tickers that actually clear the bar. Clicking any ticker (a heatmap
-box or a Focus List row) shows the SAME compact detail card —
-essentials only (price, 52-week high, target, Composite Upside
-breakdown, rating, external links), not the full multi-section
-breakdown the very first version had (live pre/post-market metrics,
-full analyst buy/hold/sell table, latest news) — deliberate: this
-page is a daily glance, not a research report, so the detail view
-should fit on one screen without scrolling. The ad-hoc ticker search
-that used to sit here was removed entirely (2026-08-27: "dont
-need that at all anymore") — everything now works off the saved scan.
+The map and the Focus List consume the same computed list, so they can
+never show different sets of tickers for the same filters.
+
+pages/1_Methodology.py is a second Streamlit page explaining the scoring
+in plain language. See DESIGN_DOC.md for architecture and rationale.
 """
 
 import json
@@ -53,7 +48,7 @@ MAX_BANNER_NAME_LENGTH = 40
 
 # layout="wide" gives the heatmap and focus-list cards real horizontal
 # room — part of the "Minimal Data-First" visual direction review
-# picked (2026-08-27).
+# picked.
 st.set_page_config(page_title=f"{APP_NAME} — Daily Equity Recommendations", page_icon="📈", layout="wide")
 # Must run immediately after set_page_config, before any other widget —
 # see theme.py for why.
@@ -84,12 +79,9 @@ def truncate_company_name(name: str, max_length: int = MAX_BANNER_NAME_LENGTH) -
 
 
 def format_market_cap(market_cap: float | None) -> str:
-    """
-    Human-readable market cap for the Focus List header (2026-08-27,
-    wants the actual number alongside the Large/Mid/Small tag,
-    not just the tier name). Same T/B/M unit breakpoints as
-    MARKET_CAP_OPTIONS above, but computed for the exact real value
-    rather than snapped to one of that list's fixed checkpoints.
+    """Format a market cap in dollars as a short string ("$1.69T").
+
+    Falls back to "cap n/a" when the value is missing.
     """
     if market_cap is None:
         return "cap n/a"
@@ -101,12 +93,11 @@ def format_market_cap(market_cap: float | None) -> str:
 
 
 def clean_company_name(name: str | None) -> str:
-    """
-    Yahoo returns some names with a trailing article in brackets —
-    "Home Depot, Inc. (The)", "Kroger Co. (The)". review asked what the
-    "(The)" was doing there (2026-08-27); it's a data convention, not
-    part of the brand. Moved to the front where it belongs rather than
-    dropped, so the name still reads correctly.
+    """Normalise a company name for display.
+
+    The data source returns some names with a trailing article, e.g.
+    "Home Depot, Inc. (The)". The article is moved to the front rather
+    than dropped, so the name still reads correctly.
     """
     if not name:
         return ""
@@ -116,24 +107,19 @@ def clean_company_name(name: str | None) -> str:
 
 
 def build_external_links_html(r: dict, size_class: str = "") -> str:
-    """
-    Yahoo / Google Finance links as compact brand-marked chips.
+    """Return Yahoo and Google Finance links as small brand-marked chips.
 
-    Shared by the Focus List card and the detail modal (2026-08-27,
-    "why dont we just bring the y and g links to the main card so
-    we can click on them directly... without needing to click the + sign")
-    — one builder rather than two copies, so they can't drift apart.
+    `size_class` is an optional extra CSS class ("vg-ext-sm" for the
+    smaller variant used on cards).
 
-    Plain <a> rather than st.link_button so they can sit inline inside
-    st.html markup. These leave the app entirely, so unlike the
-    Methodology link there's no session state worth preserving.
+    Plain <a> tags rather than st.link_button, so they can sit inline
+    inside st.html markup. Brand letters rather than logos, because
+    st.html() strips <svg> and an external <img> would add a network
+    dependency.
 
-    Brand LETTERS, not logos: st.html() strips <svg>, and an external
-    <img> would put a network dependency into a local tool.
-
-    Google Finance is skipped for a ticker whose exchange isn't one we
-    know how to map (currently NASDAQ/NYSE, which covers effectively all
-    of the S&P 500).
+    The Google Finance link is omitted for any ticker whose exchange
+    isn't mapped (currently NASDAQ and NYSE, covering effectively all of
+    the S&P 500).
     """
     yahoo_url = f"https://finance.yahoo.com/quote/{r['ticker']}"
     cls = f"vg-ext {size_class}".strip()
@@ -152,41 +138,39 @@ def build_external_links_html(r: dict, size_class: str = "") -> str:
 
 
 def build_price_scale_html(r: dict, sma_window: int) -> str:
-    """
-    The price scale shown in the "+" detail modal — a real horizontal
-    number line with five reference points.
+    """Render the horizontal price scale used in the detail modal.
 
-    Built from absolutely-positioned <div>s, NOT SVG: st.html() silently
-    strips <svg> entirely (confirmed against the live DOM — 0 <svg>
-    elements despite generating them).
+    Plots five reference points on a single number line: 52-week low,
+    the moving average for `sma_window`, the current price, the analyst
+    median target, and the 52-week high.
 
-    2026-08-27 rework, all from the feedback on the modal:
-    - Value and % are STACKED on separate lines rather than sharing one.
-      That roughly halves each label's width, which is what makes two
-      nearby points stop crowding each other ("if lets say 50d avg and
-      current price are close to each other, there is still a way to not
-      let it clutter").
-    - "Now" is the point to find first, but it is NOT made bigger —
-      every value is the same 11.5px. It's separated by contrast alone:
-      the only near-black value, weight 800, and a 13px marker vs 9px.
-    - Colour is spent on exactly three points — 52W Low (red), Now
-      (near-black), 52W High (green). The moving average and analyst
-      target are deliberately muted gray: their % figures already carry
-      green/red, and colouring all five would
-      make the scale busier, not clearer. That directly serves the
-      "still cluttery" complaint rather than fighting it.
+    Built from absolutely-positioned <div>s rather than SVG, because
+    st.html() strips <svg> elements entirely.
 
-    Deliberately NOT clamped to the 52-week high — the analyst target
-    can legitimately sit ABOVE it (a bullish analyst sees room past the
-    past year's peak), and clamping would hide exactly the signal
-    Composite Upside % exists to catch.
+    Layout rules:
+    - Each label stacks its price above its percentage, keeping labels
+      narrow so neighbouring points are less likely to collide.
+    - Labels alternate above and below the track, so adjacent points can
+      never overlap. Points two apart can still land on the same side,
+      so same-side labels are pushed to a minimum horizontal gap; the
+      MARKER always stays at its true value and only the label moves.
+      A connector line is drawn whenever the two separate enough to be
+      mispaired by eye.
+    - Labels within 12% of either end anchor to that edge instead of
+      centring, so a wide value can only grow inward.
+    - "Now" is the focal point, distinguished by contrast rather than
+      size: the only near-black value, heavier weight, larger marker.
+      Colour marks three points (low red, now black, high green); the
+      moving average and target stay grey, since their percentages
+      already carry green/red.
 
-    The moving average's DOLLAR price isn't stored anywhere — only its
-    upside % is (sma_upside_by_window, precomputed per window during the
-    scan). Reconstructed here algebraically from that percentage and the
-    current price, the exact inverse of compute_upside_pct()'s formula
-    (upside = (ref − current) / current × 100 ⟹ ref = current × (1 +
-    upside / 100)) — exact, not an approximation, and needs no rescan.
+    The scale is NOT clamped to the 52-week high: an analyst target can
+    legitimately sit above it, and clamping would hide exactly the
+    signal Composite Upside % exists to catch.
+
+    The moving average's dollar price is not stored anywhere, only its
+    upside percentage. It is reconstructed here as the exact inverse of
+    compute_upside_pct(): ref = current * (1 + upside / 100).
     """
     current = r.get("most_recent_close")
     low = r.get("fifty_two_week_low")
@@ -200,7 +184,7 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
 
     def _price(v: float) -> str:
         """
-        Cents dropped on the scale (2026-08-27: "should we remove
+        Cents dropped on the scale ("should we remove
         decimal points?"). Shorter labels are the cheapest way to buy
         horizontal room, and the exact price with cents is already on the
         card. Precision scales with magnitude rather than being dropped
@@ -215,26 +199,26 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
     neutral = "var(--vg-text-muted)"
     # (label, value, pct, pct suffix, accent colour, value colour, is_hero)
     #
-    # 2026-08-27, third pass on the scale:
-    # - "Current Price" back to "NOW". The long label was widening the
+    # third pass on the scale:
+    # "Current Price" back to "NOW". The long label was widening the
     #   left cluster on tickers where price sits near the 52-week low;
     #   the hero styling (largest, boldest) is what makes it findable,
     #   not the label text, so the short form costs nothing.
-    # - The $ VALUE is now coloured too, not just the label word — with
+    # The $ VALUE is now coloured too, not just the label word — with
     #   every value in the same near-black, the hero's larger size was
     #   the only differentiator and it wasn't possible to tell it was bigger.
-    # - The "vs low" suffix dropped and the % takes the normal green/red
+    # The "vs low" suffix dropped and the % takes the normal green/red
     #   treatment, by design.
     #
-    # ALL FIVE VALUES ARE THE SAME SIZE (2026-08-27, final call:
+    # ALL FIVE VALUES ARE THE SAME SIZE (final call:
     # "you can highlight it in other ways (color coding) vs making it
     # bigger"). Every point is 11.5px; "Now" is separated purely by
     # CONTRAST instead:
-    #   - it is the only near-black value, because the moving average and
+    #   it is the only near-black value, because the moving average and
     #     analyst target were demoted to muted gray here — that's what
     #     makes black distinctive rather than shared with two others
-    #   - weight 800 against their 700
-    #   - a 13px marker against 9px
+    #   weight 800 against their 700
+    #   a 13px marker against 9px
     # 52W Low and 52W High keep red/green, so the scale reads as three
     # coloured anchors (low / now / high) with two quiet reference points
     # between them.
@@ -291,7 +275,7 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
         dot = 13 if is_hero else 9
         parts.append(
             f'<div style="position:absolute; left:{mpos:.2f}%; top:50%; '
-            f"transform:translate(-50%,-50%); width:{dot}px; height:{dot}px; "
+            f"transform:translate(50%,-50%); width:{dot}px; height:{dot}px; "
             f"border-radius:50%; background:{colour}; border:2px solid var(--vg-bg); "
             f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
         )
@@ -313,7 +297,7 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
         elif lpos >= 90:
             anchor = "right:0; left:auto; transform:none; text-align:right;"
         else:
-            anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
+            anchor = f"left:{lpos:.2f}%; transform:translateX(50%); text-align:center;"
         offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
 
         pct_html = ""
@@ -349,36 +333,20 @@ def build_price_scale_html(r: dict, sma_window: int) -> str:
 
 @st.dialog("Detail", width="large")
 def show_detail_dialog(r: dict, sma_window: int, weights: tuple[float, float, float]) -> None:
-    """
-    The full card, opened from a tile's "+" button (2026-08-27:
-    "when we click the + button, we can open up the full card (straight
-    from the tile) that also shows the scale").
+    """Open the full detail view for one ticker as a modal.
 
-    A modal, rather than an expander inside the tile, specifically
-    BECAUSE of the price scale: a tile is one third of the page wide,
-    and the scale needs real width to be readable — that width problem
-    is what drove the earlier switch from cards to full-width rows in
-    the first place. st.dialog(width="large") gives the scale a wide
-    canvas without giving up the 3-across grid, which is what lets both
-    work together instead of trading off against each other.
+    Shows a single header line (ticker, market cap, company, external
+    links) and the full-width price scale.
 
-    Stripped to one header line plus the scale (2026-08-27: "we
-    should just have HD $334.1B | yahoo finance link | google finance
-    link and then the scale below and thats it"). Everything else that
-    used to be here was cut BECAUSE THE SCALE ALREADY SHOWS IT — the
-    close, 52-week high, analyst target and their upsides are all points
-    ON the scale, so the metric row underneath was the same four numbers
-    a second time. Also gone: the "Strong Buy pick" badge (a whole line
-    to say something the filters already guarantee — every card in the
-    list cleared them), the repeated "HD — Home Depot, Inc." heading,
-    and the sector line.
+    Nothing else is included on purpose: the close, 52-week high,
+    analyst target and their upsides are all points ON the scale, so
+    listing them underneath would repeat the same numbers.
 
-    `weights` is still accepted so callers don't have to change, but is
-    no longer needed for display now that the formula caption is gone.
+    A modal rather than an in-card expander because the scale needs more
+    width than a third of the page.
 
-    NOTE: analyst rating is now shown nowhere in the UI. It's still a
-    live filter, and still on the Methodology page — flagged to review
-    rather than quietly re-added.
+    `weights` is accepted for call-site symmetry but is not needed for
+    display.
     """
     cap_tier = r.get("market_cap_tier")
     tier_color = CAP_TIER_COLORS.get(cap_tier, "#c3cad1")
@@ -399,20 +367,19 @@ def show_detail_dialog(r: dict, sma_window: int, weights: tuple[float, float, fl
 
 
 def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, float]) -> None:
-    """
-    One tile in the 3-across "Today's Focus List" grid (2026-08-27 —
-    back to the card grid from the Option 3 mockup, after a spell as
-    full-width rows).
+    """Render one card in the Focus List grid.
 
-    What the tile carries: ticker, market cap + tier tag,
-    company name, and the three upside components that feed Composite
-    Upside % (to the moving average, to the 52-week high, to the analyst
-    target). The blended Composite Upside % sits top-right as a pill —
-    it's the list's sort key and the one number the whole page is
-    organised around, so it's what gives the grid its visual hierarchy.
+    Shows the ticker, company, market-cap tier and value, current price,
+    Composite Upside % as a pill, a 52-week range bar, and the three
+    upside components that feed the composite.
 
-    The price scale is deliberately NOT on the tile — it needs more
-    width than a third of the page. It lives in the "+" modal instead
+    The range bar is kept visually separate from those three figures:
+    they measure room left to gain, while "% above the low" measures
+    distance already travelled, and grouping them would imply a fourth
+    upside to weigh alongside the others.
+
+    The price scale is deliberately not on the card — it needs more
+    width than a third of the page, so it lives in the "+" modal
     (see show_detail_dialog).
     """
     full_company_name = r.get("company_name") or r["ticker"]
@@ -429,7 +396,7 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
         return f'<div><div class="vg-stat-label">{label}</div>{value_html}</div>'
 
     # 52-week range bar — where today's price sits between the 52w low
-    # and high, plus how far it has run from the low (2026-08-27,
+    # and high, plus how far it has run from the low (
     # "how far up the current price is wrt 52w low... thats the
     # only signal missing in the cards").
     #
@@ -502,7 +469,7 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
             f"</div>"
         )
         # Rendered LAST in the card's flow but positioned into the top-
-        # right corner by CSS (2026-08-27: a "+" beside the %
+        # right corner by CSS (a "+" beside the %
         # pill "is more intuitive" than a button at the bottom).
         # Streamlit buttons are block elements and can't be nested into
         # the st.html header markup above, so the card is a positioning
@@ -528,7 +495,7 @@ def _signal_color(pct: float, lo: float, hi: float) -> str:
     stay the same family of colors.
     """
     # Positive ramp is AMBER → yellow-green → GREEN, deliberately not
-    # red → green (2026-08-27, review proposed red for the weakest
+    # red → green (review proposed red for the weakest
     # qualifier). Reasoning worth keeping: the composite cutoff slider
     # bottoms out at 0, so every tile on this map has already CLEARED
     # every filter — colouring the weakest one red would say "bad"
@@ -591,28 +558,23 @@ HEATMAP_TILE_TIERS = [
 
 
 def render_heatmap(filtered_results: list[dict], color_field: str, label_field: str, chart_key: str) -> None:
-    """
-    Box size = market cap rank, color = Composite Upside %.
+    """Render the Opportunity Map as a CSS grid.
 
-    Rebuilt 2026-08-27 as a plain CSS grid, replacing a Plotly treemap.
-    comparing the built page against the Option 3 mockup and
-    asked for the mockup's heatmap specifically: rounded 6px tiles with
-    3px gaps, ticker in white, company name beneath it, and the % large
-    at the tile's bottom-left. Plotly's treemap couldn't give any of
-    that — no per-tile corner radius, no multi-element tile layout, and
-    it forced an "All S&P 500" root strip across the top.
+    Tile size follows market-cap rank; tile colour follows `color_field`
+    (Composite Upside %). Expects an already-filtered list, so the map
+    and the Focus List always agree.
 
-    Dropping Plotly also removed the whole class of problems that came
-    with it: the staticPlot config needed to kill its click/zoom
-    behaviour, its own number formatting re-introducing floats like
-    "30.900000000000002%", and the sector-grouping path bug. A grid of
-    <div>s has none of that and matches the mockup exactly.
+    Display only — no hover, click or zoom.
 
-    Takes an ALREADY-FILTERED list — the heatmap and the Focus List
-    consume the same qualifying_results so they can never disagree.
+    Tile sizes come from a rank tier table rather than area proportional
+    to market cap: the index's cap distribution is top-heavy enough that
+    a truly proportional map lets a few tiles swallow the grid.
 
-    Inspired by the general finviz-style heatmap *concept* (size by
-    market cap, color by signal), built from scratch.
+    Colour endpoints are the 5th/95th percentile of the visible set, not
+    its raw min/max. With raw endpoints a single outlier compresses
+    everything else into one shade; clamping lets outliers saturate
+    while the rest of the field spreads across the ramp. The legend
+    still reports the true min and max.
     """
     chart_data = [
         r for r in filtered_results
@@ -626,7 +588,7 @@ def render_heatmap(filtered_results: list[dict], color_field: str, label_field: 
     signals = [r[color_field] for r in chart_data]
 
     # Colour-ramp endpoints come from the 5th/95th percentile, NOT the
-    # raw min/max (2026-08-27). With raw endpoints a single outlier
+    # raw min/max. With raw endpoints a single outlier
     # ruins the map: one stock at +72% against a field clustered
     # 10–30% stretched the scale so far that 28 of 29 tiles landed in
     # the bottom third of the ramp and came out near-identical amber —
@@ -704,31 +666,23 @@ def compute_live_evaluation(
     composite_cutoff: float,
     cap_range: tuple[float, float],
 ) -> dict:
-    """
+    """Re-score one scan result against the currently applied filters.
+
     Returns a NEW dict — a shallow copy of `r` with composite_upside_pct,
-    upside_to_recent_avg_pct, recommended, and skip_reason all
-    RECOMPUTED against the current sidebar slicer settings, instead of
-    the fixed values (100-day avg, 50/25/25 weights, rating ≤1.5,
-    upside ≥10%) saved at scan time (2026-08-27). A stock qualifies when its aggregate rating is
-    AT OR BELOW `rating_threshold` (briefly tried as 5 rating-bucket
-    checkboxes, reverted back to a single slider — reverted after
-    seeing the checkbox dropdown in practice).
+    upside_to_recent_avg_pct, recommended and skip_reason recomputed for
+    the given weights, moving-average window and thresholds.
 
-    Pure arithmetic over numbers already loaded from the saved scan —
-    no live API calls — so this is cheap enough to re-run for all 500+
-    tickers on every single slider move without any lag.
+    Pure arithmetic over values already loaded from the saved scan, with
+    no API calls, so it is cheap enough to run for every ticker on every
+    interaction.
 
-    "recommended" and "skip_reason" get recomputed too (not just the
-    number) so the badge and the "not a current recommendation" message
-    in render_detail_card stay honest about THIS turn's slicer
-    settings, rather than showing a stale reason computed under the old
-    fixed defaults.
+    A stock qualifies when its aggregate analyst rating is at or below
+    `rating_threshold`, its market cap falls inside `cap_range`, and its
+    composite upside meets `composite_cutoff`.
 
-    Individual-component minimum-upside filters (SMA/52w-high/target)
-    were tried alongside the blended Composite Upside cutoff and then
-    removed entirely (2026-08-27: "remove the min upside
-    individual components 3 sliders completely") — the blended cutoff
-    below is the only upside qualification bar now.
+    `recommended` and `skip_reason` are recomputed rather than reused so
+    the badge and the "not a current pick" message always describe the
+    current filters, not the fixed values saved at scan time.
     """
     sma_upside = r.get("sma_upside_by_window", {}).get(str(sma_window))
     peak_upside = r.get("upside_to_52w_high_pct")
@@ -782,11 +736,11 @@ MARKET_CAP_VALUE_BY_LABEL = dict(MARKET_CAP_OPTIONS)
 # Defaults for every filter — also what the form resets to via
 # st.session_state on first load.
 DEFAULT_FILTERS = {
-    # $100B+ (2026-08-27, the explicit default) — well above the
+    # $100B+ (the explicit default) — well above the
     # $10B Large Cap floor (classify_market_cap() in
     # recommendation_logic.py), i.e. mega/large-cap only by default.
     "cap_range": ("$100B", "$10T"),
-    # 2.0 (2026-08-27, the explicit default) — deliberately looser
+    # 2.0 (the explicit default) — deliberately looser
     # than "Strong Buy only" (≤1.5) so Buy-rated stocks show up too.
     "rating_threshold": 2.0,
     # 50, not SMA_WINDOW_DAYS (100) — 100 is still the locked-in default
@@ -802,14 +756,13 @@ DEFAULT_FILTERS = {
 
 
 def filters_to_query_params(filters: dict) -> dict:
-    """
-    Serialise the APPLIED filters into URL query params, omitting
-    anything still at its default so the plain URL stays clean until
-    something is actually changed (2026-08-27).
+    """Serialise applied filters into URL query parameters.
 
-    Weights are stored as whole percentages ("50-25-25") rather than the
-    normalised floats they are internally — a URL a human might look at
-    shouldn't read "0.5-0.25-0.25".
+    Only values that differ from DEFAULT_FILTERS are included, so the
+    URL stays clean until something is actually changed.
+
+    Weights are written as whole percentages ("50-25-25") rather than
+    the normalised floats used internally.
     """
     params: dict[str, str] = {}
     if filters["cap_range"] != DEFAULT_FILTERS["cap_range"]:
@@ -827,21 +780,18 @@ def filters_to_query_params(filters: dict) -> dict:
 
 
 def filters_from_query_params() -> dict:
-    """
-    Rebuild the applied filters from the URL, falling back to
-    DEFAULT_FILTERS for anything absent OR invalid.
+    """Rebuild applied filters from the URL, falling back to defaults.
 
-    This is what makes the browser BACK button, a refresh, and a
-    bookmark all restore the same view (2026-08-27: clicking a
-    Yahoo/Google link and hitting back "resetted to default again").
-    st.session_state alone can't do that — it's per-session, and any
-    full page load starts a new session.
+    This is what lets the browser back button, a refresh and a bookmark
+    restore the same view; st.session_state alone cannot, since it is
+    per-session and any full page load starts a new one.
 
-    EVERY value here is treated as untrusted input and validated against
-    the same ranges the sliders enforce: a query string is trivially
-    hand-editable, and a bad value must quietly fall back to the default
-    rather than crash the page or smuggle an out-of-range filter past
-    the UI.
+    Every value is treated as untrusted input and validated against the
+    same ranges the sliders enforce — a query string is trivially
+    editable, so anything invalid falls back to the default rather than
+    reaching the filtering logic. Includes guards for a reversed market
+    cap range, which would otherwise match nothing, and for all-zero
+    weights, which would divide by zero.
     """
     filters = dict(DEFAULT_FILTERS)
     qp = st.query_params
@@ -906,7 +856,7 @@ if scan is not None:
     # Year dropped and kept to ONE line deliberately — see the nav
     # layout note below for why the meta can't be two lines.
     # Count taken from the rows we ACTUALLY show, not from the scan's
-    # own `tickers_scanned` metadata (2026-08-27: "do we have 503
+    # own `tickers_scanned` metadata ("do we have 503
     # tickers? even after we merged the companies that have more than one
     # ticker like goog and googl?" — no, and the header was lying).
     #
@@ -924,14 +874,14 @@ else:
     scan_meta = "No scan data yet"
 
 # --- Brand header --------------------------------------------------------
-# Replaces a 44px emoji st.title (2026-08-27: reviewed the built page
+# Replaces a 44px emoji st.title (reviewed the built page
 # against the Option 3 mockup review picked, and the emoji title plus a
 # 144px yellow disclaimer slab were most of why it still read as a
 # script's output instead of a product). The mark is three CSS bars
 # rather than the mockup's <svg>, which Streamlit sanitizes away.
 #
 # Laid out as COLUMNS rather than one st.html block so the Methodology
-# link can live in the nav row itself (2026-08-27: sitting alone
+# link can live in the nav row itself (sitting alone
 # on its own row below, it was "floating like an orphan" — and it was
 # genuinely centred, measured at 0px misalignment, so the problem was
 # placement, not alignment). A nav link belongs in the nav.
@@ -949,7 +899,7 @@ with st.container(key="navrow"):
             f'<div class="vg-wordmark">{APP_NAME}</div></div>'
         )
     with meta_col:
-        # ONE line, not two (2026-08-27). As a two-line block the meta
+        # ONE line, not two. As a two-line block the meta
         # was taller than the brand and the Methodology link either
         # side of it, so vertical centring put the link level with the
         # GAP BETWEEN the two lines — every element measured centred to
@@ -963,13 +913,13 @@ with st.container(key="navrow"):
 
 # NOTE: the one-line "Data via Yahoo Finance · Not financial advice ·
 # For personal research only" strip that used to sit here was removed
-# (2026-08-27: "is this not at the bottom as well? do we want to
+# ("is this not at the bottom as well? do we want to
 # keep it both at the top and bottom?"). It was a strict subset of the
 # footer disclaimer at the end of this file, so it was saying the same
 # thing twice and costing a row at the top of the page. The FULL text
 # still appears in the footer — nothing was weakened, just de-duplicated.
 
-# --- Filters, at the top of the page, as a FORM (2026-08-27: -----
+# --- Filters, at the top of the page, as a FORM (----
 # "let user complete all options and then click submit... dont execute
 # with every change") — st.form() is Streamlit's built-in mechanism for
 # exactly this: widgets INSIDE a form don't trigger a rerun (and so
@@ -978,7 +928,7 @@ with st.container(key="navrow"):
 # pending, uncommitted position — nothing downstream reacts to it.
 with st.form("filters_form"):
 
-    # Every widget below has an EXPLICIT, STATIC `key=` (2026-08-27,
+    # Every widget below has an EXPLICIT, STATIC `key=` (
     # fixing a real bug: two of them — the SMA weight and "min upside
     # to SMA" sliders — had labels like f"{sma_window_input}-day avg",
     # embedding the moving-average window's CURRENT value. Streamlit
@@ -996,17 +946,17 @@ with st.form("filters_form"):
     # Row 1: four single-control filters, evenly matched heights — was
     # a lopsided 5-column row (2 sparse columns next to 2 columns of 3
     # stacked sliders each), which read as bulky, uneven whitespace
-    # (2026-08-27: "very clunky bulky feel"). Splitting into
+    # ("very clunky bulky feel"). Splitting into
     # this row plus a second row of two evenly-matched 3-slider columns
     # (below) removes the dead space instead of just shrinking widgets.
     # BOTH rows use the identical column grid — a label column then four
-    # equal slots (2026-08-27: "lets find a way to have the top
+    # equal slots ("lets find a way to have the top
     # row sliders also beside filters not under it. make everything
     # uniform, font size, slider length etc"). Same ratios in both rows
     # is what guarantees every slider is exactly the same width; the
     # earlier layout had row 1 across 4 columns and row 2 across 3, so
     # the top sliders were unavoidably longer.
-    # Four equal slots per row, no label column (2026-08-27:
+    # Four equal slots per row, no label column (
     # "lets drop filters and composite upside weights as well"). Row 2
     # keeps the same 4-slot grid with the submit button in the last
     # slot, so both rows' sliders stay identical in width and aligned
@@ -1026,7 +976,7 @@ with st.form("filters_form"):
         )
 
     with row1_col2:
-        # Back to a plain slider (2026-08-27) — briefly tried as 5
+        # Back to a plain slider — briefly tried as 5
         # rating-bucket checkboxes in a multiselect dropdown, reverted
         # after seeing it in practice (the dropdown's box didn't match
         # the clean single-line sliders around it).
@@ -1067,7 +1017,7 @@ with st.form("filters_form"):
             key="filt_composite_cutoff",
         )
 
-    # Row 2: the 3 weight sliders side by side, not stacked (2026-08-27,
+    # Row 2: the 3 weight sliders side by side, not stacked (
     # "make the composite upside weights next to each other...
     # horizontal" — also removed the individual min-upside sliders
     # entirely, which used to sit in a second column here).
@@ -1076,12 +1026,12 @@ with st.form("filters_form"):
     # was a <strong> in a <p>, so the panel-heading CSS (scoped to
     # h2/h3) skipped it and it stayed 16px while "Filters" shrank.
     # The weights label, its three sliders AND the submit button all share
-    # ONE row (2026-08-27: "the weights scale is too long. we can
+    # ONE row ("the weights scale is too long. we can
     # make it shorter and put it beside the composite upside weights
     # header... apply filter should be just a button with a symbol").
     #
     # This removes two whole rows from the panel — the label had its own
-    # full-width row above the sliders (the wide empty gap flagged in review),
+    # full-width row above the sliders (the wide empty gap ),
     # and the button had another below them. Narrower columns also make
     # each weight slider shorter, which was the other half of the ask.
     w_col1, w_col2, w_col3, w_submit = st.columns(
@@ -1157,7 +1107,7 @@ if scan is not None:
     # APPLIED filters, once per page run. qualifying_results (rating +
     # cap range + composite cutoff all passed) drives BOTH the heatmap
     # and the Focus List, so they always show the same set. Computed
-    # BEFORE the "Showing:" caption below (2026-08-27: wants the
+    # BEFORE the "Showing:" caption below (wants the
     # match count right there every time Apply Filters is clicked, not
     # just further down at the Focus List).
     live_results = [
@@ -1175,7 +1125,7 @@ if scan is not None:
 else:
     match_count_display = "No scan available yet"
 
-# One line under the filter panel, not two (2026-08-27). The bold
+# One line under the filter panel, not two. The bold
 # "**N tickers** currently match." sentence that used to sit here was
 # removed: the same count was ALSO repeated under the Opportunity Map
 # heading, and between the two of them plus a divider the gap between
@@ -1195,7 +1145,7 @@ if scan is None:
     st.info("No scan has run yet. Run `run_daily_scan.py` first to generate results.")
 else:
     # --- One heatmap: Composite Upside %, the same metric that drives ----
-    # the focus list below it (2026-08-27 — was 4 separate slices across
+    # the focus list below it (was 4 separate slices across
     # a tab; simplified to the one number that actually matters here).
     st.subheader("Opportunity Map")
     # Count folded into the map's own one-line caption. The old version
@@ -1220,7 +1170,7 @@ else:
     if not qualifying_results:
         st.info("Nothing clears your current filters — try loosening a slider in the sidebar.")
     else:
-        # 3-across grid (2026-08-27, back to the Option 3 mockup's card
+        # 3-across grid (back to the Option 3 mockup's card
         # layout after a spell as full-width rows). A FRESH st.columns(3)
         # per row of three, rather than one set of 3 columns fed all the
         # tickers: with a single set, Streamlit stacks items down each
@@ -1233,12 +1183,12 @@ else:
                 with col:
                     render_focus_card(r, sma_window, weights)
 
-# The bottom "See full methodology →" link was removed (2026-08-27) —
+# The bottom "See full methodology →" link was removed —
 # the header link above covers it, and the emoji icon it carried was
 # the last one left on the page.
 
 # The full disclaimer text, moved here from a yellow st.warning slab
-# that used to sit above the page title (2026-08-27). It's the same
+# that used to sit above the page title. It's the same
 # wording — demoted in prominence, not softened or deleted, and the
 # one-line version still sits under the header where it's seen first.
 st.html(

@@ -12,7 +12,7 @@
 # Setting [theme] here fixes it at the source for ALL native widgets at
 # once, instead of playing whack-a-mole finding each one via CSS.
 # Hides Streamlit's auto-generated multipage nav in the sidebar
-# (2026-08-27: the Methodology page shouldn't read as a "2nd
+# (the Methodology page shouldn't read as a "2nd
 # tab"). The page still EXISTS and st.page_link still routes to it —
 # this only removes the sidebar listing, which was the last thing
 # forcing a sidebar onto what is otherwise a single-page tool. The
@@ -22,7 +22,7 @@
 showSidebarNavigation = false
 # Hides the "File change. Rerun / Always rerun" prompt Streamlit shows in
 # the top-right whenever a source file is edited while the app is running
-# (2026-08-27). It's a developer convenience,
+#. It's a developer convenience,
 # not part of the app — with runOnSave below, edits just reload silently,
 # so the prompt has nothing left to ask.
 toolbarMode = "minimal"

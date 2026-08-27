@@ -2,7 +2,7 @@
 Vantage — visual theme.
 
 Streamlit's default look (the gray sidebar-less "school project" feel
-flagged in review) comes from its own built-in CSS. Streamlit doesn't
+) comes from its own built-in CSS. Streamlit doesn't
 expose a way to fully replace that from Python — the supported trick
 is to inject our OWN <style> block via st.html(), targeting Streamlit's
 internal `data-testid` attributes (the most stable hooks Streamlit
@@ -22,7 +22,7 @@ history matters because both ends of that look wrong out of context:
    COMPLETELY for a while — st.html() sanitizes away `<style>` and
    `<link>` elements entirely (the same sanitizer that strips `<svg>`,
    found earlier when the price scale had to be rebuilt out of divs).
-   Caught 2026-08-27 by checking the live DOM: `--vg-positive` and
+   Detectable by checking the live DOM: `--vg-positive` and
    every other token resolved to the empty string, no style tag on the
    page contained "Manrope", and document.body's font was still
    Streamlit's default "Source Sans". Everything that still looked
@@ -52,7 +52,7 @@ internal DOM, some of these selectors could stop matching — low risk,
 but worth knowing about.
 
 This file picked the "Minimal Data-First" visual direction review
-chose from the three mockups (2026-08-27): clean white background,
+chose from the three mockups: clean white background,
 Manrope typeface, restrained blue accent, rounded cards. One
 deliberate refinement on top of the original mockup: the blue accent
 is reserved ONLY for "this is a curated pick" badges — actual upside
@@ -107,7 +107,7 @@ NEGATIVE_COLOR = _NEGATIVE
 # Market-cap-tier colors — deliberately a SEPARATE palette from the
 # accent/positive/negative tokens above, so a tier tag never gets
 # confused with a "curated pick" badge or an upside number. the
-# priority order (2026-08-27): mostly invests in large caps, wants
+# priority order: mostly invests in large caps, wants
 # visibility into mid/small caps without them competing for attention —
 # large cap gets the strongest/darkest color, small cap the lightest.
 CAP_TIER_COLORS = {
@@ -158,8 +158,7 @@ def inject_theme_css() -> None:
         /* Streamlit's header is 60px tall, OPAQUE WHITE and sits at
            z-index 999990 — so it paints OVER the top of the page's own
            content. With padding-top at 40px the nav meta started at
-           y=52 and its top 8px were hidden behind it (2026-08-27,
-           "daily equity recommendations chopped off a bit" —
+           y=52 and its top 8px were hidden behind it ("daily equity recommendations chopped off a bit" —
            real, and measured at exactly 8px).
 
            Since toolbarMode is "minimal" and the sidebar nav is hidden,
@@ -193,7 +192,7 @@ def inject_theme_css() -> None:
         }}
 
         /* Same trap as the headings above, and it caught EVERY piece of
-           markdown text on the site (2026-08-27, checked with
+           markdown text on the site (checked with
            getComputedStyle: st.markdown paragraphs and st.caption were
            still rendering in Streamlit's "Source Sans" while the
            widgets, buttons and custom cards around them were in
@@ -234,7 +233,7 @@ def inject_theme_css() -> None:
         }}
 
         /* Captions and muted helper text throughout the app. 12px to
-           match the nav meta line (2026-08-27: the "Showing:"
+           match the nav meta line (the "Showing:"
            and "N tickers" lines were 14px and read too large — "more in
            line with the daily equity recommendations text at the top").
            The dialog scopes its own smaller size separately. */
@@ -303,8 +302,7 @@ def inject_theme_css() -> None:
             color: var(--vg-accent) !important;
         }}
 
-        /* Filter form — compacted, second pass (2026-08-27:
-           "very bulky... clunky", then after the first compacting pass
+        /* Filter form — compacted, second pass ("very bulky... clunky", then after the first compacting pass
            "everything is just too big" — sliders too long, buttons too
            big). Values checked against the live DOM before writing
            these (same lesson as everywhere else in this file): the
@@ -375,7 +373,7 @@ def inject_theme_css() -> None:
         /* The help "?" on the rating slider is a 16px icon next to 14px
            text, so that ONE label row was 2px taller than its neighbours
            — which pushed its slider down and made the label-to-track gap
-           visibly different from the others (2026-08-27: "space
+           visibly different from the others ("space
            between 2.00 and max aggregate rating is too less and
            different than... 52 week high"). Matching the icon to the
            text height makes every label row identical. */
@@ -423,7 +421,7 @@ def inject_theme_css() -> None:
             line-height: 1 !important;
             margin: 0 !important;
         }}
-        /* Left-aligned in its slot (2026-08-27: "apply filter arrow
+        /* Left-aligned in its slot ("apply filter arrow
            button placement not good"). It now occupies the 4th slider
            slot of row 2, so starting at that slot's left edge puts it on
            the same vertical line the sliders above it start on, instead
@@ -575,7 +573,7 @@ def inject_theme_css() -> None:
         }}
 
         /* ---- Opportunity Map (CSS-grid heatmap) --------------------
-           Replaced a Plotly treemap 2026-08-27 so the tiles could match
+           Replaced a Plotly treemap so the tiles could match
            the Option 3 mockup exactly: 6px radius, 3px gaps, ticker +
            company at the top, big % anchored bottom-left. Plotly could
            do none of those, and forced a root strip across the top. */
@@ -662,12 +660,12 @@ def inject_theme_css() -> None:
             padding-right: 32px;
         }}
         /* Type scale below is lifted verbatim from the Option 3 mockup's
-           card (2026-08-27: "the font of the cards in focus
+           card ("the font of the cards in focus
            list... is different in option 3 and different here").
            The typeface was never the problem — Manrope loads and
            renders correctly, confirmed by measuring text width against
            the fallback stack. What differed was the TREATMENT: these
-           had picked up negative letter-spacing (-0.015em on the price,
+           had picked up negative letter-spacing (0.015em on the price,
            -0.01em on the ticker), which condenses the glyphs and reads
            as a different, tighter typeface. The mockup applies no
            tracking to either. Sizes/weights matched to it as well. */
@@ -751,7 +749,7 @@ def inject_theme_css() -> None:
             border-radius: 50%;
             background: var(--vg-accent);
             border: 2px solid var(--vg-bg);
-            transform: translate(-50%, -50%);
+            transform: translate(50%, -50%);
         }}
         .vg-range-cap {{
             display: flex;
@@ -795,7 +793,7 @@ def inject_theme_css() -> None:
         .vg-stat-val.vg-neg {{ color: var(--vg-negative); }}
 
         /* The tile's "+" button, pinned to the card's top-right corner
-           beside the upside pill (2026-08-27 — was a chip at the bottom
+           beside the upside pill (was a chip at the bottom
            of the card; review found a corner "+" more intuitive, which
            matches the standard card-affordance convention).
 
@@ -856,8 +854,7 @@ def inject_theme_css() -> None:
         }}
 
         /* ---- Detail modal ------------------------------------------
-           The dialog's own "Detail" heading is hidden (2026-08-27,
-           "do we need the word detail at the top?"). st.dialog
+           The dialog's own "Detail" heading is hidden ("do we need the word detail at the top?"). st.dialog
            requires a non-empty title at DECORATION time and it can't be
            made dynamic per call, so the title stays in the Python and
            is hidden here. The close (×) button is a sibling of this h2
@@ -964,7 +961,7 @@ def inject_theme_css() -> None:
 
         /* ---- Expanded detail card ----------------------------------
            Measured against the live DOM before touching anything
-           (2026-08-27: "when u expand, you see everything big
+           ("when u expand, you see everything big
            and clunky"). The defaults were genuinely oversized for a
            card nested inside a row: metric values 36px in a 54px-tall
            box, metric labels 14px, link buttons 16px type in 420px-wide
@@ -1078,7 +1075,7 @@ def inject_theme_css() -> None:
            nav link, the way the Option 3 mockup's header links did,
            not as a button. */
         /* width:100% is what makes justify-content:flex-end actually do
-           anything (2026-08-27). The anchor is shrink-to-fit by default,
+           anything. The anchor is shrink-to-fit by default,
            so it measured 73px sitting at the LEFT of a 142px column with
            69px of dead space to its right — the link was right-aligned
            in name only, which is what kept reading as "still off". */
@@ -1119,7 +1116,7 @@ def inject_theme_css() -> None:
         .vg-footer {{
             /* Was 40px margin + 16px padding, which measured 50px from the
                last card to the rule and 19px from the rule to the text
-               (2026-08-27, flagged in review: both). The block gap above
+               (both). The block gap above
                already contributes, so the margin doesn't need to carry
                the whole separation. */
             margin-top: 16px;
@@ -1164,7 +1161,7 @@ def inject_theme_css() -> None:
         /* Section dividers. Streamlit ships these at 32px top AND
            bottom; combined with the 16px block gap on either side that
            put ~80px of near-empty space between the filter panel and
-           the Opportunity Map heading (2026-08-27, flagged in review: this
+           the Opportunity Map heading (this
            region directly). 16px reads as a section break without the
            dead air. */
         [data-testid="stMainBlockContainer"] hr {{

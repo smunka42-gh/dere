@@ -26,10 +26,10 @@ GOOGLE_FINANCE_EXCHANGE_MAP = {
 }
 
 
-SMA_WINDOW_DAYS = 100  # ~5 months. Chosen 2026-08-27 after comparing 20/50/100/200-day windows on real tickers — smooth enough to require a genuine, sustained pullback (not just short-term noise), recent enough to avoid dragging in a stale, no-longer-relevant price regime. Still the DEFAULT window; kept as a locked-in choice, not removed — see SMA_WINDOW_OPTIONS below for the full adjustable range.
+SMA_WINDOW_DAYS = 100  # ~5 months. Chosen after comparing 20/50/100/200-day windows on real tickers — smooth enough to require a genuine, sustained pullback (not just short-term noise), recent enough to avoid dragging in a stale, no-longer-relevant price regime. Still the DEFAULT window; kept as a locked-in choice, not removed — see SMA_WINDOW_OPTIONS below for the full adjustable range.
 
 # The set of windows the website's SMA slicer lets you pick between
-# (2026-08-27) — narrowed from [20, 50, 100, 200] to
+# narrowed from [20, 50, 100, 200] to
 # just [50, 200] per his follow-up ("let's stick to 50 and 200 day avgs
 # only"), matching the two windows Yahoo Finance itself publishes
 # directly (fiftyDayAverage / twoHundredDayAverage — confirmed via a
@@ -52,7 +52,7 @@ def compute_recent_average_price(daily_closes: pd.Series, window_days: int = SMA
 
     Supersedes an earlier "mode price" approach (histogram/bucket-based,
     picking whichever 1%-wide price band collected the most days across
-    the full 12 months). Dropped 2026-08-27 after a concern raised in review:
+    the full 12 months). Dropped after a a concern about relevance:
     that approach only ever used a handful of days (as few as 10 out of
     ~252 for some tickers) — a narrow coincidence, not a genuinely
     "large number of days" as intended, and it could anchor on a stale
@@ -139,7 +139,7 @@ def get_latest_relevant_headline(
         news_items = ticker.news
     except Exception:
         # News is a "nice to have" signal, not core to the recommendation
-        # — if fetching it fails for any reason, don't let that break the
+        # if fetching it fails for any reason, don't let that break the
         # whole evaluation for this ticker.
         return None, None, False
 
@@ -171,7 +171,7 @@ def get_latest_relevant_headline(
             company_specific.append((title, pub_date))
 
     # Sort by publish date, most recent first. ISO date strings like
-    # "2026-08-26T20:45:34Z" sort correctly as plain text, so we don't
+    # "T20:45:34Z" sort correctly as plain text, so we don't
     # need to parse them into real datetime objects for this.
     is_company_specific = bool(company_specific)
     candidates = company_specific if company_specific else parsed_items
@@ -213,7 +213,7 @@ def compute_upside_pct(reference_price: float, current_price: float) -> float:
     reference_price" — current_price is always the denominator. This is
     the standard way analyst upside is expressed ("stock has X% upside
     to target"), and it's what corrected the logic to use for
-    BOTH deltas (2026-08-26 feedback: "use upside so denominator should
+    BOTH deltas ("use upside so denominator should
     be current price"), not just the target-price one.
 
     Used for several different reference prices that all share this
@@ -227,7 +227,7 @@ def compute_upside_pct(reference_price: float, current_price: float) -> float:
     return (reference_price - current_price) / current_price * 100
 
 
-# Third logic revision (2026-08-27) — Composite Upside %, a weighted
+# Third logic revision — Composite Upside %, a weighted
 # blend of THREE upside measures (replaces the min()/max() two-delta
 # system for the recommendations list; the 3 heatmap slices are
 # unaffected and still use Delta 1 / Delta 2 / max(Delta 1, Delta 2)
@@ -290,7 +290,7 @@ def classify_market_cap(market_cap: float | None) -> str | None:
         return "Micro Cap"
 
 
-# Analyst rating threshold for "strong buy consensus" (2026-08-26 logic
+# Analyst rating threshold for "strong buy consensus" (logic
 # update). Scale is 1.0 (Strong Buy) to 5.0 (Strong Sell). 1.5 is a
 # reasonable cutoff for "solidly in Strong Buy territory" — adjustable,
 # flagged here rather than buried, same as the other tuned thresholds
@@ -421,13 +421,13 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
     # value gracefully instead of crashing.
     #
     # We pull more than just the mean here, for transparency/robustness:
-    # - targetMeanPrice / targetMedianPrice: two different "consensus"
+    # targetMeanPrice / targetMedianPrice: two different "consensus"
     #   summaries. Median resists a single extreme analyst skewing the
     #   number; mean is the more commonly-quoted figure. We use mean as
     #   the primary filter for now (matches the original spec) but keep
     #   both visible so it's not a black box.
-    # - targetHighPrice / targetLowPrice: the full spread of opinion.
-    # - numberOfAnalystOpinions: how many analysts this is based on —
+    # targetHighPrice / targetLowPrice: the full spread of opinion.
+    # numberOfAnalystOpinions: how many analysts this is based on —
     #   a target price from 2 analysts means something very different
     #   than one from 50.
     info = ticker.info
@@ -475,7 +475,7 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
     recommendation_breakdown = get_recommendation_breakdown(ticker)
     live_market = get_live_market_context(info)
 
-    # Second logic revision (2026-08-26) — the simplified core
+    # Second logic revision — the simplified core
     # intuition, replacing the first revision's mode-based "52w price"
     # comparison: two deltas, both expressed as standard "% upside from
     # current price", combined by taking the LOWER of the two (a
@@ -484,8 +484,7 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
     #   Delta 1: upside if price returns to the classic 52-week HIGH
     #   Delta 2: upside if price reaches the analyst target
     upside_to_52w_high = round(compute_upside_pct(range_position["fifty_two_week_high"], most_recent_close), 2)
-    # Delta 2 uses the MEDIAN target, not the mean (2026-08-26 feedback:
-    # "align with most analysts" — median resists a single outlier
+    # Delta 2 uses the MEDIAN target, not the mean (# "align with most analysts" — median resists a single outlier
     # analyst skewing the number more than mean does). Falls back to
     # mean only if median is somehow missing but mean isn't (rare —
     # normally both come from the same analyst pool, present or absent
@@ -503,7 +502,7 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
         upside_to_target = round(compute_upside_pct(reference_target, most_recent_close), 2)
         max_upside_signal = max(upside_to_52w_high, upside_to_target)
 
-    # Composite Upside % (2026-08-27) — weighted blend of three upside
+    # Composite Upside % — weighted blend of three upside
     # measures, only computable once all three are available.
     composite_upside = None
     if upside_to_target is not None:
@@ -564,7 +563,7 @@ def evaluate_ticker(ticker_symbol: str) -> dict | None:
         return result
 
     # No separate "is current price already above target" check needed
-    # — if it is, upside_to_target comes out negative, which drags down
+    # if it is, upside_to_target comes out negative, which drags down
     # (and can fail) the Composite Upside % threshold below.
     if composite_upside < COMPOSITE_UPSIDE_THRESHOLD_PCT:
         result["skip_reason"] = (
