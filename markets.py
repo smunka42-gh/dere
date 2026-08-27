@@ -86,6 +86,11 @@ def _lazy_get_nifty50_tickers() -> list[str]:
     return get_nifty50_tickers()
 
 
+def _lazy_get_sensex_tickers() -> list[str]:
+    from sensex_tickers import get_sensex_tickers
+    return get_sensex_tickers()
+
+
 SP500 = Market(
     id="sp500",
     display_name="S&P 500",
@@ -133,5 +138,29 @@ NIFTY50 = Market(
     cap_tier_small=50_000_000_000,      # ₹5,000 Cr
 )
 
-MARKETS: dict[str, Market] = {SP500.id: SP500, NIFTY50.id: NIFTY50}
+SENSEX = Market(
+    id="sensex",
+    display_name="BSE Sensex",
+    currency_symbol="₹",
+    fetch_tickers=_lazy_get_sensex_tickers,
+    scan_output_file="latest_scan_sensex.json",
+    format_cap=_format_cap_inr,
+    # Same crore-scale checkpoints and cap tiers as Nifty 50 — both
+    # indices draw from the same pool of India's largest listed
+    # companies (BSE vs. NSE), so the same INR scale is meaningful for
+    # both rather than needing its own tuning.
+    cap_range_options=[
+        ("₹1,000 Cr", 10_000_000_000), ("₹5,000 Cr", 50_000_000_000),
+        ("₹10,000 Cr", 100_000_000_000), ("₹25,000 Cr", 250_000_000_000),
+        ("₹50,000 Cr", 500_000_000_000), ("₹1,00,000 Cr", 1_000_000_000_000),
+        ("₹2,50,000 Cr", 2_500_000_000_000), ("₹5,00,000 Cr", 5_000_000_000_000),
+        ("₹10,00,000 Cr", 10_000_000_000_000), ("₹20,00,000 Cr", 20_000_000_000_000),
+    ],
+    default_cap_range=("₹1,000 Cr", "₹20,00,000 Cr"),
+    cap_tier_large=1_000_000_000_000,   # ₹1,00,000 Cr
+    cap_tier_mid=250_000_000_000,       # ₹25,000 Cr
+    cap_tier_small=50_000_000_000,      # ₹5,000 Cr
+)
+
+MARKETS: dict[str, Market] = {SP500.id: SP500, NIFTY50.id: NIFTY50, SENSEX.id: SENSEX}
 DEFAULT_MARKET_ID = SP500.id
