@@ -1,0 +1,139 @@
+# Refreshes the saved scan once per trading day, one hour after the US
+# market close, and commits the result back to the repo.
+#
+# The deployed site reads output/latest_scan.json straight from the repo,
+# so committing a new scan is what makes the live site update — Streamlit
+# Community Cloud redeploys automatically on push.
+#
+# Runs on GitHub's infrastructure, not a laptop, so it does not depend on
+# any machine being awake.
+
+name: Daily scan
+
+on:
+  schedule:
+    # GitHub cron is UTC ONLY and does not follow daylight saving, so a
+    # single expression cannot stay at 17:00 New York year-round.
+    # Both times below are scheduled and the job gates on the real local
+    # hour, so exactly one of them proceeds on any given day.
+    - cron: "0 21 * * 1-5"   # 17:00 America/New_York while EDT
+    - cron: "0 22 * * 1-5"   # 17:00 America/New_York while EST
+  workflow_dispatch:          # allows a manual run from the Actions tab
+
+permissions:
+  contents: write             # needed to push the refreshed scan back
+
+concurrency:
+  # If a run is somehow still going when the next fires, don't stack them.
+  group: daily-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45       # a full 500-ticker scan takes ~10-20 min
+
+    steps:
+      - name: Decide whether this is the 17:00 Eastern run
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual run — proceeding."
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          HOUR=$(TZ=America/New_York date +%H)
+          if [ "$HOUR" = "17" ]; then
+            echo "Eastern time is ${HOUR}:00 — proceeding."
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Eastern time is ${HOUR}:00, not 17:00 — this is the"
+            echo "other DST schedule firing. Skipping."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.proceed == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.proceed == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        if: steps.gate.outputs.proceed == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Run the scan
+        if: steps.gate.outputs.proceed == 'true'
+        run: python run_daily_scan.py
+
+      - name: Validate before committing
+        if: steps.gate.outputs.proceed == 'true'
+        run: |
+          python - <<'PY'
+          import json, sys, pathlib
+
+          # A partial or failed scan must NOT reach the live site. Yahoo's
+          # unofficial API can rate-limit or return empty frames, which
+          # would otherwise commit a near-empty file and blank the page.
+          path = pathlib.Path("output/latest_scan.json")
+          scan = json.loads(path.read_text())
+
+          results = scan.get("all_results", [])
+          errors = scan.get("tickers_with_errors", 0)
+          scanned = scan.get("tickers_scanned", 0)
+
+          print(f"scanned={scanned} results={len(results)} errors={errors}")
+
+          # The index is ~500 names; anything far below that means the
+          # fetch was throttled or broken rather than genuinely smaller.
+          if len(results) < 400:
+              sys.exit(f"FAIL: only {len(results)} results — refusing to publish a partial scan.")
+          if errors > 50:
+              sys.exit(f"FAIL: {errors} tickers errored — refusing to publish.")
+
+          # Spot-check that prices actually came through, not just rows.
+          priced = sum(1 for r in results if r.get("most_recent_close"))
+          if priced < len(results) * 0.9:
+              sys.exit(f"FAIL: only {priced}/{len(results)} rows have a price.")
+
+          print("Scan looks healthy.")
+          PY
+
+      - name: Commit and push if the data actually changed
+        if: steps.gate.outputs.proceed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # The scan timestamp changes on every run, so comparing whole
+          # files would commit daily even on market holidays when nothing
+          # moved. Compare the RESULTS instead.
+          if git diff --quiet -- output/latest_scan.json; then
+            echo "No change at all — nothing to commit."
+            exit 0
+          fi
+
+          CHANGED=$(python - <<'PY'
+          import json, subprocess
+          new = json.loads(open("output/latest_scan.json").read())
+          old_raw = subprocess.run(
+              ["git", "show", "HEAD:output/latest_scan.json"],
+              capture_output=True, text=True).stdout
+          old = json.loads(old_raw) if old_raw else {}
+          # Ignore the timestamp; only the market data matters.
+          print("yes" if new.get("all_results") != old.get("all_results") else "no")
+          PY
+          )
+
+          if [ "$CHANGED" = "no" ]; then
+            echo "Only the timestamp moved (likely a market holiday) — skipping commit."
+            git checkout -- output/latest_scan.json
+            exit 0
+          fi
+
+          git add output/latest_scan.json
+          git commit -m "Refresh scan data ($(TZ=America/New_York date '+%Y-%m-%d'))"
+          git push
