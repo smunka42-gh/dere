@@ -4,7 +4,14 @@ __pycache__/
 *.pyc
 .DS_Store
 venv/
-output/
+# Scan output. The published scan IS committed — the deployed site
+# reads it straight from the repo — so ignore the directory's other
+# contents rather than the directory itself. Ignoring `output/`
+# outright makes git refuse `git add output/latest_scan.json`, even
+# though that file is tracked, because git never descends into an
+# ignored directory to see the negation.
+output/*
+!output/latest_scan.json
 
 # Private build log — session history, feedback quotes, decision provenance.
 # Kept local for conversation-compaction continuity; never published.
