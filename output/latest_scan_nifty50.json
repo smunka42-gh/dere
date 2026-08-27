@@ -1,0 +1,4988 @@
+{
+  "scan_timestamp_utc": "2026-08-27T23:12:01.167522+00:00",
+  "market_id": "nifty50",
+  "tickers_scanned": 50,
+  "tickers_with_errors": 0,
+  "errors": [],
+  "total_recommendations": 7,
+  "recommendations": [
+    {
+      "ticker": "AXISBANK.NS",
+      "company_name": "AXIS BANK LIMITED",
+      "market_cap": 3910032162816,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1255.0,
+      "recent_avg_price": 1292.91,
+      "upside_to_recent_avg_pct": 3.02,
+      "sma_upside_by_window": {
+        "50": 2.37,
+        "200": 2.57
+      },
+      "fifty_two_week_low": 1044.39,
+      "fifty_two_week_high": 1401.92,
+      "position_in_range_pct": 58.9,
+      "analyst_target_mean": 1581.8049,
+      "analyst_target_median": 1575.0,
+      "analyst_target_high": 1780.0,
+      "analyst_target_low": 1430.0,
+      "num_analyst_opinions": 41,
+      "recommendation_mean": 1.29268,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 11.71,
+      "upside_to_target_pct": 25.5,
+      "max_upside_signal_pct": 25.5,
+      "composite_upside_pct": 10.81,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 31,
+          "hold": 2,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 7,
+            "buy": 30,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1256.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Axis Bank bets on data centres to gold loans to outpace industry credit growth",
+      "latest_headline_date": "2026-08-25T08:45:39Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "BEL.NS",
+      "company_name": "BHARAT ELECTRONICS LTD",
+      "market_cap": 3004319137792,
+      "market_cap_tier": "Large Cap",
+      "sector": "Industrials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 406.9,
+      "recent_avg_price": 417.37,
+      "upside_to_recent_avg_pct": 2.57,
+      "sma_upside_by_window": {
+        "50": 0.25,
+        "200": 2.81
+      },
+      "fifty_two_week_low": 361.82,
+      "fifty_two_week_high": 467.81,
+      "position_in_range_pct": 42.5,
+      "analyst_target_mean": 490.4516,
+      "analyst_target_median": 500.0,
+      "analyst_target_high": 550.0,
+      "analyst_target_low": 346.0,
+      "num_analyst_opinions": 31,
+      "recommendation_mean": 1.45161,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 14.97,
+      "upside_to_target_pct": 22.88,
+      "max_upside_signal_pct": 22.88,
+      "composite_upside_pct": 10.75,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 21,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 21,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 20,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 17,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 17,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 411.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bharat Electronics Ltd (BOM:500049) Q1 2027 Earnings Call Highlights: Robust Revenue Growth and ...",
+      "latest_headline_date": "2026-07-27T19:00:55Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "company_name": "HDFC BANK LTD",
+      "market_cap": 10957220741120,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 727.2,
+      "recent_avg_price": 764.08,
+      "upside_to_recent_avg_pct": 5.07,
+      "sma_upside_by_window": {
+        "50": 5.44,
+        "200": 15.2
+      },
+      "fifty_two_week_low": 719.65,
+      "fifty_two_week_high": 993.08,
+      "position_in_range_pct": 2.8,
+      "analyst_target_mean": 1014.225,
+      "analyst_target_median": 992.0,
+      "analyst_target_high": 1400.0,
+      "analyst_target_low": 800.0,
+      "num_analyst_opinions": 40,
+      "recommendation_mean": 1.19512,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 36.56,
+      "upside_to_target_pct": 36.41,
+      "max_upside_signal_pct": 36.56,
+      "composite_upside_pct": 20.78,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 34,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 34,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 33,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 34,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 33,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 711.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's HDFC Bank slips to 2-1/2-year low as legal, leadership woes linger",
+      "latest_headline_date": "2026-08-27T10:44:12Z",
+      "headline_is_company_specific": true,
+      "tag": "20\u201330%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "HDFCLIFE.NS",
+      "company_name": "HDFC LIFE INS CO LTD",
+      "market_cap": 1190220529664,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 553.0,
+      "recent_avg_price": 577.21,
+      "upside_to_recent_avg_pct": 4.38,
+      "sma_upside_by_window": {
+        "50": 1.14,
+        "200": 16.98
+      },
+      "fifty_two_week_low": 535.85,
+      "fifty_two_week_high": 785.0,
+      "position_in_range_pct": 6.9,
+      "analyst_target_mean": 749.14703,
+      "analyst_target_median": 735.0,
+      "analyst_target_high": 910.0,
+      "analyst_target_low": 620.0,
+      "num_analyst_opinions": 34,
+      "recommendation_mean": 1.29412,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 41.95,
+      "upside_to_target_pct": 32.91,
+      "max_upside_signal_pct": 41.95,
+      "composite_upside_pct": 20.91,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 25,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 26,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 26,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 548.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "HDFC Life Insurance Co Ltd (NSE:HDFCLIFE) Q1 2027 Earnings Call Highlights: Strong Growth in ...",
+      "latest_headline_date": "2026-07-15T19:00:38Z",
+      "headline_is_company_specific": true,
+      "tag": "20\u201330%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "NTPC.NS",
+      "company_name": "NTPC LTD",
+      "market_cap": 3208626831360,
+      "market_cap_tier": "Large Cap",
+      "sector": "Utilities",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 334.6,
+      "recent_avg_price": 366.57,
+      "upside_to_recent_avg_pct": 9.56,
+      "sma_upside_by_window": {
+        "50": 3.95,
+        "200": 6.79
+      },
+      "fifty_two_week_low": 316.11,
+      "fifty_two_week_high": 410.2,
+      "position_in_range_pct": 19.6,
+      "analyst_target_mean": 433.07144,
+      "analyst_target_median": 432.0,
+      "analyst_target_high": 485.0,
+      "analyst_target_low": 365.0,
+      "num_analyst_opinions": 28,
+      "recommendation_mean": 1.33333,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 22.59,
+      "upside_to_target_pct": 29.11,
+      "max_upside_signal_pct": 29.11,
+      "composite_upside_pct": 17.7,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 21,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 330.9,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's biggest power producer NTPC plans to invest $178 billion through 2037",
+      "latest_headline_date": "2026-07-29T07:53:06Z",
+      "headline_is_company_specific": true,
+      "tag": "15\u201320%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "company_name": "RELIANCE INDUSTRIES LTD",
+      "market_cap": null,
+      "market_cap_tier": null,
+      "sector": "Energy",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1298.0,
+      "recent_avg_price": 1325.87,
+      "upside_to_recent_avg_pct": 2.15,
+      "sma_upside_by_window": {
+        "50": 0.59,
+        "200": 7.26
+      },
+      "fifty_two_week_low": 1258.8,
+      "fifty_two_week_high": 1584.97,
+      "position_in_range_pct": 12.0,
+      "analyst_target_mean": 1673.0,
+      "analyst_target_median": 1690.0,
+      "analyst_target_high": 1890.0,
+      "analyst_target_low": 1350.0,
+      "num_analyst_opinions": 28,
+      "recommendation_mean": 1.2963,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 22.11,
+      "upside_to_target_pct": 30.2,
+      "max_upside_signal_pct": 30.2,
+      "composite_upside_pct": 14.15,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 21,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 21,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 25,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 25,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 24,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1282.2,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Reliance's luxury unit brings Kim Kardashian's SKIMS to India",
+      "latest_headline_date": "2026-08-05T12:13:21Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "SBILIFE.NS",
+      "company_name": "SBI LIFE INSURANCE CO LTD",
+      "market_cap": 1779139346432,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1768.2,
+      "recent_avg_price": 1831.67,
+      "upside_to_recent_avg_pct": 3.59,
+      "sma_upside_by_window": {
+        "50": 2.91,
+        "200": 8.25
+      },
+      "fifty_two_week_low": 1706.0,
+      "fifty_two_week_high": 2106.67,
+      "position_in_range_pct": 15.5,
+      "analyst_target_mean": 2342.9722,
+      "analyst_target_median": 2365.0,
+      "analyst_target_high": 2790.0,
+      "analyst_target_low": 1050.0,
+      "num_analyst_opinions": 36,
+      "recommendation_mean": 1.2,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 19.14,
+      "upside_to_target_pct": 33.75,
+      "max_upside_signal_pct": 33.75,
+      "composite_upside_pct": 15.02,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 29,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 29,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 29,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 31,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 31,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1773.2,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "SBI Life Insurance Co Ltd (NSE:SBILIFE) Q1 2027 Earnings Call Highlights: Strong Growth in New ...",
+      "latest_headline_date": "2026-07-24T19:00:31Z",
+      "headline_is_company_specific": true,
+      "tag": "15\u201320%",
+      "recommended": true,
+      "skip_reason": null
+    }
+  ],
+  "all_results": [
+    {
+      "ticker": "ADANIENT.NS",
+      "company_name": "ADANI ENTERPRISES LIMITED",
+      "market_cap": 4509402660864,
+      "market_cap_tier": "Large Cap",
+      "sector": "Energy",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 3112.0,
+      "recent_avg_price": 2833.17,
+      "upside_to_recent_avg_pct": -8.96,
+      "sma_upside_by_window": {
+        "50": -1.5,
+        "200": -19.82
+      },
+      "fifty_two_week_low": 1758.01,
+      "fifty_two_week_high": 3212.1,
+      "position_in_range_pct": 93.1,
+      "analyst_target_mean": 3773.0,
+      "analyst_target_median": 3787.0,
+      "analyst_target_high": 3880.0,
+      "analyst_target_low": 3638.0,
+      "num_analyst_opinions": 4,
+      "recommendation_mean": null,
+      "recommendation_key": "none",
+      "upside_to_52w_high_pct": 3.22,
+      "upside_to_target_pct": 21.69,
+      "max_upside_signal_pct": 21.69,
+      "composite_upside_pct": 1.75,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 1,
+          "buy": 3,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 1,
+            "buy": 3,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 1,
+            "buy": 2,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 1,
+            "buy": 2,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 0,
+            "buy": 2,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 3169.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Adani Energy plans another share sale by early next fiscal, sources say",
+      "latest_headline_date": "2026-07-31T03:56:37Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "No analyst rating available"
+    },
+    {
+      "ticker": "ADANIPORTS.NS",
+      "company_name": "ADANI PORT & SEZ LTD",
+      "market_cap": 3948985712640,
+      "market_cap_tier": "Large Cap",
+      "sector": "Industrials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1691.5,
+      "recent_avg_price": 1735.02,
+      "upside_to_recent_avg_pct": 2.57,
+      "sma_upside_by_window": {
+        "50": 4.28,
+        "200": -5.59
+      },
+      "fifty_two_week_low": 1298.13,
+      "fifty_two_week_high": 1883.2,
+      "position_in_range_pct": 67.2,
+      "analyst_target_mean": 2037.0834,
+      "analyst_target_median": 2035.0,
+      "analyst_target_high": 2200.0,
+      "analyst_target_low": 1766.0,
+      "num_analyst_opinions": 24,
+      "recommendation_mean": 1.5,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 11.33,
+      "upside_to_target_pct": 20.31,
+      "max_upside_signal_pct": 20.31,
+      "composite_upside_pct": 9.2,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 16,
+          "hold": 1,
+          "sell": 1,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 16,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 18,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 19,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 20,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1714.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Adani Ports posts higher profit on domestic demand",
+      "latest_headline_date": "2026-07-29T08:42:29Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (9.2%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "APOLLOHOSP.NS",
+      "company_name": "APOLLO HOSPITALS ENTER. L",
+      "market_cap": 1265304993792,
+      "market_cap_tier": "Large Cap",
+      "sector": "Healthcare",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 8766.5,
+      "recent_avg_price": 8388.2,
+      "upside_to_recent_avg_pct": -4.32,
+      "sma_upside_by_window": {
+        "50": 0.14,
+        "200": -10.56
+      },
+      "fifty_two_week_low": 6776.6,
+      "fifty_two_week_high": 9039.48,
+      "position_in_range_pct": 87.9,
+      "analyst_target_mean": 9790.387,
+      "analyst_target_median": 10000.0,
+      "analyst_target_high": 10800.0,
+      "analyst_target_low": 6230.0,
+      "num_analyst_opinions": 31,
+      "recommendation_mean": 1.46667,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 3.11,
+      "upside_to_target_pct": 14.07,
+      "max_upside_signal_pct": 14.07,
+      "composite_upside_pct": 2.13,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 22,
+          "hold": 3,
+          "sell": 1,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 22,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 3,
+            "buy": 23,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 3,
+            "buy": 23,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 3,
+            "buy": 22,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 8800.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Apollo Hospitals Enterprise Ltd (BOM:508869) (Q1 2027) Earnings Call Highlights: Revenue Surges ...",
+      "latest_headline_date": "2026-08-13T17:07:56Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (2.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "ASIANPAINT.NS",
+      "company_name": "ASIAN PAINTS LIMITED",
+      "market_cap": 2522193068032,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 2626.5,
+      "recent_avg_price": 2620.14,
+      "upside_to_recent_avg_pct": -0.24,
+      "sma_upside_by_window": {
+        "50": 2.6,
+        "200": -1.28
+      },
+      "fifty_two_week_low": 2103.05,
+      "fifty_two_week_high": 2942.97,
+      "position_in_range_pct": 62.3,
+      "analyst_target_mean": 3021.4412,
+      "analyst_target_median": 3019.5,
+      "analyst_target_high": 3827.0,
+      "analyst_target_low": 1860.0,
+      "num_analyst_opinions": 34,
+      "recommendation_mean": 2.38235,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 12.05,
+      "upside_to_target_pct": 14.96,
+      "max_upside_signal_pct": 14.96,
+      "composite_upside_pct": 6.63,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 12,
+          "hold": 10,
+          "sell": 3,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 12,
+            "hold": 10,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 12,
+            "hold": 10,
+            "sell": 3,
+            "strong_sell": 4
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 11,
+            "hold": 10,
+            "sell": 4,
+            "strong_sell": 4
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 11,
+            "hold": 8,
+            "sell": 5,
+            "strong_sell": 5
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 2631.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Asian Paints Ltd (BOM:500820) (Q1 2027) Earnings Call Highlights: Strong Volume Growth Amidst ...",
+      "latest_headline_date": "2026-07-31T01:02:34Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.38) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "AXISBANK.NS",
+      "company_name": "AXIS BANK LIMITED",
+      "market_cap": 3910032162816,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1255.0,
+      "recent_avg_price": 1292.91,
+      "upside_to_recent_avg_pct": 3.02,
+      "sma_upside_by_window": {
+        "50": 2.37,
+        "200": 2.57
+      },
+      "fifty_two_week_low": 1044.39,
+      "fifty_two_week_high": 1401.92,
+      "position_in_range_pct": 58.9,
+      "analyst_target_mean": 1581.8049,
+      "analyst_target_median": 1575.0,
+      "analyst_target_high": 1780.0,
+      "analyst_target_low": 1430.0,
+      "num_analyst_opinions": 41,
+      "recommendation_mean": 1.29268,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 11.71,
+      "upside_to_target_pct": 25.5,
+      "max_upside_signal_pct": 25.5,
+      "composite_upside_pct": 10.81,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 31,
+          "hold": 2,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 7,
+            "buy": 30,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 31,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1256.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Axis Bank bets on data centres to gold loans to outpace industry credit growth",
+      "latest_headline_date": "2026-08-25T08:45:39Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "BAJAJ-AUTO.NS",
+      "company_name": "BAJAJ AUTO LIMITED",
+      "market_cap": 3220700921856,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 11724.0,
+      "recent_avg_price": 10442.92,
+      "upside_to_recent_avg_pct": -10.93,
+      "sma_upside_by_window": {
+        "50": -7.38,
+        "200": -16.32
+      },
+      "fifty_two_week_low": 8506.78,
+      "fifty_two_week_high": 11927.0,
+      "position_in_range_pct": 94.1,
+      "analyst_target_mean": 11544.125,
+      "analyst_target_median": 11700.0,
+      "analyst_target_high": 13700.0,
+      "analyst_target_low": 9000.0,
+      "num_analyst_opinions": 40,
+      "recommendation_mean": 2.14634,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 1.73,
+      "upside_to_target_pct": -0.2,
+      "max_upside_signal_pct": 1.73,
+      "composite_upside_pct": -5.08,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 21,
+          "hold": 6,
+          "sell": 5,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 21,
+            "hold": 6,
+            "sell": 5,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 21,
+            "hold": 6,
+            "sell": 5,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 16,
+            "hold": 8,
+            "sell": 5,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 15,
+            "hold": 10,
+            "sell": 5,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 11720.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bajaj Auto Ltd (BOM:532977) Q1 2027 Earnings Call Highlights: Record Growth and Strategic Expansions",
+      "latest_headline_date": "2026-07-21T21:01:18Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.15) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "BAJFINANCE.NS",
+      "company_name": "BAJAJ FINANCE LIMITED",
+      "market_cap": 6737249173504,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1085.0,
+      "recent_avg_price": 981.87,
+      "upside_to_recent_avg_pct": -9.5,
+      "sma_upside_by_window": {
+        "50": -3.22,
+        "200": -10.57
+      },
+      "fifty_two_week_low": 796.65,
+      "fifty_two_week_high": 1158.8,
+      "position_in_range_pct": 79.6,
+      "analyst_target_mean": 1158.3889,
+      "analyst_target_median": 1200.0,
+      "analyst_target_high": 1320.0,
+      "analyst_target_low": 815.0,
+      "num_analyst_opinions": 36,
+      "recommendation_mean": 1.91667,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 6.8,
+      "upside_to_target_pct": 10.6,
+      "max_upside_signal_pct": 10.6,
+      "composite_upside_pct": -0.4,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 21,
+          "hold": 3,
+          "sell": 3,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 21,
+            "hold": 3,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 21,
+            "hold": 3,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 20,
+            "hold": 4,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 20,
+            "hold": 3,
+            "sell": 3,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1083.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bajaj Finserv Ltd (BOM:532978) (Q1 2027) Earnings Call Highlights: Strong Growth Amid Insurance ...",
+      "latest_headline_date": "2026-07-31T19:01:39Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.92) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "BAJAJFINSV.NS",
+      "company_name": "BAJAJ FINSERV LTD.",
+      "market_cap": 3218092064768,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 2010.0,
+      "recent_avg_price": 1842.72,
+      "upside_to_recent_avg_pct": -8.32,
+      "sma_upside_by_window": {
+        "50": -4.57,
+        "200": -5.24
+      },
+      "fifty_two_week_low": 1630.41,
+      "fifty_two_week_high": 2174.74,
+      "position_in_range_pct": 69.7,
+      "analyst_target_mean": 2362.2144,
+      "analyst_target_median": 2410.5,
+      "analyst_target_high": 2640.0,
+      "analyst_target_low": 1710.0,
+      "num_analyst_opinions": 14,
+      "recommendation_mean": 1.71429,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 8.2,
+      "upside_to_target_pct": 19.93,
+      "max_upside_signal_pct": 19.93,
+      "composite_upside_pct": 2.87,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 2,
+          "buy": 10,
+          "hold": 0,
+          "sell": 2,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 2,
+            "buy": 10,
+            "hold": 0,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 2,
+            "buy": 9,
+            "hold": 1,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 2,
+            "buy": 9,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 3,
+            "buy": 9,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 2011.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bajaj Finserv Ltd (BOM:532978) (Q1 2027) Earnings Call Highlights: Strong Growth Amid Insurance ...",
+      "latest_headline_date": "2026-07-31T19:01:39Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.71) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "BEL.NS",
+      "company_name": "BHARAT ELECTRONICS LTD",
+      "market_cap": 3004319137792,
+      "market_cap_tier": "Large Cap",
+      "sector": "Industrials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 406.9,
+      "recent_avg_price": 417.37,
+      "upside_to_recent_avg_pct": 2.57,
+      "sma_upside_by_window": {
+        "50": 0.25,
+        "200": 2.81
+      },
+      "fifty_two_week_low": 361.82,
+      "fifty_two_week_high": 467.81,
+      "position_in_range_pct": 42.5,
+      "analyst_target_mean": 490.4516,
+      "analyst_target_median": 500.0,
+      "analyst_target_high": 550.0,
+      "analyst_target_low": 346.0,
+      "num_analyst_opinions": 31,
+      "recommendation_mean": 1.45161,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 14.97,
+      "upside_to_target_pct": 22.88,
+      "max_upside_signal_pct": 22.88,
+      "composite_upside_pct": 10.75,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 21,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 21,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 20,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 17,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 17,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 411.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bharat Electronics Ltd (BOM:500049) Q1 2027 Earnings Call Highlights: Robust Revenue Growth and ...",
+      "latest_headline_date": "2026-07-27T19:00:55Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "BHARTIARTL.NS",
+      "company_name": "BHARTI AIRTEL LIMITED",
+      "market_cap": 11718071681024,
+      "market_cap_tier": "Large Cap",
+      "sector": "Communication Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1902.1,
+      "recent_avg_price": 1864.97,
+      "upside_to_recent_avg_pct": -1.95,
+      "sma_upside_by_window": {
+        "50": 0.42,
+        "200": 1.03
+      },
+      "fifty_two_week_low": 1734.97,
+      "fifty_two_week_high": 2135.82,
+      "position_in_range_pct": 41.7,
+      "analyst_target_mean": 2320.6365,
+      "analyst_target_median": 2330.0,
+      "analyst_target_high": 2750.0,
+      "analyst_target_low": 1800.0,
+      "num_analyst_opinions": 33,
+      "recommendation_mean": 1.48485,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 12.29,
+      "upside_to_target_pct": 22.5,
+      "max_upside_signal_pct": 22.5,
+      "composite_upside_pct": 7.72,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 22,
+          "hold": 0,
+          "sell": 1,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 22,
+            "hold": 0,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 22,
+            "hold": 0,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 9,
+            "buy": 22,
+            "hold": 0,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 8,
+            "buy": 21,
+            "hold": 0,
+            "sell": 1,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1878.3,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Bharti Airtel Ltd (BOM:532454) (Q1 2027) Earnings Call Highlights: Record Postpaid Adds and ...",
+      "latest_headline_date": "2026-08-07T01:03:37Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (7.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "CIPLA.NS",
+      "company_name": "CIPLA LTD",
+      "market_cap": 1147158921216,
+      "market_cap_tier": "Large Cap",
+      "sector": "Healthcare",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1402.7,
+      "recent_avg_price": 1385.04,
+      "upside_to_recent_avg_pct": -1.26,
+      "sma_upside_by_window": {
+        "50": 2.61,
+        "200": -1.13
+      },
+      "fifty_two_week_low": 1181.32,
+      "fifty_two_week_high": 1648.14,
+      "position_in_range_pct": 47.4,
+      "analyst_target_mean": 1509.0834,
+      "analyst_target_median": 1525.0,
+      "analyst_target_high": 1768.0,
+      "analyst_target_low": 1170.0,
+      "num_analyst_opinions": 36,
+      "recommendation_mean": 2.19444,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 17.5,
+      "upside_to_target_pct": 8.72,
+      "max_upside_signal_pct": 17.5,
+      "composite_upside_pct": 5.93,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 14,
+          "hold": 10,
+          "sell": 3,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 14,
+            "hold": 10,
+            "sell": 3,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 14,
+            "hold": 10,
+            "sell": 3,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 8,
+            "buy": 14,
+            "hold": 9,
+            "sell": 4,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 9,
+            "buy": 13,
+            "hold": 9,
+            "sell": 4,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1420.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Cipla Ltd (BOM:500087) Q1 2027 Earnings Call Highlights: Strong Start with Record Revenue ...",
+      "latest_headline_date": "2026-07-25T01:01:50Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.19) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "COALINDIA.NS",
+      "company_name": "COAL INDIA LTD",
+      "market_cap": 2465091289088,
+      "market_cap_tier": "Large Cap",
+      "sector": "Energy",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 403.5,
+      "recent_avg_price": 436.28,
+      "upside_to_recent_avg_pct": 8.13,
+      "sma_upside_by_window": {
+        "50": 4.15,
+        "200": 4.62
+      },
+      "fifty_two_week_low": 354.93,
+      "fifty_two_week_high": 475.3,
+      "position_in_range_pct": 40.4,
+      "analyst_target_mean": 460.25,
+      "analyst_target_median": 470.0,
+      "analyst_target_high": 550.0,
+      "analyst_target_low": 350.0,
+      "num_analyst_opinions": 24,
+      "recommendation_mean": 2.41667,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 17.79,
+      "upside_to_target_pct": 16.48,
+      "max_upside_signal_pct": 17.79,
+      "composite_upside_pct": 12.63,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 8,
+          "hold": 5,
+          "sell": 3,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 8,
+            "hold": 5,
+            "sell": 3,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 8,
+            "hold": 5,
+            "sell": 3,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 8,
+            "hold": 5,
+            "sell": 4,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 8,
+            "hold": 5,
+            "sell": 4,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 400.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Coal India plans Singapore trading hub in hunt for critical mineral assets, sources say",
+      "latest_headline_date": "2026-08-20T08:02:54Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.42) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "DRREDDY.NS",
+      "company_name": "DR. REDDY S LABORATORIES",
+      "market_cap": 980441104384,
+      "market_cap_tier": "Mid Cap",
+      "sector": "Healthcare",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1182.0,
+      "recent_avg_price": 1253.36,
+      "upside_to_recent_avg_pct": 6.04,
+      "sma_upside_by_window": {
+        "50": 4.07,
+        "200": 5.81
+      },
+      "fifty_two_week_low": 1135.6,
+      "fifty_two_week_high": 1367.03,
+      "position_in_range_pct": 20.0,
+      "analyst_target_mean": 1265.7726,
+      "analyst_target_median": 1240.0,
+      "analyst_target_high": 1740.0,
+      "analyst_target_low": 1039.0,
+      "num_analyst_opinions": 39,
+      "recommendation_mean": null,
+      "recommendation_key": "none",
+      "upside_to_52w_high_pct": 15.65,
+      "upside_to_target_pct": 4.91,
+      "max_upside_signal_pct": 15.65,
+      "composite_upside_pct": 8.16,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 11,
+          "hold": 11,
+          "sell": 5,
+          "strong_sell": 8
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 11,
+            "hold": 11,
+            "sell": 5,
+            "strong_sell": 8
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 11,
+            "hold": 11,
+            "sell": 6,
+            "strong_sell": 8
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 12,
+            "hold": 10,
+            "sell": 6,
+            "strong_sell": 6
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 12,
+            "hold": 10,
+            "sell": 6,
+            "strong_sell": 6
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1177.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Dr. Reddy's Q1 Earnings and Revenues Miss Estimates, Stock Down",
+      "latest_headline_date": "2026-07-23T14:38:00Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "No analyst rating available"
+    },
+    {
+      "ticker": "EICHERMOT.NS",
+      "company_name": "EICHER MOTORS LTD",
+      "market_cap": 2223625732096,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 8035.0,
+      "recent_avg_price": 7383.89,
+      "upside_to_recent_avg_pct": -8.1,
+      "sma_upside_by_window": {
+        "50": -4.7,
+        "200": -9.39
+      },
+      "fifty_two_week_low": 6039.75,
+      "fifty_two_week_high": 8105.12,
+      "position_in_range_pct": 96.6,
+      "analyst_target_mean": 8360.433,
+      "analyst_target_median": 8437.0,
+      "analyst_target_high": 9665.0,
+      "analyst_target_low": 6900.0,
+      "num_analyst_opinions": 37,
+      "recommendation_mean": 2.05263,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 0.87,
+      "upside_to_target_pct": 5.0,
+      "max_upside_signal_pct": 5.0,
+      "composite_upside_pct": -2.58,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 10,
+          "buy": 15,
+          "hold": 10,
+          "sell": 1,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 10,
+            "buy": 15,
+            "hold": 10,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 10,
+            "buy": 15,
+            "hold": 10,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 8,
+            "buy": 16,
+            "hold": 9,
+            "sell": 2,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 8,
+            "buy": 16,
+            "hold": 9,
+            "sell": 2,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 8100.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Eicher Motors Ltd (BOM:505200) Q1 2027 Earnings Call Highlights: Record Revenue and Strategic ...",
+      "latest_headline_date": "2026-07-29T21:06:03Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.05) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "ETERNAL.NS",
+      "company_name": "ETERNAL LIMITED",
+      "market_cap": 3023971811328,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 327.0,
+      "recent_avg_price": 272.03,
+      "upside_to_recent_avg_pct": -16.81,
+      "sma_upside_by_window": {
+        "50": -9.78,
+        "200": -16.55
+      },
+      "fifty_two_week_low": 215.68,
+      "fifty_two_week_high": 354.35,
+      "position_in_range_pct": 80.3,
+      "analyst_target_mean": 361.1613,
+      "analyst_target_median": 375.0,
+      "analyst_target_high": 506.0,
+      "analyst_target_low": 200.0,
+      "num_analyst_opinions": 31,
+      "recommendation_mean": 1.54839,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 8.36,
+      "upside_to_target_pct": 14.68,
+      "max_upside_signal_pct": 14.68,
+      "composite_upside_pct": -2.64,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 23,
+          "hold": 0,
+          "sell": 3,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 23,
+            "hold": 0,
+            "sell": 3,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 24,
+            "hold": 0,
+            "sell": 3,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 24,
+            "hold": 0,
+            "sell": 3,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 24,
+            "hold": 0,
+            "sell": 3,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 328.5,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Eternal Ltd (BOM:543320) Q1 2027 Earnings Call Highlights: Navigating Competitive Intensity ...",
+      "latest_headline_date": "2026-07-22T19:01:09Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.55) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "GRASIM.NS",
+      "company_name": "GRASIM INDUSTRIES LTD",
+      "market_cap": 2209747304448,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 3299.9,
+      "recent_avg_price": 3060.02,
+      "upside_to_recent_avg_pct": -7.27,
+      "sma_upside_by_window": {
+        "50": -3.64,
+        "200": -11.77
+      },
+      "fifty_two_week_low": 2523.24,
+      "fifty_two_week_high": 3380.5,
+      "position_in_range_pct": 90.6,
+      "analyst_target_mean": 3837.5,
+      "analyst_target_median": 3825.0,
+      "analyst_target_high": 4175.0,
+      "analyst_target_low": 3500.0,
+      "num_analyst_opinions": 10,
+      "recommendation_mean": 1.4,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 2.44,
+      "upside_to_target_pct": 15.91,
+      "max_upside_signal_pct": 15.91,
+      "composite_upside_pct": 0.95,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 6,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 6,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 3,
+            "buy": 7,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 3,
+            "buy": 8,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 3258.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Grasim Industries Ltd (BOM:500300) (Q1 2027) Earnings Call Highlights: Record Revenue and ...",
+      "latest_headline_date": "2026-08-12T23:06:07Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (0.9%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "HCLTECH.NS",
+      "company_name": "HCL TECHNOLOGIES LTD",
+      "market_cap": 3468792954880,
+      "market_cap_tier": "Large Cap",
+      "sector": "Technology",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1298.5,
+      "recent_avg_price": 1220.44,
+      "upside_to_recent_avg_pct": -6.01,
+      "sma_upside_by_window": {
+        "50": -4.93,
+        "200": 4.96
+      },
+      "fifty_two_week_low": 1023.75,
+      "fifty_two_week_high": 1679.96,
+      "position_in_range_pct": 41.9,
+      "analyst_target_mean": 1260.7693,
+      "analyst_target_median": 1281.0,
+      "analyst_target_high": 1548.0,
+      "analyst_target_low": 1040.0,
+      "num_analyst_opinions": 39,
+      "recommendation_mean": 2.89744,
+      "recommendation_key": "hold",
+      "upside_to_52w_high_pct": 29.38,
+      "upside_to_target_pct": -1.35,
+      "max_upside_signal_pct": 29.38,
+      "composite_upside_pct": 4.0,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 5,
+          "hold": 16,
+          "sell": 4,
+          "strong_sell": 6
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 5,
+            "hold": 16,
+            "sell": 4,
+            "strong_sell": 6
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 6,
+            "hold": 16,
+            "sell": 4,
+            "strong_sell": 6
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 6,
+            "hold": 16,
+            "sell": 3,
+            "strong_sell": 8
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 6,
+            "hold": 17,
+            "sell": 3,
+            "strong_sell": 8
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1282.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's HCLTech to invest $1.48 billion in AI data center, open 5,000-seat tech hub",
+      "latest_headline_date": "2026-07-24T08:17:08Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.90) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "company_name": "HDFC BANK LTD",
+      "market_cap": 10957220741120,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 727.2,
+      "recent_avg_price": 764.08,
+      "upside_to_recent_avg_pct": 5.07,
+      "sma_upside_by_window": {
+        "50": 5.44,
+        "200": 15.2
+      },
+      "fifty_two_week_low": 719.65,
+      "fifty_two_week_high": 993.08,
+      "position_in_range_pct": 2.8,
+      "analyst_target_mean": 1014.225,
+      "analyst_target_median": 992.0,
+      "analyst_target_high": 1400.0,
+      "analyst_target_low": 800.0,
+      "num_analyst_opinions": 40,
+      "recommendation_mean": 1.19512,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 36.56,
+      "upside_to_target_pct": 36.41,
+      "max_upside_signal_pct": 36.56,
+      "composite_upside_pct": 20.78,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 34,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 34,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 33,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 34,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 33,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 711.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's HDFC Bank slips to 2-1/2-year low as legal, leadership woes linger",
+      "latest_headline_date": "2026-08-27T10:44:12Z",
+      "headline_is_company_specific": true,
+      "tag": "20\u201330%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "HDFCLIFE.NS",
+      "company_name": "HDFC LIFE INS CO LTD",
+      "market_cap": 1190220529664,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 553.0,
+      "recent_avg_price": 577.21,
+      "upside_to_recent_avg_pct": 4.38,
+      "sma_upside_by_window": {
+        "50": 1.14,
+        "200": 16.98
+      },
+      "fifty_two_week_low": 535.85,
+      "fifty_two_week_high": 785.0,
+      "position_in_range_pct": 6.9,
+      "analyst_target_mean": 749.14703,
+      "analyst_target_median": 735.0,
+      "analyst_target_high": 910.0,
+      "analyst_target_low": 620.0,
+      "num_analyst_opinions": 34,
+      "recommendation_mean": 1.29412,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 41.95,
+      "upside_to_target_pct": 32.91,
+      "max_upside_signal_pct": 41.95,
+      "composite_upside_pct": 20.91,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 25,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 26,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 26,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 548.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "HDFC Life Insurance Co Ltd (NSE:HDFCLIFE) Q1 2027 Earnings Call Highlights: Strong Growth in ...",
+      "latest_headline_date": "2026-07-15T19:00:38Z",
+      "headline_is_company_specific": true,
+      "tag": "20\u201330%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "HINDALCO.NS",
+      "company_name": "HINDALCO  INDUSTRIES  LTD",
+      "market_cap": 2273113276416,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1053.0,
+      "recent_avg_price": 1021.49,
+      "upside_to_recent_avg_pct": -2.99,
+      "sma_upside_by_window": {
+        "50": -5.93,
+        "200": -9.33
+      },
+      "fifty_two_week_low": 697.76,
+      "fifty_two_week_high": 1143.73,
+      "position_in_range_pct": 79.7,
+      "analyst_target_mean": 1161.5518,
+      "analyst_target_median": 1158.0,
+      "analyst_target_high": 1430.0,
+      "analyst_target_low": 925.0,
+      "num_analyst_opinions": 29,
+      "recommendation_mean": 2.13793,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 8.62,
+      "upside_to_target_pct": 9.97,
+      "max_upside_signal_pct": 9.97,
+      "composite_upside_pct": 3.15,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 12,
+          "hold": 8,
+          "sell": 2,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 12,
+            "hold": 8,
+            "sell": 2,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 7,
+            "hold": 12,
+            "sell": 2,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 4,
+            "buy": 6,
+            "hold": 13,
+            "sell": 2,
+            "strong_sell": 4
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 4,
+            "buy": 5,
+            "hold": 13,
+            "sell": 2,
+            "strong_sell": 4
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1024.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Hindustan Copper plans supply of Chilean copper to Hindalco and Adani",
+      "latest_headline_date": "2026-08-11T12:56:46Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.14) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "HINDUNILVR.NS",
+      "company_name": "HINDUSTAN UNILEVER LTD.",
+      "market_cap": 4720328966144,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Defensive",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 2021.0,
+      "recent_avg_price": 2155.47,
+      "upside_to_recent_avg_pct": 6.65,
+      "sma_upside_by_window": {
+        "50": 4.77,
+        "200": 10.06
+      },
+      "fifty_two_week_low": 2015.0,
+      "fifty_two_week_high": 2629.38,
+      "position_in_range_pct": 1.0,
+      "analyst_target_mean": 2457.4211,
+      "analyst_target_median": 2450.0,
+      "analyst_target_high": 2860.0,
+      "analyst_target_low": 1804.0,
+      "num_analyst_opinions": 38,
+      "recommendation_mean": 1.94872,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 30.1,
+      "upside_to_target_pct": 21.23,
+      "max_upside_signal_pct": 30.1,
+      "composite_upside_pct": 16.16,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 18,
+          "hold": 9,
+          "sell": 1,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 18,
+            "hold": 9,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 18,
+            "hold": 9,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 11,
+            "buy": 15,
+            "hold": 9,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 11,
+            "buy": 15,
+            "hold": 9,
+            "sell": 1,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 2009.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Hindustan Unilever Ltd (BOM:500696) Q1 2027 Earnings Call Highlights: Strong Revenue Growth ...",
+      "latest_headline_date": "2026-07-28T19:00:30Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.95) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "company_name": "ICICI BANK LTD.",
+      "market_cap": 10351038955520,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1430.0,
+      "recent_avg_price": 1341.6,
+      "upside_to_recent_avg_pct": -6.18,
+      "sma_upside_by_window": {
+        "50": -1.66,
+        "200": -6.06
+      },
+      "fifty_two_week_low": 1195.82,
+      "fifty_two_week_high": 1460.0,
+      "position_in_range_pct": 88.6,
+      "analyst_target_mean": 1739.3572,
+      "analyst_target_median": 1732.0,
+      "analyst_target_high": 1970.0,
+      "analyst_target_low": 1592.0,
+      "num_analyst_opinions": 42,
+      "recommendation_mean": 1.11905,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 2.1,
+      "upside_to_target_pct": 21.12,
+      "max_upside_signal_pct": 21.12,
+      "composite_upside_pct": 2.72,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 37,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 37,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 36,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 33,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 33,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1443.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Prudential to sell 2% stake in ICICI Prudential AMC worth about $333 million",
+      "latest_headline_date": "2026-08-26T10:44:49Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (2.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "INDIGO.NS",
+      "company_name": "INTERGLOBE AVIATION LTD",
+      "market_cap": 2006412951552,
+      "market_cap_tier": "Large Cap",
+      "sector": "Industrials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 5250.5,
+      "recent_avg_price": 4865.25,
+      "upside_to_recent_avg_pct": -7.34,
+      "sma_upside_by_window": {
+        "50": -0.05,
+        "200": -6.63
+      },
+      "fifty_two_week_low": 3943.5,
+      "fifty_two_week_high": 5934.0,
+      "position_in_range_pct": 65.7,
+      "analyst_target_mean": 5615.75,
+      "analyst_target_median": 5715.0,
+      "analyst_target_high": 6580.0,
+      "analyst_target_low": 4050.0,
+      "num_analyst_opinions": 24,
+      "recommendation_mean": 1.5,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 13.02,
+      "upside_to_target_pct": 8.85,
+      "max_upside_signal_pct": 13.02,
+      "composite_upside_pct": 1.8,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 2,
+          "buy": 18,
+          "hold": 3,
+          "sell": 1,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 2,
+            "buy": 18,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 2,
+            "buy": 19,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 2,
+            "buy": 19,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 2,
+            "buy": 18,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 5189.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "InterGlobe Aviation Ltd (BOM:539448) Q1 2027 Earnings Call Highlights: Navigating Challenges ...",
+      "latest_headline_date": "2026-07-23T19:02:42Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (1.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "INFY.NS",
+      "company_name": "INFOSYS LIMITED",
+      "market_cap": 4499072614400,
+      "market_cap_tier": "Large Cap",
+      "sector": "Technology",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1120.0,
+      "recent_avg_price": 1136.79,
+      "upside_to_recent_avg_pct": 1.5,
+      "sma_upside_by_window": {
+        "50": -1.83,
+        "200": 15.97
+      },
+      "fifty_two_week_low": 985.3,
+      "fifty_two_week_high": 1654.01,
+      "position_in_range_pct": 20.1,
+      "analyst_target_mean": 1202.6666,
+      "analyst_target_median": 1185.0,
+      "analyst_target_high": 1610.0,
+      "analyst_target_low": 940.0,
+      "num_analyst_opinions": 42,
+      "recommendation_mean": 2.14286,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 47.68,
+      "upside_to_target_pct": 5.8,
+      "max_upside_signal_pct": 47.68,
+      "composite_upside_pct": 14.12,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 17,
+          "hold": 16,
+          "sell": 1,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 17,
+            "hold": 16,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 18,
+            "hold": 15,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 4,
+            "buy": 22,
+            "hold": 13,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 22,
+            "hold": 12,
+            "sell": 1,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1110.8,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Infosys (NSEI:INFY) Stock Fair Value Falls After Analysts Cut Targets On Weaker Outlook",
+      "latest_headline_date": "2026-07-31T22:08:59Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.14) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "ITC.NS",
+      "company_name": "ITC LTD",
+      "market_cap": 3370511237120,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Defensive",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 270.25,
+      "recent_avg_price": 288.18,
+      "upside_to_recent_avg_pct": 6.63,
+      "sma_upside_by_window": {
+        "50": 4.5,
+        "200": 15.31
+      },
+      "fifty_two_week_low": 267.05,
+      "fifty_two_week_high": 401.99,
+      "position_in_range_pct": 2.4,
+      "analyst_target_mean": 327.0,
+      "analyst_target_median": 318.0,
+      "analyst_target_high": 440.0,
+      "analyst_target_low": 270.0,
+      "num_analyst_opinions": 33,
+      "recommendation_mean": 2.38235,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 48.75,
+      "upside_to_target_pct": 17.67,
+      "max_upside_signal_pct": 48.75,
+      "composite_upside_pct": 19.92,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 8,
+          "hold": 14,
+          "sell": 1,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 8,
+            "hold": 14,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 7,
+            "buy": 8,
+            "hold": 14,
+            "sell": 1,
+            "strong_sell": 5
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 9,
+            "hold": 13,
+            "sell": 1,
+            "strong_sell": 5
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 8,
+            "hold": 12,
+            "sell": 1,
+            "strong_sell": 7
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 269.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "British American Tobacco plans to offload stake in India's ITC Hotels",
+      "latest_headline_date": "2025-12-04T14:28:27Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.38) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "JIOFIN.NS",
+      "company_name": "JIO FIN SERVICES LTD",
+      "market_cap": 1572208115712,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 241.0,
+      "recent_avg_price": 241.64,
+      "upside_to_recent_avg_pct": 0.27,
+      "sma_upside_by_window": {
+        "50": 1.06,
+        "200": 6.8
+      },
+      "fifty_two_week_low": 223.58,
+      "fifty_two_week_high": 316.61,
+      "position_in_range_pct": 18.7,
+      "analyst_target_mean": 295.33334,
+      "analyst_target_median": 298.0,
+      "analyst_target_high": 315.0,
+      "analyst_target_low": 273.0,
+      "num_analyst_opinions": 3,
+      "recommendation_mean": null,
+      "recommendation_key": "none",
+      "upside_to_52w_high_pct": 31.37,
+      "upside_to_target_pct": 23.65,
+      "max_upside_signal_pct": 31.37,
+      "composite_upside_pct": 13.89,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 0,
+          "buy": 3,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 0,
+            "buy": 3,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 238.1,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Jio-BlackRock to launch regular mutual fund plans through distributors in India",
+      "latest_headline_date": "2026-08-17T11:08:11Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "No analyst rating available"
+    },
+    {
+      "ticker": "JSWSTEEL.NS",
+      "company_name": "JSW STEEL LIMITED",
+      "market_cap": 3264808222720,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1341.0,
+      "recent_avg_price": 1263.18,
+      "upside_to_recent_avg_pct": -5.8,
+      "sma_upside_by_window": {
+        "50": -5.87,
+        "200": -9.38
+      },
+      "fifty_two_week_low": 1020.74,
+      "fifty_two_week_high": 1341.0,
+      "position_in_range_pct": 100.0,
+      "analyst_target_mean": 1378.1143,
+      "analyst_target_median": 1400.0,
+      "analyst_target_high": 1650.0,
+      "analyst_target_low": 1100.0,
+      "num_analyst_opinions": 35,
+      "recommendation_mean": 2.28571,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 0.0,
+      "upside_to_target_pct": 4.4,
+      "max_upside_signal_pct": 4.4,
+      "composite_upside_pct": -1.8,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 13,
+          "hold": 8,
+          "sell": 3,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 13,
+            "hold": 8,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 13,
+            "hold": 8,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 8,
+            "buy": 12,
+            "hold": 9,
+            "sell": 3,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 8,
+            "buy": 12,
+            "hold": 8,
+            "sell": 3,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1337.5,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "JSW Steel Ltd (BOM:500228) Q1 2027 Earnings Call Highlights: Record Sales and Strategic ...",
+      "latest_headline_date": "2026-07-17T19:01:06Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.29) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "KOTAKBANK.NS",
+      "company_name": "KOTAK MAHINDRA BANK LTD",
+      "market_cap": 4219795931136,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 416.7,
+      "recent_avg_price": 386.86,
+      "upside_to_recent_avg_pct": -7.16,
+      "sma_upside_by_window": {
+        "50": -6.0,
+        "200": -4.06
+      },
+      "fifty_two_week_low": 352.79,
+      "fifty_two_week_high": 444.35,
+      "position_in_range_pct": 69.8,
+      "analyst_target_mean": 463.78378,
+      "analyst_target_median": 460.0,
+      "analyst_target_high": 518.0,
+      "analyst_target_low": 380.0,
+      "num_analyst_opinions": 37,
+      "recommendation_mean": 1.67568,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 6.64,
+      "upside_to_target_pct": 10.39,
+      "max_upside_signal_pct": 10.39,
+      "composite_upside_pct": 0.68,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 21,
+          "hold": 6,
+          "sell": 1,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 21,
+            "hold": 6,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 20,
+            "hold": 6,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 10,
+            "buy": 20,
+            "hold": 6,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 10,
+            "buy": 19,
+            "hold": 6,
+            "sell": 1,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 424.2,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Kotak Investment Banking appoints co-CEOs",
+      "latest_headline_date": "2026-07-30T12:27:45Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.68) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "LT.NS",
+      "company_name": "LARSEN & TOUBRO LTD.",
+      "market_cap": 5540612669440,
+      "market_cap_tier": "Large Cap",
+      "sector": "Industrials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 4038.1,
+      "recent_avg_price": 3993.25,
+      "upside_to_recent_avg_pct": -1.11,
+      "sma_upside_by_window": {
+        "50": -0.75,
+        "200": -1.96
+      },
+      "fifty_two_week_low": 3310.07,
+      "fifty_two_week_high": 4375.36,
+      "position_in_range_pct": 68.3,
+      "analyst_target_mean": 4501.533,
+      "analyst_target_median": 4539.5,
+      "analyst_target_high": 5060.0,
+      "analyst_target_low": 3550.0,
+      "num_analyst_opinions": 30,
+      "recommendation_mean": 1.67742,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 8.35,
+      "upside_to_target_pct": 12.42,
+      "max_upside_signal_pct": 12.42,
+      "composite_upside_pct": 4.64,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 19,
+          "hold": 4,
+          "sell": 1,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 19,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 20,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 19,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 19,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 4027.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Larsen and Toubro secures AI data centre order worth up to $1.57 billion",
+      "latest_headline_date": "2026-08-13T06:15:43Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.68) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "M&M.NS",
+      "company_name": "MAHINDRA & MAHINDRA LTD",
+      "market_cap": 3998538268672,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 3398.2,
+      "recent_avg_price": 3171.78,
+      "upside_to_recent_avg_pct": -6.66,
+      "sma_upside_by_window": {
+        "50": -4.38,
+        "200": -2.31
+      },
+      "fifty_two_week_low": 2900.64,
+      "fifty_two_week_high": 3762.88,
+      "position_in_range_pct": 57.7,
+      "analyst_target_mean": 4170.647,
+      "analyst_target_median": 4105.5,
+      "analyst_target_high": 4875.0,
+      "analyst_target_low": 3508.0,
+      "num_analyst_opinions": 34,
+      "recommendation_mean": 1.22857,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 10.73,
+      "upside_to_target_pct": 20.81,
+      "max_upside_signal_pct": 20.81,
+      "composite_upside_pct": 4.55,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 28,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 28,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 28,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 3330.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Tech Mahindra, ServiceNow expand partnership to advance enterprise AI",
+      "latest_headline_date": "2026-08-21T08:43:23Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (4.5%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "MARUTI.NS",
+      "company_name": "MARUTI SUZUKI INDIA LTD.",
+      "market_cap": 4225570439168,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 13520.0,
+      "recent_avg_price": 13433.27,
+      "upside_to_recent_avg_pct": -0.64,
+      "sma_upside_by_window": {
+        "50": 1.5,
+        "200": 5.36
+      },
+      "fifty_two_week_low": 12183.64,
+      "fifty_two_week_high": 17120.06,
+      "position_in_range_pct": 27.1,
+      "analyst_target_mean": 15925.462,
+      "analyst_target_median": 16100.0,
+      "analyst_target_high": 17775.0,
+      "analyst_target_low": 12850.0,
+      "num_analyst_opinions": 39,
+      "recommendation_mean": 1.5641,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 26.63,
+      "upside_to_target_pct": 19.08,
+      "max_upside_signal_pct": 26.63,
+      "composite_upside_pct": 11.11,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 25,
+          "hold": 3,
+          "sell": 1,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 25,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 25,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 26,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 27,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 13440.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Maruti Suzuki eyes 6.3 million-unit India car market by FY31",
+      "latest_headline_date": "2026-08-10T16:09:07Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.56) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "MAXHEALTH.NS",
+      "company_name": "MAX HEALTHCARE INS LTD",
+      "market_cap": 982035988480,
+      "market_cap_tier": "Mid Cap",
+      "sector": "Healthcare",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1005.0,
+      "recent_avg_price": 1041.35,
+      "upside_to_recent_avg_pct": 3.62,
+      "sma_upside_by_window": {
+        "50": 7.39,
+        "200": 3.9
+      },
+      "fifty_two_week_low": 929.95,
+      "fifty_two_week_high": 1208.85,
+      "position_in_range_pct": 26.9,
+      "analyst_target_mean": 1169.4814,
+      "analyst_target_median": 1160.0,
+      "analyst_target_high": 1410.0,
+      "analyst_target_low": 825.0,
+      "num_analyst_opinions": 27,
+      "recommendation_mean": 1.96429,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 20.28,
+      "upside_to_target_pct": 15.42,
+      "max_upside_signal_pct": 20.28,
+      "composite_upside_pct": 10.74,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 13,
+          "hold": 3,
+          "sell": 1,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 13,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 8,
+            "buy": 12,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 12,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 12,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1009.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Max Healthcare Institute Ltd (BOM:543220) (Q1 2027) Earnings Call Highlights: Revenue Surges ...",
+      "latest_headline_date": "2026-08-14T13:00:32Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.96) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "NESTLEIND.NS",
+      "company_name": "NESTLE INDIA LIMITED",
+      "market_cap": 2796055953408,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Defensive",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1451.5,
+      "recent_avg_price": 1425.61,
+      "upside_to_recent_avg_pct": -1.78,
+      "sma_upside_by_window": {
+        "50": 0.52,
+        "200": -7.64
+      },
+      "fifty_two_week_low": 1140.83,
+      "fifty_two_week_high": 1540.0,
+      "position_in_range_pct": 77.8,
+      "analyst_target_mean": 1592.1111,
+      "analyst_target_median": 1597.5,
+      "analyst_target_high": 1815.0,
+      "analyst_target_low": 1350.0,
+      "num_analyst_opinions": 36,
+      "recommendation_mean": 2.38889,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 6.1,
+      "upside_to_target_pct": 10.06,
+      "max_upside_signal_pct": 10.06,
+      "composite_upside_pct": 3.15,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 10,
+          "buy": 9,
+          "hold": 12,
+          "sell": 1,
+          "strong_sell": 4
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 10,
+            "buy": 9,
+            "hold": 12,
+            "sell": 1,
+            "strong_sell": 4
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 10,
+            "buy": 10,
+            "hold": 12,
+            "sell": 1,
+            "strong_sell": 4
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 8,
+            "buy": 10,
+            "hold": 12,
+            "sell": 1,
+            "strong_sell": 5
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1450.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Nestle India jumps after strong demand lifts first-quarter profit",
+      "latest_headline_date": "2026-07-22T07:59:33Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.39) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "NTPC.NS",
+      "company_name": "NTPC LTD",
+      "market_cap": 3208626831360,
+      "market_cap_tier": "Large Cap",
+      "sector": "Utilities",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 334.6,
+      "recent_avg_price": 366.57,
+      "upside_to_recent_avg_pct": 9.56,
+      "sma_upside_by_window": {
+        "50": 3.95,
+        "200": 6.79
+      },
+      "fifty_two_week_low": 316.11,
+      "fifty_two_week_high": 410.2,
+      "position_in_range_pct": 19.6,
+      "analyst_target_mean": 433.07144,
+      "analyst_target_median": 432.0,
+      "analyst_target_high": 485.0,
+      "analyst_target_low": 365.0,
+      "num_analyst_opinions": 28,
+      "recommendation_mean": 1.33333,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 22.59,
+      "upside_to_target_pct": 29.11,
+      "max_upside_signal_pct": 29.11,
+      "composite_upside_pct": 17.7,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 21,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 4,
+            "buy": 21,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 330.9,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's biggest power producer NTPC plans to invest $178 billion through 2037",
+      "latest_headline_date": "2026-07-29T07:53:06Z",
+      "headline_is_company_specific": true,
+      "tag": "15\u201320%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "ONGC.NS",
+      "company_name": "OIL AND NATURAL GAS CORP.",
+      "market_cap": 2918624788480,
+      "market_cap_tier": "Large Cap",
+      "sector": "Energy",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 232.21,
+      "recent_avg_price": 260.85,
+      "upside_to_recent_avg_pct": 12.33,
+      "sma_upside_by_window": {
+        "50": 3.95,
+        "200": 10.34
+      },
+      "fifty_two_week_low": 220.61,
+      "fifty_two_week_high": 301.4,
+      "position_in_range_pct": 14.4,
+      "analyst_target_mean": 294.7,
+      "analyst_target_median": 292.5,
+      "analyst_target_high": 405.0,
+      "analyst_target_low": 210.0,
+      "num_analyst_opinions": 30,
+      "recommendation_mean": 1.83333,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 29.8,
+      "upside_to_target_pct": 25.96,
+      "max_upside_signal_pct": 29.8,
+      "composite_upside_pct": 20.11,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 18,
+          "hold": 4,
+          "sell": 1,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 18,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 17,
+            "hold": 5,
+            "sell": 2,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 4,
+            "buy": 15,
+            "hold": 7,
+            "sell": 2,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 4,
+            "buy": 15,
+            "hold": 6,
+            "sell": 4,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 232.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India\u2019s ONGC Targets Tenfold Oil Output Boost in Venezuela",
+      "latest_headline_date": "2026-08-26T14:30:00Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.83) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "POWERGRID.NS",
+      "company_name": "POWER GRID CORP. LTD.",
+      "market_cap": 2463729975296,
+      "market_cap_tier": "Large Cap",
+      "sector": "Utilities",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 265.2,
+      "recent_avg_price": 291.57,
+      "upside_to_recent_avg_pct": 9.94,
+      "sma_upside_by_window": {
+        "50": 5.85,
+        "200": 7.12
+      },
+      "fifty_two_week_low": 251.23,
+      "fifty_two_week_high": 320.9,
+      "position_in_range_pct": 20.1,
+      "analyst_target_mean": 320.28,
+      "analyst_target_median": 315.0,
+      "analyst_target_high": 400.0,
+      "analyst_target_low": 277.0,
+      "num_analyst_opinions": 25,
+      "recommendation_mean": 2.2,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 21.0,
+      "upside_to_target_pct": 18.78,
+      "max_upside_signal_pct": 21.0,
+      "composite_upside_pct": 14.91,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 10,
+          "hold": 8,
+          "sell": 1,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 10,
+            "hold": 8,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 3,
+            "buy": 11,
+            "hold": 8,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 3,
+            "buy": 11,
+            "hold": 8,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 3,
+            "buy": 11,
+            "hold": 8,
+            "sell": 1,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 264.9,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Power Grid Corp Of India Ltd (BOM:532898) (Q1 2027) Earnings Call Highlights: Strong ...",
+      "latest_headline_date": "2026-08-07T13:01:11Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.20) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "company_name": "RELIANCE INDUSTRIES LTD",
+      "market_cap": null,
+      "market_cap_tier": null,
+      "sector": "Energy",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1298.0,
+      "recent_avg_price": 1325.87,
+      "upside_to_recent_avg_pct": 2.15,
+      "sma_upside_by_window": {
+        "50": 0.59,
+        "200": 7.26
+      },
+      "fifty_two_week_low": 1258.8,
+      "fifty_two_week_high": 1584.97,
+      "position_in_range_pct": 12.0,
+      "analyst_target_mean": 1673.0,
+      "analyst_target_median": 1690.0,
+      "analyst_target_high": 1890.0,
+      "analyst_target_low": 1350.0,
+      "num_analyst_opinions": 28,
+      "recommendation_mean": 1.2963,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 22.11,
+      "upside_to_target_pct": 30.2,
+      "max_upside_signal_pct": 30.2,
+      "composite_upside_pct": 14.15,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 21,
+          "hold": 0,
+          "sell": 0,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 21,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 25,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 25,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 24,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1282.2,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Reliance's luxury unit brings Kim Kardashian's SKIMS to India",
+      "latest_headline_date": "2026-08-05T12:13:21Z",
+      "headline_is_company_specific": true,
+      "tag": "10\u201315%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "SBILIFE.NS",
+      "company_name": "SBI LIFE INSURANCE CO LTD",
+      "market_cap": 1779139346432,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1768.2,
+      "recent_avg_price": 1831.67,
+      "upside_to_recent_avg_pct": 3.59,
+      "sma_upside_by_window": {
+        "50": 2.91,
+        "200": 8.25
+      },
+      "fifty_two_week_low": 1706.0,
+      "fifty_two_week_high": 2106.67,
+      "position_in_range_pct": 15.5,
+      "analyst_target_mean": 2342.9722,
+      "analyst_target_median": 2365.0,
+      "analyst_target_high": 2790.0,
+      "analyst_target_low": 1050.0,
+      "num_analyst_opinions": 36,
+      "recommendation_mean": 1.2,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 19.14,
+      "upside_to_target_pct": 33.75,
+      "max_upside_signal_pct": 33.75,
+      "composite_upside_pct": 15.02,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 29,
+          "hold": 1,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 29,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 29,
+            "hold": 1,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 31,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 31,
+            "hold": 0,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1773.2,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "SBI Life Insurance Co Ltd (NSE:SBILIFE) Q1 2027 Earnings Call Highlights: Strong Growth in New ...",
+      "latest_headline_date": "2026-07-24T19:00:31Z",
+      "headline_is_company_specific": true,
+      "tag": "15\u201320%",
+      "recommended": true,
+      "skip_reason": null
+    },
+    {
+      "ticker": "SHRIRAMFIN.NS",
+      "company_name": "SHRIRAM FINANCE LIMITED",
+      "market_cap": 2590634934272,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1117.5,
+      "recent_avg_price": 1011.86,
+      "upside_to_recent_avg_pct": -9.45,
+      "sma_upside_by_window": {
+        "50": -4.81,
+        "200": -12.27
+      },
+      "fifty_two_week_low": 564.99,
+      "fifty_two_week_high": 1141.0,
+      "position_in_range_pct": 95.9,
+      "analyst_target_mean": 1199.5625,
+      "analyst_target_median": 1210.0,
+      "analyst_target_high": 1340.0,
+      "analyst_target_low": 1050.0,
+      "num_analyst_opinions": 32,
+      "recommendation_mean": 1.46875,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 2.1,
+      "upside_to_target_pct": 8.28,
+      "max_upside_signal_pct": 8.28,
+      "composite_upside_pct": -2.13,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 7,
+          "buy": 21,
+          "hold": 4,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 7,
+            "buy": 21,
+            "hold": 4,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 7,
+            "buy": 21,
+            "hold": 4,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 23,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 23,
+            "hold": 2,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1101.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Shriram Finance Ltd (BOM:511218) Q1 2027 Earnings Call Highlights: Robust Profit Growth and ...",
+      "latest_headline_date": "2026-07-24T21:02:52Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (-2.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "SBIN.NS",
+      "company_name": "STATE BANK OF INDIA",
+      "market_cap": 9626611351552,
+      "market_cap_tier": "Large Cap",
+      "sector": "Financial Services",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1052.0,
+      "recent_avg_price": 1027.18,
+      "upside_to_recent_avg_pct": -2.36,
+      "sma_upside_by_window": {
+        "50": -0.89,
+        "200": -2.43
+      },
+      "fifty_two_week_low": 787.75,
+      "fifty_two_week_high": 1206.06,
+      "position_in_range_pct": 63.2,
+      "analyst_target_mean": 1261.8206,
+      "analyst_target_median": 1275.0,
+      "analyst_target_high": 1390.0,
+      "analyst_target_low": 1070.0,
+      "num_analyst_opinions": 39,
+      "recommendation_mean": 1.45,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 14.64,
+      "upside_to_target_pct": 21.2,
+      "max_upside_signal_pct": 21.2,
+      "composite_upside_pct": 7.78,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 28,
+          "hold": 6,
+          "sell": 0,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 28,
+            "hold": 6,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 26,
+            "hold": 6,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 27,
+            "hold": 7,
+            "sell": 0,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 27,
+            "hold": 7,
+            "sell": 0,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1042.9,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "State Bank of India returns to dollar debt market, bankers see strong demand",
+      "latest_headline_date": "2026-08-11T11:00:32Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (7.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "SUNPHARMA.NS",
+      "company_name": "SUN PHARMACEUTICAL IND L",
+      "market_cap": 4590647377920,
+      "market_cap_tier": "Large Cap",
+      "sector": "Healthcare",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1899.5,
+      "recent_avg_price": 1850.32,
+      "upside_to_recent_avg_pct": -2.59,
+      "sma_upside_by_window": {
+        "50": 1.0,
+        "200": -5.74
+      },
+      "fifty_two_week_low": 1549.15,
+      "fifty_two_week_high": 2001.1,
+      "position_in_range_pct": 77.5,
+      "analyst_target_mean": 2167.2122,
+      "analyst_target_median": 2150.0,
+      "analyst_target_high": 2400.0,
+      "analyst_target_low": 1830.0,
+      "num_analyst_opinions": 33,
+      "recommendation_mean": null,
+      "recommendation_key": "none",
+      "upside_to_52w_high_pct": 5.35,
+      "upside_to_target_pct": 13.19,
+      "max_upside_signal_pct": 13.19,
+      "composite_upside_pct": 3.34,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 10,
+          "buy": 19,
+          "hold": 1,
+          "sell": 1,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 10,
+            "buy": 19,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 10,
+            "buy": 20,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 10,
+            "buy": 20,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 10,
+            "buy": 20,
+            "hold": 1,
+            "sell": 1,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1913.3,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Sun Pharma's quarterly profit jumps on strength in specialty medicines",
+      "latest_headline_date": "2026-07-31T10:02:57Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "No analyst rating available"
+    },
+    {
+      "ticker": "TCS.NS",
+      "company_name": "TATA CONSULTANCY SERV LT",
+      "market_cap": null,
+      "market_cap_tier": null,
+      "sector": "Technology",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 2270.0,
+      "recent_avg_price": 2282.81,
+      "upside_to_recent_avg_pct": 0.56,
+      "sma_upside_by_window": {
+        "50": -1.48,
+        "200": 13.38
+      },
+      "fifty_two_week_low": 1971.79,
+      "fifty_two_week_high": 3204.28,
+      "position_in_range_pct": 24.2,
+      "analyst_target_mean": 2464.9268,
+      "analyst_target_median": 2400.0,
+      "analyst_target_high": 3480.0,
+      "analyst_target_low": 1800.0,
+      "num_analyst_opinions": 41,
+      "recommendation_mean": 2.19512,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 41.16,
+      "upside_to_target_pct": 5.73,
+      "max_upside_signal_pct": 41.16,
+      "composite_upside_pct": 12.0,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 9,
+          "buy": 16,
+          "hold": 11,
+          "sell": 3,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 9,
+            "buy": 16,
+            "hold": 11,
+            "sell": 3,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 19,
+            "hold": 10,
+            "sell": 3,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 10,
+            "buy": 17,
+            "hold": 11,
+            "sell": 3,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 11,
+            "buy": 18,
+            "hold": 9,
+            "sell": 4,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 2248.4,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Tata Group stocks extend slide after chairman Chandrasekaran quits",
+      "latest_headline_date": "2026-08-12T06:09:13Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.20) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TATACONSUM.NS",
+      "company_name": "TATA CONSUMER PRODUCT LTD",
+      "market_cap": 1031256932352,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Defensive",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1047.1,
+      "recent_avg_price": 1121.24,
+      "upside_to_recent_avg_pct": 7.08,
+      "sma_upside_by_window": {
+        "50": 4.3,
+        "200": 7.71
+      },
+      "fifty_two_week_low": 1006.29,
+      "fifty_two_week_high": 1260.34,
+      "position_in_range_pct": 16.1,
+      "analyst_target_mean": 1343.0,
+      "analyst_target_median": 1345.0,
+      "analyst_target_high": 1500.0,
+      "analyst_target_low": 1124.0,
+      "num_analyst_opinions": 26,
+      "recommendation_mean": 1.75,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 20.36,
+      "upside_to_target_pct": 28.45,
+      "max_upside_signal_pct": 28.45,
+      "composite_upside_pct": 15.74,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 15,
+          "hold": 3,
+          "sell": 1,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 15,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 15,
+            "hold": 3,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 9,
+            "buy": 14,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 9,
+            "buy": 14,
+            "hold": 4,
+            "sell": 1,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1042.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Tata Consumer Products rises as growth businesses boost sentiment",
+      "latest_headline_date": "2026-07-27T05:30:51Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.75) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TMPV.NS",
+      "company_name": "TATA MOTORS PASS VEH LTD",
+      "market_cap": 1163793661952,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 313.1,
+      "recent_avg_price": 349.82,
+      "upside_to_recent_avg_pct": 11.73,
+      "sma_upside_by_window": {
+        "50": 8.04,
+        "200": 11.92
+      },
+      "fifty_two_week_low": 293.76,
+      "fifty_two_week_high": 713.58,
+      "position_in_range_pct": 4.6,
+      "analyst_target_mean": 362.96,
+      "analyst_target_median": 365.0,
+      "analyst_target_high": 490.0,
+      "analyst_target_low": 290.0,
+      "num_analyst_opinions": 25,
+      "recommendation_mean": 2.84,
+      "recommendation_key": "hold",
+      "upside_to_52w_high_pct": 127.91,
+      "upside_to_target_pct": 16.58,
+      "max_upside_signal_pct": 127.91,
+      "composite_upside_pct": 41.99,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 7,
+          "hold": 6,
+          "sell": 6,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 7,
+            "hold": 6,
+            "sell": 6,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 7,
+            "hold": 6,
+            "sell": 5,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 2,
+            "buy": 7,
+            "hold": 9,
+            "sell": 6,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 3,
+            "buy": 8,
+            "hold": 8,
+            "sell": 6,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 316.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Tata Motors Q1 profit falls 80.2% despite revenue rise",
+      "latest_headline_date": "2026-08-14T11:30:35Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.84) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TATASTEEL.NS",
+      "company_name": "TATA STEEL LIMITED",
+      "market_cap": 2330202210304,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 188.01,
+      "recent_avg_price": 196.86,
+      "upside_to_recent_avg_pct": 4.71,
+      "sma_upside_by_window": {
+        "50": 0.06,
+        "200": 0.86
+      },
+      "fifty_two_week_low": 150.53,
+      "fifty_two_week_high": 216.66,
+      "position_in_range_pct": 56.7,
+      "analyst_target_mean": 218.08571,
+      "analyst_target_median": 220.0,
+      "analyst_target_high": 260.0,
+      "analyst_target_low": 175.0,
+      "num_analyst_opinions": 35,
+      "recommendation_mean": 2.4,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 15.24,
+      "upside_to_target_pct": 17.02,
+      "max_upside_signal_pct": 17.02,
+      "composite_upside_pct": 10.42,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 4,
+          "buy": 14,
+          "hold": 10,
+          "sell": 4,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 4,
+            "buy": 14,
+            "hold": 10,
+            "sell": 4,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 4,
+            "buy": 13,
+            "hold": 11,
+            "sell": 6,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 3,
+            "buy": 13,
+            "hold": 12,
+            "sell": 6,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 3,
+            "buy": 13,
+            "hold": 11,
+            "sell": 6,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 186.8,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's Tata Group stocks extend slide after chairman Chandrasekaran quits",
+      "latest_headline_date": "2026-08-12T06:09:13Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.40) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TECHM.NS",
+      "company_name": "TECH MAHINDRA LIMITED",
+      "market_cap": 1404148514816,
+      "market_cap_tier": "Large Cap",
+      "sector": "Technology",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 1571.0,
+      "recent_avg_price": 1473.88,
+      "upside_to_recent_avg_pct": -6.18,
+      "sma_upside_by_window": {
+        "50": -2.57,
+        "200": -5.81
+      },
+      "fifty_two_week_low": 1297.97,
+      "fifty_two_week_high": 1723.61,
+      "position_in_range_pct": 64.1,
+      "analyst_target_mean": 1630.175,
+      "analyst_target_median": 1680.0,
+      "analyst_target_high": 1951.0,
+      "analyst_target_low": 1080.0,
+      "num_analyst_opinions": 40,
+      "recommendation_mean": 2.2,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 9.71,
+      "upside_to_target_pct": 6.94,
+      "max_upside_signal_pct": 9.71,
+      "composite_upside_pct": 1.07,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 8,
+          "buy": 18,
+          "hold": 7,
+          "sell": 5,
+          "strong_sell": 2
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 8,
+            "buy": 18,
+            "hold": 7,
+            "sell": 5,
+            "strong_sell": 2
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 9,
+            "buy": 17,
+            "hold": 7,
+            "sell": 5,
+            "strong_sell": 2
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 7,
+            "buy": 17,
+            "hold": 7,
+            "sell": 6,
+            "strong_sell": 3
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 9,
+            "buy": 17,
+            "hold": 6,
+            "sell": 5,
+            "strong_sell": 3
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 1585.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "ServiceNow (NOW) In Focus Following Tech Mahindra AI Deal As Fair Value Debate Builds",
+      "latest_headline_date": "2026-08-26T21:09:41Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (2.20) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TITAN.NS",
+      "company_name": "TITAN COMPANY LIMITED",
+      "market_cap": 4560164225024,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 5100.0,
+      "recent_avg_price": 4495.1,
+      "upside_to_recent_avg_pct": -11.86,
+      "sma_upside_by_window": {
+        "50": -7.26,
+        "200": -16.34
+      },
+      "fifty_two_week_low": 3316.42,
+      "fifty_two_week_high": 5128.0,
+      "position_in_range_pct": 98.5,
+      "analyst_target_mean": 5395.6484,
+      "analyst_target_median": 5465.0,
+      "analyst_target_high": 6000.0,
+      "analyst_target_low": 4350.0,
+      "num_analyst_opinions": 37,
+      "recommendation_mean": 1.86111,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 0.55,
+      "upside_to_target_pct": 7.16,
+      "max_upside_signal_pct": 7.16,
+      "composite_upside_pct": -4.0,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 12,
+          "buy": 16,
+          "hold": 5,
+          "sell": 0,
+          "strong_sell": 3
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 12,
+            "buy": 16,
+            "hold": 5,
+            "sell": 0,
+            "strong_sell": 3
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 12,
+            "buy": 17,
+            "hold": 4,
+            "sell": 0,
+            "strong_sell": 3
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 13,
+            "buy": 17,
+            "hold": 4,
+            "sell": 0,
+            "strong_sell": 2
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 13,
+            "buy": 16,
+            "hold": 5,
+            "sell": 0,
+            "strong_sell": 2
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 5139.3,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Titan Co Ltd (BOM:500114) (Q1 FY27) Earnings Call Highlights: Strong Growth Amidst Customs Duty ...",
+      "latest_headline_date": "2026-08-07T21:02:42Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.86) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "TRENT.NS",
+      "company_name": "TRENT LTD",
+      "market_cap": 1534909087744,
+      "market_cap_tier": "Large Cap",
+      "sector": "Consumer Cyclical",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 2908.2,
+      "recent_avg_price": 2905.23,
+      "upside_to_recent_avg_pct": -0.1,
+      "sma_upside_by_window": {
+        "50": 4.13,
+        "200": 4.36
+      },
+      "fifty_two_week_low": 2193.96,
+      "fifty_two_week_high": 5520.84,
+      "position_in_range_pct": 21.5,
+      "analyst_target_mean": 3396.8718,
+      "analyst_target_median": 3411.5,
+      "analyst_target_high": 4455.0,
+      "analyst_target_low": 2950.0,
+      "num_analyst_opinions": 26,
+      "recommendation_mean": 1.92308,
+      "recommendation_key": "buy",
+      "upside_to_52w_high_pct": 89.84,
+      "upside_to_target_pct": 17.31,
+      "max_upside_signal_pct": 89.84,
+      "composite_upside_pct": 26.74,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 7,
+          "buy": 12,
+          "hold": 5,
+          "sell": 1,
+          "strong_sell": 1
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 7,
+            "buy": 12,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 13,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 13,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 6,
+            "buy": 13,
+            "hold": 5,
+            "sell": 1,
+            "strong_sell": 1
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 2878.5,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Indian apparel retailer Trent's profit inches up as tax cuts spur spending",
+      "latest_headline_date": "2026-02-04T11:43:03Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (1.92) not in Strong Buy territory (needs \u22641.5)"
+    },
+    {
+      "ticker": "ULTRACEMCO.NS",
+      "company_name": "ULTRATECH CEMENT LIMITED",
+      "market_cap": 3446785703936,
+      "market_cap_tier": "Large Cap",
+      "sector": "Basic Materials",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 11717.0,
+      "recent_avg_price": 11447.87,
+      "upside_to_recent_avg_pct": -2.3,
+      "sma_upside_by_window": {
+        "50": -1.38,
+        "200": -1.29
+      },
+      "fifty_two_week_low": 10154.73,
+      "fifty_two_week_high": 12790.92,
+      "position_in_range_pct": 59.3,
+      "analyst_target_mean": 13919.526,
+      "analyst_target_median": 14107.5,
+      "analyst_target_high": 15500.0,
+      "analyst_target_low": 8900.0,
+      "num_analyst_opinions": 38,
+      "recommendation_mean": 1.44737,
+      "recommendation_key": "strong_buy",
+      "upside_to_52w_high_pct": 9.17,
+      "upside_to_target_pct": 20.4,
+      "max_upside_signal_pct": 20.4,
+      "composite_upside_pct": 6.24,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 5,
+          "buy": 29,
+          "hold": 2,
+          "sell": 2,
+          "strong_sell": 0
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 5,
+            "buy": 29,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 5,
+            "buy": 30,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 5,
+            "buy": 30,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 5,
+            "buy": 30,
+            "hold": 2,
+            "sell": 2,
+            "strong_sell": 0
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 11717.0,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "India's UltraTech Cement plans its biggest rupee debt funding, bankers say",
+      "latest_headline_date": "2026-07-27T03:16:08Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (6.2%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+    },
+    {
+      "ticker": "WIPRO.NS",
+      "company_name": "WIPRO LTD",
+      "market_cap": 1745060102144,
+      "market_cap_tier": "Large Cap",
+      "sector": "Technology",
+      "google_finance_exchange": "NSE",
+      "as_of_date": "2026-08-26",
+      "most_recent_close": 177.35,
+      "recent_avg_price": 186.68,
+      "upside_to_recent_avg_pct": 5.26,
+      "sma_upside_by_window": {
+        "50": 0.31,
+        "200": 16.84
+      },
+      "fifty_two_week_low": 168.21,
+      "fifty_two_week_high": 262.81,
+      "position_in_range_pct": 9.7,
+      "analyst_target_mean": 177.625,
+      "analyst_target_median": 175.0,
+      "analyst_target_high": 226.0,
+      "analyst_target_low": 150.0,
+      "num_analyst_opinions": 40,
+      "recommendation_mean": 3.375,
+      "recommendation_key": "hold",
+      "upside_to_52w_high_pct": 48.19,
+      "upside_to_target_pct": -1.33,
+      "max_upside_signal_pct": 48.19,
+      "composite_upside_pct": 14.34,
+      "recommendation_breakdown": {
+        "current_month": {
+          "period": "0m",
+          "strong_buy": 6,
+          "buy": 2,
+          "hold": 13,
+          "sell": 6,
+          "strong_sell": 13
+        },
+        "trend": [
+          {
+            "period": "0m",
+            "strong_buy": 6,
+            "buy": 2,
+            "hold": 13,
+            "sell": 6,
+            "strong_sell": 13
+          },
+          {
+            "period": "-1m",
+            "strong_buy": 6,
+            "buy": 2,
+            "hold": 14,
+            "sell": 6,
+            "strong_sell": 12
+          },
+          {
+            "period": "-2m",
+            "strong_buy": 6,
+            "buy": 2,
+            "hold": 15,
+            "sell": 6,
+            "strong_sell": 10
+          },
+          {
+            "period": "-3m",
+            "strong_buy": 7,
+            "buy": 2,
+            "hold": 17,
+            "sell": 6,
+            "strong_sell": 8
+          }
+        ]
+      },
+      "live_market": {
+        "market_state": "PREPRE",
+        "regular_market_price": 176.4,
+        "post_market_price": null,
+        "post_market_change_pct": null,
+        "pre_market_price": null,
+        "pre_market_change_pct": null
+      },
+      "latest_headline": "Why Rubrik (RBRK) Is Up 14.1% After New AI Resilience Offerings With Wipro",
+      "latest_headline_date": "2026-08-13T01:11:41Z",
+      "headline_is_company_specific": true,
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Analyst rating (3.38) not in Strong Buy territory (needs \u22641.5)"
+    }
+  ]
+}
