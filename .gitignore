@@ -1,0 +1,11 @@
+.env
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+venv/
+output/
+
+# Private build log — session history, feedback quotes, decision provenance.
+# Kept local for conversation-compaction continuity; never published.
+BUILD_LOG.md
