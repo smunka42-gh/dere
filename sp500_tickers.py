@@ -1,5 +1,5 @@
 """
-DERE — fetches the current S&P 500 ticker list.
+Vantage — fetches the current S&P 500 ticker list.
 
 Why this file exists on its own: the ticker list changes periodically
 (companies get added/removed from the index), so this needs to be

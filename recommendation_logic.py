@@ -1,5 +1,5 @@
 """
-DERE — core recommendation logic (v1, validation stage).
+Vantage — core recommendation logic.
 
 This file is being tested on a SMALL list of well-known tickers first,
 before we scale up to the full S&P 500. That's deliberate: we want to see
@@ -274,7 +274,7 @@ def classify_market_cap(market_cap: float | None) -> str | None:
     using commonly-cited (not perfectly standardized — different sources
     draw the lines slightly differently) US equity thresholds.
 
-    Expectation to set: since DERE only scans S&P 500 stocks, and index
+    Expectation to set: since this tool only scans S&P 500 stocks, and index
     membership itself skews toward bigger companies, most or all results
     will likely come back "Large Cap" — that's expected, not a bug.
     """
@@ -358,7 +358,7 @@ def get_live_market_context(info: dict) -> dict:
 
 def evaluate_ticker(ticker_symbol: str) -> dict | None:
     """
-    Run the full DERE logic for a single stock ticker, end to end:
+    Run the full evaluation logic for a single stock ticker, end to end:
       1. Pull 12 months of daily price history
       2. Compute the 52w price (our custom "most-visited price" metric)
       3. Compare it to the most recent closing price
@@ -584,7 +584,7 @@ if __name__ == "__main__":
     # logic is doing something sensible before we scale up.
     validation_tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA"]
 
-    print("Running DERE core logic on validation tickers...\n")
+    print("Running Vantage core logic on validation tickers...\n")
 
     all_results = []
     for symbol in validation_tickers:

@@ -1,5 +1,5 @@
 """
-DERE — runs the full S&P 500 scan and saves results to a JSON file.
+Vantage — runs the full S&P 500 scan and saves results to a JSON file.
 
 This is the script that would eventually run on a schedule (~6am
 Central, per the design doc) — right now we're running it manually to
