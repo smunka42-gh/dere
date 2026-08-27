@@ -1,12 +1,14 @@
 # Refreshes the saved scan once per trading day, one hour after the US
 # market close, and commits the result back to the repo.
 #
-# The deployed site reads output/latest_scan.json straight from the repo,
-# so committing a new scan is what makes the live site update — Streamlit
-# Community Cloud redeploys automatically on push.
+# The deployed site reads output/latest_scan_<market>.json straight from
+# the repo, so committing a new scan is what makes the live site update —
+# Streamlit Community Cloud redeploys automatically on push.
 #
 # Runs on GitHub's infrastructure, not a laptop, so it does not depend on
-# any machine being awake.
+# any machine being awake. Scans EVERY configured market (see markets.py)
+# on every run, not just whichever one the last viewer had selected —
+# each market gets its own output file and its own validation.
 
 name: Daily scan
 
@@ -31,7 +33,7 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 45       # a full 500-ticker scan takes ~10-20 min
+    timeout-minutes: 45       # a full 500-ticker S&P 500 scan is the long pole; Nifty 50/Sensex add a couple minutes on top
 
     steps:
       - name: Decide whether this is the 17:00 Eastern run
@@ -65,7 +67,7 @@ jobs:
         if: steps.gate.outputs.proceed == 'true'
         run: pip install -r requirements.txt
 
-      - name: Run the scan
+      - name: Run the scan (every configured market)
         if: steps.gate.outputs.proceed == 'true'
         run: python run_daily_scan.py
 
@@ -78,28 +80,50 @@ jobs:
           # A partial or failed scan must NOT reach the live site. Yahoo's
           # unofficial API can rate-limit or return empty frames, which
           # would otherwise commit a near-empty file and blank the page.
-          path = pathlib.Path("output/latest_scan.json")
-          scan = json.loads(path.read_text())
+          # Each market's index size is very different (S&P 500 vs. a
+          # 30/50-name index), so each gets its own minimum bar rather
+          # than one shared threshold.
+          MARKET_MINIMUMS = {
+              "output/latest_scan_sp500.json": 400,
+              "output/latest_scan_nifty50.json": 40,
+              "output/latest_scan_sensex.json": 24,
+          }
 
-          results = scan.get("all_results", [])
-          errors = scan.get("tickers_with_errors", 0)
-          scanned = scan.get("tickers_scanned", 0)
+          any_failure = False
+          for file_path, minimum in MARKET_MINIMUMS.items():
+              path = pathlib.Path(file_path)
+              if not path.exists():
+                  print(f"FAIL: {file_path} missing — refusing to publish.")
+                  any_failure = True
+                  continue
 
-          print(f"scanned={scanned} results={len(results)} errors={errors}")
+              scan = json.loads(path.read_text())
+              results = scan.get("all_results", [])
+              errors = scan.get("tickers_with_errors", 0)
+              scanned = scan.get("tickers_scanned", 0)
 
-          # The index is ~500 names; anything far below that means the
-          # fetch was throttled or broken rather than genuinely smaller.
-          if len(results) < 400:
-              sys.exit(f"FAIL: only {len(results)} results — refusing to publish a partial scan.")
-          if errors > 50:
-              sys.exit(f"FAIL: {errors} tickers errored — refusing to publish.")
+              print(f"{file_path}: scanned={scanned} results={len(results)} errors={errors}")
 
-          # Spot-check that prices actually came through, not just rows.
-          priced = sum(1 for r in results if r.get("most_recent_close"))
-          if priced < len(results) * 0.9:
-              sys.exit(f"FAIL: only {priced}/{len(results)} rows have a price.")
+              if len(results) < minimum:
+                  print(f"FAIL: {file_path} only has {len(results)} results (need >= {minimum}).")
+                  any_failure = True
+                  continue
+              if errors > minimum:
+                  print(f"FAIL: {file_path} had {errors} tickers error out.")
+                  any_failure = True
+                  continue
 
-          print("Scan looks healthy.")
+              # Spot-check that prices actually came through, not just rows.
+              priced = sum(1 for r in results if r.get("most_recent_close"))
+              if priced < len(results) * 0.9:
+                  print(f"FAIL: {file_path} only has {priced}/{len(results)} rows with a price.")
+                  any_failure = True
+                  continue
+
+              print(f"{file_path}: looks healthy.")
+
+          if any_failure:
+              sys.exit("One or more markets failed validation — refusing to publish any of them.")
           PY
 
       - name: Commit and push if the data actually changed
@@ -108,32 +132,41 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          SCAN_FILES="output/latest_scan_sp500.json output/latest_scan_nifty50.json output/latest_scan_sensex.json"
+
           # The scan timestamp changes on every run, so comparing whole
           # files would commit daily even on market holidays when nothing
-          # moved. Compare the RESULTS instead.
-          if git diff --quiet -- output/latest_scan.json; then
-            echo "No change at all — nothing to commit."
-            exit 0
-          fi
-
-          CHANGED=$(python - <<'PY'
-          import json, subprocess
-          new = json.loads(open("output/latest_scan.json").read())
+          # moved. Compare the RESULTS instead, per market — Indian and
+          # US market holidays don't line up, so one market's data can be
+          # genuinely unchanged while another's has moved.
+          CHANGED_FILES=""
+          for f in $SCAN_FILES; do
+            if git diff --quiet -- "$f"; then
+              continue
+            fi
+            CHANGED=$(python - "$f" <<'PY'
+          import json, subprocess, sys
+          file_path = sys.argv[1]
+          new = json.loads(open(file_path).read())
           old_raw = subprocess.run(
-              ["git", "show", "HEAD:output/latest_scan.json"],
+              ["git", "show", f"HEAD:{file_path}"],
               capture_output=True, text=True).stdout
           old = json.loads(old_raw) if old_raw else {}
-          # Ignore the timestamp; only the market data matters.
           print("yes" if new.get("all_results") != old.get("all_results") else "no")
           PY
-          )
+            )
+            if [ "$CHANGED" = "yes" ]; then
+              CHANGED_FILES="$CHANGED_FILES $f"
+            else
+              git checkout -- "$f"
+            fi
+          done
 
-          if [ "$CHANGED" = "no" ]; then
-            echo "Only the timestamp moved (likely a market holiday) — skipping commit."
-            git checkout -- output/latest_scan.json
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No market's data actually changed (holidays, or only timestamps moved) — nothing to commit."
             exit 0
           fi
 
-          git add output/latest_scan.json
+          git add $CHANGED_FILES
           git commit -m "Refresh scan data ($(TZ=America/New_York date '+%Y-%m-%d'))"
           git push
