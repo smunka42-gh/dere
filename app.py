@@ -1156,6 +1156,15 @@ with st.container(key="filters_panel"):
     # updating once Submit is clicked.
     pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
 
+    def _snap5(n: int) -> int:
+        """Nearest multiple of 5, clamped to [0, 100] — matches the
+        slider's own step=5, so a saved split like 34/33/33 (not a
+        multiple of 5) still seeds a legal handle position."""
+        return max(0, min(100, round(n / 5) * 5))
+
+    seed_h1 = _snap5(pct_avg)
+    seed_h2 = max(seed_h1, _snap5(pct_avg + pct_peak))
+
     # Full width now, not confined to a 3-of-4 column — a first version
     # shared a row with the submit button (matching the old 3-slider
     # layout), which left the slider narrower than the legend below it
@@ -1176,10 +1185,10 @@ with st.container(key="filters_panel"):
         # Streamlit collapses, so it was still in the DOM but rendered
         # at 0x0, unreachable. One real label avoids that trap entirely.
         h1, h2 = st.slider(
-            "Composite Upside weights",
+            "Weights used to compute Composite Upside%",
             min_value=0, max_value=100,
-            value=(pct_avg, pct_avg + pct_peak),
-            step=1,
+            value=(seed_h1, seed_h2),
+            step=5,
             key="filt_weights_range",
             help=(
                 "Two handles split the bar into three shares — how much "
