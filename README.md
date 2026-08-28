@@ -8,8 +8,10 @@ anything is worth a closer look.
 
 **Live:** https://vantagescreener.streamlit.app/?embed=true
 
-(the `?embed=true` hides Streamlit Community Cloud's own Fork/GitHub/Share
-toolbar, which otherwise overlaps the top of the page)
+(`?embed=true` swaps Streamlit Community Cloud's footer badge for a
+minimal "Built with Streamlit" line — its own Fork/GitHub/Share
+toolbar is hidden outright via CSS, for every visitor, with or
+without this parameter)
 
 ## How it works
 
@@ -44,3 +46,7 @@ library — not guaranteed accurate, complete, or continuously available.
 This tool encodes one person's personal rules in software. It is not
 professional investment advice, is not from a licensed advisor, and
 should be used at your own risk.
+
+## License
+
+[MIT](LICENSE)
