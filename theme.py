@@ -341,7 +341,6 @@ def inject_theme_css() -> None:
             padding: 10px 14px 8px 14px !important;
             border: 1px solid var(--vg-border) !important;
             border-radius: var(--vg-radius) !important;
-            max-width: 900px;
         }}
         /* Row 1's four filters, each in its own lightly-bordered tile —
            same border-color/radius tokens as every other bordered box
