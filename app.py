@@ -524,17 +524,27 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
         else '<div class="vg-pill">n/a</div>'
     )
 
+    # Company name and market cap moved OFF the card face and into the
+    # ticker's hover tooltip. Both were costing a full row each while
+    # being the least-scanned things on the card — and long names
+    # ("Oil and Natural Gas Corp.") wrapped to two lines, leaving the
+    # grid's cards at uneven heights. Nothing is lost: the detail modal
+    # still shows both in full, and the tooltip keeps them one hover
+    # away here.
+    card_tooltip = clean_company_name(full_company_name)
+    market_cap_text = market.format_market_cap(r.get("market_cap"))
+    if market_cap_text:
+        card_tooltip = f"{card_tooltip} · {market_cap_text}"
+
     with st.container(border=True, key=f"focuscard-{r['ticker']}"):
         st.html(
             f'<div class="vg-card-head">'
             f"<div>"
-            f'<div class="vg-card-ticker">{r["ticker"]}</div>'
-            f'<div class="vg-card-company">'
-            f"{truncate_company_name(clean_company_name(full_company_name), max_length=32)}</div>"
+            f'<div class="vg-card-ticker" title="{card_tooltip}">{r["ticker"]}</div>'
             f"</div>{pill}</div>"
             f'<div class="vg-card-tagrow">'
             f'<span class="vg-cap-tag" style="background:{tier_color};">'
-            f'{cap_tier or "Cap n/a"} · {market.format_market_cap(r.get("market_cap"))}</span>'
+            f'{cap_tier or "Cap n/a"}</span>'
             f'<span class="vg-card-links">{build_external_links_html(r, "vg-ext-sm")}</span></div>'
             f'<div class="vg-card-price">{market.currency_symbol}{r["most_recent_close"]:,.2f}</div>'
             f"{range_html}"

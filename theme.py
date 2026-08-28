@@ -875,12 +875,11 @@ def inject_theme_css(*, wide: bool = True) -> None:
             font-size: 18px;
             font-weight: 800;
             line-height: 1.2;
-        }}
-        .vg-card-company {{
-            font-size: 12px;
-            color: var(--vg-text-muted);
-            line-height: 1.35;
-            margin-top: 1px;
+            /* Carries the company name + market cap as a title
+               tooltip (see render_focus_card) now that neither has a
+               row of its own on the card face — the help cursor is the
+               only affordance signalling there's something to hover. */
+            cursor: help;
         }}
         .vg-pill {{
             font-size: 11.5px;
