@@ -27,7 +27,7 @@ st.page_link("app.py", label="← Back to Vantage Screener")
 st.title("Methodology")
 
 st.markdown(f"""
-{APP_NAME} screens stocks against one fixed, published set of rules and
+{APP_NAME} screens stocks against one published set of rules and
 shows whichever ones currently match — a heatmap and a list, both
 driven by the same score: **Composite Upside %**.
 
@@ -35,22 +35,27 @@ driven by the same score: **Composite Upside %**.
 
 A weighted blend of three "how much room is left to grow" measures, all
 expressed the same way analysts normally quote upside (as a % of
-today's price):
+today's price). The weights are yours to change — the "Weights used to
+compute Composite Upside%" slider on the main screener re-runs this
+same formula with whatever split you set. The table below shows the
+defaults it opens with:
 
-| Component | Weight | What it measures |
+| Component | Default weight | What it measures |
 |---|---|---|
 | Upside to the moving average | **50%** | Has the price genuinely pulled back recently, not just noise |
 | Upside to the 52-week high | 25% | Distance from the highest point in the past year |
 | Upside to the analyst median target | 25% | Distance from where analysts expect the price to go |
 
-`Composite Upside % = 0.50×(upside to moving avg) + 0.25×(upside to 52w high) + 0.25×(upside to target)`
+`Composite Upside % = w1×(upside to moving avg) + w2×(upside to 52w high) + w3×(upside to target)` — at the defaults, `w1=0.50, w2=0.25, w3=0.25`
 
-The moving average carries the largest weight because a 52-week high is
-a single day and can be touched briefly without meaning much — a
-sustained move below the moving average is a stronger signal that a
-stock has genuinely, recently pulled back. Analyst targets carry a
-well-documented optimism bias in practice, so that component is weighted
-equal to (not above) the 52-week high rather than trusted most.
+The moving average carries the largest weight *by default* because a
+52-week high is a single day and can be touched briefly without meaning
+much — a sustained move below the moving average is a stronger signal
+that a stock has genuinely, recently pulled back. Analyst targets carry
+a well-documented optimism bias in practice, so that component defaults
+to equal weight with (not above) the 52-week high rather than trusted
+most. Disagree with that reasoning? Drag the slider and see a different
+set of stocks rise to the top.
 
 A stock must also clear the market-cap range and the maximum analyst
 rating set in the filter panel to appear at all — Composite Upside % is
