@@ -382,6 +382,25 @@ def inject_theme_css() -> None:
             width: 13px !important;
             height: 13px !important;
         }}
+        /* Streamlit's default tooltip popover is a wide, short rectangle
+           (max-width 672px, 14px near-black text) — fine for a one-line
+           hint, hard to read for the multi-sentence explanations these
+           filter tooltips carry, since a line can run the full page
+           width. Narrowed so it wraps into a taller, narrower block, and
+           restyled to the app's own muted-text scale rather than
+           Streamlit's default type. Emphasis (the **bold** lines in the
+           analyst-rating scale, e.g. "1 = Strong Buy") picks up the
+           accent color so the key facts stand out from the surrounding
+           explanation. */
+        [data-testid="stTooltipContent"] {{
+            max-width: 260px !important;
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+            color: var(--vg-text-muted) !important;
+        }}
+        [data-testid="stTooltipContent"] strong {{
+            color: var(--vg-accent) !important;
+        }}
         /* Streamlit reserves a fixed row above every slider for the
            current-value readout and the min/max ticks. At this size the
            ticks are noise — the readout above the thumb already says the
