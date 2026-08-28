@@ -485,6 +485,25 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
             show_detail_dialog(r, sma_window, weights, market)
 
 
+def _round_pcts_to_100(fractions: tuple[float, float, float]) -> tuple[int, int, int]:
+    """
+    Three already-normalised fractions (summing to 1.0) as whole
+    percentages that ALWAYS sum to exactly 100 — rounding each
+    independently (e.g. three values at 33.3%) can land on 99 or 101,
+    which defeats the entire point of showing this to a user who's
+    specifically checking that the weights add up. Uses the standard
+    "largest remainder" method: floor every value, then hand the
+    leftover points to whichever values lost the most to flooring.
+    """
+    exact = [f * 100 for f in fractions]
+    floored = [int(e) for e in exact]
+    remainder = 100 - sum(floored)
+    by_leftover = sorted(range(3), key=lambda i: exact[i] - floored[i], reverse=True)
+    for i in range(remainder):
+        floored[by_leftover[i]] += 1
+    return tuple(floored)
+
+
 def _signal_color(pct: float, lo: float, hi: float) -> str:
     """
     Map a Composite Upside % to a tile color on a red→neutral→green
@@ -1095,10 +1114,6 @@ with st.form("filters_form"):
     # "make the composite upside weights next to each other...
     # horizontal" — also removed the individual min-upside sliders
     # entirely, which used to sit in a second column here).
-    # Rendered as html with the same class as the "Filters" panel
-    # heading rather than st.markdown("**...**") — as bold markdown it
-    # was a <strong> in a <p>, so the panel-heading CSS (scoped to
-    # h2/h3) skipped it and it stayed 16px while "Filters" shrank.
     # The weights label, its three sliders AND the submit button all share
     # ONE row ("the weights scale is too long. we can
     # make it shorter and put it beside the composite upside weights
@@ -1108,10 +1123,38 @@ with st.form("filters_form"):
     # full-width row above the sliders (the wide empty gap ),
     # and the button had another below them. Narrower columns also make
     # each weight slider shorter, which was the other half of the ask.
+    #
+    # A site visitor called the site owner to say she couldn't tell this
+    # row was about weights at all — without a heading, "50-day avg / 52-week
+    # high / Analyst target" reads as three more individual filters, just
+    # like row 1 above it. That heading existed once and was removed for
+    # panel height ("make the panel sleeker, minimal") — this real
+    # feedback is a signal to bring back a SMALL one specifically for this
+    # row, not to redo that whole round of trimming.
+    prev_w_avg, prev_w_peak, prev_w_target = st.session_state.applied_filters["weights"]
+
+    # Reads the CURRENTLY APPLIED weights (from the last Submit), not
+    # whatever the sliders below are mid-drag to — st.form() batches
+    # every contained widget until Submit is clicked (confirmed by
+    # testing: dragging a slider inside the form does NOT rerun the
+    # script), so a true live-while-dragging readout isn't available
+    # without moving these sliders out of the form entirely, which would
+    # also pull the "→" submit button out of its row. This still solves
+    # the actual ask — proving the weights always normalise to something
+    # valid — just on Apply rather than mid-drag.
+    pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
+    wlabel_col, wreadout_col = st.columns([2, 3], vertical_alignment="center")
+    with wlabel_col:
+        st.html('<div class="vg-panel-label">Composite Upside weights</div>')
+    with wreadout_col:
+        st.html(
+            f'<div class="vg-panel-label" style="text-align:right; '
+            f'color:var(--vg-accent);">{pct_avg}% · {pct_peak}% · {pct_target}%</div>'
+        )
+
     w_col1, w_col2, w_col3, w_submit = st.columns(
         FILTER_ROW_RATIOS, vertical_alignment="center"
     )
-    prev_w_avg, prev_w_peak, prev_w_target = st.session_state.applied_filters["weights"]
 
     def _to_step5(weight: float) -> int:
         """
@@ -1139,6 +1182,7 @@ with st.form("filters_form"):
             "Analyst target", 0, 100, _to_step5(prev_w_target), step=5, key="filt_w_target",
             help="How much weight the analyst target-price component carries in the blended score.",
         )
+
     with w_submit:
         # An arrow rather than "Apply Filters". `help` is kept here (unlike
         # the cards' bare "+") because a lone arrow inside a form gives no
@@ -1176,6 +1220,14 @@ if submitted:
     st.query_params.from_dict(
         {**market_param, **filters_to_query_params(st.session_state.applied_filters, market)}
     )
+    # Without this, the Composite Upside weights readout above the
+    # sliders (which reads applied_filters["weights"], same as
+    # everything else below) would show the OLD weights for one extra
+    # render — it's computed earlier in THIS script pass, before this
+    # very update runs. Same fix already used for the market switch
+    # above: restart the script now so the read that already happened
+    # further up gets redone against the fresh value.
+    st.rerun()
 
 # Everything below reads ONLY from st.session_state.applied_filters —
 # never from the form's raw widget variables above — so dragging a
@@ -1226,10 +1278,11 @@ else:
 # the filters and the map was mostly empty space. The count now appears
 # once, on the map's own caption where it describes what you're looking
 # at.
+_caption_pct_avg, _caption_pct_peak, _caption_pct_target = _round_pcts_to_100(weights)
 st.caption(
     f"Showing: {cap_range_display} market cap · "
     f"rating ≤ {rating_threshold:.1f} · {sma_window}-day avg weighted "
-    f"{weights[0]*100:.0f}/{weights[1]*100:.0f}/{weights[2]*100:.0f} · "
+    f"{_caption_pct_avg}/{_caption_pct_peak}/{_caption_pct_target} · "
     f"Composite Upside ≥ {composite_cutoff}%"
 )
 
