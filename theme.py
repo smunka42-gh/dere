@@ -320,7 +320,7 @@ def inject_theme_css() -> None:
            "wide" layout width, exaggerating every control's length),
            capping each slider's own width so it doesn't span its whole
            (still-wide) column, and shrinking buttons further. */
-        [data-testid="stForm"] {{
+        [class*="st-key-filters_panel"] {{
             padding: 10px 14px 8px 14px !important;
             border: 1px solid var(--vg-border) !important;
             border-radius: var(--vg-radius) !important;
@@ -328,18 +328,18 @@ def inject_theme_css() -> None:
         }}
         /* 4px, not 0 — at 0 the "Filters" heading overlapped the first
            widget label by 16px (measured). */
-        [data-testid="stForm"] [data-testid="stVerticalBlock"] {{
+        [class*="st-key-filters_panel"] [data-testid="stVerticalBlock"] {{
             gap: 4px !important;
         }}
         /* Each slider row measured 68px: a 24px label box wrapping 10.5px
            text, plus a 40px track block. Both carry padding sized for
            Streamlit's default type scale, which is much larger than this
            panel now uses — so the row was mostly empty space. */
-        [data-testid="stForm"] [data-testid="stWidgetLabel"] {{
+        [class*="st-key-filters_panel"] [data-testid="stWidgetLabel"] {{
             min-height: 0 !important;
             margin-bottom: 0 !important;
         }}
-        [data-testid="stForm"] [data-testid="stWidgetLabel"] p {{
+        [class*="st-key-filters_panel"] [data-testid="stWidgetLabel"] p {{
             line-height: 1.3 !important;
         }}
         /* Fixed legend under the Composite Upside weights slider — a
@@ -352,7 +352,7 @@ def inject_theme_css() -> None:
             display: flex;
             gap: 18px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-top: 8px;
             font-size: 11.5px;
             color: var(--vg-text-muted);
         }}
@@ -374,34 +374,32 @@ def inject_theme_css() -> None:
             font-variant-numeric: tabular-nums;
         }}
 
-        [data-testid="stForm"] [data-testid="stWidgetLabel"] p {{
+        [class*="st-key-filters_panel"] [data-testid="stWidgetLabel"] p {{
             font-size: 10.5px !important;
             font-weight: 600 !important;
             white-space: nowrap;
         }}
         /* The Composite Upside weights slider's own label doubles as
-           this row's section heading — styled to match the "Filters"
-           heading's old .vg-panel-label look (small, uppercase, muted),
-           plus the hairline that separates this row from row 1 above.
-           Placed AFTER the generic stWidgetLabel rule above so it wins
-           the cascade tie (identical specificity — two attribute
-           selectors plus a type selector on each side — so source order
-           decides, and this needs to come later). A collapsed-label
-           version of this row exists in git history; it silently broke
-           the help tooltip (the icon lives in the same row Streamlit
-           collapses, so it was still in the DOM but rendered at 0x0). */
+           this row's section heading — just the hairline that separates
+           this row from row 1 above, no font override. An uppercase/
+           bold treatment here (to match the old .vg-panel-label
+           "Filters" heading look) was tried and reverted: side by side
+           with row 1's own plain labels in the same panel, it read as a
+           different font entirely (measured: 11px/700/uppercase here
+           vs. 10.5px/600/sentence-case there), not just a different
+           label — "row 1 and row 2... font size and font type feel
+           different." The label text itself ("Composite Upside
+           weights") is already unambiguous without extra styling, so
+           inheriting row 1's plain look costs nothing and actually
+           fixes the inconsistency. A collapsed-label version of this
+           row also exists in git history; it silently broke the help
+           tooltip (the icon lives in the same row Streamlit collapses,
+           so it was still in the DOM but rendered at 0x0) — keep a
+           real, visible label here for that reason too. */
         [class*="st-key-filt_weights_range"] [data-testid="stWidgetLabel"] {{
             border-top: 1px solid var(--vg-border);
             padding-top: 10px !important;
             margin-top: 6px !important;
-        }}
-        [class*="st-key-filt_weights_range"] [data-testid="stWidgetLabel"] p {{
-            font-size: 11px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--vg-text-muted) !important;
-            white-space: normal;
         }}
         /* Slider name and its value readout overlapped vertically by 4px.
            That only LOOKS cramped when the value also sits horizontally
@@ -416,7 +414,7 @@ def inject_theme_css() -> None:
            Pushing the value+track block down turns the 4px overlap into
            a 4px gap, so name and value never collide at ANY value. The
            inner block is the only child of stSlider without a testid. */
-        [data-testid="stForm"] [data-testid="stSlider"] > div:not([data-testid]) {{
+        [class*="st-key-filters_panel"] [data-testid="stSlider"] > div:not([data-testid]) {{
             margin-top: 8px !important;
         }}
 
@@ -427,12 +425,12 @@ def inject_theme_css() -> None:
            between 2.00 and max aggregate rating is too less and
            different than... 52 week high"). Matching the icon to the
            text height makes every label row identical. */
-        [data-testid="stForm"] [data-testid="stTooltipIcon"],
-        [data-testid="stForm"] [data-testid="stTooltipHoverTarget"] {{
+        [class*="st-key-filters_panel"] [data-testid="stTooltipIcon"],
+        [class*="st-key-filters_panel"] [data-testid="stTooltipHoverTarget"] {{
             height: 14px !important;
             line-height: 14px !important;
         }}
-        [data-testid="stForm"] [data-testid="stTooltipIcon"] svg {{
+        [class*="st-key-filters_panel"] [data-testid="stTooltipIcon"] svg {{
             width: 13px !important;
             height: 13px !important;
         }}
@@ -448,7 +446,7 @@ def inject_theme_css() -> None:
            explanation. */
         [data-testid="stTooltipContent"] {{
             max-width: 260px !important;
-            font-size: 12px !important;
+            font-size: 11px !important;
             line-height: 1.5 !important;
             color: var(--vg-text-muted) !important;
         }}
@@ -460,16 +458,16 @@ def inject_theme_css() -> None:
            ticks are noise — the readout above the thumb already says the
            value — so they're hidden and the reserved space reclaimed.
            This is the single biggest saving in the panel. */
-        [data-testid="stForm"] [data-testid="stSliderTickBar"] {{
+        [class*="st-key-filters_panel"] [data-testid="stSliderTickBar"] {{
             display: none !important;
         }}
-        [data-testid="stForm"] [data-testid="stSliderThumbValue"] {{
+        [class*="st-key-filters_panel"] [data-testid="stSliderThumbValue"] {{
             font-size: 11px !important;
         }}
-        [data-testid="stForm"] [data-testid="stElementContainer"] {{
+        [class*="st-key-filters_panel"] [data-testid="stElementContainer"] {{
             margin-bottom: 0 !important;
         }}
-        [data-testid="stForm"] [data-testid="stSlider"] {{
+        [class*="st-key-filters_panel"] [data-testid="stSlider"] {{
             max-width: 200px;
         }}
         /* The 200px cap above was sized for row 1's 4-across grid, one
@@ -489,13 +487,17 @@ def inject_theme_css() -> None:
            4-across layout and left a dead margin on phones once a
            slider had a whole row to itself. */
         @media (max-width: 520px) {{
-            [data-testid="stForm"] [data-testid="stSlider"] {{
+            [class*="st-key-filters_panel"] [data-testid="stSlider"] {{
                 max-width: 100%;
             }}
         }}
         /* Square arrow button — sized like the cards' "+" chip so the
-           panel's one action reads as the same family of control. */
-        [data-testid="stFormSubmitButton"] button {{
+           panel's one action reads as the same family of control.
+           Targeted by key (a plain st.button now, not
+           st.form_submit_button — there's no st.form() left; see the
+           filters_panel container comment in app.py for why), same as
+           every other button this app pins by position. */
+        [class*="st-key-weights_submit"] button {{
             width: 32px !important;
             height: 32px !important;
             min-height: 0 !important;
@@ -505,7 +507,7 @@ def inject_theme_css() -> None:
             align-items: center !important;
             justify-content: center !important;
         }}
-        [data-testid="stFormSubmitButton"] button p {{
+        [class*="st-key-weights_submit"] button p {{
             font-size: 16px !important;
             font-weight: 700 !important;
             line-height: 1 !important;
@@ -529,6 +531,17 @@ def inject_theme_css() -> None:
         }}
         [class*="st-key-weights-block"] [class*="st-key-weights_submit"] {{
             position: absolute !important;
+            /* top:50%+translateY(-50%) alone centers this WRAPPER's own
+               box — measured at only 14px tall, well under the 32px
+               button actually rendered inside it (the button overflows
+               its wrapper). That mismatch silently shifted the visible
+               button down by (32-14)/2 = 9px, landing it beside the
+               slider instead of the block's true center ("the top of
+               the submit button aligns with the scale"). Giving the
+               wrapper the button's own real height first is what makes
+               the percentage centering land where it looks like it
+               should. */
+            height: 32px;
             top: 50%;
             right: 0;
             transform: translateY(-50%);
@@ -1284,8 +1297,8 @@ def inject_theme_css() -> None:
            next thing down is a widget LABEL rather than a caption. At
            4px "Filters" collided with "Market cap range"; a caption can
            sit tight under its heading, a control label needs air. */
-        [data-testid="stForm"] h2,
-        [data-testid="stForm"] h3 {{
+        [class*="st-key-filters_panel"] h2,
+        [class*="st-key-filters_panel"] h3 {{
             font-size: 11px !important;
             font-weight: 700 !important;
             text-transform: uppercase;

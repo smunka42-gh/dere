@@ -1005,14 +1005,24 @@ if picked_market_id != st.session_state.selected_market_id:
     # partial one.
     st.rerun()
 
-# --- Filters, at the top of the page, as a FORM (----
+# --- Filters, at the top of the page (----
 # "let user complete all options and then click submit... dont execute
-# with every change") — st.form() is Streamlit's built-in mechanism for
-# exactly this: widgets INSIDE a form don't trigger a rerun (and so
-# don't recompute anything) until the form's own submit button is
-# clicked. Everything a user drags before clicking Apply is just a
-# pending, uncommitted position — nothing downstream reacts to it.
-with st.form("filters_form"):
+# with every change") — the actual STOCK LIST/heatmap recompute is
+# gated behind st.session_state.applied_filters, only written inside
+# `if submitted:` below, so it stays exactly that deliberate regardless
+# of what triggers a script rerun above it.
+#
+# This was originally st.form(), Streamlit's built-in mechanism for
+# batching every contained widget's reruns until one submit click —
+# switched to a plain container because that batching had a real cost:
+# it also froze the Composite Upside weights legend and the slider's
+# own 3-color fill, both of which read live widget state, not
+# session_state. Dragging a handle moved the handle but the shares/
+# colors "did not follow... only changed when I clicked submit." Since
+# nothing expensive is gated on the rerun itself — only on
+# applied_filters, written once, on click — there was no actual reason
+# for every OTHER widget in the panel to be form-batched too.
+with st.container(key="filters_panel"):
 
     # Every widget below has an EXPLICIT, STATIC `key=` (
     # fixing a real bug: two of them — the SMA weight and "min upside
@@ -1137,10 +1147,13 @@ with st.form("filters_form"):
     # help but sum to 100 — no normalising, no rounding-to-100 trick,
     # because there's nothing else they could sum to.
     #
-    # Reads the CURRENTLY APPLIED weights (from the last Submit) to seed
-    # the handles, same as every other widget in this form — st.form()
-    # batches every contained widget until Submit is clicked (confirmed
-    # by testing), so this only updates on Apply, not mid-drag.
+    # Only used to SEED the slider's starting position from whatever was
+    # last applied — prev_w_avg etc. are fractions of 1.0, which don't
+    # divide evenly into whole percentages, hence the rounding helper.
+    # The legend below reads the slider's own LIVE return value instead
+    # (h1, h2 — already whole numbers, no rounding needed), which is
+    # what makes it track the drag in real time rather than only
+    # updating once Submit is clicked.
     pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
 
     # Full width now, not confined to a 3-of-4 column — a first version
@@ -1183,11 +1196,9 @@ with st.form("filters_form"):
         # the live DOM) — overridden here with a 3-stop version instead
         # of 2, so the bar itself shows the three shares as three
         # colors, not just "filled between the handles." Scoped to this
-        # widget's key so it doesn't touch any other slider. Like the
-        # rest of this row, the colors only refresh on Submit — mid-drag,
-        # the bar keeps showing the last-applied split until Apply is
-        # clicked, same constraint as the legend below and disclosed for
-        # the same reason.
+        # widget's key so it doesn't touch any other slider. Now that
+        # dragging reruns the script (no more st.form()), this redraws
+        # on every drag tick, live.
         st.html(f"""
             <style>
             [class*="st-key-filt_weights_range"] [role="group"] > div:first-child > div:first-child {{
@@ -1200,25 +1211,35 @@ with st.form("filters_form"):
             </style>
         """)
 
+        # Reads h1/h2 directly (the slider's live return value), NOT
+        # pct_avg/pct_peak/pct_target (which only reflect the last
+        # APPLIED state) — this is the fix for "the shades and the %
+        # below the scale did not follow [the drag], it changed only
+        # when I clicked submit." h1, h2-h1, 100-h2 are already whole
+        # numbers summing to 100 by construction, so no rounding call
+        # is needed here the way seeding the slider above needed one.
         st.html(
             '<div class="vg-weights-legend">'
-            f'<span><i style="background:var(--vg-weight-1);"></i>{sma_window_input}-day avg <b>{pct_avg}%</b></span>'
-            f'<span><i style="background:var(--vg-weight-2);"></i>52-week high <b>{pct_peak}%</b></span>'
-            f'<span><i style="background:var(--vg-weight-3);"></i>Analyst target <b>{pct_target}%</b></span>'
+            f'<span><i style="background:var(--vg-weight-1);"></i>{sma_window_input}-day avg <b>{h1}%</b></span>'
+            f'<span><i style="background:var(--vg-weight-2);"></i>52-week high <b>{h2 - h1}%</b></span>'
+            f'<span><i style="background:var(--vg-weight-3);"></i>Analyst target <b>{100 - h2}%</b></span>'
             '</div>'
         )
 
         # An arrow rather than "Apply Filters". `help` is kept here
-        # (unlike the cards' bare "+") because a lone arrow inside a
-        # form gives no hint that it COMMITS the settings — and nothing
-        # on the page updates until it's pressed. Pinned into the
-        # weights block's right edge, vertically centered against the
-        # label+slider+legend stack, via the same absolute-positioned-
-        # wrapper technique as the card "+" button — it used to sit in
-        # its own column next to just the sliders, which read as
-        # "lying around" once the slider went full-width and left it
-        # with no natural column to anchor to.
-        submitted = st.form_submit_button(
+        # (unlike the cards' bare "+") because a lone arrow gives no
+        # hint on its own that it COMMITS the settings — nothing in the
+        # Opportunity Map/Focus List updates until it's pressed, even
+        # though the weights legend/bar above now do update live. A
+        # plain st.button, not st.form_submit_button — there's no
+        # st.form() left to submit; see the container comment above for
+        # why. Pinned into the weights block's right edge, vertically
+        # centered against the label+slider+legend stack, via the same
+        # absolute-positioned-wrapper technique as the card "+" button —
+        # it used to sit in its own column next to just the sliders,
+        # which read as "lying around" once the slider went full-width
+        # and left it with no natural column to anchor to.
+        submitted = st.button(
             "→", type="primary", help="Apply filters", key="weights_submit"
         )
 
