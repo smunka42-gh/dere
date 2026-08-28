@@ -171,8 +171,13 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
       MARKER always stays at its true value and only the label moves.
       A connector line is drawn whenever the two separate enough to be
       mispaired by eye.
-    - Labels within 12% of either end anchor to that edge instead of
-      centring, so a wide value can only grow inward.
+    - Labels near either end anchor to that edge instead of centring, so
+      a wide value can only grow inward. This scale renders TWICE, at
+      two different width/gap/edge-threshold tunings (see `_render_layout`
+      below), with CSS choosing which one the browser actually shows —
+      the same percentage means very different real pixel clearance
+      depending on how wide the scale renders, so a single tuning can't
+      correctly serve both a phone-width dialog and a desktop one.
     - "Now" is the focal point, distinguished by contrast rather than
       size: the only near-black value, heavier weight, larger marker.
       Colour marks three points (low red, now black, high green); the
@@ -286,7 +291,7 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     # So this renders TWO layouts, one tuned per width, and lets a CSS
     # media query pick the right one for the actual viewport — see the
     # `<style>` block in the return statement below.
-    def _render_layout(min_gap: float) -> str:
+    def _render_layout(min_gap: float, edge_pct: float) -> str:
         label_pos = list(marker_pos)
         for side in (0, 1):
             idxs = [i for i in range(len(ordered)) if i % 2 == side]
@@ -319,14 +324,14 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
             # where the label ACTUALLY renders (0 or 100 once anchored,
             # not the raw lpos it was anchored FROM) — the connector
             # below must compare against this, not lpos, or a label
-            # whose true position sits just inside the 10%/90%
+            # whose true position sits just inside the edge_pct
             # threshold (near an edge but not pinned to it) silently
             # jumps to the literal edge with no line bridging the gap
             # back to its own marker.
-            if lpos <= 10:
+            if lpos <= edge_pct:
                 anchor = "left:0; transform:none; text-align:left;"
                 render_lpos = 0.0
-            elif lpos >= 90:
+            elif lpos >= 100 - edge_pct:
                 anchor = "right:0; left:auto; transform:none; text-align:right;"
                 render_lpos = 100.0
             else:
@@ -387,6 +392,22 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     # this same dialog measured at on a 375px-wide phone viewport. 640px
     # is a standard tablet/phone breakpoint sitting well clear of both
     # measured widths.
+    #
+    # edge_pct is a SEPARATE percentage-vs-pixel mismatch from min_gap
+    # above, caught after shipping the min_gap fix: reported live on
+    # HDFCLIFE.NS and HDFCBANK.NS (Nifty 50, desktop) — "Now" sitting
+    # near its 52-week low flew all the way to the container's literal
+    # left edge despite having plenty of empty room around its actual
+    # dot. The 10% edge-anchor threshold was carried over UNCHANGED
+    # from before any of this width-awareness work, so on a wide
+    # desktop container (measured ~1900px on that report) it reserves
+    # ~190px of "too close to the edge" margin — ~8x more than a
+    # label's real ~20-25px half-width actually needs to avoid
+    # clipping. 5% is right-sized for desktop's width range (≥5%
+    # comfortably prevents clipping down to an ~800px-wide "large"
+    # dialog, the practical floor before the mobile media query takes
+    # over at 640px); mobile keeps 10%, which was already close to
+    # correctly calibrated for its measured ~287px width.
     return (
         "<style>"
         ".vg-scale-desktop{display:block;} .vg-scale-mobile{display:none;}"
@@ -394,8 +415,8 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
         " .vg-scale-desktop{display:none;} .vg-scale-mobile{display:block;}"
         "}"
         "</style>"
-        f'<div class="vg-scale-desktop">{_render_layout(9.5)}</div>'
-        f'<div class="vg-scale-mobile">{_render_layout(30)}</div>'
+        f'<div class="vg-scale-desktop">{_render_layout(9.5, 5)}</div>'
+        f'<div class="vg-scale-mobile">{_render_layout(30, 10)}</div>'
     )
 
 
