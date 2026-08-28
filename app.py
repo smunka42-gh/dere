@@ -964,14 +964,15 @@ with st.container(key="navrow"):
 # Apply Filters the way a slider tweak does. st.radio outside a form
 # reruns the script on every change, same as any plain widget.
 market_ids = list(MARKETS.keys())
-picked_market_id = st.radio(
-    "Market",
-    options=market_ids,
-    format_func=lambda mid: MARKETS[mid].display_name,
-    index=market_ids.index(st.session_state.selected_market_id),
-    key="market_selector_widget",
-    horizontal=True,
-)
+with st.container(key="filter-tile-market"):
+    picked_market_id = st.radio(
+        "Market to scan",
+        options=market_ids,
+        format_func=lambda mid: MARKETS[mid].display_name,
+        index=market_ids.index(st.session_state.selected_market_id),
+        key="market_selector_widget",
+        horizontal=True,
+    )
 if picked_market_id != st.session_state.selected_market_id:
     analytics.track_market_selected(picked_market_id)
     new_market = MARKETS[picked_market_id]
