@@ -991,7 +991,7 @@ if picked_market_id != st.session_state.selected_market_id:
     # reusing a now-invalid remembered one.
     for widget_key in (
         "filt_cap_range", "filt_rating_threshold", "filt_sma_window",
-        "filt_composite_cutoff", "filt_w_avg", "filt_w_peak", "filt_w_target",
+        "filt_composite_cutoff", "filt_weights_range",
     ):
         st.session_state.pop(widget_key, None)
     if picked_market_id == DEFAULT_MARKET_ID:
@@ -1110,80 +1110,91 @@ with st.form("filters_form"):
             ),
         )
 
-    # Row 2: the 3 weight sliders side by side, not stacked (
-    # "make the composite upside weights next to each other...
-    # horizontal" — also removed the individual min-upside sliders
-    # entirely, which used to sit in a second column here).
-    # The weights label, its three sliders AND the submit button all share
-    # ONE row ("the weights scale is too long. we can
-    # make it shorter and put it beside the composite upside weights
-    # header... apply filter should be just a button with a symbol").
-    #
-    # This removes two whole rows from the panel — the label had its own
-    # full-width row above the sliders (the wide empty gap ),
-    # and the button had another below them. Narrower columns also make
-    # each weight slider shorter, which was the other half of the ask.
-    #
-    # A site visitor called the site owner to say she couldn't tell this
-    # row was about weights at all — without a heading, "50-day avg / 52-week
-    # high / Analyst target" reads as three more individual filters, just
-    # like row 1 above it. That heading existed once and was removed for
-    # panel height ("make the panel sleeker, minimal") — this real
-    # feedback is a signal to bring back a SMALL one specifically for this
-    # row, not to redo that whole round of trimming.
+    # Row 2: the Composite Upside weights control + the submit button
+    # share one row, same as row 1's filters. Originally three separate
+    # 0-100 sliders (moving avg / 52w high / target), each independently
+    # normalised afterward — replaced with the two-handle range slider
+    # below once a site visitor, on having that normalising step
+    # explained to her, asked the obvious follow-up: "if we're
+    # normalizing anyway, shouldn't this just BE a 3-way split control?"
+    # A widget-level heading also came back for this row specifically
+    # (see the slider's own label below) — a site visitor separately
+    # called the site owner to say she couldn't tell this row was about
+    # weights at all without one, since unlabelled sliders read as more
+    # individual filters, same as row 1 above. The heading existed once
+    # and was removed for panel height ("make the panel sleeker,
+    # minimal"); this is real feedback to bring it back for this row
+    # specifically, not to redo that whole round of trimming.
     prev_w_avg, prev_w_peak, prev_w_target = st.session_state.applied_filters["weights"]
 
-    # Reads the CURRENTLY APPLIED weights (from the last Submit), not
-    # whatever the sliders below are mid-drag to — st.form() batches
-    # every contained widget until Submit is clicked (confirmed by
-    # testing: dragging a slider inside the form does NOT rerun the
-    # script), so a true live-while-dragging readout isn't available
-    # without moving these sliders out of the form entirely, which would
-    # also pull the "→" submit button out of its row. This still solves
-    # the actual ask — proving the weights always normalise to something
-    # valid — just on Apply rather than mid-drag.
-    # ONE inline unit, not two columns spanning the panel's full width —
-    # a first version split the label (left) and readout (right) across
-    # the whole row, which on a wide screen put ~1000px of empty space
-    # between them ("randomly placed, dont know what this means" — fair:
-    # nothing tied the number back to the label it was explaining).
-    # Keeping them adjacent is what actually makes the connection read.
+    # ONE two-handle range slider instead of three independent 0-100
+    # sliders. The old design let each slider go anywhere 0-100 and
+    # silently normalised the three afterward ("50/50/50 means equal
+    # weight, same as 33/33/33") — technically correct, but a real user
+    # idea on seeing that explained: "if we're normalizing anyway,
+    # shouldn't this just BE a 3-way split control?" It should. A
+    # two-handle slider's three segments (0->h1, h1->h2, h2->100) can't
+    # help but sum to 100 — no normalising, no rounding-to-100 trick,
+    # because there's nothing else they could sum to.
+    #
+    # Reads the CURRENTLY APPLIED weights (from the last Submit) to seed
+    # the handles, same as every other widget in this form — st.form()
+    # batches every contained widget until Submit is clicked (confirmed
+    # by testing), so this only updates on Apply, not mid-drag.
     pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
+    range_col, w_submit = st.columns([3, 1], vertical_alignment="center")
+    with range_col:
+        # The widget's OWN label doubles as the section heading (styled
+        # in theme.py to match) rather than a separate st.html() div
+        # above it — a first version used label_visibility="collapsed"
+        # plus a separate custom heading, which silently broke the help
+        # tooltip: the tooltip icon sits inside the same label row
+        # Streamlit collapses, so it was still in the DOM but rendered
+        # at 0x0, unreachable. One real label avoids that trap entirely.
+        h1, h2 = st.slider(
+            "Composite Upside weights",
+            min_value=0, max_value=100,
+            value=(pct_avg, pct_avg + pct_peak),
+            step=1,
+            key="filt_weights_range",
+            help=(
+                "Two handles split the bar into three shares — how much "
+                f"the {sma_window_input}-day moving average, the 52-week "
+                "high, and the analyst target each count toward the "
+                "blended Composite Upside % score. Drag either handle; "
+                "the three shares always add up to 100%."
+            ),
+        )
+    w_avg_raw, w_peak_raw, w_target_raw = h1, h2 - h1, 100 - h2
+
+    # Streamlit's own slider fill is a CSS linear-gradient with hard
+    # color stops at the handle positions (confirmed by inspecting the
+    # live DOM) — overridden here with a 3-stop version instead of 2, so
+    # the bar itself shows the three shares as three colors, not just
+    # "filled between the handles." Scoped to this widget's key so it
+    # doesn't touch any other slider. Like the rest of this row, the
+    # colors only refresh on Submit — mid-drag, the bar keeps showing
+    # the last-applied split until Apply is clicked, same constraint as
+    # the legend below and disclosed for the same reason.
+    st.html(f"""
+        <style>
+        [class*="st-key-filt_weights_range"] [role="group"] > div:first-child > div:first-child {{
+            background: linear-gradient(to right,
+                var(--vg-weight-1) 0%, var(--vg-weight-1) {h1}%,
+                var(--vg-weight-2) {h1}%, var(--vg-weight-2) {h2}%,
+                var(--vg-weight-3) {h2}%, var(--vg-weight-3) 100%
+            ) !important;
+        }}
+        </style>
+    """)
+
     st.html(
-        '<div class="vg-panel-label">Composite Upside weights '
-        f'<span style="color:var(--vg-accent);">— {pct_avg}% · {pct_peak}% · {pct_target}%</span></div>'
+        '<div class="vg-weights-legend">'
+        f'<span><i style="background:var(--vg-weight-1);"></i>{sma_window_input}-day avg <b>{pct_avg}%</b></span>'
+        f'<span><i style="background:var(--vg-weight-2);"></i>52-week high <b>{pct_peak}%</b></span>'
+        f'<span><i style="background:var(--vg-weight-3);"></i>Analyst target <b>{pct_target}%</b></span>'
+        '</div>'
     )
-
-    w_col1, w_col2, w_col3, w_submit = st.columns(
-        FILTER_ROW_RATIOS, vertical_alignment="center"
-    )
-
-    def _to_step5(weight: float) -> int:
-        """
-        Weight as a whole percentage SNAPPED to the slider's 5-point step.
-
-        Needed because the stored weights are NORMALISED floats, so they
-        don't always land on a multiple of 5 when scaled up: a URL of
-        ?w=1-1-1 normalises to 0.3333 each, i.e. 33 — not a valid position
-        on a step=5 slider. Snapping the seed keeps the widget's starting
-        value legal no matter what produced the weights.
-        """
-        return int(round(weight * 100 / 5) * 5)
-    with w_col1:
-        w_avg_raw = st.slider(
-            f"{sma_window_input}-day avg", 0, 100, _to_step5(prev_w_avg), step=5, key="filt_w_avg",
-            help="How much weight the moving-average component carries in the blended Composite Upside % score.",
-        )
-    with w_col2:
-        w_peak_raw = st.slider(
-            "52-week high", 0, 100, _to_step5(prev_w_peak), step=5, key="filt_w_peak",
-            help="How much weight the 52-week-high component carries in the blended score.",
-        )
-    with w_col3:
-        w_target_raw = st.slider(
-            "Analyst target", 0, 100, _to_step5(prev_w_target), step=5, key="filt_w_target",
-            help="How much weight the analyst target-price component carries in the blended score.",
-        )
 
     with w_submit:
         # An arrow rather than "Apply Filters". `help` is kept here (unlike

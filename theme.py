@@ -96,6 +96,13 @@ _POSITIVE = "#1f7d4c"        # reserved for positive upside numbers only
 _POSITIVE_SOFT = "#e7f6ee"
 _NEGATIVE = "#d1544b"        # reserved for negative upside numbers only
 _NEGATIVE_SOFT = "#fbe4e2"
+# Three tonal steps of the accent, for the Composite Upside weights split
+# (moving avg / 52w high / analyst target) — one accent family rather than
+# three unrelated hues, since the three segments have no inherent
+# red/green-style meaning of their own to color-code by.
+_WEIGHT_1 = _ACCENT           # "#3b6e91"
+_WEIGHT_2 = "#7a9db3"
+_WEIGHT_3 = "#b7cbd8"
 _RADIUS = "12px"
 
 # Public re-exports — app.py needs these directly (e.g. the heatmap's
@@ -144,6 +151,9 @@ def inject_theme_css() -> None:
             --vg-positive-soft: {_POSITIVE_SOFT};
             --vg-negative: {_NEGATIVE};
             --vg-negative-soft: {_NEGATIVE_SOFT};
+            --vg-weight-1: {_WEIGHT_1};
+            --vg-weight-2: {_WEIGHT_2};
+            --vg-weight-3: {_WEIGHT_3};
             --vg-radius: {_RADIUS};
         }}
 
@@ -332,28 +342,66 @@ def inject_theme_css() -> None:
         [data-testid="stForm"] [data-testid="stWidgetLabel"] p {{
             line-height: 1.3 !important;
         }}
-        /* Panel sub-heading inside the form, styled to match the h3
-           above it. The hairline above it (only usage today: the
-           Composite Upside weights row) is the same border-top/padding
-           treatment as the nav row's own divider, so the panel's two
-           rows of controls read as visually distinct groups rather than
-           one continuous block. */
-        .vg-panel-label {{
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+        /* Fixed legend under the Composite Upside weights slider — a
+           stable row, colored-dot-to-segment, that never depends on the
+           split. Deliberately NOT positioned relative to the slider
+           handles (unlike the price scale's floating labels): a 98/1/1
+           split would crowd or collide a floating label, but a fixed
+           row underneath can't. */
+        .vg-weights-legend {{
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11.5px;
             color: var(--vg-text-muted);
-            padding: 10px 0 0 0;
-            margin-top: 6px;
-            border-top: 1px solid var(--vg-border);
-            line-height: 1.3;
+        }}
+        .vg-weights-legend span {{
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }}
+        .vg-weights-legend i {{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }}
+        .vg-weights-legend b {{
+            color: var(--vg-text);
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
         }}
 
         [data-testid="stForm"] [data-testid="stWidgetLabel"] p {{
             font-size: 10.5px !important;
             font-weight: 600 !important;
             white-space: nowrap;
+        }}
+        /* The Composite Upside weights slider's own label doubles as
+           this row's section heading — styled to match the "Filters"
+           heading's old .vg-panel-label look (small, uppercase, muted),
+           plus the hairline that separates this row from row 1 above.
+           Placed AFTER the generic stWidgetLabel rule above so it wins
+           the cascade tie (identical specificity — two attribute
+           selectors plus a type selector on each side — so source order
+           decides, and this needs to come later). A collapsed-label
+           version of this row exists in git history; it silently broke
+           the help tooltip (the icon lives in the same row Streamlit
+           collapses, so it was still in the DOM but rendered at 0x0). */
+        [class*="st-key-filt_weights_range"] [data-testid="stWidgetLabel"] {{
+            border-top: 1px solid var(--vg-border);
+            padding-top: 10px !important;
+            margin-top: 6px !important;
+        }}
+        [class*="st-key-filt_weights_range"] [data-testid="stWidgetLabel"] p {{
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--vg-text-muted) !important;
+            white-space: normal;
         }}
         /* Slider name and its value readout overlapped vertically by 4px.
            That only LOOKS cramped when the value also sits horizontally
