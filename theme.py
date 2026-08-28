@@ -331,6 +331,22 @@ def inject_theme_css() -> None:
             border-radius: var(--vg-radius) !important;
             max-width: 900px;
         }}
+        /* Row 1's four filters, each in its own lightly-bordered tile —
+           same border-color/radius tokens as every other bordered box
+           in this app (the Focus List cards, the outer panel above),
+           so it reads as the same family of "box" rather than a new
+           one. Small, tight padding (8/10px) — these are narrow, short
+           tiles holding one label + one slider, not full cards; the
+           panel's own border already frames the group as a whole, so
+           each tile only needs to mark where it individually starts
+           and ends. Matched by a shared "filter-tile-" key prefix
+           across all four (cap / rating / sma / cutoff) so one rule
+           covers all of them. */
+        [class*="st-key-filter-tile-"] {{
+            border: 1px solid var(--vg-border);
+            border-radius: var(--vg-radius);
+            padding: 8px 10px;
+        }}
         /* 4px, not 0 — at 0 the "Filters" heading overlapped the first
            widget label by 16px (measured). */
         [class*="st-key-filters_panel"] [data-testid="stVerticalBlock"] {{

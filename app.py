@@ -1051,7 +1051,14 @@ with st.container(key="filters_panel"):
         FILTER_ROW_RATIOS, vertical_alignment="center"
     )
 
-    with row1_col1:
+    # Each filter now sits inside its own lightly-bordered tile — a
+    # nested st.container(key=...) per column, styled in theme.py the
+    # same way every other bordered box in this app is (border-color:
+    # var(--vg-border), border-radius: var(--vg-radius)), so row 1 reads
+    # as four distinct controls rather than four sliders that just
+    # happen to share a row with nothing marking where one ends and the
+    # next begins.
+    with row1_col1, st.container(key="filter-tile-cap"):
         cap_range_input = st.select_slider(
             "Market cap range",
             options=[label for label, _ in market.cap_range_options],
@@ -1064,7 +1071,7 @@ with st.container(key="filters_panel"):
             ),
         )
 
-    with row1_col2:
+    with row1_col2, st.container(key="filter-tile-rating"):
         # A plain slider rather than rating-bucket checkboxes: a
         # multiselect's boxed tag container reads as a heavier control
         # than the single-line sliders beside it.
@@ -1089,7 +1096,7 @@ with st.container(key="filters_panel"):
             ),
         )
 
-    with row1_col3:
+    with row1_col3, st.container(key="filter-tile-sma"):
         sma_window_input = st.select_slider(
             "Moving-avg (days)",
             options=SMA_WINDOW_OPTIONS,
@@ -1104,7 +1111,7 @@ with st.container(key="filters_panel"):
             ),
         )
 
-    with row1_col4:
+    with row1_col4, st.container(key="filter-tile-cutoff"):
         composite_cutoff_input = st.slider(
             "Min Composite Upside %",
             min_value=0, max_value=60,
