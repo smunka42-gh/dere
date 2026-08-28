@@ -277,7 +277,7 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
         dot = 13 if is_hero else 9
         parts.append(
             f'<div style="position:absolute; left:{mpos:.2f}%; top:50%; '
-            f"transform:translate(50%,-50%); width:{dot}px; height:{dot}px; "
+            f"transform:translate(-50%,-50%); width:{dot}px; height:{dot}px; "
             f"border-radius:50%; background:{colour}; border:2px solid var(--vg-bg); "
             f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
         )
@@ -299,7 +299,7 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
         elif lpos >= 90:
             anchor = "right:0; left:auto; transform:none; text-align:right;"
         else:
-            anchor = f"left:{lpos:.2f}%; transform:translateX(50%); text-align:center;"
+            anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
         offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
 
         pct_html = ""

@@ -775,7 +775,7 @@ def inject_theme_css() -> None:
             border-radius: 50%;
             background: var(--vg-accent);
             border: 2px solid var(--vg-bg);
-            transform: translate(50%, -50%);
+            transform: translate(-50%, -50%);
         }}
         .vg-range-cap {{
             display: flex;
