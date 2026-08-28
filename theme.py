@@ -421,6 +421,14 @@ def inject_theme_css() -> None:
             border-top: 1px solid var(--vg-border);
             padding-top: 10px !important;
             margin-top: 6px !important;
+            /* The track sits 6px right of the label (measured) —
+               Streamlit insets a slider's track from its own container
+               so the round handle doesn't visually overflow at the 0%
+               position. Nudging the LABEL to match rather than moving
+               the track: shifting the track's own position risks
+               clipping the handle right back into the edge it was
+               inset to avoid. */
+            margin-left: 6px !important;
         }}
         /* Slider name and its value readout overlapped vertically by 4px.
            That only LOOKS cramped when the value also sits horizontally
