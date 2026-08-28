@@ -276,7 +276,7 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     LINE_H_PCT = 13
 
     LEADER_BASE = 14
-    DOT_GAP = 3
+    LEADER_W = 2  # leader thickness; heavy enough to read as a real line
 
     # Two same-side labels closer than this (in % of track width) are
     # treated as at risk of touching. LABEL_W is a fixed px width, so
@@ -328,7 +328,7 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
         if not on_side:
             return 40.0
         return max(
-            p["dot"] / 2 + DOT_GAP + LEADER_BASE + p["tier"] * LEADER_STEP + p["label_h"] + 8
+            p["dot"] / 2 + LEADER_BASE + p["tier"] * LEADER_STEP + p["label_h"] + 10
             for p in on_side
         )
 
@@ -336,37 +336,52 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     total_h = reach_up + reach_down
     axis = reach_up  # px from the container's top down to the track
 
+    # The track is INSET from the container's edges by half a label
+    # width, so a point sitting at either extreme of the value range
+    # still has room to centre its label on its own dot. Previously the
+    # track spanned the full width and the label was clamp()ed inward
+    # to avoid clipping, which pulled it off-centre from its leader
+    # exactly where values hit the extremes — reported on HDFCLIFE.NS,
+    # where "52W Low" sat visibly to the right of its own red leader.
+    # Reserving the room up front removes the need to clamp at all, so
+    # dot, leader and label always share one x.
+    def _x(pos: float) -> str:
+        return f"calc({HALF_LABEL}px + (100% - {2 * HALF_LABEL}px) * {pos / 100:.4f})"
+
     parts = [
-        f'<div style="position:absolute; left:0; right:0; top:{axis - 1.5:.1f}px; height:3px; '
+        f'<div style="position:absolute; left:{HALF_LABEL}px; right:{HALF_LABEL}px; '
+        f'top:{axis - 1.5:.1f}px; height:3px; '
         f'background:var(--vg-border); border-radius:2px;"></div>'
     ]
 
     for p in placed:
-        # The dot stays on its true value; only the label block is
-        # clamped away from the container's edges.
-        dot_pos = min(max(p["pos"], 0.6), 99.4)
+        x = _x(p["pos"])
         half_dot = p["dot"] / 2
         leader = LEADER_BASE + p["tier"] * LEADER_STEP
 
+        # The leader runs all the way to the track's centre line rather
+        # than stopping at the dot's outer edge, and the dot is painted
+        # over it (higher z-index). That guarantees the line meets the
+        # dot with no seam, instead of leaving the hairline gap a
+        # fixed stand-off produced.
+        span = half_dot + leader
         if p["side"] == 0:
-            leader_top = axis - half_dot - DOT_GAP - leader
-            leader_style = f"top:{leader_top:.1f}px; height:{leader:.1f}px;"
-            label_style = f"bottom:{total_h - leader_top:.1f}px;"
+            leader_top = axis - span
+            label_style = f"bottom:{total_h - leader_top + 2:.1f}px;"
         else:
-            leader_top = axis + half_dot + DOT_GAP
-            leader_style = f"top:{leader_top:.1f}px; height:{leader:.1f}px;"
-            label_style = f"top:{leader_top + leader:.1f}px;"
+            leader_top = axis
+            label_style = f"top:{leader_top + span + 2:.1f}px;"
 
         # Leader line, in the point's own colour.
         parts.append(
-            f'<div style="position:absolute; left:{dot_pos:.2f}%; {leader_style} '
-            f"width:1.5px; transform:translateX(-50%); background:{p['colour']}; "
-            f'opacity:0.6; z-index:1;"></div>'
+            f'<div style="position:absolute; left:{x}; top:{leader_top:.1f}px; '
+            f"height:{span:.1f}px; width:{LEADER_W}px; transform:translateX(-50%); "
+            f"background:{p['colour']}; opacity:0.85; z-index:1;\"></div>"
         )
 
-        # Dot.
+        # Dot, painted over the leader's end.
         parts.append(
-            f'<div style="position:absolute; left:{dot_pos:.2f}%; top:{axis:.1f}px; '
+            f'<div style="position:absolute; left:{x}; top:{axis:.1f}px; '
             f"transform:translate(-50%,-50%); width:{p['dot']}px; height:{p['dot']}px; "
             f"border-radius:50%; background:{p['colour']}; border:2px solid var(--vg-bg); "
             f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
@@ -381,15 +396,9 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
                 f'font-variant-numeric:tabular-nums; line-height:1.3;">{shown}</div>'
             )
 
-        # Label block, centred on its leader. clamp() slides it only as
-        # far as needed to keep it from clipping past a container edge —
-        # it stays attached to its own leader instead of jumping to the
-        # edge, and because the browser resolves this against the
-        # container's REAL rendered width it needs no separate
-        # desktop/mobile tuning.
+        # Label block, centred on the same x as its dot and leader.
         parts.append(
-            f'<div style="position:absolute; {label_style} '
-            f"left:clamp({HALF_LABEL}px, {dot_pos:.2f}%, calc(100% - {HALF_LABEL}px)); "
+            f'<div style="position:absolute; {label_style} left:{x}; '
             f"transform:translateX(-50%); width:{LABEL_W}px; text-align:center; "
             f'z-index:2;">'
             f'<div style="color:{p["colour"]}; font-size:8.5px; font-weight:700; '
