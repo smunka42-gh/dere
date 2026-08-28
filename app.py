@@ -289,25 +289,34 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
             f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
         )
 
+        # Labels near an edge anchor to it rather than centring, so a
+        # wide value can only ever grow inward. render_lpos tracks where
+        # the label ACTUALLY renders (0 or 100 once anchored, not the
+        # raw lpos it was anchored FROM) — the connector below must
+        # compare against this, not lpos, or a label whose true
+        # position sits just inside the 10%/90% threshold (near an
+        # edge but not pinned to it) silently jumps to the literal edge
+        # with no line bridging the gap back to its own marker.
+        if lpos <= 10:
+            anchor = "left:0; transform:none; text-align:left;"
+            render_lpos = 0.0
+        elif lpos >= 90:
+            anchor = "right:0; left:auto; transform:none; text-align:right;"
+            render_lpos = 100.0
+        else:
+            anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
+            render_lpos = lpos
+        offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
+
         # Connector, only when the label had to move far enough that the
         # eye would otherwise mis-pair it with the wrong marker.
-        if abs(lpos - mpos) > 1.5:
-            left, right = sorted((mpos, lpos))
+        if abs(render_lpos - mpos) > 1.5:
+            left, right = sorted((mpos, render_lpos))
             vert = "bottom:calc(50% + 6px); height:14px;" if i % 2 == 0 else "top:calc(50% + 6px); height:14px;"
             parts.append(
                 f'<div style="position:absolute; left:{left:.2f}%; width:{right - left:.2f}%; '
                 f'{vert} border-top:1px solid var(--vg-border); z-index:1;"></div>'
             )
-
-        # Labels near an edge anchor to it rather than centring, so a
-        # wide value can only ever grow inward.
-        if lpos <= 10:
-            anchor = "left:0; transform:none; text-align:left;"
-        elif lpos >= 90:
-            anchor = "right:0; left:auto; transform:none; text-align:right;"
-        else:
-            anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
-        offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
 
         pct_html = ""
         if pct is not None:
