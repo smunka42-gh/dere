@@ -883,6 +883,15 @@ if "applied_filters" not in st.session_state:
     # bookmark).
     st.session_state.applied_filters = filters_from_query_params(market)
 
+# Per-market filter memory, keyed by market id — lets switching back to
+# a market you've already customized THIS session restore what you set
+# there, instead of resetting to that market's defaults every time. Kept
+# separate from applied_filters (the CURRENTLY active market's filters)
+# and only ever read/written for the market whose own values they are —
+# never carried across markets, since a range like "$100B" has no
+# meaning translated into another market's own units.
+st.session_state.setdefault("per_market_filters", {})
+
 # Scan is loaded BEFORE the header so the nav strip can carry the
 # scan timestamp as its right-hand meta line, the way the Option 3
 # mockup did — rather than as a separate caption stacked underneath.
@@ -978,13 +987,22 @@ with st.container(key="filter-tile-market"):
 if picked_market_id != st.session_state.selected_market_id:
     analytics.track_market_selected(picked_market_id)
     new_market = MARKETS[picked_market_id]
+    # Remember the OLD market's filters before leaving it, so switching
+    # back later this session restores them instead of resetting to
+    # that market's defaults all over again.
+    st.session_state.per_market_filters[st.session_state.selected_market_id] = (
+        st.session_state.applied_filters
+    )
     st.session_state.selected_market_id = picked_market_id
-    # Filters reset to the NEW market's own defaults rather than trying
-    # to carry over the old ones — a market-cap range expressed in one
-    # market's labels ("$100B") has no meaning in another's ("₹ Cr"), so
-    # attempting to preserve it would either error or silently mean
+    # Restore the NEW market's own filters from a previous visit this
+    # session if there is one, otherwise its defaults. Never the OLD
+    # market's values, carried over — a range expressed in one market's
+    # labels ("$100B") has no meaning in another's ("₹ Cr"), so
+    # attempting to reuse it would either error or silently mean
     # something different than what the user set it to.
-    st.session_state.applied_filters = default_filters_for(new_market)
+    st.session_state.applied_filters = st.session_state.per_market_filters.get(
+        picked_market_id, default_filters_for(new_market)
+    )
     # The form widgets below ALSO persist their own value under their
     # own key, independent of applied_filters — st.select_slider in
     # particular would raise an exception on the next render, because
