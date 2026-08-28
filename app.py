@@ -27,6 +27,7 @@ in plain language. See DESIGN_DOC.md for architecture and rationale.
 """
 
 import json
+import math
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -156,40 +157,42 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     """Render the horizontal price scale used in the detail modal.
 
     Plots five reference points on a single number line: 52-week low,
-    the moving average for `sma_window`, the current price, the analyst
-    median target, and the 52-week high.
+    the moving average for `sma_window`, the current price ("Today"),
+    the analyst median target, and the 52-week high.
 
     Built from absolutely-positioned <div>s rather than SVG, because
     st.html() strips <svg> elements entirely.
 
-    Layout rules:
-    - Each label stacks its price above its percentage, keeping labels
-      narrow so neighbouring points are less likely to collide.
-    - Labels alternate above and below the track, so adjacent points can
-      never overlap. Points two apart can still land on the same side,
-      so same-side labels are pushed to a minimum horizontal gap; the
-      MARKER always stays at its true value and only the label moves.
-      A connector line is drawn whenever the two separate enough to be
-      mispaired by eye.
-    - Labels near either end anchor to that edge instead of centring, so
-      a wide value can only grow inward. This scale renders TWICE, at
-      two different width/gap/edge-threshold tunings (see `_render_layout`
-      below), with CSS choosing which one the browser actually shows —
-      the same percentage means very different real pixel clearance
-      depending on how wide the scale renders, so a single tuning can't
-      correctly serve both a phone-width dialog and a desktop one.
-    - "Now" is the focal point, distinguished by contrast rather than
-      size: the only near-black value, heavier weight, larger marker.
-      Colour marks three points (low red, now black, high green); the
-      moving average and target stay grey, since their percentages
-      already carry green/red.
+    Layout — three rules, in order:
+
+    1. Each point keeps its own colour, and owns a dot on the track plus
+       a vertical LEADER LINE in that same colour running out to its
+       label. The label is centred on its leader, so a label is tied to
+       its dot by position AND colour — never by proximity alone. The
+       dot NEVER moves off its true value.
+
+    2. Leaders alternate up/down by position, so two ADJACENT points can
+       never share a side.
+
+    3. Alternating still leaves points TWO apart on the same side (with
+       five points, 1/3/5 go up and 2/4 go down). When those land close
+       together — three or more values clustered in a narrow band, e.g.
+       a stock trading just above its 52-week low — each successive
+       crowded label on that side gets a LONGER leader, one step per
+       point, so their label blocks stack at different heights and
+       cannot touch. The step is derived from the tallest label block,
+       so a bumped label always fully clears the one before it.
+
+    The container's height is computed from how far the leaders actually
+    reach, so an uncrowded scale stays compact and only a genuinely
+    clustered one grows tall.
 
     The scale is NOT clamped to the 52-week high: an analyst target can
     legitimately sit above it, and clamping would hide exactly the
     signal Composite Upside % exists to catch.
 
-    The moving average's dollar price is not stored anywhere, only its
-    upside percentage. It is reconstructed here as the exact inverse of
+    The moving average's price is not stored anywhere, only its upside
+    percentage. It is reconstructed here as the exact inverse of
     compute_upside_pct(): ref = current * (1 + upside / 100).
     """
     current = r.get("most_recent_close")
@@ -216,32 +219,31 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
             return f"{market.currency_symbol}{v:,.1f}"
         return f"{market.currency_symbol}{v:,.2f}"
 
-    neutral = "var(--vg-text-muted)"
-    # (label, value, pct, pct suffix, accent colour, value colour, is_hero)
+    # One distinct colour per point, so the scale reads as five
+    # identifiable anchors rather than "three coloured ones and two grey
+    # ones" (the previous scheme reused one muted grey for both the
+    # moving average and the analyst target, so neither could be traced
+    # to its own label by colour).
     #
-    # third pass on the scale:
-    # "Current Price" back to "NOW". The long label was widening the
-    #   left cluster on tickers where price sits near the 52-week low;
-    #   the hero styling (largest, boldest) is what makes it findable,
-    #   not the label text, so the short form costs nothing.
-    # The $ VALUE is now coloured too, not just the label word — with
-    #   every value in the same near-black, the hero's larger size was
-    #   the only differentiator and it wasn't possible to tell it was bigger.
-    # Every value renders at the same size. "Now" is distinguished by
-    # CONTRAST, not scale:
-    #   - it is the only near-black value; the moving average and analyst
-    #     target are muted gray, which is what leaves black distinctive
-    #   - heavier weight (800 vs 700)
-    #   - a larger marker (13px vs 9px)
-    # 52W Low and 52W High keep red/green, so the scale reads as three
-    # coloured anchors (low / now / high) with two quiet reference points
-    # between them.
+    # Low/high keep the app's semantic red/green — a 52-week low IS the
+    # bad end and the high IS the good end, so borrowing those tokens
+    # carries meaning rather than being decorative. Today takes the
+    # accent blue, the app's existing "look at this" colour. The two
+    # remaining reference points take the gold/purple already used for
+    # cap tiers, reused rather than inventing new values.
+    C_LOW = "var(--vg-negative)"
+    C_SMA = "#b8860b"
+    C_TODAY = "var(--vg-accent)"
+    C_TARGET = "#7d5ba6"
+    C_HIGH = "var(--vg-positive)"
+
+    # (label, value, pct, colour, is_hero)
     points = [
-        ("52W Low", low, None, "", "var(--vg-negative)", "var(--vg-negative)", False),
-        (f"{sma_window}D Avg", sma_price, sma_upside, "", neutral, neutral, False),
-        ("Now", current, up_from_low, "", "var(--vg-text)", "var(--vg-text)", True),
-        ("Analyst Target", target, target_upside, "", neutral, neutral, False),
-        ("52W High", high, high_upside, "", "var(--vg-positive)", "var(--vg-positive)", False),
+        ("52W Low", low, None, C_LOW, False),
+        (f"{sma_window}D Avg", sma_price, sma_upside, C_SMA, False),
+        ("Today", current, up_from_low, C_TODAY, True),
+        ("Analyst Target", target, target_upside, C_TARGET, False),
+        ("52W High", high, high_upside, C_HIGH, False),
     ]
     valid = [p for p in points if p[1] is not None]
     if len(valid) < 2:
@@ -251,172 +253,157 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     lo, hi = min(values), max(values)
     span = hi - lo if hi > lo else 1
 
-    # Sorted left-to-right by POSITION, not by identity, so the
-    # above/below alternation always separates the two closest points
-    # regardless of which two they happen to be.
+    # Sorted left-to-right by POSITION, not by identity, so the up/down
+    # alternation always separates the two closest points regardless of
+    # which two they happen to be.
     ordered = sorted(valid, key=lambda p: p[1])
-    marker_pos = [(p[1] - lo) / span * 100 for p in ordered]
 
-    # Labels alternate above/below the track, so immediate neighbours
-    # can never collide. The remaining risk is points TWO apart landing
-    # on the same side within a label's width of each other — the "2 or
-    # 3 signals close together" case. Handled by nudging same-side
-    # labels apart to a minimum gap, left-to-right then right-to-left so
-    # the correction can't push the last one off the edge. The MARKER
-    # stays on its true value; only the label text slides, and a
-    # connector line is drawn whenever the two separate enough to
-    # notice, so a nudged label can't silently misreport its position.
-    #
-    # min_gap is a PERCENTAGE of the scale's container width, but a
-    # label's actual pixel width is roughly fixed (font-size doesn't
-    # scale with the container) — so the same percentage means very
-    # different real clearance depending on how wide the container
-    # renders. At desktop's ~940px price-scale width, 9.5% (~89px) is
-    # comfortably more than any label's ~40-45px width. On mobile the
-    # SAME container measured ~287px wide (SBILIFE.NS in the Nifty 50
-    # market — a real repro case), where 9.5% is only ~27px: less than
-    # a single label's own width, so two labels whose raw positions
-    # "passed" the gap check still visually overlapped — worse than it
-    # sounds, since an edge-anchored label (anchored to the literal
-    # edge, see the anchor logic below) occupies its FULL width
-    # extending inward from that edge, not just a point at its raw
-    # position, so its real footprint is bigger than the gap check
-    # accounts for.
-    #
-    # No single min_gap value is correct at both widths — tried it:
-    # raising the constant enough to fix mobile (30, ~86px at 287px)
-    # ALSO nudges pairs on desktop that were already comfortably spaced
-    # (e.g. ORCL's Low/Now, ~17.6% apart — fine under the old 9.5%
-    # threshold, needlessly displaced and connector-lined under 30%).
-    # So this renders TWO layouts, one tuned per width, and lets a CSS
-    # media query pick the right one for the actual viewport — see the
-    # `<style>` block in the return statement below.
-    def _render_layout(min_gap: float, edge_pct: float) -> str:
-        label_pos = list(marker_pos)
-        for side in (0, 1):
-            idxs = [i for i in range(len(ordered)) if i % 2 == side]
-            for k in range(1, len(idxs)):
-                prev_i, cur_i = idxs[k - 1], idxs[k]
-                if label_pos[cur_i] - label_pos[prev_i] < min_gap:
-                    label_pos[cur_i] = label_pos[prev_i] + min_gap
-            for k in range(len(idxs) - 2, -1, -1):
-                cur_i, next_i = idxs[k], idxs[k + 1]
-                if label_pos[next_i] > 100:
-                    label_pos[next_i] = 100
-                if label_pos[next_i] - label_pos[cur_i] < min_gap:
-                    label_pos[cur_i] = label_pos[next_i] - min_gap
-        label_pos = [min(max(p, 0), 100) for p in label_pos]
+    # Label block width. Fixed and narrow so a long label WRAPS instead
+    # of growing sideways into a neighbour — wrapping spends vertical
+    # space (which the leader system already manages) instead of
+    # horizontal space (which is exactly what runs out when points
+    # cluster).
+    LABEL_W = 88
+    HALF_LABEL = LABEL_W // 2
 
-        parts = []
-        for i, (label, value, pct, suffix, colour, value_colour, is_hero) in enumerate(ordered):
-            mpos = min(max(marker_pos[i], 0.6), 99.4)
-            lpos = label_pos[i]
-            dot = 13 if is_hero else 9
-            parts.append(
-                f'<div style="position:absolute; left:{mpos:.2f}%; top:50%; '
-                f"transform:translate(-50%,-50%); width:{dot}px; height:{dot}px; "
-                f"border-radius:50%; background:{colour}; border:2px solid var(--vg-bg); "
-                f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
-            )
+    # Rough px-per-character for the uppercase 8.5px label line, used
+    # only to predict whether a label will wrap so the block's height
+    # can be estimated for stacking. Slightly generous, so an
+    # unexpected wrap can never cause an overlap.
+    LABEL_CHAR_PX = 5.6
+    LINE_H_LABEL = 12
+    LINE_H_PRICE = 16
+    LINE_H_PCT = 13
 
-            # Labels near an edge anchor to it rather than centring, so a
-            # wide value can only ever grow inward. render_lpos tracks
-            # where the label ACTUALLY renders (0 or 100 once anchored,
-            # not the raw lpos it was anchored FROM) — the connector
-            # below must compare against this, not lpos, or a label
-            # whose true position sits just inside the edge_pct
-            # threshold (near an edge but not pinned to it) silently
-            # jumps to the literal edge with no line bridging the gap
-            # back to its own marker.
-            if lpos <= edge_pct:
-                anchor = "left:0; transform:none; text-align:left;"
-                render_lpos = 0.0
-            elif lpos >= 100 - edge_pct:
-                anchor = "right:0; left:auto; transform:none; text-align:right;"
-                render_lpos = 100.0
-            else:
-                anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
-                render_lpos = lpos
-            offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
+    LEADER_BASE = 14
+    DOT_GAP = 3
 
-            # Connector, only when the label had to move far enough that
-            # the eye would otherwise mis-pair it with the wrong marker.
-            # Colored with the marker's OWN colour, not var(--vg-border)
-            # — that token is #eceef1 on a #ffffff background (~1.04:1
-            # contrast), meant for barely-there structural dividers
-            # elsewhere in the app, not a line whose whole job is to be
-            # seen. Verified live on SBILIFE.NS: the border-token
-            # version rendered geometrically correct but was invisible;
-            # a real user still saw the bug.
-            if abs(render_lpos - mpos) > 1.5:
-                left, right = sorted((mpos, render_lpos))
-                vert = "bottom:calc(50% + 6px); height:14px;" if i % 2 == 0 else "top:calc(50% + 6px); height:14px;"
-                parts.append(
-                    f'<div style="position:absolute; left:{left:.2f}%; width:{right - left:.2f}%; '
-                    f'{vert} border-top:1.5px solid {colour}; opacity:0.55; z-index:1;"></div>'
-                )
+    # Two same-side labels closer than this (in % of track width) are
+    # treated as at risk of touching. LABEL_W is a fixed px width, so
+    # what it costs as a PERCENTAGE depends on how wide the scale
+    # renders. This modal is desktop-first, where the scale measures
+    # roughly 600-1300px depending on viewport, making an 88px label
+    # ~7-15% of the track; 16 covers the narrow end of that range with
+    # a little margin. Deliberately NOT set for phone widths (~287px,
+    # where the same label is ~31%) — doing that over-triggers the
+    # height tiers on desktop and makes the common, uncrowded case
+    # taller than it needs to be.
+    CLOSE_PCT = 16
 
-            pct_html = ""
-            if pct is not None:
-                pct_colour = "var(--vg-positive)" if pct >= 0 else "var(--vg-negative)"
-                shown = f"{pct:+.0f}%" if abs(pct) >= 100 else f"{pct:+.1f}%"
-                pct_html = (
-                    f'<div style="color:{pct_colour}; font-weight:700; font-size:10px; '
-                    f'font-variant-numeric:tabular-nums; line-height:1.3;">{shown}{suffix}</div>'
-                )
-            parts.append(
-                f'<div style="position:absolute; {anchor} {offset} white-space:nowrap; z-index:2;">'
-                f'<div style="color:{colour}; font-size:8.5px; font-weight:700; '
-                f'text-transform:uppercase; letter-spacing:0.05em; line-height:1.35;">{label}</div>'
-                # One size for every value. Size went 16 → 19 → 16 → 13
-                # across three rounds before review settled it:
-                # differentiate "Now" by contrast, not scale. See the
-                # points table above for what carries the emphasis
-                # instead.
-                f'<div style="color:{value_colour}; font-weight:{800 if is_hero else 700}; '
-                f'font-size:11.5px; font-variant-numeric:tabular-nums; '
-                f'line-height:1.25;">{_price(value)}</div>'
-                f"{pct_html}</div>"
-            )
+    # --- Pass 1: position, side, crowding tier, and label height -----
+    placed = []
+    prev_on_side: dict[int, tuple[float, int] | None] = {0: None, 1: None}
+    for i, (label, value, pct, colour, is_hero) in enumerate(ordered):
+        pos = (value - lo) / span * 100
+        side = i % 2  # 0 = label above the track, 1 = below
 
-        return (
-            f'<div style="position:relative; height:100px; margin:0 4px;">'
-            f'<div style="position:absolute; left:0; right:0; top:calc(50% - 1.5px); height:3px; '
-            f'background:var(--vg-border); border-radius:2px;"></div>'
-            f'{"".join(parts)}'
-            f"</div>"
+        # Tier climbs by one for each successive same-side point that
+        # lands within CLOSE_PCT of the previous one, and resets as soon
+        # as a point has room — so a run of 3+ clustered points stacks
+        # at 3+ distinct heights, while an uncrowded scale stays flat.
+        prev = prev_on_side[side]
+        tier = prev[1] + 1 if prev is not None and abs(pos - prev[0]) < CLOSE_PCT else 0
+        prev_on_side[side] = (pos, tier)
+
+        lines = max(1, math.ceil(len(label) * LABEL_CHAR_PX / LABEL_W))
+        label_h = lines * LINE_H_LABEL + LINE_H_PRICE + (LINE_H_PCT if pct is not None else 0)
+
+        placed.append(
+            {
+                "label": label, "value": value, "pct": pct, "colour": colour,
+                "is_hero": is_hero, "pos": pos, "side": side, "tier": tier,
+                "label_h": label_h, "dot": 13 if is_hero else 9,
+            }
         )
 
-    # 9.5 matches this scale's typical ~940px desktop width inside the
-    # "large" dialog (already proven fine there); 30 matches the ~287px
-    # this same dialog measured at on a 375px-wide phone viewport. 640px
-    # is a standard tablet/phone breakpoint sitting well clear of both
-    # measured widths.
-    #
-    # edge_pct is a SEPARATE percentage-vs-pixel mismatch from min_gap
-    # above, caught after shipping the min_gap fix: reported live on
-    # HDFCLIFE.NS and HDFCBANK.NS (Nifty 50, desktop) — "Now" sitting
-    # near its 52-week low flew all the way to the container's literal
-    # left edge despite having plenty of empty room around its actual
-    # dot. The 10% edge-anchor threshold was carried over UNCHANGED
-    # from before any of this width-awareness work, so on a wide
-    # desktop container (measured ~1900px on that report) it reserves
-    # ~190px of "too close to the edge" margin — ~8x more than a
-    # label's real ~20-25px half-width actually needs to avoid
-    # clipping. 5% is right-sized for desktop's width range (≥5%
-    # comfortably prevents clipping down to an ~800px-wide "large"
-    # dialog, the practical floor before the mobile media query takes
-    # over at 640px); mobile keeps 10%, which was already close to
-    # correctly calibrated for its measured ~287px width.
+    # One step must clear the tallest label block outright, or a bumped
+    # label would still land on top of the one it was bumped past.
+    LEADER_STEP = max(p["label_h"] for p in placed) + 8
+
+    # --- Pass 2: how far each side actually reaches ------------------
+    # The container is sized to what the layout genuinely needs, so an
+    # uncrowded scale doesn't reserve room for tiers it never uses.
+    def _reach(side: int) -> float:
+        on_side = [p for p in placed if p["side"] == side]
+        if not on_side:
+            return 40.0
+        return max(
+            p["dot"] / 2 + DOT_GAP + LEADER_BASE + p["tier"] * LEADER_STEP + p["label_h"] + 8
+            for p in on_side
+        )
+
+    reach_up, reach_down = _reach(0), _reach(1)
+    total_h = reach_up + reach_down
+    axis = reach_up  # px from the container's top down to the track
+
+    parts = [
+        f'<div style="position:absolute; left:0; right:0; top:{axis - 1.5:.1f}px; height:3px; '
+        f'background:var(--vg-border); border-radius:2px;"></div>'
+    ]
+
+    for p in placed:
+        # The dot stays on its true value; only the label block is
+        # clamped away from the container's edges.
+        dot_pos = min(max(p["pos"], 0.6), 99.4)
+        half_dot = p["dot"] / 2
+        leader = LEADER_BASE + p["tier"] * LEADER_STEP
+
+        if p["side"] == 0:
+            leader_top = axis - half_dot - DOT_GAP - leader
+            leader_style = f"top:{leader_top:.1f}px; height:{leader:.1f}px;"
+            label_style = f"bottom:{total_h - leader_top:.1f}px;"
+        else:
+            leader_top = axis + half_dot + DOT_GAP
+            leader_style = f"top:{leader_top:.1f}px; height:{leader:.1f}px;"
+            label_style = f"top:{leader_top + leader:.1f}px;"
+
+        # Leader line, in the point's own colour.
+        parts.append(
+            f'<div style="position:absolute; left:{dot_pos:.2f}%; {leader_style} '
+            f"width:1.5px; transform:translateX(-50%); background:{p['colour']}; "
+            f'opacity:0.6; z-index:1;"></div>'
+        )
+
+        # Dot.
+        parts.append(
+            f'<div style="position:absolute; left:{dot_pos:.2f}%; top:{axis:.1f}px; '
+            f"transform:translate(-50%,-50%); width:{p['dot']}px; height:{p['dot']}px; "
+            f"border-radius:50%; background:{p['colour']}; border:2px solid var(--vg-bg); "
+            f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
+        )
+
+        pct_html = ""
+        if p["pct"] is not None:
+            pct_colour = "var(--vg-positive)" if p["pct"] >= 0 else "var(--vg-negative)"
+            shown = f"{p['pct']:+.0f}%" if abs(p["pct"]) >= 100 else f"{p['pct']:+.1f}%"
+            pct_html = (
+                f'<div style="color:{pct_colour}; font-weight:700; font-size:10px; '
+                f'font-variant-numeric:tabular-nums; line-height:1.3;">{shown}</div>'
+            )
+
+        # Label block, centred on its leader. clamp() slides it only as
+        # far as needed to keep it from clipping past a container edge —
+        # it stays attached to its own leader instead of jumping to the
+        # edge, and because the browser resolves this against the
+        # container's REAL rendered width it needs no separate
+        # desktop/mobile tuning.
+        parts.append(
+            f'<div style="position:absolute; {label_style} '
+            f"left:clamp({HALF_LABEL}px, {dot_pos:.2f}%, calc(100% - {HALF_LABEL}px)); "
+            f"transform:translateX(-50%); width:{LABEL_W}px; text-align:center; "
+            f'z-index:2;">'
+            f'<div style="color:{p["colour"]}; font-size:8.5px; font-weight:700; '
+            f'text-transform:uppercase; letter-spacing:0.05em; line-height:1.35;">{p["label"]}</div>'
+            f'<div style="color:{p["colour"]}; font-weight:{800 if p["is_hero"] else 700}; '
+            f'font-size:{12.5 if p["is_hero"] else 11.5}px; font-variant-numeric:tabular-nums; '
+            f'line-height:1.25;">{_price(p["value"])}</div>'
+            f"{pct_html}</div>"
+        )
+
     return (
-        "<style>"
-        ".vg-scale-desktop{display:block;} .vg-scale-mobile{display:none;}"
-        "@media (max-width: 640px) {"
-        " .vg-scale-desktop{display:none;} .vg-scale-mobile{display:block;}"
-        "}"
-        "</style>"
-        f'<div class="vg-scale-desktop">{_render_layout(9.5, 5)}</div>'
-        f'<div class="vg-scale-mobile">{_render_layout(30, 10)}</div>'
+        f'<div style="position:relative; height:{total_h:.0f}px; margin:0 4px;">'
+        f'{"".join(parts)}'
+        f"</div>"
     )
 
 

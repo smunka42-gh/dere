@@ -923,6 +923,15 @@ def inject_theme_css(*, wide: bool = True) -> None:
             font-variant-numeric: tabular-nums;
             margin-top: 14px;
             line-height: 1.15;
+            /* Accent blue, matching the "Today" point on the detail
+               modal's price scale — the current price is the same
+               quantity in both places, so it carries one colour
+               identity across the app rather than being near-black
+               here and blue there. Safe to use the accent for a raw
+               number in this one case: it IS the reference price every
+               upside figure is quoted against, not one of those upside
+               figures (which stay green/red per _ACCENT's note). */
+            color: var(--vg-accent);
         }}
         /* 52-week range bar — sits between the price and the upside
            stats, showing where today's close falls between the 52w low
