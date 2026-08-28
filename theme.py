@@ -80,7 +80,7 @@ import streamlit as st
 # others). Kept as ONE constant here, used everywhere the brand name
 # appears, so renaming later is a one-line change instead of a find/
 # replace across every file.
-APP_NAME = "Vantage"
+APP_NAME = "Vantage Screener"
 
 # Color tokens for the theme. Named by MEANING, not by literal color,
 # so if a shade ever changes, every place that uses it for that reason
@@ -1074,9 +1074,43 @@ def inject_theme_css() -> None:
         }}
         /* The disclaimer, demoted from a 144px yellow st.warning slab at
            the very top of the page to one quiet line — the mockup's
-           treatment. The full text still lives at the bottom of the
-           page and on the Methodology page; nothing was deleted, it
-           just stopped being the first thing you see. */
+           treatment. The full text lives on its own Disclaimer page and
+           in the footer; nothing was deleted, it just stopped being the
+           first thing you see. */
+        .vg-nav-disclaimer {{
+            font-size: 12px;
+            color: var(--vg-text-muted);
+            font-weight: 500;
+        }}
+        /* Disclaimer link — same treatment as the Methodology link below,
+           mirrored to the LEFT (flex-start, not flex-end) since it sits
+           in the row's first pair of columns rather than the last. */
+        [class*="st-key-disclaimer-link"] [data-testid="stElementContainer"] {{
+            width: 100% !important;
+            align-self: stretch !important;
+        }}
+        [class*="st-key-disclaimer-link"] [data-testid="stPageLink"] {{
+            width: 100% !important;
+        }}
+        [class*="st-key-disclaimer-link"] [data-testid="stPageLink"] a {{
+            width: 100% !important;
+            justify-content: flex-start;
+            padding: 0 !important;
+            background: transparent !important;
+        }}
+        [class*="st-key-disclaimer-link"] [data-testid="stPageLink"] a p {{
+            font-size: 11.5px !important;
+            font-weight: 600 !important;
+            color: var(--vg-text-muted) !important;
+        }}
+        [class*="st-key-disclaimer-link"] [data-testid="stPageLink"] a:hover p {{
+            color: var(--vg-accent) !important;
+            text-decoration: underline;
+        }}
+        /* Methodology link — small, right-aligned, sharing a row with
+           the fine print under the header. Sized to read as a quiet
+           nav link, the way the Option 3 mockup's header links did,
+           not as a button. */
         /* Methodology link — small, right-aligned, sharing a row with
            the fine print under the header. Sized to read as a quiet
            nav link, the way the Option 3 mockup's header links did,

@@ -1,19 +1,22 @@
-# Vantage
+# Vantage Screener
 
-A single-page stock screener over the S&P 500. It ranks companies by a
-blended **Composite Upside %** — a weighted mix of upside to a moving
-average, to the 52-week high, and to the analyst median target — so a
-daily glance is enough to see whether anything is worth a closer look.
+A single-page stock screener over two equity markets — S&P 500 and Nifty
+50. It ranks companies by a blended **Composite Upside %** — a weighted
+mix of upside to a moving average, to the 52-week high, and to the
+analyst median target — so a daily glance is enough to see whether
+anything is worth a closer look.
 
-**Live:** https://6xhvo37ogfbxw64d7vtnbk.streamlit.app/
+**Live:** https://vantagescreener.streamlit.app/
 
 ## How it works
 
-A nightly scan (`run_daily_scan.py`) fetches every S&P 500 ticker once and
-writes `output/latest_scan.json`. The app reads only that file, so filters
-re-score ~500 tickers as pure arithmetic with no live API calls. A
-scheduled GitHub Action refreshes the data each weekday at 17:00 New York
-time, one hour after the market close.
+A nightly scan (`run_daily_scan.py`) fetches every ticker in every
+configured market once and writes one JSON file per market
+(`output/latest_scan_<market>.json` — see `markets.py`). The app reads
+only the file for the selected market, so filters re-score its tickers as
+pure arithmetic with no live API calls. A scheduled GitHub Action
+refreshes the data each weekday at 17:00 New York time, one hour after
+the US market close.
 
 See [DESIGN_DOC.md](DESIGN_DOC.md) for the architecture, the scoring
 methodology, and the Streamlit constraints worth knowing before changing

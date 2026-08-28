@@ -52,7 +52,7 @@ MAX_BANNER_NAME_LENGTH = 40
 # layout="wide" gives the heatmap and focus-list cards real horizontal
 # room — part of the "Minimal Data-First" visual direction review
 # picked.
-st.set_page_config(page_title=f"{APP_NAME} — Daily Equity Recommendations", page_icon="📈", layout="wide")
+st.set_page_config(page_title=f"{APP_NAME} — Daily Scan", page_icon="📈", layout="wide")
 # Must run immediately after set_page_config, before any other widget —
 # see theme.py for why.
 inject_theme_css()
@@ -892,36 +892,41 @@ else:
 # script's output instead of a product). The mark is three CSS bars
 # rather than the mockup's <svg>, which Streamlit sanitizes away.
 #
-# Laid out as columns rather than a single st.html block so the
-# Methodology link can sit in the nav row itself, where a nav link
-# belongs.
+# TWO rows, not one: the brand alone on its own row, then a second row
+# split left (a quiet disclaimer note + link to the full legal-style
+# Disclaimer page) / right (scan meta + Methodology link). Added once
+# the site started being shared beyond friends — strangers with no
+# context need the disclaimer visible without scrolling, but a full
+# yellow warning slab (the ORIGINAL header, before it was cut) was
+# explicitly what made the page read as amateurish. Splitting the
+# disclaimer onto its own quiet row is the middle ground: real
+# visibility without reintroducing that look.
 #
-# The meta line is kept to ONE line on purpose: as two lines it is taller
-# than the brand and the link either side of it, and vertical centring
-# then aligns the link with the gap BETWEEN the two lines rather than
-# with any text.
+# The meta/link rows are kept to ONE line each on purpose: as two lines
+# a block is taller than its row-mates, and vertical centring then
+# aligns a neighbour with the GAP between two lines rather than with
+# any text — the exact bug hit once already when this was a single row.
 #
-# It stays an st.page_link rather than an <a> in the markup: an anchor
-# does a full browser reload, page_link navigates client-side and keeps
-# scroll position and session state.
+# Every page_link (not a plain <a> in the markup) for the same reason:
+# an anchor does a full browser reload, page_link navigates client-side
+# and keeps scroll position and session state.
 with st.container(key="navrow"):
-    brand_col, meta_col, nav_link_col = st.columns([2, 5, 1], vertical_alignment="center")
-    with brand_col:
-        st.html(
-            f'<div class="vg-brand">'
-            f'<div class="vg-mark"><span style="height:8px"></span>'
-            f'<span style="height:13px"></span><span style="height:18px"></span></div>'
-            f'<div class="vg-wordmark">{APP_NAME}</div></div>'
-        )
+    st.html(
+        f'<div class="vg-brand">'
+        f'<div class="vg-mark"><span style="height:8px"></span>'
+        f'<span style="height:13px"></span><span style="height:18px"></span></div>'
+        f'<div class="vg-wordmark">{APP_NAME}</div></div>'
+    )
+    disc_text_col, disc_link_col, meta_col, nav_link_col = st.columns(
+        [2.5, 1.3, 4, 1.3], vertical_alignment="center"
+    )
+    with disc_text_col:
+        st.html('<div class="vg-nav-disclaimer">Not financial advice</div>')
+    with disc_link_col:
+        with st.container(key="disclaimer-link"):
+            st.page_link("pages/2_Disclaimer.py", label="Full disclaimer")
     with meta_col:
-        # ONE line, not two. As a two-line block the meta
-        # was taller than the brand and the Methodology link either
-        # side of it, so vertical centring put the link level with the
-        # GAP BETWEEN the two lines — every element measured centred to
-        # within 1px, yet it read as misaligned because the link lined
-        # up with no actual text. One line makes the row genuinely one
-        # line, and the alignment problem stops existing.
-        st.html(f'<div class="vg-nav-meta">Daily Equity Recommendations · {scan_meta}</div>')
+        st.html(f'<div class="vg-nav-meta">{scan_meta}</div>')
     with nav_link_col:
         with st.container(key="methodology-link"):
             st.page_link("pages/1_Methodology.py", label="Methodology")
@@ -1023,6 +1028,11 @@ with st.form("filters_form"):
             options=[label for label, _ in market.cap_range_options],
             value=st.session_state.applied_filters["cap_range"],
             key="filt_cap_range",
+            help=(
+                "Market capitalization — share price × total shares "
+                "outstanding, roughly a company's total value. Only "
+                "stocks within this range are considered."
+            ),
         )
 
     with row1_col2:
@@ -1056,6 +1066,13 @@ with st.form("filters_form"):
             options=SMA_WINDOW_OPTIONS,
             value=st.session_state.applied_filters["sma_window"],
             key="filt_sma_window",
+            help=(
+                "The average closing price over the last 50 (or 200) "
+                "trading days — a standard way to see a stock's recent "
+                "typical price, smoothing out day-to-day noise. Used to "
+                "check whether today's price has genuinely pulled back, "
+                "not just dipped for a day."
+            ),
         )
 
     with row1_col4:
@@ -1064,6 +1081,14 @@ with st.form("filters_form"):
             min_value=0, max_value=60,
             value=st.session_state.applied_filters["composite_cutoff"], step=1,
             key="filt_composite_cutoff",
+            help=(
+                "Composite Upside % blends three measures of \"room "
+                "to grow\" — upside to the moving average, to the "
+                "52-week high, and to the analyst price target — into "
+                "one score. Only stocks scoring at or above this "
+                "minimum are shown. Full formula on the Methodology "
+                "page."
+            ),
         )
 
     # Row 2: the 3 weight sliders side by side, not stacked (
@@ -1100,11 +1125,20 @@ with st.form("filters_form"):
         """
         return int(round(weight * 100 / 5) * 5)
     with w_col1:
-        w_avg_raw = st.slider(f"{sma_window_input}-day avg", 0, 100, _to_step5(prev_w_avg), step=5, key="filt_w_avg")
+        w_avg_raw = st.slider(
+            f"{sma_window_input}-day avg", 0, 100, _to_step5(prev_w_avg), step=5, key="filt_w_avg",
+            help="How much weight the moving-average component carries in the blended Composite Upside % score.",
+        )
     with w_col2:
-        w_peak_raw = st.slider("52-week high", 0, 100, _to_step5(prev_w_peak), step=5, key="filt_w_peak")
+        w_peak_raw = st.slider(
+            "52-week high", 0, 100, _to_step5(prev_w_peak), step=5, key="filt_w_peak",
+            help="How much weight the 52-week-high component carries in the blended score.",
+        )
     with w_col3:
-        w_target_raw = st.slider("Analyst target", 0, 100, _to_step5(prev_w_target), step=5, key="filt_w_target")
+        w_target_raw = st.slider(
+            "Analyst target", 0, 100, _to_step5(prev_w_target), step=5, key="filt_w_target",
+            help="How much weight the analyst target-price component carries in the blended score.",
+        )
     with w_submit:
         # An arrow rather than "Apply Filters". `help` is kept here (unlike
         # the cards' bare "+") because a lone arrow inside a form gives no
