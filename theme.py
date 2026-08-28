@@ -333,14 +333,20 @@ def inject_theme_css() -> None:
             line-height: 1.3 !important;
         }}
         /* Panel sub-heading inside the form, styled to match the h3
-           above it. */
+           above it. The hairline above it (only usage today: the
+           Composite Upside weights row) is the same border-top/padding
+           treatment as the nav row's own divider, so the panel's two
+           rows of controls read as visually distinct groups rather than
+           one continuous block. */
         .vg-panel-label {{
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--vg-text-muted);
-            padding: 0;
+            padding: 10px 0 0 0;
+            margin-top: 6px;
+            border-top: 1px solid var(--vg-border);
             line-height: 1.3;
         }}
 
