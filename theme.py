@@ -932,6 +932,17 @@ def inject_theme_css() -> None:
             padding-top: 10px;
             border-top: 1px solid var(--vg-border);
         }}
+        /* Left-aligned text in an equal-width grid leaves each column's
+           slack space on ITS right — invisible for columns 1-2 since that
+           space just bleeds into the next column, but column 3 has no
+           next column to bleed into, so its text reads as adrift from
+           the card's own right edge instead of anchored to it. Bookend
+           the row instead: first column anchors left, last anchors
+           right (matching the card's left/right padding symmetrically),
+           middle stays centered between them. */
+        .vg-card-stats > div:first-child {{ text-align: left; }}
+        .vg-card-stats > div:nth-child(2) {{ text-align: center; }}
+        .vg-card-stats > div:last-child {{ text-align: right; }}
         .vg-stat-label {{
             font-size: 10.5px;
             font-weight: 600;
