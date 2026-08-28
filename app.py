@@ -1,10 +1,11 @@
 """
 Vantage — main page.
 
-Streamlit entry point. Reads the results of the most recent scan
-(written by run_daily_scan.py to output/latest_scan.json) and renders
-them; it never fetches market data itself, so every filter is arithmetic
-over already-loaded numbers and responds instantly.
+Streamlit entry point. Reads the results of the most recent scan for
+the selected market (written by run_daily_scan.py to
+output/latest_scan_<market>.json) and renders them; it never fetches
+market data itself, so every filter is arithmetic over already-loaded
+numbers and responds instantly.
 
 Page structure, top to bottom:
 
@@ -31,6 +32,7 @@ from datetime import datetime, timezone
 
 import streamlit as st
 
+import analytics
 from sp500_tickers import DUPLICATE_SHARE_CLASSES_TO_DROP
 from markets import MARKETS, DEFAULT_MARKET_ID
 from recommendation_logic import (
@@ -54,6 +56,15 @@ st.set_page_config(page_title=f"{APP_NAME} — Daily Equity Recommendations", pa
 # Must run immediately after set_page_config, before any other widget —
 # see theme.py for why.
 inject_theme_css()
+
+# ?analytics=on shows the usage dashboard INSTEAD OF the normal page —
+# checked before any scan loading or market resolution, since the
+# dashboard doesn't need either. See analytics.py for what this tracks
+# and why it's a hand-rolled counter rather than a third-party package.
+if analytics.is_dashboard_requested():
+    analytics.render_dashboard()
+    st.stop()
+analytics.track_page_view()
 
 
 def load_scan_results(market) -> dict | None:
@@ -470,6 +481,7 @@ def render_focus_card(r: dict, sma_window: int, weights: tuple[float, float, flo
         # wants "just a + sign"; a "+" in a card's corner is a
         # well-understood affordance on its own.
         if st.button("+", key=f"detailbtn-{r['ticker']}"):
+            analytics.track_card_opened(r["ticker"])
             show_detail_dialog(r, sma_window, weights, market)
 
 
@@ -937,6 +949,7 @@ picked_market_id = st.radio(
     horizontal=True,
 )
 if picked_market_id != st.session_state.selected_market_id:
+    analytics.track_market_selected(picked_market_id)
     new_market = MARKETS[picked_market_id]
     st.session_state.selected_market_id = picked_market_id
     # Filters reset to the NEW market's own defaults rather than trying
@@ -1102,6 +1115,7 @@ with st.form("filters_form"):
         )
 
 if submitted:
+    analytics.track_filters_applied()
     weight_total = w_avg_raw + w_peak_raw + w_target_raw
     if weight_total == 0:
         # All three dragged to 0 — fall back to the locked-in defaults
