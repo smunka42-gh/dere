@@ -309,13 +309,19 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
         offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
 
         # Connector, only when the label had to move far enough that the
-        # eye would otherwise mis-pair it with the wrong marker.
+        # eye would otherwise mis-pair it with the wrong marker. Colored
+        # with the marker's OWN colour, not var(--vg-border) — that
+        # token is #eceef1 on a #ffffff background (~1.04:1 contrast),
+        # meant for barely-there structural dividers elsewhere in the
+        # app, not a line whose whole job is to be seen. Verified live
+        # on SBILIFE.NS: the border-token version rendered geometrically
+        # correct but was invisible; a real user still saw the bug.
         if abs(render_lpos - mpos) > 1.5:
             left, right = sorted((mpos, render_lpos))
             vert = "bottom:calc(50% + 6px); height:14px;" if i % 2 == 0 else "top:calc(50% + 6px); height:14px;"
             parts.append(
                 f'<div style="position:absolute; left:{left:.2f}%; width:{right - left:.2f}%; '
-                f'{vert} border-top:1px solid var(--vg-border); z-index:1;"></div>'
+                f'{vert} border-top:1.5px solid {colour}; opacity:0.55; z-index:1;"></div>'
             )
 
         pct_html = ""
