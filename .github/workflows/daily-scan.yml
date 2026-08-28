@@ -15,9 +15,8 @@ name: Daily scan
 on:
   schedule:
     # GitHub cron is UTC ONLY and does not follow daylight saving, so a
-    # single expression cannot stay at 17:00 New York year-round.
-    # Both times below are scheduled and the job gates on the real local
-    # hour, so exactly one of them proceeds on any given day.
+    # single expression cannot stay at 17:00 New York year-round. Both
+    # times below fire; the gate below decides which one actually scans.
     - cron: "0 21 * * 1-5"   # 17:00 America/New_York while EDT
     - cron: "0 22 * * 1-5"   # 17:00 America/New_York while EST
   workflow_dispatch:          # allows a manual run from the Actions tab
@@ -36,26 +35,85 @@ jobs:
     timeout-minutes: 45       # a full 500-ticker S&P 500 scan is the long pole; Nifty 50 adds a minute or so on top
 
     steps:
-      - name: Decide whether this is the 17:00 Eastern run
-        id: gate
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "Manual run — proceeding."
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          HOUR=$(TZ=America/New_York date +%H)
-          if [ "$HOUR" = "17" ]; then
-            echo "Eastern time is ${HOUR}:00 — proceeding."
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Eastern time is ${HOUR}:00, not 17:00 — this is the"
-            echo "other DST schedule firing. Skipping."
-            echo "proceed=false" >> "$GITHUB_OUTPUT"
-          fi
-
+      # Checkout runs FIRST, unconditionally, because the gate below has
+      # to read the currently-committed scan to decide anything.
       - uses: actions/checkout@v4
-        if: steps.gate.outputs.proceed == 'true'
+
+      - name: Decide whether this run should scan
+        id: gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          # python3 (not python) — this deliberately runs BEFORE
+          # setup-python, so only the runner image's system interpreter
+          # is available. Diagnostics go to stderr so they show up in the
+          # log; only the key=value line reaches $GITHUB_OUTPUT, which
+          # rejects anything else.
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, pathlib, sys
+          from datetime import datetime, timezone, timedelta
+
+          def log(msg):
+              print(msg, file=sys.stderr)
+
+          if os.environ.get("EVENT_NAME") == "workflow_dispatch":
+              # A human asked for it explicitly — always honour that,
+              # including a same-day re-run to pick up corrected data.
+              log("Manual run — proceeding.")
+              print("proceed=true")
+              raise SystemExit(0)
+
+          # WHY THIS IS NOT AN "IS IT 17:00 IN NEW YORK?" CHECK
+          #
+          # It used to be, and that silently broke the whole schedule.
+          # GitHub does not guarantee scheduled runs fire on time — under
+          # load they are delayed by hours or dropped outright. Observed
+          # here: runs scheduled for 21:00 UTC actually executed at ~05:00
+          # UTC, by which point New York read 01:00, so the hour check
+          # rejected them and the job exited in 7 seconds having done
+          # nothing. It reported SUCCESS every time, so the site just went
+          # quietly stale while the Actions tab looked healthy.
+          #
+          # Gating on STATE instead of on the clock removes that whole
+          # class of failure: ask "is the committed scan still missing
+          # today's close?", which is true regardless of when the runner
+          # happens to wake up.
+          NY = timezone(timedelta(hours=-4))  # see note below on DST
+          # America/New_York is not available as a stdlib name on every
+          # runner image without tzdata, and the exact offset does not
+          # matter here: this is only used to derive a DATE and to ask
+          # whether the US close (16:00 local) has passed. An hour of
+          # drift either way cannot change either answer except within a
+          # single hour around midnight, where a missed day is picked up
+          # by the >=2-day catch-up rule below anyway.
+          now = datetime.now(timezone.utc).astimezone(NY)
+
+          scan_path = pathlib.Path("output/latest_scan_sp500.json")
+          scan = json.loads(scan_path.read_text())
+          scanned_at = datetime.fromisoformat(scan["scan_timestamp_utc"]).astimezone(NY)
+
+          days_behind = (now.date() - scanned_at.date()).days
+          log(f"committed scan: {scanned_at.date()}  now: {now.date()} "
+              f"({now:%H:%M} local)  days behind: {days_behind}")
+
+          if days_behind <= 0:
+              # Already has today's data. This is what stops the second
+              # DST cron from re-scanning an hour after the first.
+              proceed, why = False, "already scanned today"
+          elif days_behind == 1 and now.hour < 16:
+              # One day behind, but today's close hasn't happened yet —
+              # there is genuinely nothing newer to fetch. Catches a run
+              # delayed into the small hours of the next morning.
+              proceed, why = False, "today's close has not happened yet"
+          else:
+              # Either it is after today's close, or we are two or more
+              # days behind (a missed day, a long outage) — in which case
+              # scan regardless of the hour to catch back up.
+              proceed, why = True, "scan is behind and the latest close is available"
+
+          log(f"decision: {'PROCEED' if proceed else 'SKIP'} — {why}")
+          print(f"proceed={'true' if proceed else 'false'}")
+          PY
 
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.proceed == 'true'
