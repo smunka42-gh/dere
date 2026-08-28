@@ -261,97 +261,141 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     # stays on its true value; only the label text slides, and a
     # connector line is drawn whenever the two separate enough to
     # notice, so a nudged label can't silently misreport its position.
-    MIN_GAP = 9.5
-    label_pos = list(marker_pos)
-    for side in (0, 1):
-        idxs = [i for i in range(len(ordered)) if i % 2 == side]
-        for k in range(1, len(idxs)):
-            prev_i, cur_i = idxs[k - 1], idxs[k]
-            if label_pos[cur_i] - label_pos[prev_i] < MIN_GAP:
-                label_pos[cur_i] = label_pos[prev_i] + MIN_GAP
-        for k in range(len(idxs) - 2, -1, -1):
-            cur_i, next_i = idxs[k], idxs[k + 1]
-            if label_pos[next_i] > 100:
-                label_pos[next_i] = 100
-            if label_pos[next_i] - label_pos[cur_i] < MIN_GAP:
-                label_pos[cur_i] = label_pos[next_i] - MIN_GAP
-    label_pos = [min(max(p, 0), 100) for p in label_pos]
+    #
+    # min_gap is a PERCENTAGE of the scale's container width, but a
+    # label's actual pixel width is roughly fixed (font-size doesn't
+    # scale with the container) — so the same percentage means very
+    # different real clearance depending on how wide the container
+    # renders. At desktop's ~940px price-scale width, 9.5% (~89px) is
+    # comfortably more than any label's ~40-45px width. On mobile the
+    # SAME container measured ~287px wide (SBILIFE.NS in the Nifty 50
+    # market — a real repro case), where 9.5% is only ~27px: less than
+    # a single label's own width, so two labels whose raw positions
+    # "passed" the gap check still visually overlapped — worse than it
+    # sounds, since an edge-anchored label (anchored to the literal
+    # edge, see the anchor logic below) occupies its FULL width
+    # extending inward from that edge, not just a point at its raw
+    # position, so its real footprint is bigger than the gap check
+    # accounts for.
+    #
+    # No single min_gap value is correct at both widths — tried it:
+    # raising the constant enough to fix mobile (30, ~86px at 287px)
+    # ALSO nudges pairs on desktop that were already comfortably spaced
+    # (e.g. ORCL's Low/Now, ~17.6% apart — fine under the old 9.5%
+    # threshold, needlessly displaced and connector-lined under 30%).
+    # So this renders TWO layouts, one tuned per width, and lets a CSS
+    # media query pick the right one for the actual viewport — see the
+    # `<style>` block in the return statement below.
+    def _render_layout(min_gap: float) -> str:
+        label_pos = list(marker_pos)
+        for side in (0, 1):
+            idxs = [i for i in range(len(ordered)) if i % 2 == side]
+            for k in range(1, len(idxs)):
+                prev_i, cur_i = idxs[k - 1], idxs[k]
+                if label_pos[cur_i] - label_pos[prev_i] < min_gap:
+                    label_pos[cur_i] = label_pos[prev_i] + min_gap
+            for k in range(len(idxs) - 2, -1, -1):
+                cur_i, next_i = idxs[k], idxs[k + 1]
+                if label_pos[next_i] > 100:
+                    label_pos[next_i] = 100
+                if label_pos[next_i] - label_pos[cur_i] < min_gap:
+                    label_pos[cur_i] = label_pos[next_i] - min_gap
+        label_pos = [min(max(p, 0), 100) for p in label_pos]
 
-    parts = []
-    for i, (label, value, pct, suffix, colour, value_colour, is_hero) in enumerate(ordered):
-        mpos = min(max(marker_pos[i], 0.6), 99.4)
-        lpos = label_pos[i]
-        dot = 13 if is_hero else 9
-        parts.append(
-            f'<div style="position:absolute; left:{mpos:.2f}%; top:50%; '
-            f"transform:translate(-50%,-50%); width:{dot}px; height:{dot}px; "
-            f"border-radius:50%; background:{colour}; border:2px solid var(--vg-bg); "
-            f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
-        )
-
-        # Labels near an edge anchor to it rather than centring, so a
-        # wide value can only ever grow inward. render_lpos tracks where
-        # the label ACTUALLY renders (0 or 100 once anchored, not the
-        # raw lpos it was anchored FROM) — the connector below must
-        # compare against this, not lpos, or a label whose true
-        # position sits just inside the 10%/90% threshold (near an
-        # edge but not pinned to it) silently jumps to the literal edge
-        # with no line bridging the gap back to its own marker.
-        if lpos <= 10:
-            anchor = "left:0; transform:none; text-align:left;"
-            render_lpos = 0.0
-        elif lpos >= 90:
-            anchor = "right:0; left:auto; transform:none; text-align:right;"
-            render_lpos = 100.0
-        else:
-            anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
-            render_lpos = lpos
-        offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
-
-        # Connector, only when the label had to move far enough that the
-        # eye would otherwise mis-pair it with the wrong marker. Colored
-        # with the marker's OWN colour, not var(--vg-border) — that
-        # token is #eceef1 on a #ffffff background (~1.04:1 contrast),
-        # meant for barely-there structural dividers elsewhere in the
-        # app, not a line whose whole job is to be seen. Verified live
-        # on SBILIFE.NS: the border-token version rendered geometrically
-        # correct but was invisible; a real user still saw the bug.
-        if abs(render_lpos - mpos) > 1.5:
-            left, right = sorted((mpos, render_lpos))
-            vert = "bottom:calc(50% + 6px); height:14px;" if i % 2 == 0 else "top:calc(50% + 6px); height:14px;"
+        parts = []
+        for i, (label, value, pct, suffix, colour, value_colour, is_hero) in enumerate(ordered):
+            mpos = min(max(marker_pos[i], 0.6), 99.4)
+            lpos = label_pos[i]
+            dot = 13 if is_hero else 9
             parts.append(
-                f'<div style="position:absolute; left:{left:.2f}%; width:{right - left:.2f}%; '
-                f'{vert} border-top:1.5px solid {colour}; opacity:0.55; z-index:1;"></div>'
+                f'<div style="position:absolute; left:{mpos:.2f}%; top:50%; '
+                f"transform:translate(-50%,-50%); width:{dot}px; height:{dot}px; "
+                f"border-radius:50%; background:{colour}; border:2px solid var(--vg-bg); "
+                f'box-shadow:0 0 0 1px var(--vg-border); z-index:3;"></div>'
             )
 
-        pct_html = ""
-        if pct is not None:
-            pct_colour = "var(--vg-positive)" if pct >= 0 else "var(--vg-negative)"
-            shown = f"{pct:+.0f}%" if abs(pct) >= 100 else f"{pct:+.1f}%"
-            pct_html = (
-                f'<div style="color:{pct_colour}; font-weight:700; font-size:10px; '
-                f'font-variant-numeric:tabular-nums; line-height:1.3;">{shown}{suffix}</div>'
+            # Labels near an edge anchor to it rather than centring, so a
+            # wide value can only ever grow inward. render_lpos tracks
+            # where the label ACTUALLY renders (0 or 100 once anchored,
+            # not the raw lpos it was anchored FROM) — the connector
+            # below must compare against this, not lpos, or a label
+            # whose true position sits just inside the 10%/90%
+            # threshold (near an edge but not pinned to it) silently
+            # jumps to the literal edge with no line bridging the gap
+            # back to its own marker.
+            if lpos <= 10:
+                anchor = "left:0; transform:none; text-align:left;"
+                render_lpos = 0.0
+            elif lpos >= 90:
+                anchor = "right:0; left:auto; transform:none; text-align:right;"
+                render_lpos = 100.0
+            else:
+                anchor = f"left:{lpos:.2f}%; transform:translateX(-50%); text-align:center;"
+                render_lpos = lpos
+            offset = "bottom:56px;" if i % 2 == 0 else "top:56px;"
+
+            # Connector, only when the label had to move far enough that
+            # the eye would otherwise mis-pair it with the wrong marker.
+            # Colored with the marker's OWN colour, not var(--vg-border)
+            # — that token is #eceef1 on a #ffffff background (~1.04:1
+            # contrast), meant for barely-there structural dividers
+            # elsewhere in the app, not a line whose whole job is to be
+            # seen. Verified live on SBILIFE.NS: the border-token
+            # version rendered geometrically correct but was invisible;
+            # a real user still saw the bug.
+            if abs(render_lpos - mpos) > 1.5:
+                left, right = sorted((mpos, render_lpos))
+                vert = "bottom:calc(50% + 6px); height:14px;" if i % 2 == 0 else "top:calc(50% + 6px); height:14px;"
+                parts.append(
+                    f'<div style="position:absolute; left:{left:.2f}%; width:{right - left:.2f}%; '
+                    f'{vert} border-top:1.5px solid {colour}; opacity:0.55; z-index:1;"></div>'
+                )
+
+            pct_html = ""
+            if pct is not None:
+                pct_colour = "var(--vg-positive)" if pct >= 0 else "var(--vg-negative)"
+                shown = f"{pct:+.0f}%" if abs(pct) >= 100 else f"{pct:+.1f}%"
+                pct_html = (
+                    f'<div style="color:{pct_colour}; font-weight:700; font-size:10px; '
+                    f'font-variant-numeric:tabular-nums; line-height:1.3;">{shown}{suffix}</div>'
+                )
+            parts.append(
+                f'<div style="position:absolute; {anchor} {offset} white-space:nowrap; z-index:2;">'
+                f'<div style="color:{colour}; font-size:8.5px; font-weight:700; '
+                f'text-transform:uppercase; letter-spacing:0.05em; line-height:1.35;">{label}</div>'
+                # One size for every value. Size went 16 → 19 → 16 → 13
+                # across three rounds before review settled it:
+                # differentiate "Now" by contrast, not scale. See the
+                # points table above for what carries the emphasis
+                # instead.
+                f'<div style="color:{value_colour}; font-weight:{800 if is_hero else 700}; '
+                f'font-size:11.5px; font-variant-numeric:tabular-nums; '
+                f'line-height:1.25;">{_price(value)}</div>'
+                f"{pct_html}</div>"
             )
-        parts.append(
-            f'<div style="position:absolute; {anchor} {offset} white-space:nowrap; z-index:2;">'
-            f'<div style="color:{colour}; font-size:8.5px; font-weight:700; '
-            f'text-transform:uppercase; letter-spacing:0.05em; line-height:1.35;">{label}</div>'
-            # One size for every value. Size went 16 → 19 → 16 → 13 across
-            # three rounds before review settled it: differentiate "Now"
-            # by contrast, not scale. See the points table above for what
-            # carries the emphasis instead.
-            f'<div style="color:{value_colour}; font-weight:{800 if is_hero else 700}; '
-            f'font-size:11.5px; font-variant-numeric:tabular-nums; '
-            f'line-height:1.25;">{_price(value)}</div>'
-            f"{pct_html}</div>"
+
+        return (
+            f'<div style="position:relative; height:100px; margin:0 4px;">'
+            f'<div style="position:absolute; left:0; right:0; top:calc(50% - 1.5px); height:3px; '
+            f'background:var(--vg-border); border-radius:2px;"></div>'
+            f'{"".join(parts)}'
+            f"</div>"
         )
 
+    # 9.5 matches this scale's typical ~940px desktop width inside the
+    # "large" dialog (already proven fine there); 30 matches the ~287px
+    # this same dialog measured at on a 375px-wide phone viewport. 640px
+    # is a standard tablet/phone breakpoint sitting well clear of both
+    # measured widths.
     return (
-        f'<div style="position:relative; height:100px; margin:0 4px;">'
-        f'<div style="position:absolute; left:0; right:0; top:calc(50% - 1.5px); height:3px; '
-        f'background:var(--vg-border); border-radius:2px;"></div>'
-        f'{"".join(parts)}'
-        f"</div>"
+        "<style>"
+        ".vg-scale-desktop{display:block;} .vg-scale-mobile{display:none;}"
+        "@media (max-width: 640px) {"
+        " .vg-scale-desktop{display:none;} .vg-scale-mobile{display:block;}"
+        "}"
+        "</style>"
+        f'<div class="vg-scale-desktop">{_render_layout(9.5)}</div>'
+        f'<div class="vg-scale-mobile">{_render_layout(30)}</div>'
     )
 
 
