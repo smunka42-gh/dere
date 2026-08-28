@@ -1,29 +1,29 @@
 {
-  "scan_timestamp_utc": "2026-08-27T23:12:01.167522+00:00",
+  "scan_timestamp_utc": "2026-08-28T23:49:41.668370+00:00",
   "market_id": "nifty50",
   "tickers_scanned": 50,
   "tickers_with_errors": 0,
   "errors": [],
-  "total_recommendations": 7,
+  "total_recommendations": 6,
   "recommendations": [
     {
       "ticker": "AXISBANK.NS",
       "company_name": "AXIS BANK LIMITED",
-      "market_cap": 3910032162816,
+      "market_cap": 3938049851392,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1255.0,
-      "recent_avg_price": 1292.91,
-      "upside_to_recent_avg_pct": 3.02,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1256.0,
+      "recent_avg_price": 1292.15,
+      "upside_to_recent_avg_pct": 2.88,
       "sma_upside_by_window": {
-        "50": 2.37,
-        "200": 2.57
+        "50": 2.13,
+        "200": 2.5
       },
       "fifty_two_week_low": 1044.39,
       "fifty_two_week_high": 1401.92,
-      "position_in_range_pct": 58.9,
+      "position_in_range_pct": 59.2,
       "analyst_target_mean": 1581.8049,
       "analyst_target_median": 1575.0,
       "analyst_target_high": 1780.0,
@@ -31,10 +31,10 @@
       "num_analyst_opinions": 41,
       "recommendation_mean": 1.29268,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 11.71,
-      "upside_to_target_pct": 25.5,
-      "max_upside_signal_pct": 25.5,
-      "composite_upside_pct": 10.81,
+      "upside_to_52w_high_pct": 11.62,
+      "upside_to_target_pct": 25.4,
+      "max_upside_signal_pct": 25.4,
+      "composite_upside_pct": 10.7,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -80,8 +80,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1256.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1265.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -95,111 +95,23 @@
       "skip_reason": null
     },
     {
-      "ticker": "BEL.NS",
-      "company_name": "BHARAT ELECTRONICS LTD",
-      "market_cap": 3004319137792,
-      "market_cap_tier": "Large Cap",
-      "sector": "Industrials",
-      "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 406.9,
-      "recent_avg_price": 417.37,
-      "upside_to_recent_avg_pct": 2.57,
-      "sma_upside_by_window": {
-        "50": 0.25,
-        "200": 2.81
-      },
-      "fifty_two_week_low": 361.82,
-      "fifty_two_week_high": 467.81,
-      "position_in_range_pct": 42.5,
-      "analyst_target_mean": 490.4516,
-      "analyst_target_median": 500.0,
-      "analyst_target_high": 550.0,
-      "analyst_target_low": 346.0,
-      "num_analyst_opinions": 31,
-      "recommendation_mean": 1.45161,
-      "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 14.97,
-      "upside_to_target_pct": 22.88,
-      "max_upside_signal_pct": 22.88,
-      "composite_upside_pct": 10.75,
-      "recommendation_breakdown": {
-        "current_month": {
-          "period": "0m",
-          "strong_buy": 8,
-          "buy": 21,
-          "hold": 0,
-          "sell": 0,
-          "strong_sell": 2
-        },
-        "trend": [
-          {
-            "period": "0m",
-            "strong_buy": 8,
-            "buy": 21,
-            "hold": 0,
-            "sell": 0,
-            "strong_sell": 2
-          },
-          {
-            "period": "-1m",
-            "strong_buy": 8,
-            "buy": 20,
-            "hold": 1,
-            "sell": 0,
-            "strong_sell": 2
-          },
-          {
-            "period": "-2m",
-            "strong_buy": 7,
-            "buy": 17,
-            "hold": 1,
-            "sell": 0,
-            "strong_sell": 3
-          },
-          {
-            "period": "-3m",
-            "strong_buy": 7,
-            "buy": 17,
-            "hold": 1,
-            "sell": 0,
-            "strong_sell": 3
-          }
-        ]
-      },
-      "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 411.0,
-        "post_market_price": null,
-        "post_market_change_pct": null,
-        "pre_market_price": null,
-        "pre_market_change_pct": null
-      },
-      "latest_headline": "Bharat Electronics Ltd (BOM:500049) Q1 2027 Earnings Call Highlights: Robust Revenue Growth and ...",
-      "latest_headline_date": "2026-07-27T19:00:55Z",
-      "headline_is_company_specific": true,
-      "tag": "10\u201315%",
-      "recommended": true,
-      "skip_reason": null
-    },
-    {
       "ticker": "HDFCBANK.NS",
       "company_name": "HDFC BANK LTD",
-      "market_cap": 10957220741120,
+      "market_cap": 11100543254528,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 727.2,
-      "recent_avg_price": 764.08,
-      "upside_to_recent_avg_pct": 5.07,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 711.0,
+      "recent_avg_price": 763.16,
+      "upside_to_recent_avg_pct": 7.34,
       "sma_upside_by_window": {
-        "50": 5.44,
-        "200": 15.2
+        "50": 7.63,
+        "200": 17.64
       },
-      "fifty_two_week_low": 719.65,
+      "fifty_two_week_low": 711.0,
       "fifty_two_week_high": 993.08,
-      "position_in_range_pct": 2.8,
+      "position_in_range_pct": 0.0,
       "analyst_target_mean": 1014.225,
       "analyst_target_median": 992.0,
       "analyst_target_high": 1400.0,
@@ -207,10 +119,10 @@
       "num_analyst_opinions": 40,
       "recommendation_mean": 1.19512,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 36.56,
-      "upside_to_target_pct": 36.41,
-      "max_upside_signal_pct": 36.56,
-      "composite_upside_pct": 20.78,
+      "upside_to_52w_high_pct": 39.67,
+      "upside_to_target_pct": 39.52,
+      "max_upside_signal_pct": 39.67,
+      "composite_upside_pct": 23.47,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -256,8 +168,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 711.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 720.3,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -273,37 +185,37 @@
     {
       "ticker": "HDFCLIFE.NS",
       "company_name": "HDFC LIFE INS CO LTD",
-      "market_cap": 1190220529664,
+      "market_cap": 1190282919936,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 553.0,
-      "recent_avg_price": 577.21,
-      "upside_to_recent_avg_pct": 4.38,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 548.0,
+      "recent_avg_price": 576.73,
+      "upside_to_recent_avg_pct": 5.24,
       "sma_upside_by_window": {
-        "50": 1.14,
-        "200": 16.98
+        "50": 1.91,
+        "200": 17.85
       },
       "fifty_two_week_low": 535.85,
       "fifty_two_week_high": 785.0,
-      "position_in_range_pct": 6.9,
-      "analyst_target_mean": 749.14703,
-      "analyst_target_median": 735.0,
+      "position_in_range_pct": 4.9,
+      "analyst_target_mean": 746.75757,
+      "analyst_target_median": 730.0,
       "analyst_target_high": 910.0,
       "analyst_target_low": 620.0,
-      "num_analyst_opinions": 34,
+      "num_analyst_opinions": 33,
       "recommendation_mean": 1.29412,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 41.95,
-      "upside_to_target_pct": 32.91,
-      "max_upside_signal_pct": 41.95,
-      "composite_upside_pct": 20.91,
+      "upside_to_52w_high_pct": 43.25,
+      "upside_to_target_pct": 33.21,
+      "max_upside_signal_pct": 43.25,
+      "composite_upside_pct": 21.73,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
           "strong_buy": 8,
-          "buy": 25,
+          "buy": 24,
           "hold": 1,
           "sell": 0,
           "strong_sell": 0
@@ -312,7 +224,7 @@
           {
             "period": "0m",
             "strong_buy": 8,
-            "buy": 25,
+            "buy": 24,
             "hold": 1,
             "sell": 0,
             "strong_sell": 0
@@ -344,7 +256,7 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
+        "market_state": "CLOSED",
         "regular_market_price": 548.0,
         "post_market_price": null,
         "post_market_change_pct": null,
@@ -361,21 +273,21 @@
     {
       "ticker": "NTPC.NS",
       "company_name": "NTPC LTD",
-      "market_cap": 3208626831360,
+      "market_cap": 3200384761856,
       "market_cap_tier": "Large Cap",
       "sector": "Utilities",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 334.6,
-      "recent_avg_price": 366.57,
-      "upside_to_recent_avg_pct": 9.56,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 330.9,
+      "recent_avg_price": 366.14,
+      "upside_to_recent_avg_pct": 10.65,
       "sma_upside_by_window": {
-        "50": 3.95,
-        "200": 6.79
+        "50": 4.92,
+        "200": 7.99
       },
       "fifty_two_week_low": 316.11,
       "fifty_two_week_high": 410.2,
-      "position_in_range_pct": 19.6,
+      "position_in_range_pct": 15.7,
       "analyst_target_mean": 433.07144,
       "analyst_target_median": 432.0,
       "analyst_target_high": 485.0,
@@ -383,10 +295,10 @@
       "num_analyst_opinions": 28,
       "recommendation_mean": 1.33333,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 22.59,
-      "upside_to_target_pct": 29.11,
-      "max_upside_signal_pct": 29.11,
-      "composite_upside_pct": 17.7,
+      "upside_to_52w_high_pct": 23.96,
+      "upside_to_target_pct": 30.55,
+      "max_upside_signal_pct": 30.55,
+      "composite_upside_pct": 18.95,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -432,8 +344,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 330.9,
+        "market_state": "CLOSED",
+        "regular_market_price": 330.05,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -453,17 +365,17 @@
       "market_cap_tier": null,
       "sector": "Energy",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1298.0,
-      "recent_avg_price": 1325.87,
-      "upside_to_recent_avg_pct": 2.15,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1282.2,
+      "recent_avg_price": 1325.28,
+      "upside_to_recent_avg_pct": 3.36,
       "sma_upside_by_window": {
-        "50": 0.59,
-        "200": 7.26
+        "50": 1.76,
+        "200": 8.5
       },
       "fifty_two_week_low": 1258.8,
       "fifty_two_week_high": 1584.97,
-      "position_in_range_pct": 12.0,
+      "position_in_range_pct": 7.2,
       "analyst_target_mean": 1673.0,
       "analyst_target_median": 1690.0,
       "analyst_target_high": 1890.0,
@@ -471,10 +383,10 @@
       "num_analyst_opinions": 28,
       "recommendation_mean": 1.2963,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 22.11,
-      "upside_to_target_pct": 30.2,
-      "max_upside_signal_pct": 30.2,
-      "composite_upside_pct": 14.15,
+      "upside_to_52w_high_pct": 23.61,
+      "upside_to_target_pct": 31.8,
+      "max_upside_signal_pct": 31.8,
+      "composite_upside_pct": 15.53,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -520,8 +432,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1282.2,
+        "market_state": "CLOSED",
+        "regular_market_price": 1287.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -530,28 +442,28 @@
       "latest_headline": "Reliance's luxury unit brings Kim Kardashian's SKIMS to India",
       "latest_headline_date": "2026-08-05T12:13:21Z",
       "headline_is_company_specific": true,
-      "tag": "10\u201315%",
+      "tag": "15\u201320%",
       "recommended": true,
       "skip_reason": null
     },
     {
       "ticker": "SBILIFE.NS",
       "company_name": "SBI LIFE INSURANCE CO LTD",
-      "market_cap": 1779139346432,
+      "market_cap": 1766998933504,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1768.2,
-      "recent_avg_price": 1831.67,
-      "upside_to_recent_avg_pct": 3.59,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1773.2,
+      "recent_avg_price": 1830.32,
+      "upside_to_recent_avg_pct": 3.22,
       "sma_upside_by_window": {
-        "50": 2.91,
-        "200": 8.25
+        "50": 2.58,
+        "200": 7.88
       },
       "fifty_two_week_low": 1706.0,
       "fifty_two_week_high": 2106.67,
-      "position_in_range_pct": 15.5,
+      "position_in_range_pct": 16.8,
       "analyst_target_mean": 2342.9722,
       "analyst_target_median": 2365.0,
       "analyst_target_high": 2790.0,
@@ -559,10 +471,10 @@
       "num_analyst_opinions": 36,
       "recommendation_mean": 1.2,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 19.14,
-      "upside_to_target_pct": 33.75,
-      "max_upside_signal_pct": 33.75,
-      "composite_upside_pct": 15.02,
+      "upside_to_52w_high_pct": 18.81,
+      "upside_to_target_pct": 33.37,
+      "max_upside_signal_pct": 33.37,
+      "composite_upside_pct": 14.65,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -608,8 +520,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1773.2,
+        "market_state": "CLOSED",
+        "regular_market_price": 1761.1,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -618,7 +530,7 @@
       "latest_headline": "SBI Life Insurance Co Ltd (NSE:SBILIFE) Q1 2027 Earnings Call Highlights: Strong Growth in New ...",
       "latest_headline_date": "2026-07-24T19:00:31Z",
       "headline_is_company_specific": true,
-      "tag": "15\u201320%",
+      "tag": "10\u201315%",
       "recommended": true,
       "skip_reason": null
     }
@@ -627,21 +539,21 @@
     {
       "ticker": "ADANIENT.NS",
       "company_name": "ADANI ENTERPRISES LIMITED",
-      "market_cap": 4509402660864,
+      "market_cap": 4508691202048,
       "market_cap_tier": "Large Cap",
       "sector": "Energy",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 3112.0,
-      "recent_avg_price": 2833.17,
-      "upside_to_recent_avg_pct": -8.96,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 3169.0,
+      "recent_avg_price": 2844.43,
+      "upside_to_recent_avg_pct": -10.24,
       "sma_upside_by_window": {
-        "50": -1.5,
-        "200": -19.82
+        "50": -3.17,
+        "200": -21.12
       },
       "fifty_two_week_low": 1758.01,
       "fifty_two_week_high": 3212.1,
-      "position_in_range_pct": 93.1,
+      "position_in_range_pct": 97.0,
       "analyst_target_mean": 3773.0,
       "analyst_target_median": 3787.0,
       "analyst_target_high": 3880.0,
@@ -649,10 +561,10 @@
       "num_analyst_opinions": 4,
       "recommendation_mean": null,
       "recommendation_key": "none",
-      "upside_to_52w_high_pct": 3.22,
-      "upside_to_target_pct": 21.69,
-      "max_upside_signal_pct": 21.69,
-      "composite_upside_pct": 1.75,
+      "upside_to_52w_high_pct": 1.36,
+      "upside_to_target_pct": 19.5,
+      "max_upside_signal_pct": 19.5,
+      "composite_upside_pct": 0.09,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -698,8 +610,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 3169.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 3168.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -715,21 +627,21 @@
     {
       "ticker": "ADANIPORTS.NS",
       "company_name": "ADANI PORT & SEZ LTD",
-      "market_cap": 3948985712640,
+      "market_cap": 3934009950208,
       "market_cap_tier": "Large Cap",
       "sector": "Industrials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1691.5,
-      "recent_avg_price": 1735.02,
-      "upside_to_recent_avg_pct": 2.57,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1714.0,
+      "recent_avg_price": 1737.69,
+      "upside_to_recent_avg_pct": 1.38,
       "sma_upside_by_window": {
-        "50": 4.28,
-        "200": -5.59
+        "50": 2.76,
+        "200": -6.76
       },
       "fifty_two_week_low": 1298.13,
       "fifty_two_week_high": 1883.2,
-      "position_in_range_pct": 67.2,
+      "position_in_range_pct": 71.1,
       "analyst_target_mean": 2037.0834,
       "analyst_target_median": 2035.0,
       "analyst_target_high": 2200.0,
@@ -737,10 +649,10 @@
       "num_analyst_opinions": 24,
       "recommendation_mean": 1.5,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 11.33,
-      "upside_to_target_pct": 20.31,
-      "max_upside_signal_pct": 20.31,
-      "composite_upside_pct": 9.2,
+      "upside_to_52w_high_pct": 9.87,
+      "upside_to_target_pct": 18.73,
+      "max_upside_signal_pct": 18.73,
+      "composite_upside_pct": 7.84,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -786,8 +698,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1714.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1707.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -798,26 +710,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (9.2%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (7.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "APOLLOHOSP.NS",
       "company_name": "APOLLO HOSPITALS ENTER. L",
-      "market_cap": 1265304993792,
+      "market_cap": 1270840688640,
       "market_cap_tier": "Large Cap",
       "sector": "Healthcare",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 8766.5,
-      "recent_avg_price": 8388.2,
-      "upside_to_recent_avg_pct": -4.32,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 8800.0,
+      "recent_avg_price": 8402.27,
+      "upside_to_recent_avg_pct": -4.52,
       "sma_upside_by_window": {
-        "50": 0.14,
-        "200": -10.56
+        "50": -0.15,
+        "200": -10.82
       },
       "fifty_two_week_low": 6776.6,
       "fifty_two_week_high": 9039.48,
-      "position_in_range_pct": 87.9,
+      "position_in_range_pct": 89.4,
       "analyst_target_mean": 9790.387,
       "analyst_target_median": 10000.0,
       "analyst_target_high": 10800.0,
@@ -825,10 +737,10 @@
       "num_analyst_opinions": 31,
       "recommendation_mean": 1.46667,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 3.11,
-      "upside_to_target_pct": 14.07,
-      "max_upside_signal_pct": 14.07,
-      "composite_upside_pct": 2.13,
+      "upside_to_52w_high_pct": 2.72,
+      "upside_to_target_pct": 13.64,
+      "max_upside_signal_pct": 13.64,
+      "composite_upside_pct": 1.83,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -874,8 +786,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 8800.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 8838.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -886,26 +798,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (2.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (1.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "ASIANPAINT.NS",
       "company_name": "ASIAN PAINTS LIMITED",
-      "market_cap": 2522193068032,
+      "market_cap": 2500815224832,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 2626.5,
-      "recent_avg_price": 2620.14,
-      "upside_to_recent_avg_pct": -0.24,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 2631.0,
+      "recent_avg_price": 2623.83,
+      "upside_to_recent_avg_pct": -0.27,
       "sma_upside_by_window": {
-        "50": 2.6,
-        "200": -1.28
+        "50": 2.35,
+        "200": -1.45
       },
       "fifty_two_week_low": 2103.05,
       "fifty_two_week_high": 2942.97,
-      "position_in_range_pct": 62.3,
+      "position_in_range_pct": 62.9,
       "analyst_target_mean": 3021.4412,
       "analyst_target_median": 3019.5,
       "analyst_target_high": 3827.0,
@@ -913,10 +825,10 @@
       "num_analyst_opinions": 34,
       "recommendation_mean": 2.38235,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 12.05,
-      "upside_to_target_pct": 14.96,
-      "max_upside_signal_pct": 14.96,
-      "composite_upside_pct": 6.63,
+      "upside_to_52w_high_pct": 11.86,
+      "upside_to_target_pct": 14.77,
+      "max_upside_signal_pct": 14.77,
+      "composite_upside_pct": 6.52,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -962,8 +874,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 2631.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 2608.7,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -979,21 +891,21 @@
     {
       "ticker": "AXISBANK.NS",
       "company_name": "AXIS BANK LIMITED",
-      "market_cap": 3910032162816,
+      "market_cap": 3938049851392,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1255.0,
-      "recent_avg_price": 1292.91,
-      "upside_to_recent_avg_pct": 3.02,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1256.0,
+      "recent_avg_price": 1292.15,
+      "upside_to_recent_avg_pct": 2.88,
       "sma_upside_by_window": {
-        "50": 2.37,
-        "200": 2.57
+        "50": 2.13,
+        "200": 2.5
       },
       "fifty_two_week_low": 1044.39,
       "fifty_two_week_high": 1401.92,
-      "position_in_range_pct": 58.9,
+      "position_in_range_pct": 59.2,
       "analyst_target_mean": 1581.8049,
       "analyst_target_median": 1575.0,
       "analyst_target_high": 1780.0,
@@ -1001,10 +913,10 @@
       "num_analyst_opinions": 41,
       "recommendation_mean": 1.29268,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 11.71,
-      "upside_to_target_pct": 25.5,
-      "max_upside_signal_pct": 25.5,
-      "composite_upside_pct": 10.81,
+      "upside_to_52w_high_pct": 11.62,
+      "upside_to_target_pct": 25.4,
+      "max_upside_signal_pct": 25.4,
+      "composite_upside_pct": 10.7,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1050,8 +962,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1256.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1265.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1067,21 +979,21 @@
     {
       "ticker": "BAJAJ-AUTO.NS",
       "company_name": "BAJAJ AUTO LIMITED",
-      "market_cap": 3220700921856,
+      "market_cap": 3272913715200,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 11724.0,
-      "recent_avg_price": 10442.92,
-      "upside_to_recent_avg_pct": -10.93,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 11720.0,
+      "recent_avg_price": 10467.75,
+      "upside_to_recent_avg_pct": -10.68,
       "sma_upside_by_window": {
-        "50": -7.38,
-        "200": -16.32
+        "50": -7.07,
+        "200": -16.16
       },
       "fifty_two_week_low": 8506.78,
       "fifty_two_week_high": 11927.0,
-      "position_in_range_pct": 94.1,
+      "position_in_range_pct": 93.9,
       "analyst_target_mean": 11544.125,
       "analyst_target_median": 11700.0,
       "analyst_target_high": 13700.0,
@@ -1089,10 +1001,10 @@
       "num_analyst_opinions": 40,
       "recommendation_mean": 2.14634,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 1.73,
-      "upside_to_target_pct": -0.2,
-      "max_upside_signal_pct": 1.73,
-      "composite_upside_pct": -5.08,
+      "upside_to_52w_high_pct": 1.77,
+      "upside_to_target_pct": -0.17,
+      "max_upside_signal_pct": 1.77,
+      "composite_upside_pct": -4.94,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1138,8 +1050,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 11720.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 11910.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1155,21 +1067,21 @@
     {
       "ticker": "BAJFINANCE.NS",
       "company_name": "BAJAJ FINANCE LIMITED",
-      "market_cap": 6737249173504,
+      "market_cap": 6717964288000,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1085.0,
-      "recent_avg_price": 981.87,
-      "upside_to_recent_avg_pct": -9.5,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1083.0,
+      "recent_avg_price": 983.61,
+      "upside_to_recent_avg_pct": -9.18,
       "sma_upside_by_window": {
-        "50": -3.22,
-        "200": -10.57
+        "50": -2.8,
+        "200": -10.36
       },
       "fifty_two_week_low": 796.65,
       "fifty_two_week_high": 1158.8,
-      "position_in_range_pct": 79.6,
+      "position_in_range_pct": 79.1,
       "analyst_target_mean": 1158.3889,
       "analyst_target_median": 1200.0,
       "analyst_target_high": 1320.0,
@@ -1177,10 +1089,10 @@
       "num_analyst_opinions": 36,
       "recommendation_mean": 1.91667,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 6.8,
-      "upside_to_target_pct": 10.6,
-      "max_upside_signal_pct": 10.6,
-      "composite_upside_pct": -0.4,
+      "upside_to_52w_high_pct": 7.0,
+      "upside_to_target_pct": 10.8,
+      "max_upside_signal_pct": 10.8,
+      "composite_upside_pct": -0.14,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1226,8 +1138,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1083.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1079.9,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1243,21 +1155,21 @@
     {
       "ticker": "BAJAJFINSV.NS",
       "company_name": "BAJAJ FINSERV LTD.",
-      "market_cap": 3218092064768,
+      "market_cap": 3203689873408,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 2010.0,
-      "recent_avg_price": 1842.72,
-      "upside_to_recent_avg_pct": -8.32,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 2011.0,
+      "recent_avg_price": 1844.99,
+      "upside_to_recent_avg_pct": -8.25,
       "sma_upside_by_window": {
-        "50": -4.57,
-        "200": -5.24
+        "50": -4.38,
+        "200": -5.29
       },
       "fifty_two_week_low": 1630.41,
       "fifty_two_week_high": 2174.74,
-      "position_in_range_pct": 69.7,
+      "position_in_range_pct": 69.9,
       "analyst_target_mean": 2362.2144,
       "analyst_target_median": 2410.5,
       "analyst_target_high": 2640.0,
@@ -1265,10 +1177,10 @@
       "num_analyst_opinions": 14,
       "recommendation_mean": 1.71429,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 8.2,
-      "upside_to_target_pct": 19.93,
-      "max_upside_signal_pct": 19.93,
-      "composite_upside_pct": 2.87,
+      "upside_to_52w_high_pct": 8.14,
+      "upside_to_target_pct": 19.87,
+      "max_upside_signal_pct": 19.87,
+      "composite_upside_pct": 2.88,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1314,8 +1226,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 2011.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 2002.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1331,21 +1243,21 @@
     {
       "ticker": "BEL.NS",
       "company_name": "BHARAT ELECTRONICS LTD",
-      "market_cap": 3004319137792,
+      "market_cap": 3010897903616,
       "market_cap_tier": "Large Cap",
       "sector": "Industrials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 406.9,
-      "recent_avg_price": 417.37,
-      "upside_to_recent_avg_pct": 2.57,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 411.0,
+      "recent_avg_price": 417.15,
+      "upside_to_recent_avg_pct": 1.5,
       "sma_upside_by_window": {
-        "50": 0.25,
-        "200": 2.81
+        "50": -0.83,
+        "200": 1.77
       },
       "fifty_two_week_low": 361.82,
       "fifty_two_week_high": 467.81,
-      "position_in_range_pct": 42.5,
+      "position_in_range_pct": 46.4,
       "analyst_target_mean": 490.4516,
       "analyst_target_median": 500.0,
       "analyst_target_high": 550.0,
@@ -1353,10 +1265,10 @@
       "num_analyst_opinions": 31,
       "recommendation_mean": 1.45161,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 14.97,
-      "upside_to_target_pct": 22.88,
-      "max_upside_signal_pct": 22.88,
-      "composite_upside_pct": 10.75,
+      "upside_to_52w_high_pct": 13.82,
+      "upside_to_target_pct": 21.65,
+      "max_upside_signal_pct": 21.65,
+      "composite_upside_pct": 9.62,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1402,8 +1314,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 411.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 411.9,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1412,28 +1324,28 @@
       "latest_headline": "Bharat Electronics Ltd (BOM:500049) Q1 2027 Earnings Call Highlights: Robust Revenue Growth and ...",
       "latest_headline_date": "2026-07-27T19:00:55Z",
       "headline_is_company_specific": true,
-      "tag": "10\u201315%",
-      "recommended": true,
-      "skip_reason": null
+      "tag": null,
+      "recommended": false,
+      "skip_reason": "Composite Upside % (9.6%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "BHARTIARTL.NS",
       "company_name": "BHARTI AIRTEL LIMITED",
-      "market_cap": 11718071681024,
+      "market_cap": 11743649595392,
       "market_cap_tier": "Large Cap",
       "sector": "Communication Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1902.1,
-      "recent_avg_price": 1864.97,
-      "upside_to_recent_avg_pct": -1.95,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1878.3,
+      "recent_avg_price": 1865.37,
+      "upside_to_recent_avg_pct": -0.69,
       "sma_upside_by_window": {
-        "50": 0.42,
-        "200": 1.03
+        "50": 1.72,
+        "200": 2.27
       },
       "fifty_two_week_low": 1734.97,
       "fifty_two_week_high": 2135.82,
-      "position_in_range_pct": 41.7,
+      "position_in_range_pct": 35.8,
       "analyst_target_mean": 2320.6365,
       "analyst_target_median": 2330.0,
       "analyst_target_high": 2750.0,
@@ -1441,10 +1353,10 @@
       "num_analyst_opinions": 33,
       "recommendation_mean": 1.48485,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 12.29,
-      "upside_to_target_pct": 22.5,
-      "max_upside_signal_pct": 22.5,
-      "composite_upside_pct": 7.72,
+      "upside_to_52w_high_pct": 13.71,
+      "upside_to_target_pct": 24.05,
+      "max_upside_signal_pct": 24.05,
+      "composite_upside_pct": 9.1,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1490,8 +1402,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1878.3,
+        "market_state": "CLOSED",
+        "regular_market_price": 1882.4,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1502,26 +1414,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (7.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (9.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "CIPLA.NS",
       "company_name": "CIPLA LTD",
-      "market_cap": 1147158921216,
+      "market_cap": 1149986537472,
       "market_cap_tier": "Large Cap",
       "sector": "Healthcare",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1402.7,
-      "recent_avg_price": 1385.04,
-      "upside_to_recent_avg_pct": -1.26,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1420.0,
+      "recent_avg_price": 1387.19,
+      "upside_to_recent_avg_pct": -2.31,
       "sma_upside_by_window": {
-        "50": 2.61,
-        "200": -1.13
+        "50": 1.45,
+        "200": -2.37
       },
       "fifty_two_week_low": 1181.32,
       "fifty_two_week_high": 1648.14,
-      "position_in_range_pct": 47.4,
+      "position_in_range_pct": 51.1,
       "analyst_target_mean": 1509.0834,
       "analyst_target_median": 1525.0,
       "analyst_target_high": 1768.0,
@@ -1529,10 +1441,10 @@
       "num_analyst_opinions": 36,
       "recommendation_mean": 2.19444,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 17.5,
-      "upside_to_target_pct": 8.72,
-      "max_upside_signal_pct": 17.5,
-      "composite_upside_pct": 5.93,
+      "upside_to_52w_high_pct": 16.07,
+      "upside_to_target_pct": 7.39,
+      "max_upside_signal_pct": 16.07,
+      "composite_upside_pct": 4.71,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1578,8 +1490,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1420.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1423.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1595,21 +1507,21 @@
     {
       "ticker": "COALINDIA.NS",
       "company_name": "COAL INDIA LTD",
-      "market_cap": 2465091289088,
+      "market_cap": 2471254032384,
       "market_cap_tier": "Large Cap",
       "sector": "Energy",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 403.5,
-      "recent_avg_price": 436.28,
-      "upside_to_recent_avg_pct": 8.13,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 400.0,
+      "recent_avg_price": 435.85,
+      "upside_to_recent_avg_pct": 8.96,
       "sma_upside_by_window": {
-        "50": 4.15,
-        "200": 4.62
+        "50": 4.83,
+        "200": 5.57
       },
       "fifty_two_week_low": 354.93,
       "fifty_two_week_high": 475.3,
-      "position_in_range_pct": 40.4,
+      "position_in_range_pct": 37.4,
       "analyst_target_mean": 460.25,
       "analyst_target_median": 470.0,
       "analyst_target_high": 550.0,
@@ -1617,10 +1529,10 @@
       "num_analyst_opinions": 24,
       "recommendation_mean": 2.41667,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 17.79,
-      "upside_to_target_pct": 16.48,
-      "max_upside_signal_pct": 17.79,
-      "composite_upside_pct": 12.63,
+      "upside_to_52w_high_pct": 18.83,
+      "upside_to_target_pct": 17.5,
+      "max_upside_signal_pct": 18.83,
+      "composite_upside_pct": 13.56,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1666,8 +1578,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 400.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 401.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1683,21 +1595,21 @@
     {
       "ticker": "DRREDDY.NS",
       "company_name": "DR. REDDY S LABORATORIES",
-      "market_cap": 980441104384,
+      "market_cap": 981260107776,
       "market_cap_tier": "Mid Cap",
       "sector": "Healthcare",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1182.0,
-      "recent_avg_price": 1253.36,
-      "upside_to_recent_avg_pct": 6.04,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1177.0,
+      "recent_avg_price": 1253.29,
+      "upside_to_recent_avg_pct": 6.48,
       "sma_upside_by_window": {
-        "50": 4.07,
-        "200": 5.81
+        "50": 4.37,
+        "200": 6.25
       },
       "fifty_two_week_low": 1135.6,
       "fifty_two_week_high": 1367.03,
-      "position_in_range_pct": 20.0,
+      "position_in_range_pct": 17.9,
       "analyst_target_mean": 1265.7726,
       "analyst_target_median": 1240.0,
       "analyst_target_high": 1740.0,
@@ -1705,10 +1617,10 @@
       "num_analyst_opinions": 39,
       "recommendation_mean": null,
       "recommendation_key": "none",
-      "upside_to_52w_high_pct": 15.65,
-      "upside_to_target_pct": 4.91,
-      "max_upside_signal_pct": 15.65,
-      "composite_upside_pct": 8.16,
+      "upside_to_52w_high_pct": 16.15,
+      "upside_to_target_pct": 5.35,
+      "max_upside_signal_pct": 16.15,
+      "composite_upside_pct": 8.62,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1754,8 +1666,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1177.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1178.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1771,21 +1683,21 @@
     {
       "ticker": "EICHERMOT.NS",
       "company_name": "EICHER MOTORS LTD",
-      "market_cap": 2223625732096,
+      "market_cap": 2212370317312,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 8035.0,
-      "recent_avg_price": 7383.89,
-      "upside_to_recent_avg_pct": -8.1,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 8100.0,
+      "recent_avg_price": 7394.32,
+      "upside_to_recent_avg_pct": -8.71,
       "sma_upside_by_window": {
-        "50": -4.7,
-        "200": -9.39
+        "50": -5.32,
+        "200": -10.04
       },
       "fifty_two_week_low": 6039.75,
       "fifty_two_week_high": 8105.12,
-      "position_in_range_pct": 96.6,
+      "position_in_range_pct": 99.8,
       "analyst_target_mean": 8360.433,
       "analyst_target_median": 8437.0,
       "analyst_target_high": 9665.0,
@@ -1793,10 +1705,10 @@
       "num_analyst_opinions": 37,
       "recommendation_mean": 2.05263,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 0.87,
-      "upside_to_target_pct": 5.0,
-      "max_upside_signal_pct": 5.0,
-      "composite_upside_pct": -2.58,
+      "upside_to_52w_high_pct": 0.06,
+      "upside_to_target_pct": 4.16,
+      "max_upside_signal_pct": 4.16,
+      "composite_upside_pct": -3.3,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1842,8 +1754,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 8100.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 8059.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1859,21 +1771,21 @@
     {
       "ticker": "ETERNAL.NS",
       "company_name": "ETERNAL LIMITED",
-      "market_cap": 3023971811328,
+      "market_cap": 3019369086976,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 327.0,
-      "recent_avg_price": 272.03,
-      "upside_to_recent_avg_pct": -16.81,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 328.5,
+      "recent_avg_price": 272.88,
+      "upside_to_recent_avg_pct": -16.93,
       "sma_upside_by_window": {
-        "50": -9.78,
-        "200": -16.55
+        "50": -9.77,
+        "200": -16.9
       },
       "fifty_two_week_low": 215.68,
       "fifty_two_week_high": 354.35,
-      "position_in_range_pct": 80.3,
+      "position_in_range_pct": 81.4,
       "analyst_target_mean": 361.1613,
       "analyst_target_median": 375.0,
       "analyst_target_high": 506.0,
@@ -1881,10 +1793,10 @@
       "num_analyst_opinions": 31,
       "recommendation_mean": 1.54839,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 8.36,
-      "upside_to_target_pct": 14.68,
-      "max_upside_signal_pct": 14.68,
-      "composite_upside_pct": -2.64,
+      "upside_to_52w_high_pct": 7.87,
+      "upside_to_target_pct": 14.16,
+      "max_upside_signal_pct": 14.16,
+      "composite_upside_pct": -2.96,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -1930,8 +1842,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 328.5,
+        "market_state": "CLOSED",
+        "regular_market_price": 328.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -1947,21 +1859,21 @@
     {
       "ticker": "GRASIM.NS",
       "company_name": "GRASIM INDUSTRIES LTD",
-      "market_cap": 2209747304448,
+      "market_cap": 2231451516928,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 3299.9,
-      "recent_avg_price": 3060.02,
-      "upside_to_recent_avg_pct": -7.27,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 3258.0,
+      "recent_avg_price": 3065.12,
+      "upside_to_recent_avg_pct": -5.92,
       "sma_upside_by_window": {
-        "50": -3.64,
-        "200": -11.77
+        "50": -2.32,
+        "200": -10.56
       },
       "fifty_two_week_low": 2523.24,
       "fifty_two_week_high": 3380.5,
-      "position_in_range_pct": 90.6,
+      "position_in_range_pct": 85.7,
       "analyst_target_mean": 3837.5,
       "analyst_target_median": 3825.0,
       "analyst_target_high": 4175.0,
@@ -1969,10 +1881,10 @@
       "num_analyst_opinions": 10,
       "recommendation_mean": 1.4,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 2.44,
-      "upside_to_target_pct": 15.91,
-      "max_upside_signal_pct": 15.91,
-      "composite_upside_pct": 0.95,
+      "upside_to_52w_high_pct": 3.76,
+      "upside_to_target_pct": 17.4,
+      "max_upside_signal_pct": 17.4,
+      "composite_upside_pct": 2.33,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2010,8 +1922,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 3258.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 3290.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2022,26 +1934,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (0.9%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (2.3%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "HCLTECH.NS",
       "company_name": "HCL TECHNOLOGIES LTD",
-      "market_cap": 3468792954880,
+      "market_cap": 3561059516416,
       "market_cap_tier": "Large Cap",
       "sector": "Technology",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1298.5,
-      "recent_avg_price": 1220.44,
-      "upside_to_recent_avg_pct": -6.01,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1282.0,
+      "recent_avg_price": 1219.07,
+      "upside_to_recent_avg_pct": -4.91,
       "sma_upside_by_window": {
-        "50": -4.93,
-        "200": 4.96
+        "50": -3.5,
+        "200": 6.22
       },
       "fifty_two_week_low": 1023.75,
       "fifty_two_week_high": 1679.96,
-      "position_in_range_pct": 41.9,
+      "position_in_range_pct": 39.4,
       "analyst_target_mean": 1260.7693,
       "analyst_target_median": 1281.0,
       "analyst_target_high": 1548.0,
@@ -2049,10 +1961,10 @@
       "num_analyst_opinions": 39,
       "recommendation_mean": 2.89744,
       "recommendation_key": "hold",
-      "upside_to_52w_high_pct": 29.38,
-      "upside_to_target_pct": -1.35,
-      "max_upside_signal_pct": 29.38,
-      "composite_upside_pct": 4.0,
+      "upside_to_52w_high_pct": 31.04,
+      "upside_to_target_pct": -0.08,
+      "max_upside_signal_pct": 31.04,
+      "composite_upside_pct": 5.29,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2098,8 +2010,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1282.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1316.1,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2115,21 +2027,21 @@
     {
       "ticker": "HDFCBANK.NS",
       "company_name": "HDFC BANK LTD",
-      "market_cap": 10957220741120,
+      "market_cap": 11100543254528,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 727.2,
-      "recent_avg_price": 764.08,
-      "upside_to_recent_avg_pct": 5.07,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 711.0,
+      "recent_avg_price": 763.16,
+      "upside_to_recent_avg_pct": 7.34,
       "sma_upside_by_window": {
-        "50": 5.44,
-        "200": 15.2
+        "50": 7.63,
+        "200": 17.64
       },
-      "fifty_two_week_low": 719.65,
+      "fifty_two_week_low": 711.0,
       "fifty_two_week_high": 993.08,
-      "position_in_range_pct": 2.8,
+      "position_in_range_pct": 0.0,
       "analyst_target_mean": 1014.225,
       "analyst_target_median": 992.0,
       "analyst_target_high": 1400.0,
@@ -2137,10 +2049,10 @@
       "num_analyst_opinions": 40,
       "recommendation_mean": 1.19512,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 36.56,
-      "upside_to_target_pct": 36.41,
-      "max_upside_signal_pct": 36.56,
-      "composite_upside_pct": 20.78,
+      "upside_to_52w_high_pct": 39.67,
+      "upside_to_target_pct": 39.52,
+      "max_upside_signal_pct": 39.67,
+      "composite_upside_pct": 23.47,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2186,8 +2098,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 711.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 720.3,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2203,37 +2115,37 @@
     {
       "ticker": "HDFCLIFE.NS",
       "company_name": "HDFC LIFE INS CO LTD",
-      "market_cap": 1190220529664,
+      "market_cap": 1190282919936,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 553.0,
-      "recent_avg_price": 577.21,
-      "upside_to_recent_avg_pct": 4.38,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 548.0,
+      "recent_avg_price": 576.73,
+      "upside_to_recent_avg_pct": 5.24,
       "sma_upside_by_window": {
-        "50": 1.14,
-        "200": 16.98
+        "50": 1.91,
+        "200": 17.85
       },
       "fifty_two_week_low": 535.85,
       "fifty_two_week_high": 785.0,
-      "position_in_range_pct": 6.9,
-      "analyst_target_mean": 749.14703,
-      "analyst_target_median": 735.0,
+      "position_in_range_pct": 4.9,
+      "analyst_target_mean": 746.75757,
+      "analyst_target_median": 730.0,
       "analyst_target_high": 910.0,
       "analyst_target_low": 620.0,
-      "num_analyst_opinions": 34,
+      "num_analyst_opinions": 33,
       "recommendation_mean": 1.29412,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 41.95,
-      "upside_to_target_pct": 32.91,
-      "max_upside_signal_pct": 41.95,
-      "composite_upside_pct": 20.91,
+      "upside_to_52w_high_pct": 43.25,
+      "upside_to_target_pct": 33.21,
+      "max_upside_signal_pct": 43.25,
+      "composite_upside_pct": 21.73,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
           "strong_buy": 8,
-          "buy": 25,
+          "buy": 24,
           "hold": 1,
           "sell": 0,
           "strong_sell": 0
@@ -2242,7 +2154,7 @@
           {
             "period": "0m",
             "strong_buy": 8,
-            "buy": 25,
+            "buy": 24,
             "hold": 1,
             "sell": 0,
             "strong_sell": 0
@@ -2274,7 +2186,7 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
+        "market_state": "CLOSED",
         "regular_market_price": 548.0,
         "post_market_price": null,
         "post_market_change_pct": null,
@@ -2291,21 +2203,21 @@
     {
       "ticker": "HINDALCO.NS",
       "company_name": "HINDALCO  INDUSTRIES  LTD",
-      "market_cap": 2273113276416,
+      "market_cap": 2302859018240,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1053.0,
-      "recent_avg_price": 1021.49,
-      "upside_to_recent_avg_pct": -2.99,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1024.0,
+      "recent_avg_price": 1022.26,
+      "upside_to_recent_avg_pct": -0.17,
       "sma_upside_by_window": {
-        "50": -5.93,
-        "200": -9.33
+        "50": -3.22,
+        "200": -6.65
       },
       "fifty_two_week_low": 697.76,
       "fifty_two_week_high": 1143.73,
-      "position_in_range_pct": 79.7,
+      "position_in_range_pct": 73.2,
       "analyst_target_mean": 1161.5518,
       "analyst_target_median": 1158.0,
       "analyst_target_high": 1430.0,
@@ -2313,10 +2225,10 @@
       "num_analyst_opinions": 29,
       "recommendation_mean": 2.13793,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 8.62,
-      "upside_to_target_pct": 9.97,
-      "max_upside_signal_pct": 9.97,
-      "composite_upside_pct": 3.15,
+      "upside_to_52w_high_pct": 11.69,
+      "upside_to_target_pct": 13.09,
+      "max_upside_signal_pct": 13.09,
+      "composite_upside_pct": 6.11,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2362,8 +2274,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1024.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1037.4,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2379,21 +2291,21 @@
     {
       "ticker": "HINDUNILVR.NS",
       "company_name": "HINDUSTAN UNILEVER LTD.",
-      "market_cap": 4720328966144,
+      "market_cap": 4723618349056,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Defensive",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 2021.0,
-      "recent_avg_price": 2155.47,
-      "upside_to_recent_avg_pct": 6.65,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 2009.0,
+      "recent_avg_price": 2154.32,
+      "upside_to_recent_avg_pct": 7.23,
       "sma_upside_by_window": {
-        "50": 4.77,
-        "200": 10.06
+        "50": 5.21,
+        "200": 10.62
       },
-      "fifty_two_week_low": 2015.0,
+      "fifty_two_week_low": 2009.0,
       "fifty_two_week_high": 2629.38,
-      "position_in_range_pct": 1.0,
+      "position_in_range_pct": 0.0,
       "analyst_target_mean": 2457.4211,
       "analyst_target_median": 2450.0,
       "analyst_target_high": 2860.0,
@@ -2401,10 +2313,10 @@
       "num_analyst_opinions": 38,
       "recommendation_mean": 1.94872,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 30.1,
-      "upside_to_target_pct": 21.23,
-      "max_upside_signal_pct": 30.1,
-      "composite_upside_pct": 16.16,
+      "upside_to_52w_high_pct": 30.88,
+      "upside_to_target_pct": 21.95,
+      "max_upside_signal_pct": 30.88,
+      "composite_upside_pct": 16.82,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2450,8 +2362,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 2009.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 2010.4,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2467,21 +2379,21 @@
     {
       "ticker": "ICICIBANK.NS",
       "company_name": "ICICI BANK LTD.",
-      "market_cap": 10351038955520,
+      "market_cap": 10210903064576,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1430.0,
-      "recent_avg_price": 1341.6,
-      "upside_to_recent_avg_pct": -6.18,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1443.0,
+      "recent_avg_price": 1343.05,
+      "upside_to_recent_avg_pct": -6.93,
       "sma_upside_by_window": {
-        "50": -1.66,
-        "200": -6.06
+        "50": -2.39,
+        "200": -6.88
       },
       "fifty_two_week_low": 1195.82,
       "fifty_two_week_high": 1460.0,
-      "position_in_range_pct": 88.6,
+      "position_in_range_pct": 93.6,
       "analyst_target_mean": 1739.3572,
       "analyst_target_median": 1732.0,
       "analyst_target_high": 1970.0,
@@ -2489,10 +2401,10 @@
       "num_analyst_opinions": 42,
       "recommendation_mean": 1.11905,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 2.1,
-      "upside_to_target_pct": 21.12,
-      "max_upside_signal_pct": 21.12,
-      "composite_upside_pct": 2.72,
+      "upside_to_52w_high_pct": 1.18,
+      "upside_to_target_pct": 20.03,
+      "max_upside_signal_pct": 20.03,
+      "composite_upside_pct": 1.84,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2538,8 +2450,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1443.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1422.8,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2550,26 +2462,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (2.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (1.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "INDIGO.NS",
       "company_name": "INTERGLOBE AVIATION LTD",
-      "market_cap": 2006412951552,
+      "market_cap": 1997519585280,
       "market_cap_tier": "Large Cap",
       "sector": "Industrials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 5250.5,
-      "recent_avg_price": 4865.25,
-      "upside_to_recent_avg_pct": -7.34,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 5189.0,
+      "recent_avg_price": 4874.46,
+      "upside_to_recent_avg_pct": -6.06,
       "sma_upside_by_window": {
-        "50": -0.05,
-        "200": -6.63
+        "50": 1.2,
+        "200": -5.56
       },
       "fifty_two_week_low": 3943.5,
       "fifty_two_week_high": 5934.0,
-      "position_in_range_pct": 65.7,
+      "position_in_range_pct": 62.6,
       "analyst_target_mean": 5615.75,
       "analyst_target_median": 5715.0,
       "analyst_target_high": 6580.0,
@@ -2577,10 +2489,10 @@
       "num_analyst_opinions": 24,
       "recommendation_mean": 1.5,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 13.02,
-      "upside_to_target_pct": 8.85,
-      "max_upside_signal_pct": 13.02,
-      "composite_upside_pct": 1.8,
+      "upside_to_52w_high_pct": 14.36,
+      "upside_to_target_pct": 10.14,
+      "max_upside_signal_pct": 14.36,
+      "composite_upside_pct": 3.1,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2626,8 +2538,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 5189.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 5166.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2638,26 +2550,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (1.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (3.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "INFY.NS",
       "company_name": "INFOSYS LIMITED",
-      "market_cap": 4499072614400,
+      "market_cap": 4633542524928,
       "market_cap_tier": "Large Cap",
       "sector": "Technology",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1120.0,
-      "recent_avg_price": 1136.79,
-      "upside_to_recent_avg_pct": 1.5,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1110.8,
+      "recent_avg_price": 1134.72,
+      "upside_to_recent_avg_pct": 2.15,
       "sma_upside_by_window": {
-        "50": -1.83,
-        "200": 15.97
+        "50": -1.04,
+        "200": 16.76
       },
       "fifty_two_week_low": 985.3,
       "fifty_two_week_high": 1654.01,
-      "position_in_range_pct": 20.1,
+      "position_in_range_pct": 18.8,
       "analyst_target_mean": 1202.6666,
       "analyst_target_median": 1185.0,
       "analyst_target_high": 1610.0,
@@ -2665,10 +2577,10 @@
       "num_analyst_opinions": 42,
       "recommendation_mean": 2.14286,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 47.68,
-      "upside_to_target_pct": 5.8,
-      "max_upside_signal_pct": 47.68,
-      "composite_upside_pct": 14.12,
+      "upside_to_52w_high_pct": 48.9,
+      "upside_to_target_pct": 6.68,
+      "max_upside_signal_pct": 48.9,
+      "composite_upside_pct": 14.97,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2714,8 +2626,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1110.8,
+        "market_state": "CLOSED",
+        "regular_market_price": 1144.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2731,21 +2643,21 @@
     {
       "ticker": "ITC.NS",
       "company_name": "ITC LTD",
-      "market_cap": 3370511237120,
+      "market_cap": 3332921884672,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Defensive",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 270.25,
-      "recent_avg_price": 288.18,
-      "upside_to_recent_avg_pct": 6.63,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 269.0,
+      "recent_avg_price": 287.92,
+      "upside_to_recent_avg_pct": 7.03,
       "sma_upside_by_window": {
-        "50": 4.5,
-        "200": 15.31
+        "50": 4.82,
+        "200": 15.62
       },
       "fifty_two_week_low": 267.05,
       "fifty_two_week_high": 401.99,
-      "position_in_range_pct": 2.4,
+      "position_in_range_pct": 1.4,
       "analyst_target_mean": 327.0,
       "analyst_target_median": 318.0,
       "analyst_target_high": 440.0,
@@ -2753,10 +2665,10 @@
       "num_analyst_opinions": 33,
       "recommendation_mean": 2.38235,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 48.75,
-      "upside_to_target_pct": 17.67,
-      "max_upside_signal_pct": 48.75,
-      "composite_upside_pct": 19.92,
+      "upside_to_52w_high_pct": 49.44,
+      "upside_to_target_pct": 18.22,
+      "max_upside_signal_pct": 49.44,
+      "composite_upside_pct": 20.43,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2802,8 +2714,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 269.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 266.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2819,21 +2731,21 @@
     {
       "ticker": "JIOFIN.NS",
       "company_name": "JIO FIN SERVICES LTD",
-      "market_cap": 1572208115712,
+      "market_cap": 1574188875776,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 241.0,
-      "recent_avg_price": 241.64,
-      "upside_to_recent_avg_pct": 0.27,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 238.1,
+      "recent_avg_price": 241.56,
+      "upside_to_recent_avg_pct": 1.45,
       "sma_upside_by_window": {
-        "50": 1.06,
-        "200": 6.8
+        "50": 2.25,
+        "200": 7.96
       },
       "fifty_two_week_low": 223.58,
       "fifty_two_week_high": 316.61,
-      "position_in_range_pct": 18.7,
+      "position_in_range_pct": 15.6,
       "analyst_target_mean": 295.33334,
       "analyst_target_median": 298.0,
       "analyst_target_high": 315.0,
@@ -2841,10 +2753,10 @@
       "num_analyst_opinions": 3,
       "recommendation_mean": null,
       "recommendation_key": "none",
-      "upside_to_52w_high_pct": 31.37,
-      "upside_to_target_pct": 23.65,
-      "max_upside_signal_pct": 31.37,
-      "composite_upside_pct": 13.89,
+      "upside_to_52w_high_pct": 32.97,
+      "upside_to_target_pct": 25.16,
+      "max_upside_signal_pct": 32.97,
+      "composite_upside_pct": 15.26,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2866,8 +2778,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 238.1,
+        "market_state": "CLOSED",
+        "regular_market_price": 238.4,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2883,21 +2795,21 @@
     {
       "ticker": "JSWSTEEL.NS",
       "company_name": "JSW STEEL LIMITED",
-      "market_cap": 3264808222720,
+      "market_cap": 3258461716480,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1341.0,
-      "recent_avg_price": 1263.18,
-      "upside_to_recent_avg_pct": -5.8,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1337.5,
+      "recent_avg_price": 1264.68,
+      "upside_to_recent_avg_pct": -5.44,
       "sma_upside_by_window": {
-        "50": -5.87,
-        "200": -9.38
+        "50": -5.54,
+        "200": -9.09
       },
       "fifty_two_week_low": 1020.74,
       "fifty_two_week_high": 1341.0,
-      "position_in_range_pct": 100.0,
+      "position_in_range_pct": 98.9,
       "analyst_target_mean": 1378.1143,
       "analyst_target_median": 1400.0,
       "analyst_target_high": 1650.0,
@@ -2905,10 +2817,10 @@
       "num_analyst_opinions": 35,
       "recommendation_mean": 2.28571,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 0.0,
-      "upside_to_target_pct": 4.4,
-      "max_upside_signal_pct": 4.4,
-      "composite_upside_pct": -1.8,
+      "upside_to_52w_high_pct": 0.26,
+      "upside_to_target_pct": 4.67,
+      "max_upside_signal_pct": 4.67,
+      "composite_upside_pct": -1.49,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -2954,8 +2866,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1337.5,
+        "market_state": "CLOSED",
+        "regular_market_price": 1334.9,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -2971,21 +2883,21 @@
     {
       "ticker": "KOTAKBANK.NS",
       "company_name": "KOTAK MAHINDRA BANK LTD",
-      "market_cap": 4219795931136,
+      "market_cap": 4214822010880,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 416.7,
-      "recent_avg_price": 386.86,
-      "upside_to_recent_avg_pct": -7.16,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 424.2,
+      "recent_avg_price": 387.31,
+      "upside_to_recent_avg_pct": -8.7,
       "sma_upside_by_window": {
-        "50": -6.0,
-        "200": -4.06
+        "50": -7.56,
+        "200": -5.75
       },
       "fifty_two_week_low": 352.79,
       "fifty_two_week_high": 444.35,
-      "position_in_range_pct": 69.8,
+      "position_in_range_pct": 78.0,
       "analyst_target_mean": 463.78378,
       "analyst_target_median": 460.0,
       "analyst_target_high": 518.0,
@@ -2993,10 +2905,10 @@
       "num_analyst_opinions": 37,
       "recommendation_mean": 1.67568,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 6.64,
-      "upside_to_target_pct": 10.39,
-      "max_upside_signal_pct": 10.39,
-      "composite_upside_pct": 0.68,
+      "upside_to_52w_high_pct": 4.75,
+      "upside_to_target_pct": 8.44,
+      "max_upside_signal_pct": 8.44,
+      "composite_upside_pct": -1.05,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3042,8 +2954,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 424.2,
+        "market_state": "CLOSED",
+        "regular_market_price": 423.7,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3059,21 +2971,21 @@
     {
       "ticker": "LT.NS",
       "company_name": "LARSEN & TOUBRO LTD.",
-      "market_cap": 5540612669440,
+      "market_cap": 5566478942208,
       "market_cap_tier": "Large Cap",
       "sector": "Industrials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 4038.1,
-      "recent_avg_price": 3993.25,
-      "upside_to_recent_avg_pct": -1.11,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 4027.0,
+      "recent_avg_price": 3993.85,
+      "upside_to_recent_avg_pct": -0.82,
       "sma_upside_by_window": {
-        "50": -0.75,
-        "200": -1.96
+        "50": -0.56,
+        "200": -1.68
       },
       "fifty_two_week_low": 3310.07,
       "fifty_two_week_high": 4375.36,
-      "position_in_range_pct": 68.3,
+      "position_in_range_pct": 67.3,
       "analyst_target_mean": 4501.533,
       "analyst_target_median": 4539.5,
       "analyst_target_high": 5060.0,
@@ -3081,10 +2993,10 @@
       "num_analyst_opinions": 30,
       "recommendation_mean": 1.67742,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 8.35,
-      "upside_to_target_pct": 12.42,
-      "max_upside_signal_pct": 12.42,
-      "composite_upside_pct": 4.64,
+      "upside_to_52w_high_pct": 8.65,
+      "upside_to_target_pct": 12.73,
+      "max_upside_signal_pct": 12.73,
+      "composite_upside_pct": 4.94,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3130,14 +3042,14 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 4027.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 4045.8,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
         "pre_market_change_pct": null
       },
-      "latest_headline": "India's Larsen and Toubro secures AI data centre order worth up to $1.57 billion",
+      "latest_headline": "India's Larsen and Toubro secures order to build AI factory for Nvidia",
       "latest_headline_date": "2026-08-13T06:15:43Z",
       "headline_is_company_specific": true,
       "tag": null,
@@ -3147,21 +3059,21 @@
     {
       "ticker": "M&M.NS",
       "company_name": "MAHINDRA & MAHINDRA LTD",
-      "market_cap": 3998538268672,
+      "market_cap": 4003341271040,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 3398.2,
-      "recent_avg_price": 3171.78,
-      "upside_to_recent_avg_pct": -6.66,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 3330.0,
+      "recent_avg_price": 3173.31,
+      "upside_to_recent_avg_pct": -4.71,
       "sma_upside_by_window": {
-        "50": -4.38,
-        "200": -2.31
+        "50": -2.29,
+        "200": -0.36
       },
       "fifty_two_week_low": 2900.64,
       "fifty_two_week_high": 3762.88,
-      "position_in_range_pct": 57.7,
+      "position_in_range_pct": 49.8,
       "analyst_target_mean": 4170.647,
       "analyst_target_median": 4105.5,
       "analyst_target_high": 4875.0,
@@ -3169,10 +3081,10 @@
       "num_analyst_opinions": 34,
       "recommendation_mean": 1.22857,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 10.73,
-      "upside_to_target_pct": 20.81,
-      "max_upside_signal_pct": 20.81,
-      "composite_upside_pct": 4.55,
+      "upside_to_52w_high_pct": 13.0,
+      "upside_to_target_pct": 23.29,
+      "max_upside_signal_pct": 23.29,
+      "composite_upside_pct": 6.72,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3218,8 +3130,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 3330.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 3334.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3230,26 +3142,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (4.5%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (6.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "MARUTI.NS",
       "company_name": "MARUTI SUZUKI INDIA LTD.",
-      "market_cap": 4225570439168,
+      "market_cap": 4205448527872,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 13520.0,
-      "recent_avg_price": 13433.27,
-      "upside_to_recent_avg_pct": -0.64,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 13440.0,
+      "recent_avg_price": 13433.0,
+      "upside_to_recent_avg_pct": -0.05,
       "sma_upside_by_window": {
-        "50": 1.5,
-        "200": 5.36
+        "50": 2.11,
+        "200": 5.91
       },
       "fifty_two_week_low": 12183.64,
       "fifty_two_week_high": 17120.06,
-      "position_in_range_pct": 27.1,
+      "position_in_range_pct": 25.5,
       "analyst_target_mean": 15925.462,
       "analyst_target_median": 16100.0,
       "analyst_target_high": 17775.0,
@@ -3257,10 +3169,10 @@
       "num_analyst_opinions": 39,
       "recommendation_mean": 1.5641,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 26.63,
-      "upside_to_target_pct": 19.08,
-      "max_upside_signal_pct": 26.63,
-      "composite_upside_pct": 11.11,
+      "upside_to_52w_high_pct": 27.38,
+      "upside_to_target_pct": 19.79,
+      "max_upside_signal_pct": 27.38,
+      "composite_upside_pct": 11.77,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3306,8 +3218,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 13440.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 13376.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3323,21 +3235,21 @@
     {
       "ticker": "MAXHEALTH.NS",
       "company_name": "MAX HEALTHCARE INS LTD",
-      "market_cap": 982035988480,
+      "market_cap": 986999685120,
       "market_cap_tier": "Mid Cap",
       "sector": "Healthcare",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1005.0,
-      "recent_avg_price": 1041.35,
-      "upside_to_recent_avg_pct": 3.62,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1009.0,
+      "recent_avg_price": 1042.05,
+      "upside_to_recent_avg_pct": 3.28,
       "sma_upside_by_window": {
-        "50": 7.39,
-        "200": 3.9
+        "50": 6.81,
+        "200": 3.45
       },
       "fifty_two_week_low": 929.95,
       "fifty_two_week_high": 1208.85,
-      "position_in_range_pct": 26.9,
+      "position_in_range_pct": 28.3,
       "analyst_target_mean": 1169.4814,
       "analyst_target_median": 1160.0,
       "analyst_target_high": 1410.0,
@@ -3345,10 +3257,10 @@
       "num_analyst_opinions": 27,
       "recommendation_mean": 1.96429,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 20.28,
-      "upside_to_target_pct": 15.42,
-      "max_upside_signal_pct": 20.28,
-      "composite_upside_pct": 10.74,
+      "upside_to_52w_high_pct": 19.81,
+      "upside_to_target_pct": 14.97,
+      "max_upside_signal_pct": 19.81,
+      "composite_upside_pct": 10.33,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3394,8 +3306,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1009.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1014.1,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3411,21 +3323,21 @@
     {
       "ticker": "NESTLEIND.NS",
       "company_name": "NESTLE INDIA LIMITED",
-      "market_cap": 2796055953408,
+      "market_cap": 2804926119936,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Defensive",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1451.5,
-      "recent_avg_price": 1425.61,
-      "upside_to_recent_avg_pct": -1.78,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1450.0,
+      "recent_avg_price": 1428.03,
+      "upside_to_recent_avg_pct": -1.52,
       "sma_upside_by_window": {
-        "50": 0.52,
-        "200": -7.64
+        "50": 0.7,
+        "200": -7.48
       },
       "fifty_two_week_low": 1140.83,
       "fifty_two_week_high": 1540.0,
-      "position_in_range_pct": 77.8,
+      "position_in_range_pct": 77.5,
       "analyst_target_mean": 1592.1111,
       "analyst_target_median": 1597.5,
       "analyst_target_high": 1815.0,
@@ -3433,10 +3345,10 @@
       "num_analyst_opinions": 36,
       "recommendation_mean": 2.38889,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 6.1,
-      "upside_to_target_pct": 10.06,
-      "max_upside_signal_pct": 10.06,
-      "composite_upside_pct": 3.15,
+      "upside_to_52w_high_pct": 6.21,
+      "upside_to_target_pct": 10.17,
+      "max_upside_signal_pct": 10.17,
+      "composite_upside_pct": 3.33,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3474,8 +3386,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1450.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1454.6,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3491,21 +3403,21 @@
     {
       "ticker": "NTPC.NS",
       "company_name": "NTPC LTD",
-      "market_cap": 3208626831360,
+      "market_cap": 3200384761856,
       "market_cap_tier": "Large Cap",
       "sector": "Utilities",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 334.6,
-      "recent_avg_price": 366.57,
-      "upside_to_recent_avg_pct": 9.56,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 330.9,
+      "recent_avg_price": 366.14,
+      "upside_to_recent_avg_pct": 10.65,
       "sma_upside_by_window": {
-        "50": 3.95,
-        "200": 6.79
+        "50": 4.92,
+        "200": 7.99
       },
       "fifty_two_week_low": 316.11,
       "fifty_two_week_high": 410.2,
-      "position_in_range_pct": 19.6,
+      "position_in_range_pct": 15.7,
       "analyst_target_mean": 433.07144,
       "analyst_target_median": 432.0,
       "analyst_target_high": 485.0,
@@ -3513,10 +3425,10 @@
       "num_analyst_opinions": 28,
       "recommendation_mean": 1.33333,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 22.59,
-      "upside_to_target_pct": 29.11,
-      "max_upside_signal_pct": 29.11,
-      "composite_upside_pct": 17.7,
+      "upside_to_52w_high_pct": 23.96,
+      "upside_to_target_pct": 30.55,
+      "max_upside_signal_pct": 30.55,
+      "composite_upside_pct": 18.95,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3562,8 +3474,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 330.9,
+        "market_state": "CLOSED",
+        "regular_market_price": 330.05,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3579,21 +3491,21 @@
     {
       "ticker": "ONGC.NS",
       "company_name": "OIL AND NATURAL GAS CORP.",
-      "market_cap": 2918624788480,
+      "market_cap": 2921769992192,
       "market_cap_tier": "Large Cap",
       "sector": "Energy",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 232.21,
-      "recent_avg_price": 260.85,
-      "upside_to_recent_avg_pct": 12.33,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 232.0,
+      "recent_avg_price": 260.31,
+      "upside_to_recent_avg_pct": 12.2,
       "sma_upside_by_window": {
-        "50": 3.95,
-        "200": 10.34
+        "50": 3.93,
+        "200": 10.43
       },
       "fifty_two_week_low": 220.61,
       "fifty_two_week_high": 301.4,
-      "position_in_range_pct": 14.4,
+      "position_in_range_pct": 14.1,
       "analyst_target_mean": 294.7,
       "analyst_target_median": 292.5,
       "analyst_target_high": 405.0,
@@ -3601,10 +3513,10 @@
       "num_analyst_opinions": 30,
       "recommendation_mean": 1.83333,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 29.8,
-      "upside_to_target_pct": 25.96,
-      "max_upside_signal_pct": 29.8,
-      "composite_upside_pct": 20.11,
+      "upside_to_52w_high_pct": 29.91,
+      "upside_to_target_pct": 26.08,
+      "max_upside_signal_pct": 29.91,
+      "composite_upside_pct": 20.1,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3650,8 +3562,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 232.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 232.25,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3667,21 +3579,21 @@
     {
       "ticker": "POWERGRID.NS",
       "company_name": "POWER GRID CORP. LTD.",
-      "market_cap": 2463729975296,
+      "market_cap": 2474425450496,
       "market_cap_tier": "Large Cap",
       "sector": "Utilities",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 265.2,
-      "recent_avg_price": 291.57,
-      "upside_to_recent_avg_pct": 9.94,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 264.9,
+      "recent_avg_price": 291.27,
+      "upside_to_recent_avg_pct": 9.96,
       "sma_upside_by_window": {
-        "50": 5.85,
-        "200": 7.12
+        "50": 5.79,
+        "200": 7.24
       },
       "fifty_two_week_low": 251.23,
       "fifty_two_week_high": 320.9,
-      "position_in_range_pct": 20.1,
+      "position_in_range_pct": 19.6,
       "analyst_target_mean": 320.28,
       "analyst_target_median": 315.0,
       "analyst_target_high": 400.0,
@@ -3689,10 +3601,10 @@
       "num_analyst_opinions": 25,
       "recommendation_mean": 2.2,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 21.0,
-      "upside_to_target_pct": 18.78,
-      "max_upside_signal_pct": 21.0,
-      "composite_upside_pct": 14.91,
+      "upside_to_52w_high_pct": 21.14,
+      "upside_to_target_pct": 18.91,
+      "max_upside_signal_pct": 21.14,
+      "composite_upside_pct": 14.99,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3738,8 +3650,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 264.9,
+        "market_state": "CLOSED",
+        "regular_market_price": 266.05,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3759,17 +3671,17 @@
       "market_cap_tier": null,
       "sector": "Energy",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1298.0,
-      "recent_avg_price": 1325.87,
-      "upside_to_recent_avg_pct": 2.15,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1282.2,
+      "recent_avg_price": 1325.28,
+      "upside_to_recent_avg_pct": 3.36,
       "sma_upside_by_window": {
-        "50": 0.59,
-        "200": 7.26
+        "50": 1.76,
+        "200": 8.5
       },
       "fifty_two_week_low": 1258.8,
       "fifty_two_week_high": 1584.97,
-      "position_in_range_pct": 12.0,
+      "position_in_range_pct": 7.2,
       "analyst_target_mean": 1673.0,
       "analyst_target_median": 1690.0,
       "analyst_target_high": 1890.0,
@@ -3777,10 +3689,10 @@
       "num_analyst_opinions": 28,
       "recommendation_mean": 1.2963,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 22.11,
-      "upside_to_target_pct": 30.2,
-      "max_upside_signal_pct": 30.2,
-      "composite_upside_pct": 14.15,
+      "upside_to_52w_high_pct": 23.61,
+      "upside_to_target_pct": 31.8,
+      "max_upside_signal_pct": 31.8,
+      "composite_upside_pct": 15.53,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3826,8 +3738,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1282.2,
+        "market_state": "CLOSED",
+        "regular_market_price": 1287.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3836,28 +3748,28 @@
       "latest_headline": "Reliance's luxury unit brings Kim Kardashian's SKIMS to India",
       "latest_headline_date": "2026-08-05T12:13:21Z",
       "headline_is_company_specific": true,
-      "tag": "10\u201315%",
+      "tag": "15\u201320%",
       "recommended": true,
       "skip_reason": null
     },
     {
       "ticker": "SBILIFE.NS",
       "company_name": "SBI LIFE INSURANCE CO LTD",
-      "market_cap": 1779139346432,
+      "market_cap": 1766998933504,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1768.2,
-      "recent_avg_price": 1831.67,
-      "upside_to_recent_avg_pct": 3.59,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1773.2,
+      "recent_avg_price": 1830.32,
+      "upside_to_recent_avg_pct": 3.22,
       "sma_upside_by_window": {
-        "50": 2.91,
-        "200": 8.25
+        "50": 2.58,
+        "200": 7.88
       },
       "fifty_two_week_low": 1706.0,
       "fifty_two_week_high": 2106.67,
-      "position_in_range_pct": 15.5,
+      "position_in_range_pct": 16.8,
       "analyst_target_mean": 2342.9722,
       "analyst_target_median": 2365.0,
       "analyst_target_high": 2790.0,
@@ -3865,10 +3777,10 @@
       "num_analyst_opinions": 36,
       "recommendation_mean": 1.2,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 19.14,
-      "upside_to_target_pct": 33.75,
-      "max_upside_signal_pct": 33.75,
-      "composite_upside_pct": 15.02,
+      "upside_to_52w_high_pct": 18.81,
+      "upside_to_target_pct": 33.37,
+      "max_upside_signal_pct": 33.37,
+      "composite_upside_pct": 14.65,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -3914,8 +3826,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1773.2,
+        "market_state": "CLOSED",
+        "regular_market_price": 1761.1,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -3924,28 +3836,28 @@
       "latest_headline": "SBI Life Insurance Co Ltd (NSE:SBILIFE) Q1 2027 Earnings Call Highlights: Strong Growth in New ...",
       "latest_headline_date": "2026-07-24T19:00:31Z",
       "headline_is_company_specific": true,
-      "tag": "15\u201320%",
+      "tag": "10\u201315%",
       "recommended": true,
       "skip_reason": null
     },
     {
       "ticker": "SHRIRAMFIN.NS",
       "company_name": "SHRIRAM FINANCE LIMITED",
-      "market_cap": 2590634934272,
+      "market_cap": 2557457989632,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1117.5,
-      "recent_avg_price": 1011.86,
-      "upside_to_recent_avg_pct": -9.45,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1101.0,
+      "recent_avg_price": 1012.69,
+      "upside_to_recent_avg_pct": -8.02,
       "sma_upside_by_window": {
-        "50": -4.81,
-        "200": -12.27
+        "50": -3.2,
+        "200": -10.83
       },
       "fifty_two_week_low": 564.99,
       "fifty_two_week_high": 1141.0,
-      "position_in_range_pct": 95.9,
+      "position_in_range_pct": 93.1,
       "analyst_target_mean": 1199.5625,
       "analyst_target_median": 1210.0,
       "analyst_target_high": 1340.0,
@@ -3953,10 +3865,10 @@
       "num_analyst_opinions": 32,
       "recommendation_mean": 1.46875,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 2.1,
-      "upside_to_target_pct": 8.28,
-      "max_upside_signal_pct": 8.28,
-      "composite_upside_pct": -2.13,
+      "upside_to_52w_high_pct": 3.63,
+      "upside_to_target_pct": 9.9,
+      "max_upside_signal_pct": 9.9,
+      "composite_upside_pct": -0.63,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4002,8 +3914,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1101.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1086.9,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4014,26 +3926,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (-2.1%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (-0.6%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "SBIN.NS",
       "company_name": "STATE BANK OF INDIA",
-      "market_cap": 9626611351552,
+      "market_cap": 9669072388096,
       "market_cap_tier": "Large Cap",
       "sector": "Financial Services",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1052.0,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1042.9,
       "recent_avg_price": 1027.18,
-      "upside_to_recent_avg_pct": -2.36,
+      "upside_to_recent_avg_pct": -1.51,
       "sma_upside_by_window": {
-        "50": -0.89,
-        "200": -2.43
+        "50": -0.03,
+        "200": -1.53
       },
       "fifty_two_week_low": 787.75,
       "fifty_two_week_high": 1206.06,
-      "position_in_range_pct": 63.2,
+      "position_in_range_pct": 61.0,
       "analyst_target_mean": 1261.8206,
       "analyst_target_median": 1275.0,
       "analyst_target_high": 1390.0,
@@ -4041,10 +3953,10 @@
       "num_analyst_opinions": 39,
       "recommendation_mean": 1.45,
       "recommendation_key": "strong_buy",
-      "upside_to_52w_high_pct": 14.64,
-      "upside_to_target_pct": 21.2,
-      "max_upside_signal_pct": 21.2,
-      "composite_upside_pct": 7.78,
+      "upside_to_52w_high_pct": 15.64,
+      "upside_to_target_pct": 22.26,
+      "max_upside_signal_pct": 22.26,
+      "composite_upside_pct": 8.72,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4090,8 +4002,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1042.9,
+        "market_state": "CLOSED",
+        "regular_market_price": 1047.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4102,26 +4014,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (7.8%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (8.7%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "SUNPHARMA.NS",
       "company_name": "SUN PHARMACEUTICAL IND L",
-      "market_cap": 4590647377920,
+      "market_cap": 4606723096576,
       "market_cap_tier": "Large Cap",
       "sector": "Healthcare",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1899.5,
-      "recent_avg_price": 1850.32,
-      "upside_to_recent_avg_pct": -2.59,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1913.3,
+      "recent_avg_price": 1852.35,
+      "upside_to_recent_avg_pct": -3.19,
       "sma_upside_by_window": {
-        "50": 1.0,
-        "200": -5.74
+        "50": 0.37,
+        "200": -6.36
       },
       "fifty_two_week_low": 1549.15,
       "fifty_two_week_high": 2001.1,
-      "position_in_range_pct": 77.5,
+      "position_in_range_pct": 80.6,
       "analyst_target_mean": 2167.2122,
       "analyst_target_median": 2150.0,
       "analyst_target_high": 2400.0,
@@ -4129,10 +4041,10 @@
       "num_analyst_opinions": 33,
       "recommendation_mean": null,
       "recommendation_key": "none",
-      "upside_to_52w_high_pct": 5.35,
-      "upside_to_target_pct": 13.19,
-      "max_upside_signal_pct": 13.19,
-      "composite_upside_pct": 3.34,
+      "upside_to_52w_high_pct": 4.59,
+      "upside_to_target_pct": 12.37,
+      "max_upside_signal_pct": 12.37,
+      "composite_upside_pct": 2.64,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4178,8 +4090,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1913.3,
+        "market_state": "CLOSED",
+        "regular_market_price": 1920.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4199,17 +4111,17 @@
       "market_cap_tier": null,
       "sector": "Technology",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 2270.0,
-      "recent_avg_price": 2282.81,
-      "upside_to_recent_avg_pct": 0.56,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 2248.4,
+      "recent_avg_price": 2280.18,
+      "upside_to_recent_avg_pct": 1.41,
       "sma_upside_by_window": {
-        "50": -1.48,
-        "200": 13.38
+        "50": -0.48,
+        "200": 14.32
       },
       "fifty_two_week_low": 1971.79,
       "fifty_two_week_high": 3204.28,
-      "position_in_range_pct": 24.2,
+      "position_in_range_pct": 22.4,
       "analyst_target_mean": 2464.9268,
       "analyst_target_median": 2400.0,
       "analyst_target_high": 3480.0,
@@ -4217,10 +4129,10 @@
       "num_analyst_opinions": 41,
       "recommendation_mean": 2.19512,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 41.16,
-      "upside_to_target_pct": 5.73,
-      "max_upside_signal_pct": 41.16,
-      "composite_upside_pct": 12.0,
+      "upside_to_52w_high_pct": 42.51,
+      "upside_to_target_pct": 6.74,
+      "max_upside_signal_pct": 42.51,
+      "composite_upside_pct": 13.02,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4266,8 +4178,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 2248.4,
+        "market_state": "CLOSED",
+        "regular_market_price": 2342.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4283,21 +4195,21 @@
     {
       "ticker": "TATACONSUM.NS",
       "company_name": "TATA CONSUMER PRODUCT LTD",
-      "market_cap": 1031256932352,
+      "market_cap": 1029970329600,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Defensive",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1047.1,
-      "recent_avg_price": 1121.24,
-      "upside_to_recent_avg_pct": 7.08,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1042.0,
+      "recent_avg_price": 1121.06,
+      "upside_to_recent_avg_pct": 7.59,
       "sma_upside_by_window": {
-        "50": 4.3,
-        "200": 7.71
+        "50": 4.68,
+        "200": 8.18
       },
       "fifty_two_week_low": 1006.29,
       "fifty_two_week_high": 1260.34,
-      "position_in_range_pct": 16.1,
+      "position_in_range_pct": 14.1,
       "analyst_target_mean": 1343.0,
       "analyst_target_median": 1345.0,
       "analyst_target_high": 1500.0,
@@ -4305,10 +4217,10 @@
       "num_analyst_opinions": 26,
       "recommendation_mean": 1.75,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 20.36,
-      "upside_to_target_pct": 28.45,
-      "max_upside_signal_pct": 28.45,
-      "composite_upside_pct": 15.74,
+      "upside_to_52w_high_pct": 20.95,
+      "upside_to_target_pct": 29.08,
+      "max_upside_signal_pct": 29.08,
+      "composite_upside_pct": 16.3,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4354,8 +4266,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1042.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1040.7,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4371,21 +4283,21 @@
     {
       "ticker": "TMPV.NS",
       "company_name": "TATA MOTORS PASS VEH LTD",
-      "market_cap": 1163793661952,
+      "market_cap": 1176315494400,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 313.1,
-      "recent_avg_price": 349.82,
-      "upside_to_recent_avg_pct": 11.73,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 316.0,
+      "recent_avg_price": 349.66,
+      "upside_to_recent_avg_pct": 10.65,
       "sma_upside_by_window": {
-        "50": 8.04,
-        "200": 11.92
+        "50": 6.76,
+        "200": 10.75
       },
       "fifty_two_week_low": 293.76,
       "fifty_two_week_high": 713.58,
-      "position_in_range_pct": 4.6,
+      "position_in_range_pct": 5.3,
       "analyst_target_mean": 362.96,
       "analyst_target_median": 365.0,
       "analyst_target_high": 490.0,
@@ -4393,10 +4305,10 @@
       "num_analyst_opinions": 25,
       "recommendation_mean": 2.84,
       "recommendation_key": "hold",
-      "upside_to_52w_high_pct": 127.91,
-      "upside_to_target_pct": 16.58,
-      "max_upside_signal_pct": 127.91,
-      "composite_upside_pct": 41.99,
+      "upside_to_52w_high_pct": 125.82,
+      "upside_to_target_pct": 15.51,
+      "max_upside_signal_pct": 125.82,
+      "composite_upside_pct": 40.66,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4442,8 +4354,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 316.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 319.4,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4459,21 +4371,21 @@
     {
       "ticker": "TATASTEEL.NS",
       "company_name": "TATA STEEL LIMITED",
-      "market_cap": 2330202210304,
+      "market_cap": 2326459842560,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 188.01,
-      "recent_avg_price": 196.86,
-      "upside_to_recent_avg_pct": 4.71,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 186.8,
+      "recent_avg_price": 196.73,
+      "upside_to_recent_avg_pct": 5.32,
       "sma_upside_by_window": {
-        "50": 0.06,
-        "200": 0.86
+        "50": 0.56,
+        "200": 1.54
       },
       "fifty_two_week_low": 150.53,
       "fifty_two_week_high": 216.66,
-      "position_in_range_pct": 56.7,
+      "position_in_range_pct": 54.8,
       "analyst_target_mean": 218.08571,
       "analyst_target_median": 220.0,
       "analyst_target_high": 260.0,
@@ -4481,10 +4393,10 @@
       "num_analyst_opinions": 35,
       "recommendation_mean": 2.4,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 15.24,
-      "upside_to_target_pct": 17.02,
-      "max_upside_signal_pct": 17.02,
-      "composite_upside_pct": 10.42,
+      "upside_to_52w_high_pct": 15.99,
+      "upside_to_target_pct": 17.77,
+      "max_upside_signal_pct": 17.77,
+      "composite_upside_pct": 11.1,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4530,8 +4442,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 186.8,
+        "market_state": "CLOSED",
+        "regular_market_price": 186.5,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4547,21 +4459,21 @@
     {
       "ticker": "TECHM.NS",
       "company_name": "TECH MAHINDRA LIMITED",
-      "market_cap": 1404148514816,
+      "market_cap": 1453670268928,
       "market_cap_tier": "Large Cap",
       "sector": "Technology",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 1571.0,
-      "recent_avg_price": 1473.88,
-      "upside_to_recent_avg_pct": -6.18,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 1585.0,
+      "recent_avg_price": 1475.58,
+      "upside_to_recent_avg_pct": -6.9,
       "sma_upside_by_window": {
-        "50": -2.57,
-        "200": -5.81
+        "50": -3.21,
+        "200": -6.57
       },
       "fifty_two_week_low": 1297.97,
       "fifty_two_week_high": 1723.61,
-      "position_in_range_pct": 64.1,
+      "position_in_range_pct": 67.4,
       "analyst_target_mean": 1630.175,
       "analyst_target_median": 1680.0,
       "analyst_target_high": 1951.0,
@@ -4569,10 +4481,10 @@
       "num_analyst_opinions": 40,
       "recommendation_mean": 2.2,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 9.71,
-      "upside_to_target_pct": 6.94,
-      "max_upside_signal_pct": 9.71,
-      "composite_upside_pct": 1.07,
+      "upside_to_52w_high_pct": 8.75,
+      "upside_to_target_pct": 5.99,
+      "max_upside_signal_pct": 8.75,
+      "composite_upside_pct": 0.23,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4618,15 +4530,15 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 1585.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 1640.9,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
         "pre_market_change_pct": null
       },
-      "latest_headline": "ServiceNow (NOW) In Focus Following Tech Mahindra AI Deal As Fair Value Debate Builds",
-      "latest_headline_date": "2026-08-26T21:09:41Z",
+      "latest_headline": "Uniphore and Tech Mahindra launch Agentic AI Factory partnership",
+      "latest_headline_date": "2026-08-28T09:13:41Z",
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
@@ -4635,21 +4547,21 @@
     {
       "ticker": "TITAN.NS",
       "company_name": "TITAN COMPANY LIMITED",
-      "market_cap": 4560164225024,
+      "market_cap": 4586694770688,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 5100.0,
-      "recent_avg_price": 4495.1,
-      "upside_to_recent_avg_pct": -11.86,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 5139.3,
+      "recent_avg_price": 4501.71,
+      "upside_to_recent_avg_pct": -12.41,
       "sma_upside_by_window": {
-        "50": -7.26,
-        "200": -16.34
+        "50": -7.67,
+        "200": -16.85
       },
       "fifty_two_week_low": 3316.42,
-      "fifty_two_week_high": 5128.0,
-      "position_in_range_pct": 98.5,
+      "fifty_two_week_high": 5139.3,
+      "position_in_range_pct": 100.0,
       "analyst_target_mean": 5395.6484,
       "analyst_target_median": 5465.0,
       "analyst_target_high": 6000.0,
@@ -4657,10 +4569,10 @@
       "num_analyst_opinions": 37,
       "recommendation_mean": 1.86111,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 0.55,
-      "upside_to_target_pct": 7.16,
-      "max_upside_signal_pct": 7.16,
-      "composite_upside_pct": -4.0,
+      "upside_to_52w_high_pct": 0.0,
+      "upside_to_target_pct": 6.34,
+      "max_upside_signal_pct": 6.34,
+      "composite_upside_pct": -4.62,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4706,8 +4618,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 5139.3,
+        "market_state": "CLOSED",
+        "regular_market_price": 5169.2,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4723,21 +4635,21 @@
     {
       "ticker": "TRENT.NS",
       "company_name": "TRENT LTD",
-      "market_cap": 1534909087744,
+      "market_cap": 1545307160576,
       "market_cap_tier": "Large Cap",
       "sector": "Consumer Cyclical",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 2908.2,
-      "recent_avg_price": 2905.23,
-      "upside_to_recent_avg_pct": -0.1,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 2878.5,
+      "recent_avg_price": 2908.02,
+      "upside_to_recent_avg_pct": 1.03,
       "sma_upside_by_window": {
-        "50": 4.13,
-        "200": 4.36
+        "50": 5.0,
+        "200": 5.19
       },
       "fifty_two_week_low": 2193.96,
       "fifty_two_week_high": 5520.84,
-      "position_in_range_pct": 21.5,
+      "position_in_range_pct": 20.6,
       "analyst_target_mean": 3396.8718,
       "analyst_target_median": 3411.5,
       "analyst_target_high": 4455.0,
@@ -4745,10 +4657,10 @@
       "num_analyst_opinions": 26,
       "recommendation_mean": 1.92308,
       "recommendation_key": "buy",
-      "upside_to_52w_high_pct": 89.84,
-      "upside_to_target_pct": 17.31,
-      "max_upside_signal_pct": 89.84,
-      "composite_upside_pct": 26.74,
+      "upside_to_52w_high_pct": 91.8,
+      "upside_to_target_pct": 18.52,
+      "max_upside_signal_pct": 91.8,
+      "composite_upside_pct": 28.09,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4794,8 +4706,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 2878.5,
+        "market_state": "CLOSED",
+        "regular_market_price": 2898.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4811,17 +4723,17 @@
     {
       "ticker": "ULTRACEMCO.NS",
       "company_name": "ULTRATECH CEMENT LIMITED",
-      "market_cap": 3446785703936,
+      "market_cap": 3409131864064,
       "market_cap_tier": "Large Cap",
       "sector": "Basic Materials",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
+      "as_of_date": "2026-08-27",
       "most_recent_close": 11717.0,
-      "recent_avg_price": 11447.87,
-      "upside_to_recent_avg_pct": -2.3,
+      "recent_avg_price": 11451.33,
+      "upside_to_recent_avg_pct": -2.27,
       "sma_upside_by_window": {
-        "50": -1.38,
-        "200": -1.29
+        "50": -1.29,
+        "200": -1.28
       },
       "fifty_two_week_low": 10154.73,
       "fifty_two_week_high": 12790.92,
@@ -4836,7 +4748,7 @@
       "upside_to_52w_high_pct": 9.17,
       "upside_to_target_pct": 20.4,
       "max_upside_signal_pct": 20.4,
-      "composite_upside_pct": 6.24,
+      "composite_upside_pct": 6.26,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4882,8 +4794,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 11717.0,
+        "market_state": "CLOSED",
+        "regular_market_price": 11589.0,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
@@ -4894,26 +4806,26 @@
       "headline_is_company_specific": true,
       "tag": null,
       "recommended": false,
-      "skip_reason": "Composite Upside % (6.2%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
+      "skip_reason": "Composite Upside % (6.3%, 50% upside-to-100day-avg + 25% upside-to-52w-high + 25% upside-to-target) below the 10% bar"
     },
     {
       "ticker": "WIPRO.NS",
       "company_name": "WIPRO LTD",
-      "market_cap": 1745060102144,
+      "market_cap": 1790095917056,
       "market_cap_tier": "Large Cap",
       "sector": "Technology",
       "google_finance_exchange": "NSE",
-      "as_of_date": "2026-08-26",
-      "most_recent_close": 177.35,
-      "recent_avg_price": 186.68,
-      "upside_to_recent_avg_pct": 5.26,
+      "as_of_date": "2026-08-27",
+      "most_recent_close": 176.4,
+      "recent_avg_price": 186.44,
+      "upside_to_recent_avg_pct": 5.69,
       "sma_upside_by_window": {
-        "50": 0.31,
-        "200": 16.84
+        "50": 0.8,
+        "200": 17.31
       },
       "fifty_two_week_low": 168.21,
       "fifty_two_week_high": 262.81,
-      "position_in_range_pct": 9.7,
+      "position_in_range_pct": 8.7,
       "analyst_target_mean": 177.625,
       "analyst_target_median": 175.0,
       "analyst_target_high": 226.0,
@@ -4921,10 +4833,10 @@
       "num_analyst_opinions": 40,
       "recommendation_mean": 3.375,
       "recommendation_key": "hold",
-      "upside_to_52w_high_pct": 48.19,
-      "upside_to_target_pct": -1.33,
-      "max_upside_signal_pct": 48.19,
-      "composite_upside_pct": 14.34,
+      "upside_to_52w_high_pct": 48.99,
+      "upside_to_target_pct": -0.79,
+      "max_upside_signal_pct": 48.99,
+      "composite_upside_pct": 14.9,
       "recommendation_breakdown": {
         "current_month": {
           "period": "0m",
@@ -4970,8 +4882,8 @@
         ]
       },
       "live_market": {
-        "market_state": "PREPRE",
-        "regular_market_price": 176.4,
+        "market_state": "CLOSED",
+        "regular_market_price": 180.95,
         "post_market_price": null,
         "post_market_change_pct": null,
         "pre_market_price": null,
