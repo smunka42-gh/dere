@@ -199,11 +199,35 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     low = r.get("fifty_two_week_low")
     high = r.get("fifty_two_week_high")
     target = r.get("analyst_target_median")
-    sma_upside = r.get("upside_to_recent_avg_pct")
     high_upside = r.get("upside_to_52w_high_pct")
     target_upside = r.get("upside_to_target_pct")
-    sma_price = current * (1 + sma_upside / 100) if None not in (current, sma_upside) else None
     up_from_low = (current - low) / low * 100 if None not in (current, low) and low else None
+
+    # BOTH moving averages are plotted, not just the one the filter
+    # panel currently selects — the scan stores every window's upside
+    # (sma_upside_by_window), so showing both costs nothing and lets
+    # the modal answer "where does this sit against its short AND long
+    # trend" in one look, rather than only the trend that happens to be
+    # filtered on. The filter's own choice still drives the ranking and
+    # the card stats; this view is where the fuller picture belongs.
+    sma_by_window = r.get("sma_upside_by_window") or {}
+
+    def _sma_point(window: int) -> tuple[float | None, float | None]:
+        """Price and upside for one moving-average window, or (None, None).
+
+        Falls back to the pre-computed single-window figure when the
+        per-window map is missing (older scan files) and that figure
+        belongs to the window being asked for.
+        """
+        upside = sma_by_window.get(str(window))
+        if upside is None and window == sma_window:
+            upside = r.get("upside_to_recent_avg_pct")
+        if upside is None or current is None:
+            return None, None
+        return current * (1 + upside / 100), upside
+
+    sma50_price, sma50_upside = _sma_point(50)
+    sma200_price, sma200_upside = _sma_point(200)
 
     def _price(v: float) -> str:
         """
@@ -219,20 +243,29 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
             return f"{market.currency_symbol}{v:,.1f}"
         return f"{market.currency_symbol}{v:,.2f}"
 
-    # One distinct colour per point, so the scale reads as five
-    # identifiable anchors rather than "three coloured ones and two grey
-    # ones" (the previous scheme reused one muted grey for both the
-    # moving average and the analyst target, so neither could be traced
-    # to its own label by colour).
+    # One distinct colour per point, so the scale reads as a set of
+    # identifiable anchors rather than several interchangeable grey
+    # ones (an earlier scheme reused one muted grey for both the moving
+    # average and the analyst target, so neither could be traced to its
+    # own label by colour).
     #
     # Low/high keep the app's semantic red/green — a 52-week low IS the
     # bad end and the high IS the good end, so borrowing those tokens
     # carries meaning rather than being decorative. Today takes the
-    # accent blue, the app's existing "look at this" colour. The two
-    # remaining reference points take the gold/purple already used for
-    # cap tiers, reused rather than inventing new values.
+    # accent blue, the app's existing "look at this" colour, matching
+    # the price on the Focus List cards. Analyst target takes purple.
+    #
+    # The two moving averages deliberately share one warm hue at two
+    # very different lightnesses: they are the same KIND of quantity
+    # (the same measure over a short vs long window), so reading as a
+    # pair is informative, while the lightness gap plus their own
+    # labels keeps them separable. This is not the "three shades of one
+    # blue" problem hit on the weights slider — there, every segment
+    # was a shade of the same colour with nothing else to tell them
+    # apart; here it is one pair among four other distinct hues.
     C_LOW = "var(--vg-negative)"
-    C_SMA = "#b8860b"
+    C_SMA_50 = "#b8860b"
+    C_SMA_200 = "#6b4423"
     C_TODAY = "var(--vg-accent)"
     C_TARGET = "#7d5ba6"
     C_HIGH = "var(--vg-positive)"
@@ -240,7 +273,8 @@ def build_price_scale_html(r: dict, sma_window: int, market) -> str:
     # (label, value, pct, colour, is_hero)
     points = [
         ("52W Low", low, None, C_LOW, False),
-        (f"{sma_window}D Avg", sma_price, sma_upside, C_SMA, False),
+        ("50D Avg", sma50_price, sma50_upside, C_SMA_50, False),
+        ("200D Avg", sma200_price, sma200_upside, C_SMA_200, False),
         ("Today", current, up_from_low, C_TODAY, True),
         ("Analyst Target", target, target_upside, C_TARGET, False),
         ("52W High", high, high_upside, C_HIGH, False),
