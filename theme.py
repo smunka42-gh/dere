@@ -129,7 +129,7 @@ CAP_TIER_COLORS = {
 }
 
 
-def inject_theme_css() -> None:
+def inject_theme_css(*, wide: bool = True) -> None:
     """
     Injects the Vantage theme's CSS into the current page. Call this
     once, immediately after st.set_page_config() — it must run before
@@ -138,7 +138,16 @@ def inject_theme_css() -> None:
     (app.py, and each file under pages/) since Streamlit runs each
     page as its own independent script — CSS injected on one page does
     not carry over to another.
+
+    wide: True for app.py's dense screener (layout="wide"), which caps
+        content at 1100px so its controls don't stretch edge-to-edge
+        on large screens. False for the prose pages under pages/*.py
+        (layout="centered") — leaves Streamlit's own ~730px centered
+        cap alone instead of silently overriding it to match app.py's
+        much wider panel, which was making Methodology/Disclaimer
+        render at nearly double their intended reading width.
     """
+    content_max_width_rule = "max-width: 1100px;" if wide else ""
     st.markdown(
         textwrap.dedent(
             f"""
@@ -197,7 +206,7 @@ def inject_theme_css() -> None:
         }}
         [data-testid="stMainBlockContainer"] {{
             padding-top: 1.75rem;
-            max-width: 1100px;
+            {content_max_width_rule}
         }}
         body, [data-testid="stAppViewContainer"] {{
             color: var(--vg-text);
@@ -1317,6 +1326,23 @@ def inject_theme_css() -> None:
             color: var(--vg-text-muted) !important;
         }}
         [class*="st-key-methodology-link"] [data-testid="stPageLink"] a:hover p {{
+            color: var(--vg-accent) !important;
+            text-decoration: underline;
+        }}
+        /* Same quiet nav-link treatment as the two rules above, reused
+           for the plain back/forward links on the Methodology and
+           Disclaimer pages (pages/*.py) — those page_link calls had no
+           key at all before, so they rendered at Streamlit's default
+           page_link size/color instead of matching the header's nav
+           links. Shared "back-link-" prefix, no width/flex rules
+           needed here since these links sit alone in the page flow
+           rather than inside the header's column layout. */
+        [class*="st-key-back-link-"] [data-testid="stPageLink"] a p {{
+            font-size: 11.5px !important;
+            font-weight: 600 !important;
+            color: var(--vg-text-muted) !important;
+        }}
+        [class*="st-key-back-link-"] [data-testid="stPageLink"] a:hover p {{
             color: var(--vg-accent) !important;
             text-decoration: underline;
         }}

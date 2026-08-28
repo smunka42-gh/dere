@@ -17,12 +17,13 @@ from theme import APP_NAME, inject_theme_css
 # CSS injected in app.py does NOT carry over here, so this page needs
 # its own set_page_config()/inject_theme_css() call, same as app.py.
 st.set_page_config(page_title=f"{APP_NAME} — Methodology", page_icon="📖", layout="centered")
-inject_theme_css()
+inject_theme_css(wide=False)
 
 # Back-link FIRST, above the title. With the sidebar nav hidden
 # (.streamlit/config.toml), this is the only way back to the app, so it
 # should be visible without scrolling to the bottom of a long page.
-st.page_link("app.py", label="← Back to Vantage Screener")
+with st.container(key="back-link-methodology-top"):
+    st.page_link("app.py", label="← Back to Vantage Screener")
 
 st.title("Methodology")
 
@@ -95,6 +96,8 @@ guaranteed accurate, complete, or continuously available.
 # anchor forces a full browser reload, which starts a new session and
 # would silently reset the URL-persisted filters (see the URL query
 # param logic in app.py).
-st.page_link("pages/2_Disclaimer.py", label="See the full Disclaimer →")
+with st.container(key="back-link-methodology-disclaimer"):
+    st.page_link("pages/2_Disclaimer.py", label="See the full Disclaimer →")
 
-st.page_link("app.py", label="← Back to Vantage Screener")
+with st.container(key="back-link-methodology-bottom"):
+    st.page_link("app.py", label="← Back to Vantage Screener")

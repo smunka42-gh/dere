@@ -15,9 +15,10 @@ from theme import APP_NAME, inject_theme_css
 # CSS injected in app.py does NOT carry over here, so this page needs
 # its own set_page_config()/inject_theme_css() call, same as app.py.
 st.set_page_config(page_title=f"{APP_NAME} — Disclaimer", page_icon="⚠️", layout="centered")
-inject_theme_css()
+inject_theme_css(wide=False)
 
-st.page_link("app.py", label="← Back to Vantage Screener")
+with st.container(key="back-link-disclaimer-top"):
+    st.page_link("app.py", label="← Back to Vantage Screener")
 
 st.title("Disclaimer")
 
@@ -25,7 +26,7 @@ st.markdown(f"""
 ### Not investment advice
 
 {APP_NAME} is a personal screening tool, not a source of investment
-advice. It applies one fixed, published set of rules to public market
+advice. It applies one published set of rules to public market
 data and shows whichever stocks currently match — the same rules and
 the same output for every visitor, with no knowledge of your finances,
 goals, risk tolerance, or holdings. Nothing on this site is tailored to
@@ -71,4 +72,5 @@ substitute for it — and consider talking to a qualified, licensed
 financial professional before making investment decisions.
 """)
 
-st.page_link("app.py", label="← Back to Vantage Screener")
+with st.container(key="back-link-disclaimer-bottom"):
+    st.page_link("app.py", label="← Back to Vantage Screener")
