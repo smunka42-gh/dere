@@ -183,6 +183,18 @@ def inject_theme_css() -> None:
             height: 0 !important;
             min-height: 0 !important;
         }}
+        /* On the deployed site (not local dev) Streamlit Community
+           Cloud injects its own Fork/GitHub/Share/Star toolbar as a
+           CHILD of stHeader. Collapsing stHeader to 0 height above
+           doesn't hide that toolbar — it just clips its container,
+           so the icons overflow out looking cropped/cut in half.
+           Hide the toolbar directly instead of relying on the
+           parent's height. This also closes off an accidental way
+           to end up on GitHub's "create a Codespace" flow, which one
+           of those icons launches. */
+        [data-testid="stToolbar"] {{
+            display: none !important;
+        }}
         [data-testid="stMainBlockContainer"] {{
             padding-top: 1.75rem;
             max-width: 1100px;
