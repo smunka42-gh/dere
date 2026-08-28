@@ -1142,15 +1142,17 @@ with st.form("filters_form"):
     # also pull the "→" submit button out of its row. This still solves
     # the actual ask — proving the weights always normalise to something
     # valid — just on Apply rather than mid-drag.
+    # ONE inline unit, not two columns spanning the panel's full width —
+    # a first version split the label (left) and readout (right) across
+    # the whole row, which on a wide screen put ~1000px of empty space
+    # between them ("randomly placed, dont know what this means" — fair:
+    # nothing tied the number back to the label it was explaining).
+    # Keeping them adjacent is what actually makes the connection read.
     pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
-    wlabel_col, wreadout_col = st.columns([2, 3], vertical_alignment="center")
-    with wlabel_col:
-        st.html('<div class="vg-panel-label">Composite Upside weights</div>')
-    with wreadout_col:
-        st.html(
-            f'<div class="vg-panel-label" style="text-align:right; '
-            f'color:var(--vg-accent);">{pct_avg}% · {pct_peak}% · {pct_target}%</div>'
-        )
+    st.html(
+        '<div class="vg-panel-label">Composite Upside weights '
+        f'<span style="color:var(--vg-accent);">— {pct_avg}% · {pct_peak}% · {pct_target}%</span></div>'
+    )
 
     w_col1, w_col2, w_col3, w_submit = st.columns(
         FILTER_ROW_RATIOS, vertical_alignment="center"
