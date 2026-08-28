@@ -6,7 +6,10 @@ mix of upside to a moving average, to the 52-week high, and to the
 analyst median target — so a daily glance is enough to see whether
 anything is worth a closer look.
 
-**Live:** https://vantagescreener.streamlit.app/
+**Live:** https://vantagescreener.streamlit.app/?embed=true
+
+(the `?embed=true` hides Streamlit Community Cloud's own Fork/GitHub/Share
+toolbar, which otherwise overlaps the top of the page)
 
 ## How it works
 
