@@ -1142,8 +1142,19 @@ with st.form("filters_form"):
     # batches every contained widget until Submit is clicked (confirmed
     # by testing), so this only updates on Apply, not mid-drag.
     pct_avg, pct_peak, pct_target = _round_pcts_to_100((prev_w_avg, prev_w_peak, prev_w_target))
-    range_col, w_submit = st.columns([3, 1], vertical_alignment="center")
-    with range_col:
+
+    # Full width now, not confined to a 3-of-4 column — a first version
+    # shared a row with the submit button (matching the old 3-slider
+    # layout), which left the slider narrower than the legend below it
+    # ("make the composite upside weights scale longer so it reaches the
+    # end of the % after analyst target" — the legend is full-width, the
+    # slider wasn't, so it visibly stopped short). The whole block is
+    # wrapped in one keyed container so the submit button (below) can be
+    # pinned into it precisely, the same "position the wrapper, not the
+    # widget" technique the Focus List cards' "+" button already uses —
+    # see .vg-card-head / st-key-focuscard- for the original of this
+    # pattern, and its own comment for why it has to be the wrapper.
+    with st.container(key="weights-block"):
         # The widget's OWN label doubles as the section heading (styled
         # in theme.py to match) rather than a separate st.html() div
         # above it — a first version used label_visibility="collapsed"
@@ -1165,44 +1176,50 @@ with st.form("filters_form"):
                 "the three shares always add up to 100%."
             ),
         )
-    w_avg_raw, w_peak_raw, w_target_raw = h1, h2 - h1, 100 - h2
+        w_avg_raw, w_peak_raw, w_target_raw = h1, h2 - h1, 100 - h2
 
-    # Streamlit's own slider fill is a CSS linear-gradient with hard
-    # color stops at the handle positions (confirmed by inspecting the
-    # live DOM) — overridden here with a 3-stop version instead of 2, so
-    # the bar itself shows the three shares as three colors, not just
-    # "filled between the handles." Scoped to this widget's key so it
-    # doesn't touch any other slider. Like the rest of this row, the
-    # colors only refresh on Submit — mid-drag, the bar keeps showing
-    # the last-applied split until Apply is clicked, same constraint as
-    # the legend below and disclosed for the same reason.
-    st.html(f"""
-        <style>
-        [class*="st-key-filt_weights_range"] [role="group"] > div:first-child > div:first-child {{
-            background: linear-gradient(to right,
-                var(--vg-weight-1) 0%, var(--vg-weight-1) {h1}%,
-                var(--vg-weight-2) {h1}%, var(--vg-weight-2) {h2}%,
-                var(--vg-weight-3) {h2}%, var(--vg-weight-3) 100%
-            ) !important;
-        }}
-        </style>
-    """)
+        # Streamlit's own slider fill is a CSS linear-gradient with hard
+        # color stops at the handle positions (confirmed by inspecting
+        # the live DOM) — overridden here with a 3-stop version instead
+        # of 2, so the bar itself shows the three shares as three
+        # colors, not just "filled between the handles." Scoped to this
+        # widget's key so it doesn't touch any other slider. Like the
+        # rest of this row, the colors only refresh on Submit — mid-drag,
+        # the bar keeps showing the last-applied split until Apply is
+        # clicked, same constraint as the legend below and disclosed for
+        # the same reason.
+        st.html(f"""
+            <style>
+            [class*="st-key-filt_weights_range"] [role="group"] > div:first-child > div:first-child {{
+                background: linear-gradient(to right,
+                    var(--vg-weight-1) 0%, var(--vg-weight-1) {h1}%,
+                    var(--vg-weight-2) {h1}%, var(--vg-weight-2) {h2}%,
+                    var(--vg-weight-3) {h2}%, var(--vg-weight-3) 100%
+                ) !important;
+            }}
+            </style>
+        """)
 
-    st.html(
-        '<div class="vg-weights-legend">'
-        f'<span><i style="background:var(--vg-weight-1);"></i>{sma_window_input}-day avg <b>{pct_avg}%</b></span>'
-        f'<span><i style="background:var(--vg-weight-2);"></i>52-week high <b>{pct_peak}%</b></span>'
-        f'<span><i style="background:var(--vg-weight-3);"></i>Analyst target <b>{pct_target}%</b></span>'
-        '</div>'
-    )
+        st.html(
+            '<div class="vg-weights-legend">'
+            f'<span><i style="background:var(--vg-weight-1);"></i>{sma_window_input}-day avg <b>{pct_avg}%</b></span>'
+            f'<span><i style="background:var(--vg-weight-2);"></i>52-week high <b>{pct_peak}%</b></span>'
+            f'<span><i style="background:var(--vg-weight-3);"></i>Analyst target <b>{pct_target}%</b></span>'
+            '</div>'
+        )
 
-    with w_submit:
-        # An arrow rather than "Apply Filters". `help` is kept here (unlike
-        # the cards' bare "+") because a lone arrow inside a form gives no
-        # hint that it COMMITS the settings — and nothing on the page
-        # updates until it's pressed.
+        # An arrow rather than "Apply Filters". `help` is kept here
+        # (unlike the cards' bare "+") because a lone arrow inside a
+        # form gives no hint that it COMMITS the settings — and nothing
+        # on the page updates until it's pressed. Pinned into the
+        # weights block's right edge, vertically centered against the
+        # label+slider+legend stack, via the same absolute-positioned-
+        # wrapper technique as the card "+" button — it used to sit in
+        # its own column next to just the sliders, which read as
+        # "lying around" once the slider went full-width and left it
+        # with no natural column to anchor to.
         submitted = st.form_submit_button(
-            "→", type="primary", help="Apply filters"
+            "→", type="primary", help="Apply filters", key="weights_submit"
         )
 
 if submitted:

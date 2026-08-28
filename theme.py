@@ -472,6 +472,16 @@ def inject_theme_css() -> None:
         [data-testid="stForm"] [data-testid="stSlider"] {{
             max-width: 200px;
         }}
+        /* The 200px cap above was sized for row 1's 4-across grid, one
+           slider per ~200px column — it was still catching the weights
+           slider too (a blanket rule, not scoped to row 1 specifically),
+           capping it at 200px when the block around it is the panel's
+           full width. Overridden so it actually reaches the legend's
+           own right edge below it, matching the legend the way it was
+           supposed to instead of stopping short. */
+        [class*="st-key-weights-block"] [data-testid="stSlider"] {{
+            max-width: 100% !important;
+        }}
         /* Below ~520px the 4-column filter grid collapses to one column
            per row (Streamlit's own responsive behavior), so each slider
            gets the full row width instead of sharing it with three
@@ -501,15 +511,29 @@ def inject_theme_css() -> None:
             line-height: 1 !important;
             margin: 0 !important;
         }}
-        /* Left-aligned in its slot ("apply filter arrow
-           button placement not good"). It now occupies the 4th slider
-           slot of row 2, so starting at that slot's left edge puts it on
-           the same vertical line the sliders above it start on, instead
-           of floating at the far edge of the panel. */
-        [data-testid="stForm"] [data-testid="stFormSubmitButton"] {{
-            display: flex !important;
-            justify-content: flex-start !important;
-            width: 100% !important;
+        /* Weights block: label + slider + legend rendered together so
+           the scale and the legend share one full-row width — a
+           version that gave the slider its own 3-of-4 column (to sit
+           beside the submit button) left it visibly narrower than the
+           legend below it ("make the composite upside weights scale
+           longer so it reaches the end of the % after analyst
+           target"). With the slider full-width, the button has no
+           natural column to share a row with any more, so it's pinned
+           into the block instead — same "position the wrapper, not the
+           widget" technique as the Focus List cards' "+" button
+           (st-key-focuscard- / st-key-detailbtn- above), which is also
+           why the button needs its own `key=` here. */
+        [class*="st-key-weights-block"] {{
+            position: relative;
+            padding-right: 44px;
+        }}
+        [class*="st-key-weights-block"] [class*="st-key-weights_submit"] {{
+            position: absolute !important;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: auto !important;
+            margin: 0 !important;
         }}
         [data-testid="stMultiSelectTagsContainer"] span[data-tag] {{
             font-size: 11px !important;
