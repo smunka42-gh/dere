@@ -43,7 +43,14 @@ from recommendation_logic import (
     COMPOSITE_WEIGHT_PEAK,
     COMPOSITE_WEIGHT_TARGET,
 )
-from theme import APP_NAME, inject_theme_css, POSITIVE_COLOR, NEGATIVE_COLOR, CAP_TIER_COLORS
+from theme import (
+    APP_NAME,
+    inject_theme_css,
+    render_brand_mark,
+    POSITIVE_COLOR,
+    NEGATIVE_COLOR,
+    CAP_TIER_COLORS,
+)
 
 OUTPUT_DIR = Path(__file__).parent / "output"
 MAX_BANNER_NAME_LENGTH = 40
@@ -930,12 +937,7 @@ else:
 # an anchor does a full browser reload, page_link navigates client-side
 # and keeps scroll position and session state.
 with st.container(key="navrow"):
-    st.html(
-        f'<div class="vg-brand">'
-        f'<div class="vg-mark"><span style="height:8px"></span>'
-        f'<span style="height:13px"></span><span style="height:18px"></span></div>'
-        f'<div class="vg-wordmark">{APP_NAME}</div></div>'
-    )
+    render_brand_mark()
     disc_text_col, disc_link_col, meta_col, nav_link_col = st.columns(
         [2.5, 1.3, 4, 1.3], vertical_alignment="center"
     )

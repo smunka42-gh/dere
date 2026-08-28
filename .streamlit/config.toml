@@ -34,9 +34,18 @@ toolbarMode = "minimal"
 runOnSave = true
 
 [theme]
+# These 4 colors are HAND-DUPLICATED from theme.py's _ACCENT, _BG,
+# _BG_ALT, _TEXT constants — TOML can't reference Python, so there's
+# no way to derive one from the other. This file only reaches
+# Streamlit's own NATIVE widget chrome (sliders, native radio) per the
+# comment above; every custom-styled element gets its color from
+# theme.py directly and won't see a change made only here. If you
+# change a color in theme.py, update the matching line below too, or
+# native widgets will silently drift out of sync with the rest of the
+# app.
 base = "light"
-primaryColor = "#3b6e91"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#fafbfc"
-textColor = "#16181d"
+primaryColor = "#3b6e91"      # theme.py: _ACCENT
+backgroundColor = "#ffffff"   # theme.py: _BG
+secondaryBackgroundColor = "#fafbfc"  # theme.py: _BG_ALT
+textColor = "#16181d"         # theme.py: _TEXT
 font = "sans serif"

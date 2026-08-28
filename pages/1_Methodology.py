@@ -11,7 +11,7 @@ the site.
 
 import streamlit as st
 
-from theme import APP_NAME, inject_theme_css
+from theme import APP_NAME, inject_theme_css, render_brand_mark
 
 # Each file under pages/ is its own independent Streamlit script — the
 # CSS injected in app.py does NOT carry over here, so this page needs
@@ -25,7 +25,16 @@ inject_theme_css(wide=False)
 with st.container(key="back-link-methodology-top"):
     st.page_link("app.py", label="← Back to Vantage Screener")
 
-st.title("Methodology")
+# Brand mark + subheader, not st.title() — matches the main screener's
+# identity (same icon/wordmark) and reuses its 21px section-heading
+# treatment (the same one "Opportunity Map"/"Today's Focus List" use)
+# instead of Streamlit's much larger default h1. Wrapped in its own
+# key so theme.py can give it a divider — otherwise it renders at the
+# exact same size as the "### ..." subsection headings right below it
+# in the markdown body, with nothing to tell them apart.
+with st.container(key="page-title"):
+    render_brand_mark()
+    st.subheader("Methodology")
 
 st.markdown(f"""
 {APP_NAME} screens stocks against one published set of rules and

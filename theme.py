@@ -85,6 +85,14 @@ APP_NAME = "Vantage Screener"
 # Color tokens for the theme. Named by MEANING, not by literal color,
 # so if a shade ever changes, every place that uses it for that reason
 # updates together instead of needing a hunt-and-replace.
+#
+# _BG, _BG_ALT, _TEXT, and _ACCENT are ALSO hand-duplicated in
+# .streamlit/config.toml's [theme] block (TOML can't import from
+# Python) — that copy is what themes Streamlit's own native widget
+# chrome (sliders, native radio), separate from everything below,
+# which themes the custom-styled elements. Changing a value here
+# without updating config.toml to match will leave native widgets
+# silently out of sync.
 _BG = "#ffffff"
 _BG_ALT = "#fafbfc"          # subtle panel background (expanders, code blocks)
 _TEXT = "#16181d"
@@ -127,6 +135,23 @@ CAP_TIER_COLORS = {
     "Mid Cap": "#b8860b",
     "Small Cap": "#9aa1ab",
 }
+
+
+def render_brand_mark() -> None:
+    """
+    Renders the small bar-chart icon + "Vantage Screener" wordmark that
+    identifies the app. Shared across all three pages (app.py's header
+    row and both pages/*.py files) so Methodology and Disclaimer carry
+    the same brand identity instead of each page inventing its own —
+    they used to open with a plain st.title() instead, which read as a
+    different, plainer site bolted onto the main screener.
+    """
+    st.html(
+        '<div class="vg-brand">'
+        '<div class="vg-mark"><span style="height:8px"></span>'
+        '<span style="height:13px"></span><span style="height:18px"></span></div>'
+        f'<div class="vg-wordmark">{APP_NAME}</div></div>'
+    )
 
 
 def inject_theme_css(*, wide: bool = True) -> None:
@@ -1229,6 +1254,19 @@ def inject_theme_css(*, wide: bool = True) -> None:
             padding: 2px 0 8px 0;
             border-bottom: 1px solid var(--vg-border);
             margin-bottom: 2px;
+        }}
+        /* Same header/content divider as navrow above, reused on the
+           Methodology/Disclaimer pages' brand mark + page subheader —
+           without it, the page's own title renders at the exact same
+           21px as the "### ..." subsection headings in the markdown
+           body right below it, with no visual break between them. */
+        [class*="st-key-page-title"] {{
+            padding: 2px 0 10px 0;
+            border-bottom: 1px solid var(--vg-border);
+            margin-bottom: 14px;
+        }}
+        [class*="st-key-page-title"] [data-testid="stVerticalBlock"] {{
+            gap: 4px !important;
         }}
         [class*="st-key-navrow"] [data-testid="stVerticalBlock"] {{
             gap: 0 !important;
