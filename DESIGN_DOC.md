@@ -236,6 +236,24 @@ hides the developer toolbar.
 
 ---
 
+## Usage tracking
+
+`analytics.py` counts page views, market switches, filter applies, and
+which tickers get opened — a handful of counters in a module-level dict,
+not a third-party analytics package. Both `streamlit-analytics` and its
+maintained fork hard-require `google-cloud-firestore` even in in-memory
+mode, which would pull in a real dependency chain for something this
+small.
+
+**Tradeoff, chosen deliberately: counts reset whenever the app process
+restarts** (a code push, or ~12 idle hours on the free tier). Fine for a
+rough sense of usage; not a durable history. View them by adding
+`?analytics=on` to the site's URL — a convenience flag, not access
+control, acceptable since it only ever exposes click counts, never
+visitor data.
+
+---
+
 ## Deliberately not included
 
 - **Social sentiment** — no viable free API at usable rate limits, and
