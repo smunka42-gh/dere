@@ -96,13 +96,18 @@ _POSITIVE = "#1f7d4c"        # reserved for positive upside numbers only
 _POSITIVE_SOFT = "#e7f6ee"
 _NEGATIVE = "#d1544b"        # reserved for negative upside numbers only
 _NEGATIVE_SOFT = "#fbe4e2"
-# Three tonal steps of the accent, for the Composite Upside weights split
-# (moving avg / 52w high / analyst target) — one accent family rather than
-# three unrelated hues, since the three segments have no inherent
-# red/green-style meaning of their own to color-code by.
-_WEIGHT_1 = _ACCENT           # "#3b6e91"
-_WEIGHT_2 = "#7a9db3"
-_WEIGHT_3 = "#b7cbd8"
+# Colors for the Composite Upside weights split (moving avg / 52w high /
+# analyst target). First tried as three tonal steps of the accent blue —
+# reverted after direct feedback that shades of one hue read as too
+# similar at a glance ("that way the different shades of blue will be
+# more apparent. or use different color coding not shades"). Reuses
+# CAP_TIER_COLORS below rather than inventing a third palette: it's
+# already a proven, genuinely-distinct 3-color set used elsewhere in
+# this app for exactly the same kind of "no red/green meaning, just
+# needs to be tellable apart" case.
+_WEIGHT_1 = "#2c3e50"          # matches CAP_TIER_COLORS["Large Cap"]
+_WEIGHT_2 = "#b8860b"          # matches CAP_TIER_COLORS["Mid Cap"]
+_WEIGHT_3 = "#9aa1ab"          # matches CAP_TIER_COLORS["Small Cap"]
 _RADIUS = "12px"
 
 # Public re-exports — app.py needs these directly (e.g. the heatmap's
@@ -479,6 +484,17 @@ def inject_theme_css() -> None:
            supposed to instead of stopping short. */
         [class*="st-key-weights-block"] [data-testid="stSlider"] {{
             max-width: 100% !important;
+        }}
+        /* Thicker track (Streamlit's own default is 4px) so the three
+           color segments each get more visible area — direct feedback
+           that they were hard to tell apart at the default thickness,
+           on top of the switch away from tonal shades above. The
+           dynamic color-stop gradient itself is set per-render in
+           app.py (it depends on the live handle positions); this part
+           is static, so it lives here instead. */
+        [class*="st-key-filt_weights_range"] [role="group"] > div:first-child > div:first-child {{
+            height: 10px !important;
+            border-radius: 5px !important;
         }}
         /* Below ~520px the 4-column filter grid collapses to one column
            per row (Streamlit's own responsive behavior), so each slider
