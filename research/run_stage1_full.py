@@ -62,7 +62,11 @@ def main():
         year_neg, year_n = collections.Counter(), collections.Counter()
         for t in biggest:
             oi = data[t]["op_income"]
-            for y in sorted(oi)[-6:]:
+            # SAME 5-year window the gates judge on. Detecting a shock
+            # over a longer span than the gates use would let a year be
+            # excused that was never going to be counted anyway, and
+            # would make the two definitions silently disagree.
+            for y in sorted(oi)[-5:]:
                 year_n[y] += 1
                 if oi[y] <= 0:
                     year_neg[y] += 1
