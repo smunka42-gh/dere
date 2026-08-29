@@ -1133,6 +1133,11 @@ if picked_market_id != st.session_state.selected_market_id:
     for widget_key in (
         "filt_cap_range", "filt_rating_threshold", "filt_sma_window",
         "filt_composite_cutoff", "filt_weights_range",
+        # The ticker lookup lists only the CURRENT market's symbols, so a
+        # leftover selection ("ORCL" while now on Nifty 50) would not
+        # exist in the new options list — same class of stale-value crash
+        # the filter widgets above are cleared to avoid.
+        "ticker_lookup", "ticker_lookup_opened",
     ):
         st.session_state.pop(widget_key, None)
     if picked_market_id == DEFAULT_MARKET_ID:
@@ -1493,6 +1498,43 @@ st.caption(
     f"{_caption_pct_avg}/{_caption_pct_peak}/{_caption_pct_target} · "
     f"Composite Upside ≥ {composite_cutoff}%"
 )
+
+# --- Look up any ticker, filters or no filters -----------------------
+# Deliberately drawn from EVERY scanned ticker, not from
+# qualifying_results — the Focus List can only ever open something that
+# already cleared the filters, so a lookup restricted to the same set
+# would add nothing. Being able to pull up a name the filters rejected
+# (or one you hold and just want to check) is the whole point.
+#
+# A selectbox rather than a free-text box: Streamlit's selectbox already
+# filters as you type, so it behaves like the requested "type a ticker"
+# field while making a typo or an unlisted symbol impossible.
+if scan is not None and live_results:
+    by_ticker = {r["ticker"]: r for r in live_results}
+    lookup_col, _spacer = st.columns([1, 3])
+    with lookup_col, st.container(key="ticker-lookup"):
+        picked_ticker = st.selectbox(
+            "Look up a ticker",
+            options=["", *sorted(by_ticker)],
+            format_func=lambda t: "Type to search…" if t == "" else t,
+            key="ticker_lookup",
+            help=(
+                "Opens the same price scale as the + on a Focus List card, "
+                "for any ticker in this market — including ones the filters "
+                "above are currently excluding."
+            ),
+        )
+
+    # Open on CHANGE, not on every rerun: the selectbox keeps its value
+    # after the dialog is dismissed, so re-opening whenever it is simply
+    # non-empty would make the modal impossible to close.
+    if picked_ticker and picked_ticker != st.session_state.get("ticker_lookup_opened"):
+        st.session_state["ticker_lookup_opened"] = picked_ticker
+        show_detail_dialog(by_ticker[picked_ticker], sma_window, weights, market)
+    elif not picked_ticker:
+        # Back to the placeholder — forget what was shown, so picking the
+        # same ticker again re-opens it rather than silently doing nothing.
+        st.session_state.pop("ticker_lookup_opened", None)
 
 st.divider()
 
