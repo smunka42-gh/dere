@@ -17,3 +17,8 @@ output/*
 # Private build log — session history, feedback quotes, decision provenance.
 # Kept local for conversation-compaction continuity; never published.
 BUILD_LOG.md
+
+# Research/analysis code lives OUTSIDE this repo (see ../vantage-research).
+# A module here that raised SystemExit at import time took the deployed
+# site down: Streamlit inspects .py files across the repo at runtime.
+research/
