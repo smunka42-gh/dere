@@ -58,14 +58,11 @@ Default weights 50 / 25 / 25, adjustable in the UI and normalised, so the
 sliders express *relative* importance — 50/50/50 means equal weight, the
 same as 33/33/33.
 
-**Why the moving average carries the dominant weight.** An earlier version
-used the 52-week high alone as the "how cheap is this" signal, but a peak
-can be touched for a single day and says little about where a stock
-actually trades. A moving average requires a sustained pullback across
-months of real trading days. That replaced an even earlier attempt —
-bucketing a year of closes into a histogram and taking the most-visited
-price band — which turned out to rest on as few as 10 days out of ~252 for
-some tickers, and anchored on stale price regimes.
+**Why the moving average carries the dominant weight.** A 52-week high is
+a single day and can be touched briefly without meaning much, whereas
+trading below a moving average implies a pullback sustained across months
+of real trading days — a stronger signal that a stock has genuinely, and
+recently, pulled back.
 
 **Why the analyst target is not weighted higher.** Analyst price targets
 carry a well-documented optimism bias, so the target is deliberately not
@@ -191,6 +188,12 @@ Displayed counts derive from the rows actually shown, not the scan's
 `tickers_scanned` metadata — that records how many were *fetched* (503),
 before deduplication.
 
+**On the BSE Sensex.** Not offered as a third market, because it would add
+no companies: its 30 constituents are a strict subset of Nifty 50's 50
+(verified by diffing the two lists). Yahoo also returns only a single day
+of price history for `.BO` tickers, so Sensex prices would have to come
+from each company's NSE listing — the source Nifty 50 already uses.
+
 ---
 
 ## Working within Streamlit
@@ -251,28 +254,6 @@ rough sense of usage; not a durable history. View them by adding
 `?analytics=on` to the site's URL — a convenience flag, not access
 control, acceptable since it only ever exposes click counts, never
 visitor data.
-
----
-
-## Deliberately not included
-
-- **Social sentiment** — no viable free API at usable rate limits, and
-  automated scoring would be a substantial separate build.
-- **Growth / Value classification** — no authoritative free source; only
-  raw ingredients (P/E, PEG, growth rates) are available, and presenting a
-  homemade heuristic as if it were a standard classification would be
-  misleading.
-- **BSE Sensex, deliberately.** Briefly added and then removed: Sensex's
-  30 constituents turned out to be a strict subset of Nifty 50's 50 (0
-  companies unique to Sensex, confirmed by diffing the two ticker lists).
-  Yahoo's BSE data feed also has a real coverage gap (it returns only a
-  single day of price history for `.BO` tickers regardless of the
-  requested range), so Sensex's prices would have come from each
-  company's NSE listing anyway — the same source Nifty 50 already uses.
-  A third market that adds no new companies and no new data source isn't
-  worth the extra scan time or UI complexity.
-- **Universe beyond two markets** — a broader set of markets needs a
-  paid data source to be reliable at scale.
 
 ---
 
