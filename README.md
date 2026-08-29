@@ -1,3 +1,13 @@
+> ## ⚠️ Deprecated — no longer maintained
+>
+> This project has been retired. It has been superseded by **Vantage**, a
+> rebuild around a three-stage quality/dislocation funnel: a hard quality
+> gate on audited SEC filings, a dislocation score, and a corroboration
+> step that separates "temporarily cheap" from "actually broken".
+>
+> The hosted app has been taken down. The code here is left public and
+> read-only as a record of the work.
+
 # Vantage Screener
 
 A single-page stock screener over two equity markets — S&P 500 and Nifty
@@ -6,12 +16,7 @@ mix of upside to a moving average, to the 52-week high, and to the
 analyst median target — so a daily glance is enough to see whether
 anything is worth a closer look.
 
-**Live:** https://vantagescreener.streamlit.app/?embed=true
-
-(`?embed=true` swaps Streamlit Community Cloud's footer badge for a
-minimal "Built with Streamlit" line — its own Fork/GitHub/Share
-toolbar is hidden outright via CSS, for every visitor, with or
-without this parameter)
+**Live:** taken down (see the deprecation notice above).
 
 ## How it works
 

@@ -12,13 +12,16 @@
 
 name: Daily scan
 
+# DISABLED — the app this fed has been retired. The schedule is commented
+# out rather than deleted so the gating logic (which took real work to get
+# right) is preserved for the successor project.
 on:
-  schedule:
+  # schedule:
     # GitHub cron is UTC ONLY and does not follow daylight saving, so a
     # single expression cannot stay at 17:00 New York year-round. Both
     # times below fire; the gate below decides which one actually scans.
-    - cron: "0 21 * * 1-5"   # 17:00 America/New_York while EDT
-    - cron: "0 22 * * 1-5"   # 17:00 America/New_York while EST
+  #   - cron: "0 21 * * 1-5"   # 17:00 America/New_York while EDT
+  #   - cron: "0 22 * * 1-5"   # 17:00 America/New_York while EST
   workflow_dispatch:          # allows a manual run from the Actions tab
 
 permissions:
