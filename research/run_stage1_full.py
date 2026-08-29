@@ -22,6 +22,15 @@ UTILITY_SECTORS = {"Utilities"}
 # but unlike utilities they generate strong free cash flow (VZ +$64B,
 # T +$111B, CMCSA +$83B cumulative 5y), so only gate 2 changes.
 CAPITAL_INTENSIVE_SECTORS = {"Communication Services"}
+
+# Managed-care insurers that the data provider files under "Healthcare".
+# They are insurance companies: premiums in, claims out, large investment
+# float — so return on ASSETS misreads them exactly as it does a bank.
+# Named explicitly rather than matched on company name, which wrongly
+# swept in hospitals (HCA, UHS), a distributor (CAH) and a device maker
+# (GEHC). CVS is included deliberately: post-Aetna its balance sheet is
+# insurance-dominated, though it remains part retail.
+HEALTH_INSURERS = {"UNH", "ELV", "CI", "HUM", "CNC", "MOH", "CVS"}
 SKIP_SECTORS = {"Real Estate"}   # REITs need an FFO-based track; not built
 
 
@@ -95,7 +104,8 @@ def main():
             out[t] = {"tier": "ERROR", "sector": sector}
             continue
         try:
-            gates = run(t, d, is_financial=sector in FINANCIAL_SECTORS,
+            gates = run(t, d, is_financial=(sector in FINANCIAL_SECTORS
+                                        or t in HEALTH_INSURERS),
                         is_utility=sector in UTILITY_SECTORS,
                         is_capital_intensive=sector in CAPITAL_INTENSIVE_SECTORS,
                         shock_years=shock.get(sector, set()))

@@ -574,13 +574,13 @@
   "note": null
  },
  "AFL": {
-  "tier": "CANNOT ASSESS",
+  "tier": "PASS",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -845,13 +845,13 @@
   "note": null
  },
  "ALL": {
-  "tier": "CANNOT ASSESS",
+  "tier": "REJECTED",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "fail",
+    "detail": "profit negative 2/5y (allowed 1) \u00b7 net income positive 3/5"
    },
    {
     "gate": "2 Return on capital",
@@ -1427,13 +1427,13 @@
   "note": null
  },
  "APO": {
-  "tier": "CANNOT ASSESS",
+  "tier": "REJECTED",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 1/4y (allowed 1) \u00b7 net income positive 3/4"
    },
    {
     "gate": "2 Return on capital",
@@ -2433,13 +2433,13 @@
   "note": null
  },
  "BNY": {
-  "tier": "CANNOT ASSESS",
+  "tier": "PASS",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -3290,18 +3290,18 @@
   "note": null
  },
  "CI": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Healthcare",
   "gates": [
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 4.4% vs 8% bar \u00b7 latest 4.8% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 11.6% vs 10% bar \u00b7 latest 9.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -3675,18 +3675,18 @@
   "note": null
  },
  "CNC": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Healthcare",
   "gates": [
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.7% vs 8% bar \u00b7 latest 3.0% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 7.0% vs 10% bar \u00b7 latest 12.5% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -3696,7 +3696,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "equity/assets 32.0% vs 10% bar (no interest tag)"
+    "detail": "equity/assets 32.0% vs 8% bar (no interest tag)"
    },
    {
     "gate": "5 Op margin durable",
@@ -4487,18 +4487,18 @@
   "note": null
  },
  "CVS": {
-  "tier": "REJECTED",
+  "tier": "BORDERLINE",
   "sector": "Healthcare",
   "gates": [
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 4.3% vs 8% bar \u00b7 latest 2.7% (level)"
+    "grade": "near-pass",
+    "detail": "return on equity median 10.3% vs 10% bar \u00b7 latest 6.1% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -4508,7 +4508,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "equity/assets 29.8% vs 10% bar (no interest tag)"
+    "detail": "equity/assets 29.8% vs 8% bar (no interest tag)"
    },
    {
     "gate": "5 Op margin durable",
@@ -4521,7 +4521,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "2 Return on capital"
+  ],
   "note": null
  },
  "CVX": {
@@ -5770,18 +5772,18 @@
   "note": null
  },
  "ELV": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Healthcare",
   "gates": [
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.1% vs 8% bar \u00b7 latest 5.3% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 15.2% vs 10% bar \u00b7 latest 14.5% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -5791,7 +5793,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "equity/assets 35.3% vs 10% bar (no interest tag)"
+    "detail": "equity/assets 35.3% vs 8% bar (no interest tag)"
    },
    {
     "gate": "5 Op margin durable",
@@ -8478,12 +8480,12 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.7% vs 8% bar \u00b7 latest 4.4% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 16.8% vs 10% bar \u00b7 latest 7.4% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -8493,7 +8495,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "equity/assets 35.2% vs 10% bar (no interest tag)"
+    "detail": "equity/assets 35.2% vs 8% bar (no interest tag)"
    },
    {
     "gate": "5 Op margin durable",
@@ -9596,13 +9598,13 @@
   "sector": "Real Estate"
  },
  "KKR": {
-  "tier": "CANNOT ASSESS",
+  "tier": "REJECTED",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -14015,13 +14017,13 @@
   "note": null
  },
  "RF": {
-  "tier": "CANNOT ASSESS",
+  "tier": "PASS",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -14053,13 +14055,13 @@
   "note": null
  },
  "RJF": {
-  "tier": "CANNOT ASSESS",
+  "tier": "PASS",
   "sector": "Financial Services",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": null,
-    "detail": "insufficient history"
+    "grade": "pass",
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -16605,12 +16607,12 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/5y (allowed 1) \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
-    "grade": "near-pass",
-    "detail": "return on assets median 9.0% vs 8% bar \u00b7 latest 8.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 23.0% vs 10% bar \u00b7 latest 14.7% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -16633,9 +16635,7 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [
-   "2 Return on capital"
-  ],
+  "at_risk": [],
   "note": null
  },
  "UNP": {

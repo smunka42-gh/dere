@@ -227,6 +227,15 @@ def run(ticker, d, is_financial=False, is_utility=False,
     judged = [y for y in yrs if y not in shock_years]
     oi = last5(d["op_income"], judged)
     ni = last5(d["net_income"], judged)
+    # Banks, insurers and asset managers frequently have NO usable
+    # operating-income series at all — Allstate tags none, and Aflac's
+    # stops in 2021 — because the concept is not meaningful for them.
+    # Requiring it made 8 established financials "cannot assess" purely
+    # on a missing tag. For those, net income IS the profit measure, and
+    # it has excellent coverage; gate 2 already judges them on ROE, which
+    # is built from the same figure.
+    if is_financial and len(oi) < 4 and len(ni) >= 4:
+        oi = ni
     if len(oi) >= 4 and len(ni) >= 4:
         neg_allowed = 1 if is_financial else 0
         oi_neg = sum(1 for x in oi if x <= 0)
