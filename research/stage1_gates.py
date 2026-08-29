@@ -16,14 +16,31 @@ import requests, statistics as st, time
 #
 # Failing loudly here is deliberate: the alternative is an opaque JSON
 # decode error hundreds of lines later.
-_UA = os.environ.get("SEC_USER_AGENT")
-if not _UA:
-    raise SystemExit(
-        "SEC_USER_AGENT is not set.\n"
-        "The SEC requires a contact address in the User-Agent header.\n"
-        '  export SEC_USER_AGENT="vantage-screener you@example.com"'
-    )
-S = requests.Session(); S.headers.update({"User-Agent": _UA})
+# Checked LAZILY, on first request — never at import time. Importing this
+# module must not be able to kill the host process: Streamlit runs with
+# runOnSave, which inspects .py files across the repo, so a module-level
+# raise here took the deployed site down with an opaque ImportError.
+class _SECSession(requests.Session):
+    # An explicit flag, not a check on the header: requests.Session ships
+    # a default User-Agent ("python-requests/x.y"), so testing whether one
+    # is set always passes and the SEC silently rejects the call with
+    # non-JSON hundreds of lines later.
+    _ua_applied = False
+
+    def request(self, method, url, *a, **kw):
+        if not self._ua_applied:
+            ua = os.environ.get("SEC_USER_AGENT")
+            if not ua:
+                raise RuntimeError(
+                    "SEC_USER_AGENT is not set. The SEC requires a contact "
+                    'address:  export SEC_USER_AGENT="vantage you@example.com"'
+                )
+            self.headers["User-Agent"] = ua
+            self._ua_applied = True
+        return super().request(method, url, *a, **kw)
+
+
+S = _SECSession()
 
 # Fallback chains: companies file the same economic fact under different
 # concept names, so ask for any of them and take whichever exists.
