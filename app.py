@@ -46,6 +46,7 @@ from recommendation_logic import (
 )
 from theme import (
     APP_NAME,
+    APP_VERSION,
     inject_theme_css,
     render_brand_mark,
     POSITIVE_COLOR,
@@ -1035,10 +1036,10 @@ if scan is not None:
     # to the exclusion list.
     scan_meta = (
         f"Last scan {scan_time.strftime('%d %b, %H:%M UTC')} · "
-        f"{len(all_results)} tickers"
+        f"{len(all_results)} tickers · v{APP_VERSION}"
     )
 else:
-    scan_meta = "No scan data yet"
+    scan_meta = f"No scan data yet · v{APP_VERSION}"
 
 # --- Brand header --------------------------------------------------------
 # Replaces a 44px emoji st.title (reviewed the built page

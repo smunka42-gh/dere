@@ -82,6 +82,17 @@ import streamlit as st
 # replace across every file.
 APP_NAME = "Vantage Screener"
 
+# Shown in the header's meta line so a screenshot or a bug report always
+# says which build it came from. Bump this whenever behaviour a visitor
+# could notice changes — not for copy tweaks or styling.
+#
+# Deliberately independent of the funnel SPEC's version (v0.7 at the time
+# of writing): that document describes a three-stage quality/dislocation
+# funnel which is still research (see research/stage1_gates.py) and is
+# NOT what this site currently runs. Conflating the two would imply the
+# site does something it does not.
+APP_VERSION = "1.4"
+
 # Color tokens for the theme. Named by MEANING, not by literal color,
 # so if a shade ever changes, every place that uses it for that reason
 # updates together instead of needing a hunt-and-replace.
