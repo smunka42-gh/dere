@@ -199,7 +199,8 @@ def grade(value, bar, higher_is_better=True):
     return "fail", slack
 
 
-def run(ticker, d, is_financial=False):
+def run(ticker, d, is_financial=False, is_utility=False,
+        is_capital_intensive=False, shock_years=()):
     """Apply the six gates. Returns list of (gate, passed|None, detail)."""
     # Year spine: built from whichever profit series exists, so a thin
     # tag in ONE concept cannot blank out gates that don't depend on it.
@@ -216,14 +217,23 @@ def run(ticker, d, is_financial=False):
     # was -$30.5B purely from unrealised equity revaluation while its
     # operating businesses were fine. Penalising that is measuring the
     # stock market, not the company.
-    oi = last5(d["op_income"], yrs)
-    ni = last5(d["net_income"], yrs)
+    # Years the WHOLE sector lost money are excluded before counting. A
+    # year in which most of an industry's largest companies posted an
+    # operating loss is an exogenous shock, not evidence about any one
+    # company: in 2020, 5 of the 7 largest energy names went negative,
+    # against 0% in every other year. Excusing that year is mechanical
+    # (it identifies an industry-wide event) rather than a lowered bar —
+    # a company that also lost money OUTSIDE the shock year still fails.
+    judged = [y for y in yrs if y not in shock_years]
+    oi = last5(d["op_income"], judged)
+    ni = last5(d["net_income"], judged)
     if len(oi) >= 4 and len(ni) >= 4:
         neg_allowed = 1 if is_financial else 0
         oi_neg = sum(1 for x in oi if x <= 0)
         ok = oi_neg <= neg_allowed and sum(1 for x in ni if x > 0) >= len(ni) - 1
         out.append(("1 Sustained profit", "pass" if ok else "fail",
-                    f"profit negative {oi_neg}/{len(oi)}y (allowed {neg_allowed}) · "
+                    f"profit negative {oi_neg}/{len(oi)}y (allowed {neg_allowed})"
+                    f"{' [shock yrs excluded: '+','.join(sorted(shock_years))+']' if shock_years else ''} · "
                     f"net income positive {sum(1 for x in ni if x>0)}/{len(ni)}"))
     else:
         out.append(("1 Sustained profit", None, "insufficient history"))
@@ -236,10 +246,21 @@ def run(ticker, d, is_financial=False):
     # 8% ROA bar is not strict for a bank, it is impossible. Financials
     # are therefore judged on return on EQUITY, the yardstick the
     # industry itself uses.
-    if is_financial:
+    if is_financial or is_utility or is_capital_intensive:
         vals = [d["net_income"][y] / d["equity"][y] for y in yrs
                 if y in d["net_income"] and d["equity"].get(y)]
-        bar, near, label = 0.10, 0.09, "return on equity"
+        # Utilities: 8% anchors to the ALLOWED ROE regulators grant, which
+        # runs 9-10.5% in the US. A utility earning well under its own
+        # allowance (Duke at 5.8%) is genuinely underperforming, not merely
+        # capital-intensive — so the bar still discriminates.
+        if is_utility:
+            bar, near, label = 0.08, 0.07, "return on equity"
+        else:
+            # Financials and capital-intensive competitive businesses
+            # (telecom, cable, media) share a 10% bar. Unlike a regulated
+            # utility they carry competitive risk and have no allowed
+            # return to anchor to, so they should out-earn one.
+            bar, near, label = 0.10, 0.09, "return on equity"
     else:
         vals = [d["op_income"][y] * 0.79 / d["assets"][y] for y in yrs
                 if y in d["op_income"] and d["assets"].get(y)]
@@ -260,7 +281,18 @@ def run(ticker, d, is_financial=False):
         out.append(("2 Return on capital", None, "insufficient history"))
 
     # --- Test 3: cumulative free cash flow ---------------------------
-    if d["ocf"] and d["capex"]:
+    # Utilities are judged on OPERATING cash flow instead. Free cash flow
+    # is negative by design for a regulated utility: it continuously funds
+    # grid capex with debt against regulator-guaranteed returns, so 26 of
+    # 31 showed negative cumulative 5y FCF. What matters is whether the
+    # business throws off cash before that investment, every year.
+    if is_utility and d["ocf"]:
+        cy = sorted(d["ocf"])[-5:]
+        vals = [d["ocf"][y] for y in cy]
+        out.append(("3 Cumulative 5y FCF", "pass" if min(vals) > 0 else "fail",
+                    f"operating cash flow positive {sum(1 for v in vals if v>0)}/{len(vals)}y "
+                    f"(utility track: capex excluded)"))
+    elif d["ocf"] and d["capex"]:
         cy = sorted(set(d["ocf"]) & set(d["capex"]))[-5:]
         fcf = sum(d["ocf"][y] - d["capex"][y] for y in cy)
         out.append(("3 Cumulative 5y FCF", "pass" if fcf > 0 else "fail",
@@ -283,8 +315,12 @@ def run(ticker, d, is_financial=False):
     ie = d["interest"].get(y) if y else None
     if y and ie and d["op_income"].get(y):
         cov = d["op_income"][y] / abs(ie)
-        g, _ = grade(cov, 4.0)
-        out.append(("4 Debt serviceable", g, f"interest coverage {cov:.1f}x vs 4x bar"))
+        # Regulated utilities carry more debt against far more predictable
+        # cash flows, so 2.5x there is the equivalent of 4x elsewhere.
+        cov_bar = 2.5 if is_utility else 4.0
+        g, _ = grade(cov, cov_bar)
+        out.append(("4 Debt serviceable", g,
+                    f"interest coverage {cov:.1f}x vs {cov_bar}x bar"))
     elif y and d["equity"].get(y) and d["assets"].get(y):
         ratio = d["equity"][y] / d["assets"][y]
         # Deliberately loose: this is a crude proxy used ONLY when the

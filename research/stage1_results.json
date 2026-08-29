@@ -21,7 +21,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 15.5x vs 4x bar"
+    "detail": "interest coverage 15.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -97,7 +97,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 3.3x vs 4x bar"
+    "detail": "interest coverage 3.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -211,7 +211,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 33.1x vs 4x bar"
+    "detail": "interest coverage 33.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -365,7 +365,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 3.2x vs 4x bar"
+    "detail": "interest coverage 3.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -403,7 +403,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 11.6x vs 4x bar"
+    "detail": "interest coverage 11.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -460,7 +460,7 @@
   "note": null
  },
  "AEE": {
-  "tier": "REJECTED",
+  "tier": "BORDERLINE",
   "sector": "Utilities",
   "gates": [
    {
@@ -470,18 +470,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.0% vs 8% bar \u00b7 latest 2.7% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.2% vs 8% bar \u00b7 latest 9.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-6.4B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.3x vs 4x bar"
+    "grade": "near-fail",
+    "detail": "interest coverage 2.3x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -498,7 +498,7 @@
   "note": null
  },
  "AEP": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -508,13 +508,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.9% vs 8% bar \u00b7 latest 3.3% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.7% vs 8% bar \u00b7 latest 11.0% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "pass",
-    "detail": "$+21.9B over 5y"
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -546,18 +546,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 0.2% vs 8% bar \u00b7 latest 0.7% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 1.7% vs 8% bar \u00b7 latest 19.4% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-9.0B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 0.5x vs 4x bar"
+    "detail": "interest coverage 0.5x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -633,7 +633,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.4x vs 4x bar"
+    "detail": "interest coverage 8.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -709,7 +709,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 4.9x vs 4x bar"
+    "detail": "interest coverage 4.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -787,7 +787,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage -10.7x vs 4x bar"
+    "detail": "interest coverage -10.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -980,7 +980,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.5x vs 4x bar"
+    "detail": "interest coverage 2.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1020,7 +1020,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 20.7x vs 4x bar"
+    "detail": "interest coverage 20.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1296,7 +1296,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 67.5x vs 4x bar"
+    "detail": "interest coverage 67.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1313,13 +1313,13 @@
   "note": null
  },
  "APA": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Energy",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -1334,7 +1334,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 6.1x vs 4x bar"
+    "detail": "interest coverage 6.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1476,7 +1476,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 5.7% vs 8% bar \u00b7 latest 25.2% (improving)"
+    "detail": "return on equity median 28.4% vs 10% bar \u00b7 latest 156.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -1524,7 +1524,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 5.5x vs 4x bar"
+    "detail": "interest coverage 5.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1593,13 +1593,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.7% vs 8% bar \u00b7 latest 4.2% (level)"
+    "grade": "near-pass",
+    "detail": "return on equity median 8.4% vs 8% bar \u00b7 latest 8.6% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "fail",
-    "detail": "$-6.0B over 5y"
+    "detail": "operating cash flow positive 4/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -1617,7 +1617,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "2 Return on capital"
+  ],
   "note": null
  },
  "AVGO": {
@@ -1709,13 +1711,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.6% vs 8% bar \u00b7 latest 0.8% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.7% vs 8% bar \u00b7 latest 1.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-3.4B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -1872,7 +1874,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage -3.9x vs 4x bar"
+    "detail": "interest coverage -3.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1950,7 +1952,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 1.8x vs 4x bar"
+    "detail": "interest coverage 1.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -1988,7 +1990,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 0.0x vs 4x bar"
+    "detail": "interest coverage 0.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2066,7 +2068,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.5x vs 4x bar"
+    "detail": "interest coverage 4.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2106,7 +2108,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.2x vs 4x bar"
+    "detail": "interest coverage 4.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2146,7 +2148,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.1x vs 4x bar"
+    "detail": "interest coverage 9.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2282,8 +2284,8 @@
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/4y (allowed 0) \u00b7 net income positive 2/5"
+    "grade": null,
+    "detail": "insufficient history"
    },
    {
     "gate": "2 Return on capital",
@@ -2490,7 +2492,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.8x vs 4x bar"
+    "detail": "interest coverage 8.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2530,7 +2532,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 21.2x vs 4x bar"
+    "detail": "interest coverage 21.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2606,7 +2608,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.5x vs 4x bar"
+    "detail": "interest coverage 8.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2644,7 +2646,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.6x vs 4x bar"
+    "detail": "interest coverage 14.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2727,7 +2729,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 10.6x vs 4x bar"
+    "detail": "interest coverage 10.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2765,7 +2767,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 0.7x vs 4x bar"
+    "detail": "interest coverage 0.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2879,7 +2881,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 15.5x vs 4x bar"
+    "detail": "interest coverage 15.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -2917,7 +2919,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 21.3x vs 4x bar"
+    "detail": "interest coverage 21.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3001,7 +3003,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 17.8x vs 4x bar"
+    "detail": "interest coverage 17.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3072,7 +3074,7 @@
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "fail",
-    "detail": "$-19.5B over 4y"
+    "detail": "operating cash flow positive 0/4y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -3115,7 +3117,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.4x vs 4x bar"
+    "detail": "interest coverage 14.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3191,7 +3193,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.5x vs 4x bar"
+    "detail": "interest coverage 8.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3248,7 +3250,7 @@
   "note": null
  },
  "CHTR": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -3258,8 +3260,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.5% vs 8% bar \u00b7 latest 6.9% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 33.1% vs 10% bar \u00b7 latest 32.6% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -3309,7 +3311,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 6.3x vs 4x bar"
+    "detail": "interest coverage 6.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3385,7 +3387,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 53.9x vs 4x bar"
+    "detail": "interest coverage 53.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3461,7 +3463,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.4x vs 4x bar"
+    "detail": "interest coverage 4.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3481,7 +3483,7 @@
   "note": null
  },
  "CMCSA": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -3491,8 +3493,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.0% vs 8% bar \u00b7 latest 6.9% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 14.7% vs 10% bar \u00b7 latest 18.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -3540,7 +3542,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 24.4x vs 4x bar"
+    "detail": "interest coverage 24.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3618,7 +3620,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 10.1x vs 4x bar"
+    "detail": "interest coverage 10.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3645,18 +3647,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.1% vs 8% bar \u00b7 latest 3.3% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 12.2% vs 8% bar \u00b7 latest 12.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-1.9B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.1x vs 4x bar"
+    "detail": "interest coverage 2.1x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -3711,7 +3713,7 @@
   "note": null
  },
  "CNP": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -3721,13 +3723,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.2% vs 8% bar \u00b7 latest 3.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 9.6% vs 8% bar \u00b7 latest 9.6% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-7.7B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -3901,13 +3903,13 @@
   "note": null
  },
  "COP": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Energy",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -3922,7 +3924,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.5x vs 4x bar"
+    "detail": "interest coverage 14.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -4000,7 +4002,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 54.9x vs 4x bar"
+    "detail": "interest coverage 54.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -4428,7 +4430,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 5.5x vs 4x bar"
+    "detail": "interest coverage 5.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -4529,7 +4531,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/4y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -4574,12 +4576,12 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 1.1% vs 8% bar \u00b7 latest 0.8% (level)"
+    "detail": "return on equity median 4.7% vs 8% bar \u00b7 latest 2.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-5.4B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -5034,7 +5036,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 4.7% vs 8% bar \u00b7 latest 6.3% (level)"
+    "detail": "return on equity median 2.4% vs 10% bar \u00b7 latest 4.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -5044,7 +5046,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 7.5x vs 4x bar"
+    "detail": "interest coverage 7.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5168,7 +5170,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.0x vs 4x bar"
+    "detail": "interest coverage 2.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5206,7 +5208,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.5x vs 4x bar"
+    "detail": "interest coverage 4.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5265,7 +5267,7 @@
   "note": null
  },
  "DTE": {
-  "tier": "REJECTED",
+  "tier": "BORDERLINE",
   "sector": "Utilities",
   "gates": [
    {
@@ -5275,18 +5277,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.2% vs 8% bar \u00b7 latest 3.4% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 11.0% vs 8% bar \u00b7 latest 12.0% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "pass",
-    "detail": "$+15.6B operating cash (no capex tag)"
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.2x vs 4x bar"
+    "grade": "near-fail",
+    "detail": "interest coverage 2.2x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5303,7 +5305,7 @@
   "note": null
  },
  "DUK": {
-  "tier": "REJECTED",
+  "tier": "BORDERLINE",
   "sector": "Utilities",
   "gates": [
    {
@@ -5313,18 +5315,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.7% vs 8% bar \u00b7 latest 3.4% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 5.8% vs 8% bar \u00b7 latest 9.0% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-10.6B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.3x vs 4x bar"
+    "grade": "near-fail",
+    "detail": "interest coverage 2.3x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5385,7 +5387,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/4y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -5508,7 +5510,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 1.3% vs 8% bar \u00b7 latest -0.4% (level)"
+    "detail": "return on equity median -0.6% vs 10% bar \u00b7 latest -0.6% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -5556,7 +5558,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 1.5x vs 4x bar"
+    "detail": "interest coverage 1.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5573,7 +5575,7 @@
   "note": null
  },
  "ED": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -5583,13 +5585,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.3% vs 8% bar \u00b7 latest 3.0% (level)"
+    "grade": "near-pass",
+    "detail": "return on equity median 8.2% vs 8% bar \u00b7 latest 8.4% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-6.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -5607,7 +5609,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "2 Return on capital"
+  ],
   "note": null
  },
  "EFX": {
@@ -5690,7 +5694,7 @@
   "note": null
  },
  "EIX": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -5700,13 +5704,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 1.6% vs 8% bar \u00b7 latest 2.7% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 7.4% vs 8% bar \u00b7 latest 9.9% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-15.0B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -5880,13 +5884,13 @@
   "note": null
  },
  "EOG": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Energy",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -5901,7 +5905,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 58.6x vs 4x bar"
+    "detail": "interest coverage 58.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -5928,7 +5932,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "fail",
-    "detail": "profit negative 2/5y (allowed 0) \u00b7 net income positive 3/5"
+    "detail": "profit negative 1/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 3/4"
    },
    {
     "gate": "2 Return on capital",
@@ -6009,12 +6013,12 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 3.3% vs 8% bar \u00b7 latest 3.2% (level)"
+    "detail": "return on equity median 5.4% vs 8% bar \u00b7 latest 5.4% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-8.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -6078,7 +6082,7 @@
   "note": null
  },
  "ETR": {
-  "tier": "REJECTED",
+  "tier": "BORDERLINE",
   "sector": "Utilities",
   "gates": [
    {
@@ -6088,18 +6092,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.8% vs 8% bar \u00b7 latest 3.2% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 9.6% vs 8% bar \u00b7 latest 7.0% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-11.2B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.2x vs 4x bar"
+    "grade": "near-fail",
+    "detail": "interest coverage 2.2x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -6116,7 +6120,7 @@
   "note": null
  },
  "EVRG": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -6126,18 +6130,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.4% vs 8% bar \u00b7 latest 3.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 7.9% vs 8% bar \u00b7 latest 8.8% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-1.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.6x vs 4x bar"
+    "grade": "near-pass",
+    "detail": "interest coverage 2.6x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -6150,7 +6154,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "4 Debt serviceable"
+  ],
   "note": null
  },
  "EW": {
@@ -6192,7 +6198,7 @@
   "note": null
  },
  "EXC": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -6202,13 +6208,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.7% vs 8% bar \u00b7 latest 3.2% (level)"
+    "grade": "near-pass",
+    "detail": "return on equity median 8.8% vs 8% bar \u00b7 latest 9.1% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-15.3B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -6226,7 +6232,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "2 Return on capital"
+  ],
   "note": null
  },
  "EXE": {
@@ -6236,7 +6244,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "fail",
-    "detail": "profit negative 2/4y (allowed 0) \u00b7 net income positive 4/5"
+    "detail": "profit negative 2/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/5"
    },
    {
     "gate": "2 Return on capital",
@@ -6392,7 +6400,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/4y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -6521,7 +6529,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 10.7x vs 4x bar"
+    "detail": "interest coverage 10.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -6614,7 +6622,7 @@
   "note": null
  },
  "FE": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -6624,13 +6632,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.6% vs 8% bar \u00b7 latest 3.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.6% vs 8% bar \u00b7 latest 7.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-4.1B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -6967,7 +6975,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 7.6% vs 8% bar \u00b7 latest 10.4% (improving)"
+    "detail": "return on equity median 14.5% vs 10% bar \u00b7 latest 19.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -7441,7 +7449,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 10.4x vs 4x bar"
+    "detail": "interest coverage 10.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -7585,7 +7593,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 16.9% vs 8% bar \u00b7 latest 19.7% (level)"
+    "detail": "return on equity median 30.2% vs 10% bar \u00b7 latest 31.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -7673,7 +7681,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-fail",
-    "detail": "interest coverage 3.8x vs 4x bar"
+    "detail": "interest coverage 3.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -7749,7 +7757,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 0.3x vs 4x bar"
+    "detail": "interest coverage 0.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -7804,13 +7812,13 @@
   "note": null
  },
  "HAL": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Energy",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -7943,7 +7951,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.1x vs 4x bar"
+    "detail": "interest coverage 4.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8059,7 +8067,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 5.6x vs 4x bar"
+    "detail": "interest coverage 5.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8253,7 +8261,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.8x vs 4x bar"
+    "detail": "interest coverage 2.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8291,7 +8299,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.4x vs 4x bar"
+    "detail": "interest coverage 8.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8409,7 +8417,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 16.6x vs 4x bar"
+    "detail": "interest coverage 16.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8601,7 +8609,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 3.4x vs 4x bar"
+    "detail": "interest coverage 3.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8867,7 +8875,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 19.9x vs 4x bar"
+    "detail": "interest coverage 19.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -8949,7 +8957,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 3.3x vs 4x bar"
+    "detail": "interest coverage 3.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -9527,7 +9535,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.9x vs 4x bar"
+    "detail": "interest coverage 9.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -9567,7 +9575,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 1.8x vs 4x bar"
+    "detail": "interest coverage 1.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -9708,7 +9716,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -9761,7 +9769,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 6.0x vs 4x bar"
+    "detail": "interest coverage 6.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -9877,7 +9885,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.2x vs 4x bar"
+    "detail": "interest coverage 4.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -10252,18 +10260,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.4% vs 8% bar \u00b7 latest 3.1% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.9% vs 8% bar \u00b7 latest 9.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-4.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.0x vs 4x bar"
+    "detail": "interest coverage 2.0x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -10339,7 +10347,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 33.3x vs 4x bar"
+    "detail": "interest coverage 33.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -10518,8 +10526,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 1.0% vs 8% bar \u00b7 latest -0.2% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 111.7% vs 10% bar \u00b7 latest 183.0% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -10837,7 +10845,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 12.5x vs 4x bar"
+    "detail": "interest coverage 12.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -10941,7 +10949,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 18.0% vs 8% bar \u00b7 latest 19.9% (level)"
+    "detail": "return on equity median 27.8% vs 10% bar \u00b7 latest 27.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -11027,7 +11035,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 5.1x vs 4x bar"
+    "detail": "interest coverage 5.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -11239,8 +11247,8 @@
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -11255,7 +11263,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 5.0x vs 4x bar"
+    "detail": "interest coverage 5.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -11600,7 +11608,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.1x vs 4x bar"
+    "detail": "interest coverage 9.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -11676,7 +11684,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 13.9x vs 4x bar"
+    "detail": "interest coverage 13.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -11845,7 +11853,7 @@
   "note": null
  },
  "NEE": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -11855,13 +11863,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.1% vs 8% bar \u00b7 latest 3.1% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.6% vs 8% bar \u00b7 latest 13.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "pass",
-    "detail": "$+48.4B operating cash (no capex tag)"
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -11932,7 +11940,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 11.1% vs 8% bar \u00b7 latest 15.3% (level)"
+    "detail": "return on equity median 32.3% vs 10% bar \u00b7 latest 41.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -11959,7 +11967,7 @@
   "note": null
  },
  "NI": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -11969,13 +11977,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.3% vs 8% bar \u00b7 latest 3.6% (level)"
+    "grade": "near-pass",
+    "detail": "return on equity median 8.6% vs 8% bar \u00b7 latest 8.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-3.6B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -11993,7 +12001,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "2 Return on capital"
+  ],
   "note": null
  },
  "NKE": {
@@ -12056,7 +12066,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 7.0x vs 4x bar"
+    "detail": "interest coverage 7.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12111,7 +12121,7 @@
   "note": null
  },
  "NRG": {
-  "tier": "PASS",
+  "tier": "REJECTED",
   "sector": "Utilities",
   "gates": [
    {
@@ -12122,12 +12132,12 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 5.9% vs 8% bar \u00b7 latest 8.0% (improving)"
+    "detail": "return on equity median 31.9% vs 8% bar \u00b7 latest 45.4% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "pass",
-    "detail": "$+2.8B over 5y"
+    "grade": "fail",
+    "detail": "operating cash flow positive 4/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -12290,7 +12300,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 12.7x vs 4x bar"
+    "detail": "interest coverage 12.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12394,7 +12404,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 2.8% vs 8% bar \u00b7 latest 4.7% (level)"
+    "detail": "return on equity median 3.3% vs 10% bar \u00b7 latest 1.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -12484,7 +12494,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 7283.0x vs 4x bar"
+    "detail": "interest coverage 7283.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12539,7 +12549,7 @@
   "note": null
  },
  "OMC": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -12549,8 +12559,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.1% vs 8% bar \u00b7 latest 6.1% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 38.5% vs 10% bar \u00b7 latest 35.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -12560,7 +12570,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.2x vs 4x bar"
+    "detail": "interest coverage 9.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12636,7 +12646,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 4.9x vs 4x bar"
+    "detail": "interest coverage 4.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12676,7 +12686,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.6x vs 4x bar"
+    "detail": "interest coverage 14.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12752,7 +12762,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-fail",
-    "detail": "interest coverage 3.5x vs 4x bar"
+    "detail": "interest coverage 3.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12895,13 +12905,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 1.4% vs 8% bar \u00b7 latest 2.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 7.9% vs 8% bar \u00b7 latest 8.3% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
     "grade": "fail",
-    "detail": "$-45.4B over 5y"
+    "detail": "operating cash flow positive 4/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -12933,18 +12943,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.4% vs 8% bar \u00b7 latest 3.4% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 11.0% vs 8% bar \u00b7 latest 11.0% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-3.0B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.7x vs 4x bar"
+    "grade": "near-pass",
+    "detail": "interest coverage 2.7x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -12957,7 +12967,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "4 Debt serviceable"
+  ],
   "note": null
  },
  "PEP": {
@@ -12982,7 +12994,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.0x vs 4x bar"
+    "detail": "interest coverage 14.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -13020,7 +13032,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.6x vs 4x bar"
+    "detail": "interest coverage 2.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -13134,7 +13146,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 38.4x vs 4x bar"
+    "detail": "interest coverage 38.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -13425,7 +13437,7 @@
   "note": null
  },
  "PNW": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -13435,13 +13447,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.9% vs 8% bar \u00b7 latest 3.1% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 9.3% vs 8% bar \u00b7 latest 9.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-2.7B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -13550,17 +13562,17 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median 3.3% vs 8% bar \u00b7 latest 3.3% (level)"
+    "detail": "return on equity median 5.4% vs 8% bar \u00b7 latest 6.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-0.7B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.4x vs 4x bar"
+    "grade": "near-fail",
+    "detail": "interest coverage 2.4x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -13716,7 +13728,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 4.9x vs 4x bar"
+    "detail": "interest coverage 4.9x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -13868,7 +13880,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.4x vs 4x bar"
+    "detail": "interest coverage 14.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -14450,7 +14462,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.6x vs 4x bar"
+    "detail": "interest coverage 9.6x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -14526,7 +14538,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.7x vs 4x bar"
+    "detail": "interest coverage 9.7x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -14581,13 +14593,13 @@
   "note": null
  },
  "SLB": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Energy",
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -14602,7 +14614,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 11.1x vs 4x bar"
+    "detail": "interest coverage 11.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -14775,7 +14787,7 @@
   "note": null
  },
  "SO": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -14785,18 +14797,18 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.1% vs 8% bar \u00b7 latest 3.8% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 11.3% vs 8% bar \u00b7 latest 12.8% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-4.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
-    "grade": "fail",
-    "detail": "interest coverage 2.6x vs 4x bar"
+    "grade": "near-pass",
+    "detail": "interest coverage 2.6x vs 2.5x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -14809,7 +14821,9 @@
     "detail": "all S&P 500 clear $25M/day"
    }
   ],
-  "at_risk": [],
+  "at_risk": [
+   "4 Debt serviceable"
+  ],
   "note": null
  },
  "SOLV": {
@@ -14893,7 +14907,7 @@
   "note": null
  },
  "SRE": {
-  "tier": "REJECTED",
+  "tier": "CANNOT ASSESS",
   "sector": "Utilities",
   "gates": [
    {
@@ -14903,13 +14917,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.1% vs 8% bar \u00b7 latest 2.2% (level)"
+    "grade": null,
+    "detail": "insufficient history"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-13.0B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -15222,7 +15236,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 20.8x vs 4x bar"
+    "detail": "interest coverage 20.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -15365,8 +15379,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.7% vs 8% bar \u00b7 latest 3.8% (level)"
+    "grade": "near-fail",
+    "detail": "return on equity median 9.3% vs 10% bar \u00b7 latest 9.3% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -15490,7 +15504,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 17.1x vs 4x bar"
+    "detail": "interest coverage 17.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -15608,7 +15622,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 165.5x vs 4x bar"
+    "detail": "interest coverage 165.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -15749,8 +15763,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 2.3% vs 8% bar \u00b7 latest 1.2% (level)"
+    "grade": null,
+    "detail": "insufficient history"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -15815,7 +15829,7 @@
   "note": null
  },
  "TMUS": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -15825,8 +15839,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 4.0% vs 8% bar \u00b7 latest 6.8% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 12.9% vs 10% bar \u00b7 latest 18.6% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -15859,7 +15873,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -15912,7 +15926,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 1.5x vs 4x bar"
+    "detail": "interest coverage 1.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -15936,8 +15950,8 @@
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -16237,7 +16251,7 @@
   "note": null
  },
  "TTD": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -16247,8 +16261,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.0% vs 8% bar \u00b7 latest 5.5% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 9.0% vs 10% bar \u00b7 latest 17.8% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -16286,7 +16300,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median -14.5% vs 8% bar \u00b7 latest -37.8% (level)"
+    "detail": "return on equity median -12.4% vs 10% bar \u00b7 latest -8.5% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -16334,7 +16348,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 10.8x vs 4x bar"
+    "detail": "interest coverage 10.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -16412,7 +16426,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 50.5x vs 4x bar"
+    "detail": "interest coverage 50.5x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -16530,7 +16544,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 9.0x vs 4x bar"
+    "detail": "interest coverage 9.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -16606,7 +16620,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 8.3x vs 4x bar"
+    "detail": "interest coverage 8.3x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -16869,8 +16883,8 @@
   "gates": [
    {
     "gate": "1 Sustained profit",
-    "grade": "fail",
-    "detail": "profit negative 1/5y (allowed 0) \u00b7 net income positive 4/5"
+    "grade": "pass",
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -16885,7 +16899,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 6.8x vs 4x bar"
+    "detail": "interest coverage 6.8x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -17041,7 +17055,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 14.1x vs 4x bar"
+    "detail": "interest coverage 14.1x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -17145,12 +17159,12 @@
    {
     "gate": "2 Return on capital",
     "grade": "pass",
-    "detail": "return on assets median 4.8% vs 8% bar \u00b7 latest 8.5% (improving)"
+    "detail": "return on equity median 7.6% vs 8% bar \u00b7 latest 47.7% (improving)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "pass",
-    "detail": "$+6.3B over 5y"
+    "grade": "fail",
+    "detail": "operating cash flow positive 4/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -17197,7 +17211,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 0.0x vs 4x bar"
+    "detail": "interest coverage 0.0x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -17214,7 +17228,7 @@
   "note": null
  },
  "VZ": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Communication Services",
   "gates": [
    {
@@ -17224,8 +17238,8 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 6.1% vs 8% bar \u00b7 latest 5.9% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 17.4% vs 10% bar \u00b7 latest 16.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -17341,7 +17355,7 @@
    {
     "gate": "2 Return on capital",
     "grade": "fail",
-    "detail": "return on assets median -1.0% vs 8% bar \u00b7 latest -7.6% (level)"
+    "detail": "return on equity median -6.9% vs 10% bar \u00b7 latest -33.2% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
@@ -17444,7 +17458,7 @@
   "note": null
  },
  "WEC": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -17454,13 +17468,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.6% vs 8% bar \u00b7 latest 3.6% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 11.7% vs 8% bar \u00b7 latest 11.9% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-1.1B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -17572,7 +17586,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/5y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 4/4"
    },
    {
     "gate": "2 Return on capital",
@@ -17741,7 +17755,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "pass",
-    "detail": "interest coverage 35.2x vs 4x bar"
+    "detail": "interest coverage 35.2x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -17781,7 +17795,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "fail",
-    "detail": "interest coverage 2.4x vs 4x bar"
+    "detail": "interest coverage 2.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",
@@ -17842,7 +17856,7 @@
   "note": null
  },
  "XEL": {
-  "tier": "REJECTED",
+  "tier": "PASS",
   "sector": "Utilities",
   "gates": [
    {
@@ -17852,13 +17866,13 @@
    },
    {
     "gate": "2 Return on capital",
-    "grade": "fail",
-    "detail": "return on assets median 3.0% vs 8% bar \u00b7 latest 2.7% (level)"
+    "grade": "pass",
+    "detail": "return on equity median 10.1% vs 8% bar \u00b7 latest 8.5% (level)"
    },
    {
     "gate": "3 Cumulative 5y FCF",
-    "grade": "fail",
-    "detail": "$-8.5B over 5y"
+    "grade": "pass",
+    "detail": "operating cash flow positive 5/5y (utility track: capex excluded)"
    },
    {
     "gate": "4 Debt serviceable",
@@ -17886,7 +17900,7 @@
    {
     "gate": "1 Sustained profit",
     "grade": "pass",
-    "detail": "profit negative 0/4y (allowed 0) \u00b7 net income positive 5/5"
+    "detail": "profit negative 0/4y (allowed 0) [shock yrs excluded: 2020] \u00b7 net income positive 5/5"
    },
    {
     "gate": "2 Return on capital",
@@ -18015,7 +18029,7 @@
    {
     "gate": "4 Debt serviceable",
     "grade": "near-pass",
-    "detail": "interest coverage 4.4x vs 4x bar"
+    "detail": "interest coverage 4.4x vs 4.0x bar"
    },
    {
     "gate": "5 Op margin durable",

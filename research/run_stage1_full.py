@@ -16,6 +16,12 @@ SCAN = HERE.parent / "output" / "latest_scan_sp500.json"
 # Sector -> which Stage 1 track applies. Financials are judged on return
 # on equity, because a bank's return on ASSETS is structurally ~1-1.5%.
 FINANCIAL_SECTORS = {"Financial Services"}
+UTILITY_SECTORS = {"Utilities"}
+# Capital-intensive but COMPETITIVE (not rate-regulated): telecom, cable,
+# media. Asset-heavy like utilities, so return on assets misreads them —
+# but unlike utilities they generate strong free cash flow (VZ +$64B,
+# T +$111B, CMCSA +$83B cumulative 5y), so only gate 2 changes.
+CAPITAL_INTENSIVE_SECTORS = {"Communication Services"}
 SKIP_SECTORS = {"Real Estate"}   # REITs need an FFO-based track; not built
 
 
@@ -28,6 +34,46 @@ def main():
     out, tiers = {}, collections.Counter()
     missing_cik, errors = [], []
     tickers = sorted(rows)
+
+    # --- Pass 1: load every company once, and find sector shock years ---
+    # A year where most of a sector's LARGEST companies posted an
+    # operating loss is an industry-wide event, not a company signal.
+    print("loading filings...", flush=True)
+    data = {}
+    for i, t in enumerate(tickers, 1):
+        if rows[t].get("sector") in SKIP_SECTORS or t not in cik:
+            continue
+        try:
+            data[t] = load(t, cik[t])
+        except Exception as e:                      # noqa: BLE001
+            errors.append((t, str(e)[:60]))
+        if i % 100 == 0:
+            print(f"   ...{i}/{len(tickers)}", flush=True)
+        time.sleep(0.11)
+
+    SHOCK_SHARE = 0.50        # >=50% of the sector's big names negative
+    SHOCK_TOP_N = 10          # judged on the 10 largest by market cap
+    shock = collections.defaultdict(set)
+    by_sector = collections.defaultdict(list)
+    for t, d in data.items():
+        by_sector[rows[t].get("sector") or "Unknown"].append(t)
+    for sec, names in by_sector.items():
+        biggest = sorted(names, key=lambda x: -(rows[x].get("market_cap") or 0))[:SHOCK_TOP_N]
+        year_neg, year_n = collections.Counter(), collections.Counter()
+        for t in biggest:
+            oi = data[t]["op_income"]
+            for y in sorted(oi)[-6:]:
+                year_n[y] += 1
+                if oi[y] <= 0:
+                    year_neg[y] += 1
+        for y, n in year_n.items():
+            if n >= 4 and year_neg[y] / n >= SHOCK_SHARE:
+                shock[sec].add(y)
+    if shock:
+        print("\nsector-wide shock years detected:")
+        for sec, ys in sorted(shock.items()):
+            print(f"   {sec:24s} {', '.join(sorted(ys))}")
+    print()
     for i, t in enumerate(tickers, 1):
         sector = rows[t].get("sector") or "Unknown"
         if sector in SKIP_SECTORS:
@@ -39,9 +85,16 @@ def main():
             tiers["NO CIK"] += 1
             out[t] = {"tier": "NO CIK", "sector": sector}
             continue
+        d = data.get(t)
+        if d is None:
+            tiers["ERROR"] += 1
+            out[t] = {"tier": "ERROR", "sector": sector}
+            continue
         try:
-            d = load(t, cik[t])
-            gates = run(t, d, is_financial=sector in FINANCIAL_SECTORS)
+            gates = run(t, d, is_financial=sector in FINANCIAL_SECTORS,
+                        is_utility=sector in UTILITY_SECTORS,
+                        is_capital_intensive=sector in CAPITAL_INTENSIVE_SECTORS,
+                        shock_years=shock.get(sector, set()))
             tier = decide(gates, t)
             out[t] = {
                 "tier": tier, "sector": sector,
@@ -54,9 +107,7 @@ def main():
             errors.append((t, str(e)[:60]))
             tiers["ERROR"] += 1
             out[t] = {"tier": "ERROR", "sector": sector, "error": str(e)[:200]}
-        if i % 50 == 0:
-            print(f"   ...{i}/{len(tickers)}", flush=True)
-        time.sleep(0.11)                            # SEC fair-use pacing
+
 
     (HERE / "stage1_results.json").write_text(json.dumps(out, indent=1))
 
